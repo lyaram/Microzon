@@ -1,4 +1,4 @@
-BASE_URL = "http://www.etsy.com/"
+BASE_URL = "http://www.yahoo.es/"
 
 require 'watir-webdriver'
 require 'watir-webdriver-performance'
