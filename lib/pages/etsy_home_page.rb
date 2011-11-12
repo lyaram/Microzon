@@ -5,14 +5,14 @@ class EtsyHomePage < BasePageClass
 #  link :buy, :text => "Buy"
   direct_url "http://www.turismepropbarcelona.cat/ca/"
   #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
-  screenshot = "./screenshots/WEBIMG_www_turismepropbarcelona_cat.png"
-  Browser::BROWSER.driver.save_screenshot(screenshot)
-  embed screenshot, 'image/png'
+  @screenshot = "./screenshots/WEBIMG_www_turismepropbarcelona_cat.png"
+  Browser::BROWSER.driver.save_screenshot(@screenshot)
+  embed @screenshot, 'image/png'
 
   direct_url "http://www.diba.es/parcsn/parcs/home.asp"
-  screenshot = "./screenshots/WEBIMG_www_diba_es_parcsn.png"
-  Browser::BROWSER.driver.save_screenshot(screenshot)
-  embed screenshot, 'image/png'
+  @screenshot = "./screenshots/WEBIMG_www_diba_es_parcsn.png"
+  Browser::BROWSER.driver.save_screenshot(@screenshot)
+  embed @screenshot, 'image/png'
   
 #  def click_buy
 #    self.buy
