@@ -6,6 +6,7 @@ class EtsyHomePage < BasePageClass
   link :buy, :text => "Buy"
   #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
   @screenshot = "./screenshots/WEBIMG_www_turismepropbarcelona_cat.png"
+  puts @screenshot
   #Browser::BROWSER.driver.save_screenshot(@screenshot)
   #embed @screenshot, 'image/png'
 #

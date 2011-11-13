@@ -6,8 +6,8 @@ class BasePageClass
     goto if visit
     expected_element if respond_to? :expected_element
 #    has_expected_title? if respond_to? :has_expected_title?
-puts ".FROM:BasePageClass. self=" + self.to_s
-puts ".FROM:BasePageClass. probando=" + caller.to_s
+#puts ".FROM:BasePageClass. self=" + self.to_s
+#puts ".FROM:BasePageClass. probando=" + caller.to_s
     @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
   end
 
