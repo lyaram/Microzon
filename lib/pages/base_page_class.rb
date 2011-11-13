@@ -9,7 +9,7 @@ class BasePageClass
 #puts ".FROM:BasePageClass. self=" + self.to_s
 #puts ".FROM:BasePageClass. probando=" + caller.to_s
 puts "######IniInsertaPUTS"
-      puts "#{method_name} added to #{self}, callstack:"
+#      puts "#{method_name} added to #{self}, callstack:"
       puts caller.map{|line| "\t#{line}" }.join("\n")
 puts "######FinInsertaPUTS"
     @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
