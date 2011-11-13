@@ -1,10 +1,10 @@
 class EtsyHomePage < BasePageClass
 
-  expected_title "Etsy - Your place to buy and sell all things handmade, vintage, and supplies"
+#  expected_title "Etsy - Your place to buy and sell all things handmade, vintage, and supplies"
+#  direct_url "http://www.turismepropbarcelona.cat/ca/"
   direct_url BASE_URL
   link :buy, :text => "Buy"
-#  direct_url "http://www.turismepropbarcelona.cat/ca/"
-#  #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+  #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
 #  @screenshot = "./screenshots/WEBIMG_www_turismepropbarcelona_cat.png"
 #  Browser::BROWSER.driver.save_screenshot(@screenshot)
 #  embed @screenshot, 'image/png'
