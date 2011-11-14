@@ -8,6 +8,7 @@ $: << File.dirname(__FILE__)+'/../../lib'
 
 module Watir
   class Element
+puts ".FROM:BasePageClass. probando=" + caller.to_s
 puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
     alias_method :shown?, :exists?
 puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
