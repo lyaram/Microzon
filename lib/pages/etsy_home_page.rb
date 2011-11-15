@@ -2,9 +2,9 @@ class EtsyHomePage < BasePageClass
 
 #  expected_title "Etsy - Your place to buy and sell all things handmade, vintage, and supplies"
 #  direct_url BASE_URL
-puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 03")
   direct_url "http://www.turismepropbarcelona.cat/ca/"
-puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
   #link :buy, :text => "Buy"
   #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
   #@screenshot = "./screenshots/WEBIMG_www_turismepropbarcelona_cat.png"
