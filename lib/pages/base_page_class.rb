@@ -4,7 +4,15 @@ class BasePageClass
   def initialize browser, page_metrics, visit = false
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 07")
     @browser = browser
- 
+
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO A")
+  screenshot = "./screenshots/WEBIMG_pic0001.png"
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO B")
+#  Browser::BROWSER.driver.save_screenshot(screenshot)
+  @browser.driver.save_screenshot(screenshot)
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO C")
+
+	
     goto if visit
  
     expected_element if respond_to? :expected_element
