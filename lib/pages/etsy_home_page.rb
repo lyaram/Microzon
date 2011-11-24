@@ -8,7 +8,7 @@ puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 03")
   browser = Watir::Browser.new(:firefox)
 
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO A")
-  screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+  screenshot = "./screenshots/WEBIMG_pic0001.png"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO B")
 #  Browser::BROWSER.driver.save_screenshot(screenshot)
   browser.driver.save_screenshot(screenshot)
