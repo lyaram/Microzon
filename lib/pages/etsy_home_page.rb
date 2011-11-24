@@ -6,6 +6,14 @@ puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 03")
   direct_url "http://www.turismepropbarcelona.cat/ca/"
 
   browser = Watir::Browser.new(:firefox)
+
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO A")
+  screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO B")
+#  Browser::BROWSER.driver.save_screenshot(screenshot)
+  browser.driver.save_screenshot(screenshot)
+puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO C")
+
 #  browser.driver.save_screenshot("file_name.png")
   #link :buy, :text => "Buy"
   #screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
