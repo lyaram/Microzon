@@ -6,7 +6,7 @@ puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 07")
     @browser = browser
 
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO A")
-  screenshot = "./screenshots/WEBIMG_pic0001.png"
+  screenshot = "./screenshots/WEBIMG_pic0003.png"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO B")
 #  Browser::BROWSER.driver.save_screenshot(screenshot)
   @browser.driver.save_screenshot(screenshot)
