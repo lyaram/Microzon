@@ -3,7 +3,7 @@ class EtsyHomePage < BasePageClass
 #  expected_title "Etsy - Your place to buy and sell all things handmade, vintage, and supplies"
 #  direct_url BASE_URL
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 03")
-  direct_url "http://www.turismepropbarcelona.cat/ca/"
+  direct_url "http://www.timeanddate.com/worldclock/fullscreen.html?n=31"
 
   #  browser.driver.save_screenshot("file_name.png")
   #link :buy, :text => "Buy"
