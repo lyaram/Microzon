@@ -17,4 +17,8 @@ class BasePageClass
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
     @browser.send sym, *args, &block
   end
+  
+  def b
+    return @browser
+  end
 end
