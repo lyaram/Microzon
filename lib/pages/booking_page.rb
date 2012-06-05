@@ -5,8 +5,6 @@ class BookingPage < BasePageClass
 
  # @browser.link(:xpath, "//td[@class='next']/a").click
 
-  @b = b
-  puts b.title
   
   
 end
