@@ -18,7 +18,4 @@ class BasePageClass
     @browser.send sym, *args, &block
   end
   
-  def b
-    return @browser
-  end
 end

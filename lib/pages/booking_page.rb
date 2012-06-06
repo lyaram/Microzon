@@ -1,4 +1,4 @@
-class MyPage < BasePageClass
+class BookingPage < BasePageClass
 
   expected_title "Etsy - Your place to buy and sell all things handmade, vintage, and supplies"
   direct_url "www.etsy.com"
