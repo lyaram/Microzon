@@ -21,7 +21,7 @@ class BookingPage
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 03")
   direct_url "http://www.booking.com/searchresults.en-gb.html?sid=17055a451915e9872449d95075e8dd5b;dcid=1;city=-1658079"
 
-  direct_url "http://www.google.com"
+  direct_url "http://www.google.es"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 01")  
   expected_element :text_field, :name => "q"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 02")  
@@ -32,6 +32,11 @@ puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 04")
   button :search, :name => "btnG"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 05")  
 
-  
+  WatirPageHelper.create
+visit MyPage do |page|
+  page.search_box = "Watirmelon"
+  page.search
+end
+WatirPageHelper.close
   
 end
