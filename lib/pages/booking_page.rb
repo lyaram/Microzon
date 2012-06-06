@@ -32,11 +32,9 @@ puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 04")
   button :search, :name => "btnG"
 puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 05")  
 
-  WatirPageHelper.create
 visit MyPage do |page|
   page.search_box = "Watirmelon"
   page.search
 end
-WatirPageHelper.close
   
 end
