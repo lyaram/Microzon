@@ -6,7 +6,7 @@ class MyPage < BasePageClass
   text_field :search_box, :name => "q"
   button :search, :name => "btnG"
 
-  self.search_box = "Watirmelon"
-  self.search
+  search_box = "Watirmelon"
+  search
   
 end
