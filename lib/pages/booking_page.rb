@@ -22,7 +22,7 @@ class BookingPage
     #hay que separar este componente en una pagina google_results_page
     div :checkout_foot, :id => "foot" #/^checkout.*/
 
-    def ensure_page_loaded
+    def ensure_results_loaded
       checkout_foot_div.wait_until_present
     end
     ##################################################################
