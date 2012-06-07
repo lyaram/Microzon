@@ -18,7 +18,7 @@ class BookingPage
     
     loop do 
       ensure_complete
-      break if !next_page_link.exits?
+      break if !next_page_link.exists?
       next_page
       break
     end 
