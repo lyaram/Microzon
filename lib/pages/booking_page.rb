@@ -16,12 +16,12 @@ class BookingPage
   def launch url
     @browser.goto url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
     
-    #loop do 
+    loop do 
       #ensure_complete
       #break if !next_page_link.exits?
       #next_page
-      #break
-    #end 
+      break
+    end 
   end
   
   def initialize browser, page_metrics, visit = false
