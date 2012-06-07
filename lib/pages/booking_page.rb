@@ -13,12 +13,20 @@ class BookingPage
 
    include WatirPageHelper
   
-    direct_url "http://www.google.es"
+    direct_url "http://www.google.com/ncr"
     expected_element :text_field, :name => "q"
     expected_title "Google"
     text_field :search_box, :name => "q"
     button :search, :name => "btnG"
-   
+    
+    #hay que separar este componente en una pagina google_results_page
+    div :checkout_foot, :id => "foot" #/^checkout.*/
+
+    def ensure_page_loaded
+      checkout_foot_div.wait_until_present
+    end
+    ##################################################################
+    
     def initialize browser, page_metrics, visit = false
       @browser = browser
       goto if visit
@@ -32,5 +40,6 @@ class BookingPage
     def method_missing sym, *args, &block
       @browser.send sym, *args, &block
     end
+
 
 end

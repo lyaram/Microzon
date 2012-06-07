@@ -6,6 +6,7 @@ When /^QBot is surfing a webpage$/ do
   on BookingPage do |page| 
     page.search_box = "Booking"
     page.search 
+    page.ensure_page_loaded
   end
 end
 
