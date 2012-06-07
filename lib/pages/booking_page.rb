@@ -20,7 +20,10 @@ class BookingPage
       ensure_complete
       break if !next_page_link.exists?
       next_page
+ 
+      ensure_complete
       break
+ 
     end 
   end
   
