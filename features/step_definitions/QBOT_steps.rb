@@ -4,9 +4,7 @@ end
 
 When /^QBot is surfing a webpage$/ do
   on BookingPage do |page| 
-    page.search_box = "Booking"
-    page.search 
-    page.ensure_results_loaded
+    page.launch "http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
   end
 end
 
