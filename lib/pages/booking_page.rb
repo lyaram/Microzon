@@ -10,16 +10,16 @@ class BookingPage
  
   div :checkout_complete, :id => "footernote"
   def ensure_complete
-    checkout_foot_div.wait_until_present
+    checkout_complete_div.wait_until_present
   end
     
   def launch url
     @browser.goto url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
     
     loop do 
-      #ensure_complete
-      #break if !next_page_link.exits?
-      #next_page
+      ensure_complete
+      break if !next_page_link.exits?
+      next_page
       break
     end 
   end
