@@ -19,10 +19,10 @@ class BookingPage
     text_field :search_box, :name => "q"
     button :search, :name => "btnG"
    
-    def initialize browser, visit = false
+    def initialize browser, page_metrics, visit = false
       @browser = browser
       goto if visit
-   
+    
       expected_element if respond_to? :expected_element
       has_expected_title? if respond_to? :has_expected_title?
  
