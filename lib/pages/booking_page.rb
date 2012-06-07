@@ -14,7 +14,7 @@ class BookingPage
   end
     
   def launch url
-    direct_url url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
+    @browser.goto url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
     
     loop do 
       ensure_complete
