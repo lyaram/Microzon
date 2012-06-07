@@ -3,7 +3,10 @@ Given /^QBot is running$/ do
 end
 
 When /^QBot is surfing a webpage$/ do
-  on BookingPage do |page| page.click_buy end
+  on BookingPage do |page| 
+    page.search_box = "Booking"
+    page.search 
+  end
 end
 
 Then /^QBot should get a snapshot$/ do
