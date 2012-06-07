@@ -25,6 +25,12 @@ class BookingPage
    
       expected_element if respond_to? :expected_element
       has_expected_title? if respond_to? :has_expected_title?
-    end
+ 
+      @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
+   end
   
+    def method_missing sym, *args, &block
+      @browser.send sym, *args, &block
+    end
+
 end
