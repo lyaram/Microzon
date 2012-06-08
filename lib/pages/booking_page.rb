@@ -22,7 +22,7 @@ class BookingPage
       puts "aqui estamos"
       puts @browser.element_by_xpath("//td[@class='next']/a").text
       break if !@browser.element_by_xpath("//td[@class='next']/a").exists?
-      self.next_page
+      @browser.element_by_xpath("//td[@class='next']/a").click
     end 
   end
   
