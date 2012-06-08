@@ -30,7 +30,7 @@ class BookingPage
     t = Time.now  
     strDT = t.strftime("%y%m%d%H%M%S%3N")
     screenshot = @folderStore + "/png/" + strDT + ".png"
-    @browser.screenshot.save(screenshot)
+    @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
   end
   
