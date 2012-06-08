@@ -14,16 +14,18 @@ class BookingPage
   end
     
   def launch url
-    @browser.goto url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
+    @browser.goto url 
     
-    #loop do
-    3.times do 
+    nextXpath = "//td[@class='next']/a"
+    loop do
       ensure_complete
-      puts "aqui estamos"
-      puts @browser.element_by_xpath("//td[@class='next']/a").text
-      break if !@browser.element_by_xpath("//td[@class='next']/a").exists?
-      @browser.element_by_xpath("//td[@class='next']/a").click
+      break if !@browser.element_by_xpath(nextXpath).exists?
+      @browser.element_by_xpath(nextXpath).click
     end 
+  end
+  
+  def storePage
+    
   end
   
   def initialize browser, page_metrics, visit = false
@@ -34,6 +36,17 @@ class BookingPage
     has_expected_title? if respond_to? :has_expected_title?
  
     @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
+    
+    #mirar si hay un mejor sitio para ubicar este fragmento de code#
+    for i in 1..3 #99999
+      #puts "Value of local variable is #{i}"
+      folder = "~/BotStoring/" + "%05d" % i
+      puts folder
+      if not File.directory?(folder) 
+        puts ' no existe'
+      end
+    end
+    ################################################################
   end
   
   def method_missing sym, *args, &block
