@@ -17,11 +17,12 @@ class BookingPage
     @browser.goto url 
     
     nextXpath = "//td[@class='next']/a"
-    loop do
+    #loop do
+    3.times do
       ensure_complete
+      storePage
       break if !@browser.element_by_xpath(nextXpath).exists?
       @browser.element_by_xpath(nextXpath).click
-      return
     end 
   end
   
@@ -44,10 +45,9 @@ class BookingPage
     #mirar si hay un mejor sitio para ubicar este fragmento de code#
     folderbase = Dir.home() + "/" + "BotStoring"
     Dir::mkdir(folderbase) if not File.directory?(folderbase)
-    for i in 1..5 #99999
+    for i in 1..99999
       #puts "Value of local variable is #{i}"
       folder = folderbase + "/" + "%05d" % i
-      puts folder
       if not File.directory?(folder) 
         puts ' no existe'
         @folderStore = folder
@@ -56,8 +56,6 @@ class BookingPage
         Dir::mkdir(@folderStore + "/html")
         Dir::mkdir(@folderStore + "/png")
         break
-      else 
-        puts ' existe'
       end
     end
     ################################################################
