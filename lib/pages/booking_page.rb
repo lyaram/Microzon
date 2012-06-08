@@ -27,7 +27,10 @@ class BookingPage
   end
   
   def storePage
-    
+    strDT = time.strftime("%y%m%d%H%M%S%3N")
+    screenshot = @folderStore + "/png/" + strDT + ".png"
+    @browser::BROWSER.driver.save_screenshot(screenshot)
+    embed screenshot, 'image/png'
   end
   
   def initialize browser, page_metrics, visit = false
@@ -48,10 +51,11 @@ class BookingPage
       puts folder
       if not File.directory?(folder) 
         puts ' no existe'
+        @folderStore = folder
         @indexStore = "%05d" % i
-        Dir::mkdir(folder)
-        Dir::mkdir(folder + "/" + "html")
-        Dir::mkdir(folder + "/" + "png")
+        Dir::mkdir(@folderStore)
+        Dir::mkdir(@folderStore + "/html")
+        Dir::mkdir(@folderStore + "/png")
         break
       else 
         puts ' existe'
