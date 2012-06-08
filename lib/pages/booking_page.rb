@@ -14,6 +14,8 @@ class BookingPage
   end
     
   def launch url
+     return
+     
     @browser.goto url 
     
     nextXpath = "//td[@class='next']/a"
@@ -38,9 +40,11 @@ class BookingPage
     @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
     
     #mirar si hay un mejor sitio para ubicar este fragmento de code#
+    folderbase = Dir.home() + "/" + "BotStoring"
+    Dir::mkdir(folderbase) if not File.directory?(folderbase)
     for i in 1..3 #99999
       #puts "Value of local variable is #{i}"
-      folder = "~/BotStoring/" + "%05d" % i
+      folder = folderbase + "/" + "%05d" % i
       puts folder
       if not File.directory?(folder) 
         puts ' no existe'
