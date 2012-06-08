@@ -4,7 +4,7 @@ class BookingPage
   
     
   link :next_page do |browser|
-    browser.element_by_xpath("(//a)[1]").link
+    browser.find_element(:xpath, "(//a)[1]").link
   end
  
  
