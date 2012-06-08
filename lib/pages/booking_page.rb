@@ -42,7 +42,7 @@ class BookingPage
     #mirar si hay un mejor sitio para ubicar este fragmento de code#
     folderbase = Dir.home() + "/" + "BotStoring"
     Dir::mkdir(folderbase) if not File.directory?(folderbase)
-    for i in 1..3 #99999
+    for i in 1..5 #99999
       #puts "Value of local variable is #{i}"
       folder = folderbase + "/" + "%05d" % i
       puts folder
@@ -50,7 +50,11 @@ class BookingPage
         puts ' no existe'
         @indexStore = "%05d" % i
         Dir::mkdir(folder)
+        Dir::mkdir(folder + "/" + "html")
+        Dir::mkdir(folder + "/" + "png")
         break
+      else 
+        puts ' existe'
       end
     end
     ################################################################
