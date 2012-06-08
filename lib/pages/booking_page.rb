@@ -4,7 +4,7 @@ class BookingPage
   
     
   link :next_page do |browser|
-    browser.element_by_xpath("//*[@class='next']/a").link
+    browser.element_by_xpath("(//a)[1]").link
   end
  
  
@@ -18,8 +18,8 @@ class BookingPage
     
     #loop do
     3.times do 
-      puts "aqui estamos"
       ensure_complete
+      puts "aqui estamos"
       break if !next_page_link.exists?
       self.next_page
     end 
