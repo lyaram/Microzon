@@ -16,14 +16,11 @@ class BookingPage
   def launch url
     @browser.goto url #"http://www.booking.com/searchresults.es.html?order=name;rows=50;lang=es;selected_currency=EUR;city=-372490"
     
-    loop do 
+    #loop do
+    3.times do 
       ensure_complete
       break if !next_page_link.exists?
-      next_page
- 
-      ensure_complete
-      break
- 
+      self.next_page
     end 
   end
   
