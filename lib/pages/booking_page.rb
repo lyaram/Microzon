@@ -17,6 +17,8 @@ class BookingPage
     @browser.goto url 
     
     nextXpath = "//td[@class='next']/a"
+    
+    PrepararStore
     #loop do
     3.times do
       ensure_complete
@@ -26,6 +28,23 @@ class BookingPage
     end 
   end
   
+  def PrepararStore
+    folderbase = Dir.home() + "/" + "BotStoring"
+    Dir::mkdir(folderbase) if not File.directory?(folderbase)
+    for i in 1..99999
+      #puts "Value of local variable is #{i}"
+      folder = folderbase + "/" + "%05d" % i
+      if not File.directory?(folder) 
+        @folderStore = folder
+        @indexStore = "%05d" % i
+        Dir::mkdir(@folderStore)
+        Dir::mkdir(@folderStore + "/html")
+        Dir::mkdir(@folderStore + "/png")
+        break
+      end
+    end
+  end
+
   def storePage
     t = Time.now  
     strDT = t.strftime("%y%m%d%H%M%S%3N")
@@ -42,24 +61,6 @@ class BookingPage
     has_expected_title? if respond_to? :has_expected_title?
  
     @browser.with_performance {|performance| page_metrics.add_page self.class, performance } unless visit
-    
-    #mirar si hay un mejor sitio para ubicar este fragmento de code#
-    folderbase = Dir.home() + "/" + "BotStoring"
-    Dir::mkdir(folderbase) if not File.directory?(folderbase)
-    for i in 1..99999
-      #puts "Value of local variable is #{i}"
-      folder = folderbase + "/" + "%05d" % i
-      if not File.directory?(folder) 
-        puts ' no existe'
-        @folderStore = folder
-        @indexStore = "%05d" % i
-        Dir::mkdir(@folderStore)
-        Dir::mkdir(@folderStore + "/html")
-        Dir::mkdir(@folderStore + "/png")
-        break
-      end
-    end
-    ################################################################
   end
   
   def method_missing sym, *args, &block
