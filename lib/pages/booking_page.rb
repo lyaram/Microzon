@@ -48,9 +48,21 @@ class BookingPage
   def storePage
     t = Time.now  
     strDT = t.strftime("%y%m%d%H%M%S%3N")
+    storePagePng strDT
+    storePageHtml strDT
+  end
+  def storePagePng strDT
     screenshot = @folderStore + "/png/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
+  end
+  def storePageHtml strDT
+    htmFile = @folderStore + "/html/" + strDT + ".htm"
+    
+    aFile = File.new(htmFile, "w")
+    aFile.write(@browser.html)
+    aFile.close
+
   end
   
   def initialize browser, page_metrics, visit = false
