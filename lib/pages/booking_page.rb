@@ -19,8 +19,7 @@ class BookingPage
     nextXpath = "//td[@class='next']/a"
     
     prepararStore
-    #loop do
-    3.times do
+    loop do
       ensure_complete
       storePage
       break if !@browser.element_by_xpath(nextXpath).exists?
@@ -29,12 +28,14 @@ class BookingPage
   end
   
   def prepararStore
+    #para reiniciar la carpeta BotStoring usar el comando en consola 
+    # rm -rf BotStoring
     folderbase = Dir.home() + "/" + "BotStoring"
     Dir::mkdir(folderbase) if not File.directory?(folderbase)
     for i in 1..99999
       #puts "Value of local variable is #{i}"
       folder = folderbase + "/" + "%05d" % i
-      if not File.directory?(folder) 
+      if not File.directory?(folder) and not File.file?(folder + ".zip") 
         @folderStore = folder
         @indexStore = "%05d" % i
         Dir::mkdir(@folderStore)
