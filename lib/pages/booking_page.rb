@@ -14,8 +14,6 @@ class BookingPage
   end
     
   def launch url
-     return
-     
     @browser.goto url 
     
     nextXpath = "//td[@class='next']/a"
@@ -23,6 +21,7 @@ class BookingPage
       ensure_complete
       break if !@browser.element_by_xpath(nextXpath).exists?
       @browser.element_by_xpath(nextXpath).click
+      return
     end 
   end
   

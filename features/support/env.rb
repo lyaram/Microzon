@@ -83,13 +83,13 @@ World Browser
 
 After do |scenario|
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 09")
-  Dir::mkdir('screenshots') if not File.directory?('screenshots')
-
-  screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
-
-  Browser::BROWSER.driver.save_screenshot(screenshot)
-
-  embed screenshot, 'image/png'
+#  Dir::mkdir('screenshots') if not File.directory?('screenshots')
+#
+#  screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+#
+#  Browser::BROWSER.driver.save_screenshot(screenshot)
+#
+#  embed screenshot, 'image/png'
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 09")
 end
 
