@@ -18,6 +18,7 @@ class BookingPage
     
     #loop do
     3.times do 
+      puts "aqui estamos"
       ensure_complete
       break if !next_page_link.exists?
       self.next_page
