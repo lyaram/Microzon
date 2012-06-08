@@ -44,6 +44,9 @@ class BookingPage
       puts folder
       if not File.directory?(folder) 
         puts ' no existe'
+        @indexStore = "%05d" % i
+        Dir::mkdir(folder)
+        break
       end
     end
     ################################################################
