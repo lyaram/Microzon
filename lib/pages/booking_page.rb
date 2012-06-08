@@ -18,7 +18,7 @@ class BookingPage
     
     nextXpath = "//td[@class='next']/a"
     
-    PrepararStore
+    prepararStore
     #loop do
     3.times do
       ensure_complete
@@ -28,7 +28,7 @@ class BookingPage
     end 
   end
   
-  def PrepararStore
+  def prepararStore
     folderbase = Dir.home() + "/" + "BotStoring"
     Dir::mkdir(folderbase) if not File.directory?(folderbase)
     for i in 1..99999
