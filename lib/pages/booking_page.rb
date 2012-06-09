@@ -25,6 +25,8 @@ class BookingPage
       break if !@browser.element_by_xpath(nextXpath).exists?
       @browser.element_by_xpath(nextXpath).click
     end 
+    #para empaquetar previo ftp, usar este comando en consola
+    # zip -r 00001.zip 00001/
   end
   
   def prepararStore
@@ -48,7 +50,7 @@ class BookingPage
 
   def storePage
     t = Time.now  
-    strDT = t.strftime("%y%m%d%H%M%S%3N")
+    strDT = t.strftime("%y%m%d_%H%M%S_%9N")
     storePagePng strDT
     storePageHtml strDT
   end
