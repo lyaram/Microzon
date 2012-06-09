@@ -8,7 +8,7 @@ class BookingPage
   end
  
  
-  div :checkout_complete, :id => "footernote"
+  div :checkout_complete, :id => "FOOT" #"footernote"
   def ensure_complete
     checkout_complete_div.wait_until_present
   end
