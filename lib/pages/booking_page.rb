@@ -1,7 +1,10 @@
 class BookingPage
 
   include WatirPageHelper
-  
+ 
+ #si al final hay que instalar gem, considerar Hpricot
+  require 'rexml/document'
+  include REXML 
     
   link :next_page do |browser|
     browser.element_by_xpath("(//a)[1]").link
@@ -18,7 +21,8 @@ class BookingPage
     
     nextXpath = "//td[@class='next']/a"
     
-    prepararStore
+    prepararStore #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+
     loop do
       ensure_complete
       storePage
@@ -32,17 +36,27 @@ class BookingPage
   def prepararStore
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
-    folderbase = Dir.home() + "/" + "BotStoring"
-    Dir::mkdir(folderbase) if not File.directory?(folderbase)
-    for i in 1..99999
+    
+    @folderbase = Dir.home() + "/" + "BotStoring"
+
+    if not File.file?(@folderbase + "/storing.xml")
+      File.open(@folderbase + "/storing.xml", "w") do |f|
+        f.puts '<Capturas>'
+          f.puts '  <Captura id="00000000" />'
+        f.puts '</Capturas>'
+      end
+    end
+    
+    #en lugar de la antigua itelacion por carpetas, hay que buscar el ultimo indice en el xml, +1
+    for i in 1..99999999
       #puts "Value of local variable is #{i}"
-      folder = folderbase + "/" + "%05d" % i
+      folder = folderbase + "/" + "%08d" % i
       if not File.directory?(folder) and not File.file?(folder + ".zip") 
-        @folderStore = folder
-        @indexStore = "%05d" % i
-        Dir::mkdir(@folderStore)
-        Dir::mkdir(@folderStore + "/html")
-        Dir::mkdir(@folderStore + "/png")
+        @indexStore = "%08d" % i
+        #@folderStore = folder
+        #Dir::mkdir(@folderStore)
+        #Dir::mkdir(@folderStore + "/html")
+        #Dir::mkdir(@folderStore + "/png")
         break
       end
     end
@@ -55,6 +69,8 @@ class BookingPage
     storePageHtml strDT
   end
   def storePagePng strDT
+    folderpng = @folderbase
+    Dir::mkdir(folderbase) if not File.directory?(folderbase)
     screenshot = @folderStore + "/png/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
