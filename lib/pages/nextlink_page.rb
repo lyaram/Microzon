@@ -21,8 +21,6 @@ class NextLinkPage
     
     prepararStore descripcion, url, nextlink #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
-    returns
-    
     loop do
       ensure_complete
       storePage
@@ -54,7 +52,6 @@ class NextLinkPage
     doc = Document.new(file)
     ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
-    puts @indexStore
     
 #    p = <<EOF
 #  <Captura>
@@ -82,21 +79,8 @@ class NextLinkPage
       data<<doc
     end
  
-    returns
+    Dir::mkdir(@folderStore + "/html/" + @indexStore)
     
-    #en lugar de la antigua itelacion por carpetas, hay que buscar el ultimo indice en el xml, +1
-    for i in 1..99999999
-      #puts "Value of local variable is #{i}"
-      folder = folderbase + "/" + "%08d" % i
-      if not File.directory?(folder) and not File.file?(folder + ".zip") 
-        @indexStore = "%08d" % i
-        #@folderStore = folder
-        #Dir::mkdir(@folderStore)
-        #Dir::mkdir(@folderStore + "/html")
-        #Dir::mkdir(@folderStore + "/png")
-        break
-      end
-    end
   end
 
   def storePage
@@ -106,14 +90,14 @@ class NextLinkPage
     storePageHtml strDT
   end
   def storePagePng strDT
-    folderpng = @folderbase
-    Dir::mkdir(folderbase) if not File.directory?(folderbase)
-    screenshot = @folderStore + "/png/" + strDT + ".png"
+    folderpng = @folderbase + "/png/" + strDT.gsub("_","")[0..8] + "X"
+    Dir::mkdir(folderpng) if not File.directory?(folderpng)
+    screenshot = folderpng + "/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
   end
   def storePageHtml strDT
-    htmFile = @folderStore + "/html/" + strDT + ".htm"
+    htmFile = @folderbase + "/html/" + @indexStore + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
