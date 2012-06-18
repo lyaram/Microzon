@@ -67,13 +67,13 @@ class NextLinkPage
 #    subdoc = Document.new(p)
     subdoc = Document.new("<Captura />")
     subdoc.root.attributes["id"] = @indexStore
-    eFechaHora = subdoc.add_element "FechaHora"
+    eFechaHora = subdoc.root.add_element "FechaHora"
     eFechaHora.text = Time.now.to_s
-    eDescripcion = subdoc.add_element "Descripcion"
+    eDescripcion = subdoc.root.add_element "Descripcion"
     eDescripcion.text = descripcion
-    eURL = subdoc.add_element "URL"
+    eURL = subdoc.root.add_element "URL"
     eURL.text = url
-    eNextLink = subdoc.add_element "NextLink"
+    eNextLink = subdoc.root.add_element "NextLink"
     eNextLink.text = nextlink
     
     doc.root.insert_after(ultimaCaptura,subdoc.root)
