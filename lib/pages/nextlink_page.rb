@@ -55,6 +55,7 @@ class NextLinkPage
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
     puts @indexStore
     
+    #poner un intro despues de <<EOF
     p = <<EOF
     
   <Captura>
