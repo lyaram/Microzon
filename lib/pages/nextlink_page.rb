@@ -55,14 +55,13 @@ class NextLinkPage
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
     puts @indexStore
     
-    #poner un intro despues de <<EOF
-    p = "\r\n"
-    p <<EOF
+    p = <<EOF
   <Captura>
     <Link></Link>
     <FechaHora></FechaHora>
   </Captura>
 EOF
+    p = "\r\n" + p
 
     subdoc = Document.new(p)
     subdoc.root.attributes["id"] = @indexStore
