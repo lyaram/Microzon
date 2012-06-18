@@ -16,10 +16,10 @@ class NextLinkPage
     checkout_complete_div.wait_until_present
   end
     
-  def launch url, nextlink
+  def launch descripcion, url, nextlink
     @browser.goto url 
     
-    prepararStore #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    prepararStore descripcion, url, nextlink #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     returns
     
@@ -33,42 +33,52 @@ class NextLinkPage
     # zip -r 00001.zip 00001/
   end
   
-  def prepararStore
+  def prepararStore descripcion, url, nextlink
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
     
     @folderbase = Dir.home() + "/" + "BotStoring"
 
-    if not File.file?(@folderbase + "/storing.xml")
-      File.open(@folderbase + "/storing.xml", "w") do |f|
+    capturasXml = @folderbase + "/capturas.xml"
+
+    if not File.file?(capturasXml)
+      File.open(capturasXml, "w") do |f|
         f.puts '<Capturas>'
           f.puts '  <Captura id="00000000" />'
         f.puts '</Capturas>'
       end
     end
     
-    storingXml = @folderbase + "/storing.xml"
-    file = File.new(storingXml)
+    file = File.new(capturasXml)
     
     doc = Document.new(file)
     ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
     puts @indexStore
     
-    p = <<EOF
-  <Captura>
-    <Link></Link>
-    <FechaHora></FechaHora>
-  </Captura>
-EOF
-    p = "\r\n" + p
-
-    subdoc = Document.new(p)
+#    p = <<EOF
+#  <Captura>
+#    <FechaHora />
+#    <Description />
+#    <Link />
+#    <NextLink />
+#  </Captura>
+#EOF
+#    subdoc = Document.new(p)
+    subdoc = Document.new("<Captura />")
     subdoc.root.attributes["id"] = @indexStore
+    eFechaHora = subdoc.add_element "FechaHora"
+    eFechaHora.text = Time.now.to_s
+    eDescripcion = subdoc.add_element "Descripcion"
+    eDescripcion.text = descripcion
+    eURL = subdoc.add_element "URL"
+    eURL.text = url
+    eNextLink = subdoc.add_element "NextLink"
+    eNextLink.text = nextlink
     
     doc.root.insert_after(ultimaCaptura,subdoc.root)
 
-    File.open(storingXml,"w") do |data|
+    File.open(capturasXml,"w") do |data|
       data<<doc
     end
  
