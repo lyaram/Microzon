@@ -62,7 +62,7 @@ class NextLinkPage
 EOF
 
     subdoc = Document.new(p)
-    p.root.elements.first.attributes["id"] = @indexStore
+    subdoc.root.elements.first.attributes["id"] = @indexStore
     
     doc.root.insert_after(ultimaCaptura,subdoc.root)
     doc.write
