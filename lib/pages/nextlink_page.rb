@@ -56,8 +56,8 @@ class NextLinkPage
     puts @indexStore
     
     #poner un intro despues de <<EOF
-    p = <<EOF
-    
+    p = "\r\n"
+    p <<EOF
   <Captura>
     <Link></Link>
     <FechaHora></FechaHora>
