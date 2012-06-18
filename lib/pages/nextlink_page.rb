@@ -1,4 +1,4 @@
-class BookingPage
+class NextLinkPage
 
   include WatirPageHelper
  
@@ -16,10 +16,8 @@ class BookingPage
     checkout_complete_div.wait_until_present
   end
     
-  def launch url
+  def launch url, nextlink
     @browser.goto url 
-    
-    nextXpath = "//td[@class='next']/a"
     
     prepararStore #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
@@ -28,8 +26,8 @@ class BookingPage
     loop do
       ensure_complete
       storePage
-      break if !@browser.element_by_xpath(nextXpath).exists?
-      @browser.element_by_xpath(nextXpath).click
+      break if !@browser.element_by_xpath(nextlink).exists?
+      @browser.element_by_xpath(nextlink).click
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/
@@ -52,9 +50,22 @@ class BookingPage
     
     file = File.new(@folderbase + "/storing.xml")
     doc = Document.new(file)
-    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]/@id" ).first
+    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]" ).first
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.value))
     puts @indexStore
+    
+    p = <<EOF
+<Captura>
+  <Link></Link>
+  <FechaHora></FechaHora>
+</Captura>
+EOF
+
+    subdoc = Document.new(p)
+    p.root.elements.first.attributes["id"] = @indexStore
+    
+    doc.root.insert_after(ultimaCaptura,subdoc.root)
+    doc.write
     
     returns
     
