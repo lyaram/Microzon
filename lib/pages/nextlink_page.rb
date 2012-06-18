@@ -50,8 +50,8 @@ class NextLinkPage
     
     file = File.new(@folderbase + "/storing.xml")
     doc = Document.new(file)
-    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]" ).first
-    @indexStore = "%08d" % (1+Integer(ultimaCaptura.value))
+    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
+    @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"].value))
     puts @indexStore
     
     p = <<EOF
