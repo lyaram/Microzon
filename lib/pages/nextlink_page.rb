@@ -47,26 +47,31 @@ class NextLinkPage
       end
     end
     
+    storingXml = @folderbase + "/storing.xml"
+    file = File.new(storingXml)
     
-    file = File.new(@folderbase + "/storing.xml")
     doc = Document.new(file)
     ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
     @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
     puts @indexStore
     
     p = <<EOF
-<Captura>
-  <Link></Link>
-  <FechaHora></FechaHora>
-</Captura>
+    
+  <Captura>
+    <Link></Link>
+    <FechaHora></FechaHora>
+  </Captura>
 EOF
 
     subdoc = Document.new(p)
     subdoc.root.elements.first.attributes["id"] = @indexStore
     
     doc.root.insert_after(ultimaCaptura,subdoc.root)
-    doc.write
-    
+
+    File.open(storingXml,"w") do |data|
+      data<<doc
+    end
+ 
     returns
     
     #en lugar de la antigua itelacion por carpetas, hay que buscar el ultimo indice en el xml, +1
