@@ -52,8 +52,9 @@ class BookingPage
     
     file = File.new(@folderbase + "/storing.xml")
     doc = Document.new(file)
-    lastIndex = XPath.match(doc.root, "//Capturas/Captura[last()]/@id" ).first.value
-    puts lastIndex
+    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]/@id" ).first
+    @indexStore = "%08d" % (1+Integer(ultimaCaptura.value))
+    puts @indexStore
     
     returns
     
