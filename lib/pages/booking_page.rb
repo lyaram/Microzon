@@ -2,7 +2,7 @@ class BookingPage
 
   include WatirPageHelper
  
- #si al final hay que instalar gem, considerar Hpricot
+  #si al final hay que instalar gem, considerar Hpricot
   require 'rexml/document'
   include REXML 
     
@@ -23,6 +23,8 @@ class BookingPage
     
     prepararStore #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
+    returns
+    
     loop do
       ensure_complete
       storePage
@@ -46,6 +48,14 @@ class BookingPage
         f.puts '</Capturas>'
       end
     end
+    
+    
+    file = File.new(@folderbase + "/storing.xml")
+    doc = Document.new(file)
+    lastIndex = XPath.match(doc.root, "//Capturas/Captura[last()]/@id" ).first.value
+    puts lastIndex
+    
+    returns
     
     #en lugar de la antigua itelacion por carpetas, hay que buscar el ultimo indice en el xml, +1
     for i in 1..99999999
