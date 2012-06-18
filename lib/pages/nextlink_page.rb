@@ -79,7 +79,7 @@ class NextLinkPage
       data<<doc
     end
  
-    Dir::mkdir(@folderStore + "/html/" + @indexStore)
+    Dir::mkdir(@folderbase + "/html/" + @indexStore)
     
   end
 
