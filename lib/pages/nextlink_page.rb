@@ -21,7 +21,9 @@ class NextLinkPage
     
     prepararStore descripcion, url, nextlink #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
+    @numPag = 0
     loop do
+      @numPag += 1
       ensure_complete
       storePage
       break if !@browser.element_by_xpath(nextlink).exists?
@@ -62,6 +64,7 @@ class NextLinkPage
 #  </Captura>
 #EOF
 #    subdoc = Document.new(p)
+
     subdoc = Document.new("<Captura />")
     subdoc.root.attributes["id"] = @indexStore
     eFechaHora = subdoc.root.add_element "FechaHora"
@@ -79,8 +82,14 @@ class NextLinkPage
       data<<doc
     end
  
-    Dir::mkdir(@folderbase + "/html/" + @indexStore)
-    
+    ruta = @folderbase + "/html/" + @indexStore
+    Dir::mkdir(ruta)
+
+    ruta <<  "/captura.xml"
+    File.open(ruta, "w") do |f|
+      f.puts '<Captura/>'
+    end
+   
   end
 
   def storePage
@@ -89,6 +98,7 @@ class NextLinkPage
     storePagePng strDT
     storePageHtml strDT
   end
+  
   def storePagePng strDT
     folderpng = @folderbase + "/png/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
@@ -96,7 +106,30 @@ class NextLinkPage
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
   end
+  
   def storePageHtml strDT
+    
+   
+# INI actualizar xml##############################################################
+
+    subdoc = Document.new("<Pagina />")
+    subdoc.root.attributes["id"] = @numPag
+    eFechaHora = subdoc.root.add_element "FechaHora"
+    eFechaHora.text = strDT
+    eURL = subdoc.root.add_element "URL"
+    eURL.text = @browser.url
+    
+    capturaXml = @folderbase + "/html/" + @indexStore + "/captura.xml"
+    file = File.new(capturaXml)
+    doc = Document.new(file)
+    doc.root.elements.add(subdoc.root)
+    
+    File.open(capturaXml,"w") do |data|
+      data<<doc
+    end
+
+# FIN actualizar xml################################################################
+
     htmFile = @folderbase + "/html/" + @indexStore + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
