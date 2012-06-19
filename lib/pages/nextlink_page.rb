@@ -41,19 +41,21 @@ class NextLinkPage
 
     capturasXml = @folderbase + "/capturas.xml"
 
+    @indexStore = ""
     if not File.file?(capturasXml)
       File.open(capturasXml, "w") do |f|
-        f.puts '<Capturas>'
-          f.puts '  <Captura id="00000000" />'
-        f.puts '</Capturas>'
+        f.puts '<Capturas/>'
       end
+      @indexStore = "%08d" % 1
     end
     
     file = File.new(capturasXml)
-    
     doc = Document.new(file)
-    ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
-    @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
+    
+    if @indexStore == ""
+      ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
+      @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
+    end
     
 #    p = <<EOF
 #  <Captura>
@@ -76,7 +78,7 @@ class NextLinkPage
     eNextLink = subdoc.root.add_element "NextLink"
     eNextLink.text = nextlink
     
-    doc.root.insert_after(ultimaCaptura,subdoc.root)
+    doc.root.elements.add(subdoc.root)
 
     File.open(capturasXml,"w") do |data|
       data<<doc
