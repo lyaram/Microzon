@@ -11,7 +11,7 @@ class NextLinkPage
   end
  
  
-  div :checkout_complete, :id => "FOOT" #"footernote"
+  div :checkout_complete, :id => "footernote"
   def ensure_complete
     checkout_complete_div.wait_until_present
   end
