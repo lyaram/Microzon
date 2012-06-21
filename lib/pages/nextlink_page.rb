@@ -6,16 +6,6 @@ class NextLinkPage
   require 'rexml/document'
   include REXML 
     
-  link :next_page do |browser|
-    browser.element_by_xpath("(//a)[1]").link
-  end
- 
- 
-  div :checkout_complete, :id => "footernote"
-  def ensure_complete
-    checkout_complete_div.wait_until_present
-  end
-    
   def launch descripcion, url, nextlink, checkPageCompleted
     @browser.goto url 
     
