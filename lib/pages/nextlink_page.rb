@@ -16,15 +16,17 @@ class NextLinkPage
     checkout_complete_div.wait_until_present
   end
     
-  def launch descripcion, url, nextlink
+  def launch descripcion, url, nextlink, checkPageCompleted
     @browser.goto url 
     
-    prepararStore descripcion, url, nextlink #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    prepararStore descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
       @numPag += 1
-      ensure_complete
+      
+      Watir::Wait.until(60) { @browser.element_by_xpath(checkPageCompleted).present? }
+      
       storePage
       break if !@browser.element_by_xpath(nextlink).exists?
       @browser.element_by_xpath(nextlink).click
@@ -33,10 +35,13 @@ class NextLinkPage
     # zip -r 00001.zip 00001/
   end
   
-  def prepararStore descripcion, url, nextlink
+  def prepararStore descripcion, url, nextlink, checkPageCompleted
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
-    
+    # mkdir BotStoring
+    # mkdir BotStoring/html
+    # mkdir BotStoring/png
+
     @folderbase = Dir.home() + "/" + "BotStoring"
 
     capturasXml = @folderbase + "/capturas.xml"
@@ -77,6 +82,8 @@ class NextLinkPage
     eURL.text = url
     eNextLink = subdoc.root.add_element "NextLink"
     eNextLink.text = nextlink
+    ePageCompleted = subdoc.root.add_element "ePageCompleted"
+    ePageCompleted.text = checkPageCompleted
     
     doc.root.elements.add(subdoc.root)
 
