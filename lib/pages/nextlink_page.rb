@@ -21,7 +21,8 @@ class NextLinkPage
         reintentos += -1
         Watir::Wait.until(30) { @browser.element_by_xpath(checkPageCompleted).present? }
       rescue
-        retry if (reintentos>0)?
+        break if reintentos<=0
+        retry
       end
       puts 'reintentos ' + reintentos 
       storePage
