@@ -24,7 +24,7 @@ class NextLinkPage
         break if reintentos<=0
         retry
       end
-      puts 'reintentos ' + reintentos 
+      puts 'reintentos ' + reintentos.to_s 
       storePage
       break if !@browser.element_by_xpath(nextlink).exists?
       @browser.element_by_xpath(nextlink).click
