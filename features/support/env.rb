@@ -88,7 +88,7 @@ After do |scenario|
   Browser::BROWSER.driver.save_screenshot(screenshot)
   embed screenshot, 'image/png'
   
-  htmlFile = = "./screenshots/HTML_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.html"
+  htmlFile = "./screenshots/HTML_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.html"
     aFile = File.new(htmlFile, "w")
     aFile.write(Browser::BROWSER.html)
     aFile.close
