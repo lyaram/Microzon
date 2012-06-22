@@ -50,7 +50,7 @@ class NextLinkPage
     
     if @indexStore == ""
       ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
-      @indexStore = "%08d" % (1+Integer(ultimaCaptura.attributes["id"]))
+      @indexStore = "%08d" % ((ultimaCaptura.attributes["id"]).to_i+1)
     end
     
 #    p = <<EOF
