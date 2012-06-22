@@ -16,7 +16,7 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>50 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
-      Watir::Wait.until(60) { @browser.element_by_xpath(checkPageCompleted).present? }
+      Watir::Wait.until(120) { @browser.element_by_xpath(checkPageCompleted).present? }
       
       storePage
       break if !@browser.element_by_xpath(nextlink).exists?
