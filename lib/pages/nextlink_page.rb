@@ -19,13 +19,21 @@ class NextLinkPage
       reintentos = 5
       begin
         reintentos += -1
-        puts descripcion + '.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+        puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
         Watir::Wait.until(30) { @browser.element_by_xpath(checkPageCompleted).present? }
       rescue
         break if reintentos<=0
         retry
       end
       storePage
+      reintentos = 5
+      begin
+        reintentos += -1
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+      rescue
+        break if reintentos<=0
+        retry
+      end
       break if !@browser.element_by_xpath(nextlink).exists?
       @browser.element_by_xpath(nextlink).click
     end 
