@@ -39,6 +39,12 @@ class NextLinkPage
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/
+    #
+    #para empaquetar todos los xml de captura:
+    #zip FullCapt.zip -r */captura.xml
+    #
+    #para empaquetar varias carpetas de html:
+    #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
   end
   
   def prepararStore descripcion, url, nextlink, checkPageCompleted
