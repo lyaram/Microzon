@@ -24,10 +24,12 @@ class ScrollPage
  #   end
   
     Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
-    begin 
+    loop do
       sleep 0.2
       @browser.send_keys :space
-      break if !@browser.element_by_xpath(checkLoading).exists?
+      if !@browser.element_by_xpath(checkLoading).exists?
+        break 
+      end
     end
     
     storePage
