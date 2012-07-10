@@ -9,7 +9,7 @@ class NextLinkPage
   def launch descripcion, url, nextlink, checkPageCompleted, checkPageLoading
     @browser.goto url 
     
-    prepararStore descripcion, url, nextlink, checkPageCompleted, checkPageLoading #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    prepararStore descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
