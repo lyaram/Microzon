@@ -16,16 +16,18 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>50 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
+      sigueprobando=true
       reintentos = 5
       begin
-        loop do
+        while sigueprobando
           reintentos += -1
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
           Watir::Wait.until(30) { @browser.element_by_xpath(checkPageCompleted).present? }
           
           sleep 5
-          break if !@browser.element_by_xpath(checkPageLoading).exists?
-          break if reintentos<=0
+          if reintentos<=0 or !@browser.element_by_xpath(checkPageLoading).exists? 
+            sigueprobando = false
+          end
         end
       rescue
         break if reintentos<=0
