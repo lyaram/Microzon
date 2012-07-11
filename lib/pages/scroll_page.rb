@@ -23,14 +23,12 @@ class ScrollPage
  #     retry
  #   end
   
-    begin
-      Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
-    rescue
-    end
-    
-    loop do
-      sleep 0.2
-      @browser.send_keys :space
+    100.times do
+      begin
+        Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
+      rescue
+      end
+      100.times @browser.send_keys :space
       if !@browser.element_by_xpath(checkLoading).exists?
         break 
       end
