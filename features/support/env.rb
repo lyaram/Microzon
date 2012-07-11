@@ -51,7 +51,7 @@ end
 
 module Browser
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 04")
-  DRIVER = (ENV['WEB_DRIVER'] || :firefox).to_sym
+  DRIVER = (ENV['WEB_DRIVER'] || :chrome).to_sym
  
   client = Selenium::WebDriver::Remote::Http::Default.new
  
