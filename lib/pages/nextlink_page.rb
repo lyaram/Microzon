@@ -22,10 +22,10 @@ class NextLinkPage
         while sigueprobando
           reintentos += -1
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
-          Watir::Wait.until(30) { @browser.element_by_xpath(checkPageCompleted).present? }
+          Watir::Wait.until(30) { @browser.element(:xpath, checkPageCompleted).present? }
           
           sleep 5
-          if reintentos<=0 or !@browser.element_by_xpath(checkPageLoading).exists? 
+          if reintentos<=0 or !@browser.element(:xpath, checkPageLoading).exists? 
             sigueprobando = false
           end
         end
@@ -44,8 +44,8 @@ class NextLinkPage
         retry
       end
       break if nextlink==''
-      break if !@browser.element_by_xpath(nextlink).exists?
-      @browser.element_by_xpath(nextlink).click
+      break if !@browser.element(:xpath, nextlink).exists?
+      @browser.element(:xpath, nextlink).click
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/

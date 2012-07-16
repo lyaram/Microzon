@@ -17,7 +17,7 @@ class ScrollPage
  #   begin
  #     reintentos += -1
  #     puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
- #     Watir::Wait.until(30) { @browser.element_by_xpath(checkPageCompleted).present? }
+ #     Watir::Wait.until(30) { @browser.element(:xpath, checkPageCompleted).present? }
  #   rescue
  #     break if reintentos<=0
  #     retry
@@ -27,7 +27,7 @@ class ScrollPage
       puts "i: #{i}"
       d = @browser.div :id => 'loading_no_pagination_results'
       begin
-        Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
+        Watir::Wait.until(30) { @browser.element(:xpath, checkLoading).present? }
       rescue
       end
       10.times do |j|
