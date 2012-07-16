@@ -9,4 +9,4 @@ gem "cuporter", ">0.0"
 gem "headless", ">0.0"
 gem "yard-cucumber"
 gem "rdiscount"
-
+gem "selenium-webdriver", ">2.23.0"
