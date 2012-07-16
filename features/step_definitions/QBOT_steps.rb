@@ -32,8 +32,8 @@ When /^QBot is surfing a webpage$/ do
 #    page.launch 'VENERE_HotelList.Buenos Aires', 'http://www.venere.com/es/argentina/buenos-aires/#p|1;f:o|venere_ranking-t|C-z|all_areas-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #    page.launch 'VENERE_HotelList.Tegucigalpa', 'http://www.venere.com/es/honduras/tegucigalpa/#p|1;f:o|venere_ranking-t|C-z|-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #
-     page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot"]', ''
-     page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot"]', ''
+    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
   end
   
