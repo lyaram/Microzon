@@ -29,7 +29,7 @@ class ScrollPage
         Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
       rescue
       end
-      @browser.element_by_xpath(checkLoading).wd.location_once_scrolled_into_view
+      @browser.find_element(:id,'loading_no_pagination_results').location_once_scrolled_into_view
       if !@browser.element_by_xpath(checkLoading).exists?
         break 
       end
