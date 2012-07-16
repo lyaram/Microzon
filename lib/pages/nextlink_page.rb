@@ -29,7 +29,8 @@ class NextLinkPage
             sigueprobando = false
           end
         end
-      rescue
+      rescue Exception => e
+        puts e.message
         break if reintentos<=0
         retry
       end
