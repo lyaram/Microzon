@@ -23,13 +23,16 @@ class ScrollPage
  #     retry
  #   end
   
-    100.times do |i|
+    10.times do |i|
       puts "i: #{i}"
       d = @browser.div :id => 'loading_no_pagination_results'
-      d.location_once_scrolled_into_view
       begin
         Watir::Wait.until(30) { @browser.element_by_xpath(checkLoading).present? }
       rescue
+      end
+      10.times do |j|
+        puts "  j: #{j}" 
+        @browser.send_keys :space 
       end
       if !d.exists?
         break 
