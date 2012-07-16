@@ -34,8 +34,8 @@ When /^QBot is surfing a webpage$/ do
 #
 #  end
   on ScrollPage do |page| 
-    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/search.do?destination=Buenos+Aires%2C+Argentina&searchParams.arrivalDate=&searchParams.departureDate=&rooms=1&searchParams.rooms[0].numberOfAdults=2&children[0]=0&asaReport=HomePage%3A%3ACity&destinationId=14534&searchParams.landmark=&hotelId=#vt=LIST&rl=destination%3A14534%3APROVIDED%3APROVIDED&pfm=1&dn=Buenos+Aires,+Argentina&nr=1&pn=1&so=BEST_SELLER&pfcc=EUR&ptid=1&r=2&cpr=0', '//*[@id="loading_no_pagination_results"]'
     page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/search.do?destination=Tegucigalpa%2C+Honduras&searchParams.arrivalDate=&searchParams.departureDate=&rooms=1&searchParams.rooms[0].numberOfAdults=2&children[0]=0&asaReport=HomePage%3A%3ACity&destinationId=614869&searchParams.landmark=&hotelId=#vt=LIST&rl=destination%3A614869%3APROVIDED%3APROVIDED&pfm=1&dn=Tegucigalpa,+Honduras&nr=1&pn=1&so=BEST_SELLER&pfcc=EUR&ptid=1&r=2&cpr=0', '//*[@id="loading_no_pagination_results"]'
+    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/search.do?destination=Buenos+Aires%2C+Argentina&searchParams.arrivalDate=&searchParams.departureDate=&rooms=1&searchParams.rooms[0].numberOfAdults=2&children[0]=0&asaReport=HomePage%3A%3ACity&destinationId=14534&searchParams.landmark=&hotelId=#vt=LIST&rl=destination%3A14534%3APROVIDED%3APROVIDED&pfm=1&dn=Buenos+Aires,+Argentina&nr=1&pn=1&so=BEST_SELLER&pfcc=EUR&ptid=1&r=2&cpr=0', '//*[@id="loading_no_pagination_results"]'
   end
   
 end
