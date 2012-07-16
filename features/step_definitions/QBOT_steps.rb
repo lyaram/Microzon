@@ -3,7 +3,7 @@ Given /^QBot is running$/ do
 end
 
 When /^QBot is surfing a webpage$/ do
-#  on NextLinkPage do |page| 
+  on NextLinkPage do |page| 
 #    page.launch 'iRON_SIM-LATAM_BOOKING_Buenos Aires', 'http://www.booking.com/searchresults.en-gb.html?sid=17055a451915e9872449d95075e8dd5b;dcid=1;city=-979186;class_interval=1;inac=0;redirected_from_city=0;redirected_from_landmark=0;review_score_group=empty;score_min=0;ss_all=0;ssb=empty;radius=1;;nflt=ht_id%3D14%3B;track_ajax_filters=1;rows=50', '//td[@class="next"]/a', '//*[@id="footernote"]'
 #    page.launch 'iRON_SIM-LATAM_BOOKING_Tegucigalpa', 'http://www.booking.com/searchresults.html?src=searchresults&city=-1130280&order=popularity&ssne=Tegucigalpa&ssne_untouched=Tegucigalpa&error_url=http%3A%2F%2Fwww.booking.com%2Fsearchresults.en-gb.html%3Fsid%3D76ee9c624b55bfb6db32d711f5cc8db9%3Bdcid%3D1%3Bcity%3D-1130280%3Bclass_interval%3D1%3Bidf%3D1%3Boffset%3D0%3Border%3Dpopularity%3Breview_score_group%3Dempty%3Bscore_min%3D0%3Bsi%3Dai%252Cco%252Cci%252Cre%252Cdi%3Bsrc%3Dsearchresults%3Bssb%3Dempty%3Bssne_untouched%3DSantiago%3Bradius%3D70%3B&dcid=1&lang=en-gb&sid=76ee9c624b55bfb6db32d711f5cc8db9&si=ai%2Cco%2Cci%2Cre%2Cdi&ss=Tegucigalpa&radius=2&checkin_monthday=0&checkin_year_month=0&checkout_monthday=0&checkout_year_month=0&idf=on&dest_type=city&dest_id=-1130280', '//td[@class="next"]/a', '//*[@id="footernote"]'
 #    page.launch 'iRON_SIM-LATAM_TRIPADVISOR_C1_Buenos Aires', 'http://www.tripadvisor.es/Hotels-g312741-Buenos_Aires_Capital_Federal_District-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]'
@@ -32,10 +32,9 @@ When /^QBot is surfing a webpage$/ do
 #    page.launch 'VENERE_HotelList.Buenos Aires', 'http://www.venere.com/es/argentina/buenos-aires/#p|1;f:o|venere_ranking-t|C-z|all_areas-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #    page.launch 'VENERE_HotelList.Tegucigalpa', 'http://www.venere.com/es/honduras/tegucigalpa/#p|1;f:o|venere_ranking-t|C-z|-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #
-#  end
-  on ScrollPage do |page| 
-    page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/search.do?destination=Tegucigalpa%2C+Honduras&searchParams.arrivalDate=&searchParams.departureDate=&rooms=1&searchParams.rooms[0].numberOfAdults=2&children[0]=0&asaReport=HomePage%3A%3ACity&destinationId=614869&searchParams.landmark=&hotelId=#vt=LIST&rl=destination%3A614869%3APROVIDED%3APROVIDED&pfm=1&dn=Tegucigalpa,+Honduras&nr=1&pn=1&so=BEST_SELLER&pfcc=EUR&ptid=1&r=2&cpr=0', '//*[@id="loading_no_pagination_results"]'
-    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/search.do?destination=Buenos+Aires%2C+Argentina&searchParams.arrivalDate=&searchParams.departureDate=&rooms=1&searchParams.rooms[0].numberOfAdults=2&children[0]=0&asaReport=HomePage%3A%3ACity&destinationId=14534&searchParams.landmark=&hotelId=#vt=LIST&rl=destination%3A14534%3APROVIDED%3APROVIDED&pfm=1&dn=Buenos+Aires,+Argentina&nr=1&pn=1&so=BEST_SELLER&pfcc=EUR&ptid=1&r=2&cpr=0', '//*[@id="loading_no_pagination_results"]'
+     page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot"]', ''
+     page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot"]', ''
+
   end
   
 end
