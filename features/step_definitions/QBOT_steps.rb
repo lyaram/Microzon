@@ -32,8 +32,21 @@ When /^QBot is surfing a webpage$/ do
 #    page.launch 'VENERE_HotelList.Buenos Aires', 'http://www.venere.com/es/argentina/buenos-aires/#p|1;f:o|venere_ranking-t|C-z|all_areas-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #    page.launch 'VENERE_HotelList.Tegucigalpa', 'http://www.venere.com/es/honduras/tegucigalpa/#p|1;f:o|venere_ranking-t|C-z|-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
 #
-    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
-    page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+#    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+#    page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+
+    page.launch 'AGODA_01_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_01_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_02_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/cheap-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_02_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/cheap-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_03_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/3-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_03_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/3-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_04_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/4-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_04_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/4-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_05_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/5-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_05_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/5-star-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_06_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/luxury-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
+    page.launch 'AGODA_06_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/luxury-hotels.html', '', '//*[@id='ctl00_ctl00_lblServerName']', ''
 
   end
   
