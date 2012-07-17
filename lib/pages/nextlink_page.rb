@@ -22,10 +22,10 @@ class NextLinkPage
         while sigueprobando
           reintentos += -1
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
-          Watir::Wait.until(30) { @browser.element(:xpath, checkPageCompleted).present? }
+          @browser.element(:xpath => checkPageCompleted).wait_until_present
           
           sleep 5
-          if reintentos<=0 or !@browser.element(:xpath, checkPageLoading).exists? 
+          if reintentos<=0 or !@browser.element(:xpath => checkPageLoading).exists? 
             sigueprobando = false
           end
         end
