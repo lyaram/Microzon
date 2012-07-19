@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem "rake", "0.9.2.2"
+gem "rake"
 gem "cucumber", ">0.0"
 gem "rspec", ">0.0"
 gem "watir-webdriver", ">0.2.4"

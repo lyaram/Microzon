@@ -41,6 +41,8 @@ class NextLinkPage
       end
       storePage
       
+      puts url
+      puts checkPageCompleted
       ttt = @browser.element_by_xpath(checkPageCompleted).text
       puts ttt
       $stdout.flush #
