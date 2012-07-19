@@ -16,7 +16,7 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>50 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
-      sigueprobando=true
+      sigueprobando=false
       reintentos = 5
       begin
         while sigueprobando
@@ -25,7 +25,12 @@ class NextLinkPage
           @browser.element(:xpath => checkPageCompleted).wait_until_present
           
           sleep 5
-          if reintentos<=0 or !@browser.element(:xpath => checkPageLoading).exists? 
+          if checkPageLoading!=''
+            if !@browser.element(:xpath => checkPageLoading).exists?
+              break
+            end
+          end
+          if reintentos<=0  
             sigueprobando = false
           end
         end
@@ -35,6 +40,11 @@ class NextLinkPage
         retry
       end
       storePage
+      
+      ttt = @browser.element(:xpath => checkPageCompleted).text
+      puts ttt
+      $stdout.flush #
+      
       reintentos = 5
       begin
         reintentos += -1
