@@ -121,7 +121,7 @@ class NextLinkPage
     doc = Document.new(file)
     
     @indexCaptura = ""
-    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura")==nil
+    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura").count==0
       @indexCaptura = "%08d" % 1      
     else
       lastLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura[last()]").first
