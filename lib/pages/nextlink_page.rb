@@ -66,12 +66,13 @@ class NextLinkPage
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
           @browser.element_by_xpath(checkPageCompleted).wait_until_present
           
+          break if checkPageLoading==''
+
           sleep 5
-          if checkPageLoading!=''
-            if !@browser.element_by_xpath(checkPageLoading).exists?
-              break
-            end
+          if !@browser.element_by_xpath(checkPageLoading).exists?
+            break
           end
+
           if reintentos<=0  
             sigueprobando = false
           end
