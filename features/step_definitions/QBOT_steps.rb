@@ -35,18 +35,16 @@ When /^QBot is surfing a webpage$/ do
 #    page.launch 'HOTELS_HotelList.Buenos Aires', 'http://www.hoteles.com/de14534-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 #    page.launch 'HOTELS_HotelList.Tegucigalpa', 'http://www.hoteles.com/de614869-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
-    page.launch 'AGODA_01_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_01_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_02_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/cheap-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_02_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/cheap-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_03_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/3-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_03_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/3-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_04_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/4-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_04_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/4-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_05_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/5-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_05_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/5-star-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_06_HotelList.Buenos Aires', 'http://www.agoda.com/south_america/argentina/buenos_aires/luxury-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
-    #page.launch 'AGODA_06_HotelList.Tegucigalpa', 'http://www.agoda.com/central_america_and_caribbean/honduras/tegucigalpa/luxury-hotels.html', '', '//*[@id="ctl00_ctl00_lblServerName"]', ''
+    idLaunch = page.getLaunch
+    page.launch idLaunch,'TRIPADVISOR_C1_HotelList.Asunción', 'http://www.tripadvisor.es/Hotels-g294080-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    #page.launch idLaunch,'TRIPADVISOR_C2_HotelList.Asunción', 'http://www.tripadvisor.es/Hotels-g294080-c2-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    #page.launch idLaunch,'TRIPADVISOR_C3_HotelList.Asunción', 'http://www.tripadvisor.es/Hotels-g294080-c3-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    #page.launch idLaunch,'BOOKING_HotelList.Asunción', 'http://www.booking.com/searchresults.en-gb.html?sid=17055a451915e9872449d95075e8dd5b;dcid=1;class_interval=1;inac=0;radius=0;redirected_from_city=0;redirected_from_landmark=0;region=1325;review_score_group=empty;score_min=0;ss_all=0;ssb=empty;;nflt=ht_id%3D14%3B;track_ajax_filters=1;rows=50', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
+    #page.launch idLaunch,'VIAJEROS_HotelList.Asunción', 'http://www.viajeros.com/destinos/asuncion/hoteles/hotel', '(//a[@class="pag_siguiente"])[1]', '//*[@id="wrap-footer"]', ''
+    #page.launch idLaunch,'PREVIAJE_HotelList.Asunción', 'http://www.previaje.com/resultado_busqueda.html?search=Asuncion&H&1', '//div[@class="main hotels"]//li[@class="enabled pagButton next pagByOne"]', '//div[@class="main hotels"]//div[@class="optCont"]', ''
+    #page.launch idLaunch,'VENERE_HotelList.Asunción', 'http://www.venere.com/es/paraguay/asuncion/#p|1;f:o|venere_ranking-t|C-z|-r|r6-c|all_rate', '//*[@id="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
+    #page.launch idLaunch,'HOTELS_HotelList.Asunción', 'http://www.hoteles.com/de1074006-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    #page.launch idLaunch,'TRAVELOCITY_HotelList.Asunción', 'http://www.travelocity.com/trips/hotellist/datelessList?ac_country=PY&city=Asuncion&configId=S21949757&numRooms=1&path=hotels&pTxId=3715425&guestCodes=ADULT&guestCounts=1&hotelMaxReturnPerPage=25&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
 
   end
   

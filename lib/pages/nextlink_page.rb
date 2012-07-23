@@ -6,10 +6,52 @@ class NextLinkPage
   require 'rexml/document'
   include REXML 
     
-  def launch descripcion, url, nextlink, checkPageCompleted, checkPageLoading
+  def getLaunch
+    #para reiniciar la carpeta BotStoring usar el comando en consola 
+    # rm -rf BotStoring
+    # mkdir BotStoring
+    # mkdir BotStoring/html
+    # mkdir BotStoring/launches
+
+    @folderbase = Dir.home() + "/" + "BotStoring"
+
+    launchesLogXml = @folderbase + "/launcheslog.xml"
+
+    indexLaunch = ""
+    if not File.file?(launchesLogXml)
+      File.open(launchesLogXml, "w") do |f|
+        f.puts '<Launches/>'
+      end
+      indexLaunch = "%08d" % 1
+    end
+    
+    file = File.new(launchesLogXml)
+    doc = Document.new(file)
+    
+    if indexLaunch == ""
+      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
+      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+    end
+    
+    subdoc = Document.new("<Launch />")
+    subdoc.root.attributes["id"] = indexLaunch
+
+    doc.root.elements.add(subdoc.root)
+
+    File.open(launchesLogXml,"w") do |data|
+      data<<doc
+    end
+ 
+    ruta = @folderbase + "/launches/" + indexLaunch
+    Dir::mkdir(ruta)
+
+    return indexLaunch
+  end
+  
+  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
     @browser.goto url 
     
-    prepararStore descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
@@ -69,45 +111,25 @@ class NextLinkPage
     #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
   end
   
-  def prepararStore descripcion, url, nextlink, checkPageCompleted
-    #para reiniciar la carpeta BotStoring usar el comando en consola 
-    # rm -rf BotStoring
-    # mkdir BotStoring
-    # mkdir BotStoring/html
-    # mkdir BotStoring/png
+  def prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     @folderbase = Dir.home() + "/" + "BotStoring"
 
-    capturasXml = @folderbase + "/capturas.xml"
+    launchesLogXml = @folderbase + "/launcheslog.xml"
 
-    @indexStore = ""
-    if not File.file?(capturasXml)
-      File.open(capturasXml, "w") do |f|
-        f.puts '<Capturas/>'
-      end
-      @indexStore = "%08d" % 1
-    end
-    
-    file = File.new(capturasXml)
+    file = File.new(launchesLogXml)
     doc = Document.new(file)
     
-    if @indexStore == ""
-      ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
-      @indexStore = "%08d" % ((ultimaCaptura.attributes["id"]).to_i+1)
+    @indexCaptura = ""
+    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura")=nil
+      @indexCaptura = "%08d" % 1      
+    else
+      lastLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura[last()]").first
+      @indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
     end
-    
-#    p = <<EOF
-#  <Captura>
-#    <FechaHora />
-#    <Description />
-#    <Link />
-#    <NextLink />
-#  </Captura>
-#EOF
-#    subdoc = Document.new(p)
 
     subdoc = Document.new("<Captura />")
-    subdoc.root.attributes["id"] = @indexStore
+    subdoc.root.attributes["id"] = @indexCaptura
     eFechaHora = subdoc.root.add_element "FechaHora"
     eFechaHora.text = Time.now.to_s
     eDescripcion = subdoc.root.add_element "Descripcion"
@@ -121,11 +143,11 @@ class NextLinkPage
     
     doc.root.elements.add(subdoc.root)
 
-    File.open(capturasXml,"w") do |data|
+    File.open(launchesLogXml,"w") do |data|
       data<<doc
     end
  
-    ruta = @folderbase + "/html/" + @indexStore
+    ruta = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura
     Dir::mkdir(ruta)
 
     ruta <<  "/captura.xml"
@@ -162,7 +184,7 @@ class NextLinkPage
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
     
-    capturaXml = @folderbase + "/html/" + @indexStore + "/captura.xml"
+    capturaXml = @folderbase + "/html/" + @indexCaptura + "/captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
@@ -173,7 +195,7 @@ class NextLinkPage
 
 # FIN actualizar xml################################################################
 
-    htmFile = @folderbase + "/html/" + @indexStore + "/" + strDT + ".htm"
+    htmFile = @folderbase + "/html/" + @indexCaptura + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
