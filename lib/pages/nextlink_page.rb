@@ -58,7 +58,7 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>50 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
-      sigueprobando=false
+      sigueprobando=true
       reintentos = 5
       begin
         while sigueprobando
@@ -121,7 +121,7 @@ class NextLinkPage
     doc = Document.new(file)
     
     @indexCaptura = ""
-    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura")=nil
+    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura")==nil
       @indexCaptura = "%08d" % 1      
     else
       lastLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura[last()]").first
