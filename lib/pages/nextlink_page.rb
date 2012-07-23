@@ -10,7 +10,7 @@ class NextLinkPage
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
     # mkdir BotStoring
-    # mkdir BotStoring/html
+    # mkdir BotStoring/png
     # mkdir BotStoring/launches
 
     @folderbase = Dir.home() + "/" + "BotStoring"
@@ -157,11 +157,11 @@ class NextLinkPage
    
   end
 
-  def storePage
+  def storePage idLaunch
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
     storePagePng strDT
-    storePageHtml strDT
+    storePageHtml idLaunch, strDT
   end
   
   def storePagePng strDT
@@ -172,7 +172,7 @@ class NextLinkPage
     embed screenshot, 'image/png'
   end
   
-  def storePageHtml strDT
+  def storePageHtml idLaunch, strDT
     
    
 # INI actualizar xml##############################################################
@@ -184,7 +184,7 @@ class NextLinkPage
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
     
-    capturaXml = @folderbase + "/html/" + @indexCaptura + "/captura.xml"
+    capturaXml = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
@@ -195,7 +195,7 @@ class NextLinkPage
 
 # FIN actualizar xml################################################################
 
-    htmFile = @folderbase + "/html/" + @indexCaptura + "/" + strDT + ".htm"
+    htmFile = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
