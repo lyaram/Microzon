@@ -81,7 +81,7 @@ class NextLinkPage
         break if reintentos<=0
         retry
       end
-      storePage
+      storePage idLaunch
       
       puts url
       puts checkPageCompleted
