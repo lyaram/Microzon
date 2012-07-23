@@ -40,7 +40,7 @@ When /^QBot is surfing a webpage$/ do
     
     page.launch idLaunch, 'TRIPADVISOR_C1_HotelList.Asuncion', 'http://www.tripadvisor.es/Hotels-g294080-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
     page.launch idLaunch,'TRIPADVISOR_C2_HotelList.Asuncion', 'http://www.tripadvisor.es/Hotels-g294080-c2-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_C3_HotelList.Asunción', 'http://www.tripadvisor.es/Hotels-g294080-c3-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_C3_HotelList.Asuncion', 'http://www.tripadvisor.es/Hotels-g294080-c3-Asuncion-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
     #page.launch idLaunch,'BOOKING_HotelList.Asunción', 'http://www.booking.com/searchresults.en-gb.html?sid=17055a451915e9872449d95075e8dd5b;dcid=1;class_interval=1;inac=0;radius=0;redirected_from_city=0;redirected_from_landmark=0;region=1325;review_score_group=empty;score_min=0;ss_all=0;ssb=empty;;nflt=ht_id%3D14%3B;track_ajax_filters=1;rows=50', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
     #page.launch idLaunch,'VIAJEROS_HotelList.Asunción', 'http://www.viajeros.com/destinos/asuncion/hoteles/hotel', '(//a[@class="pag_siguiente"])[1]', '//*[@id="wrap-footer"]', ''
     #page.launch idLaunch,'PREVIAJE_HotelList.Asunción', 'http://www.previaje.com/resultado_busqueda.html?search=Asuncion&H&1', '//div[@class="main hotels"]//li[@class="enabled pagButton next pagByOne"]', '//div[@class="main hotels"]//div[@class="optCont"]', ''

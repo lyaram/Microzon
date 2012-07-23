@@ -120,7 +120,7 @@ class NextLinkPage
 
     file = File.new(launchesLogXml)
     doc = Document.new(file)
-    eLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "'"].first
+    eLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']").first
     
     @indexCaptura = ""
     if XPath.match(eLaunch, "./Captura").empty?
