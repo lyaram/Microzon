@@ -120,12 +120,13 @@ class NextLinkPage
 
     file = File.new(launchesLogXml)
     doc = Document.new(file)
+    eLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "'"].first
     
     @indexCaptura = ""
-    if XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura").empty?
+    if XPath.match(eLaunch, "./Captura").empty?
       @indexCaptura = "%08d" % 1      
     else
-      lastLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']/Captura[last()]").first
+      lastLaunch = XPath.match(eLaunch, "./Captura[last()]").first
       @indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
     end
 
@@ -142,7 +143,7 @@ class NextLinkPage
     ePageCompleted = subdoc.root.add_element "ePageCompleted"
     ePageCompleted.text = checkPageCompleted
     
-    doc.root.elements.add(subdoc.root)
+    eLaunch.elements.add(subdoc.root)
 
     File.open(launchesLogXml,"w") do |data|
       data<<doc
