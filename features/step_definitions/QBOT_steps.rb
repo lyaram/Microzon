@@ -1,5 +1,5 @@
 Given /^QBot is running$/ do
-#  visit BookingPage
+  visit BookingPage
 end
 
 When /^QBot is surfing a webpage$/ do
