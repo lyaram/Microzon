@@ -22,8 +22,10 @@ When /^QBot is surfing a webpage$/ do
     idLaunchEXPEDIA = page.getLaunch
     idLaunchVENERE = page.getLaunch
     
+    page.launch idLaunchVENERE,'VENERE_HotelCard.IdList1489.Sao Paulo', 'http://www.venere.com/es/hoteles/san-pablo/hotel-tsue-the-palace-flat/', '', '//*[@id="avg_guest_review"]', ''
     page.launch idLaunchTRIVAGO,'TRIVAGO_HotelCard.IdList2634.REPESCA01.Sao Paulo', 'http://www.trivago.es/lugar-12/hotel/hotel-1707667', '', '//*[@id="item_main_details"]/div[@class="details item"]', ''
     page.launch idLaunchEXPEDIA,'EXPEDIA_HotelCard.IdList1929.Sao Paulo', 'http://www.expedia.com/Sao-Paulo-Hotels-Transamerica-Classic-Victoria.h82899.Hotel-Information', '', '//*[@id="reviewsSummaryBox"]', ''
+    page.launch idLaunchVENERE,'VENERE_HotelCard.IdList1490.Sao Paulo', 'http://www.venere.com/es/hoteles/san-pablo/hotel-transamerica-prime-the-world/', '', '//*[@id="avg_guest_review"]', ''
     page.launch idLaunchTRIVAGO,'TRIVAGO_HotelCard.IdList2635.Sao Paulo', 'http://www.trivago.es/lugar-12/hotel/hotel-1710959', '', '//*[@id="item_main_details"]/div[@class="details item"]', ''
     page.launch idLaunchVENERE,'VENERE_HotelCard.IdList1491.Sao Paulo', 'http://www.venere.com/es/hoteles/san-pablo/hotel-transamerica-classic-higienopolis/', '', '//*[@id="avg_guest_review"]', ''
     page.launch idLaunchTRIVAGO,'TRIVAGO_HotelCard.IdList2636.Sao Paulo', 'http://www.trivago.es/lugar-12/hotel/hotel-1714535', '', '//*[@id="item_main_details"]/div[@class="details item"]', ''
