@@ -37,9 +37,27 @@ When /^QBot is surfing a webpage$/ do
     #idLaunchEXPEDIA = page.getLaunch
     #idLaunchVENERE = page.getLaunch
     
-    idLaunch = page.getLaunch
-    page.launch idLaunch,'PRICELINE_HotelList.Asuncion', 'http://travela.priceline.com/cheap-hotels-asuncion-central-paraguay-tk-c327057-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Buenos Aires', 'http://travela.priceline.com/cheap-hotels-buenos-aires-distrito-federal-argentina-tk-c295450-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    #idLaunch = page.getLaunch
+    idLaunch = "00000058"
+    page.launch idLaunch,'PRICELINE_HotelList.Bogota', 'http://travela.priceline.com/cheap-hotels-bogota-distrito-capital-colombia-tk-c328034-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Brasilia', 'http://travela.priceline.com/cheap-hotels-brasilia-distrito-federal-brazil-tk-c327718-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Caracas', 'http://travela.priceline.com/cheap-hotels-caracas-distrito-federal-venezuela-tk-c296060-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Ciudad de Mexico', 'http://travela.priceline.com/cheap-hotels-mexico-city-distrito-federal-mexico-tk-c307490-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Guatemala', 'http://travela.priceline.com/cheap-hotels-guatemala-city-guatelama-guatemala-tk-c302100-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.La Paz', 'http://travela.priceline.com/cheap-hotels-mallasa-la-paz-tk-c342630-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Lima', 'http://travela.priceline.com/cheap-hotels-lima-lima-peru-tk-c305520-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Managua', 'http://travela.priceline.com/cheap-hotels-managua-managua-nicaragua-tk-c327323-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Montevideo', 'http://travela.priceline.com/cheap-hotels-montevideo-montevideo-uruguay-tk-c327688-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Panama', 'http://travela.priceline.com/cheap-hotels-panama-city-panama-panama-tk-c333911-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Punta del Este', 'http://travela.priceline.com/cheap-hotels-punta-del-este-maldonado-uruguay-tk-c327628-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Quito ', 'http://travela.priceline.com/cheap-hotels-quito-pichincha-ecuador-tk-c312170-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Sao Paulo', 'http://travela.priceline.com/cheap-hotels-sao-paulo-sao-paulo-brazil-tk-c328148-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.San Jose (Costa Rica)', 'http://travela.priceline.com/cheap-hotels-san-jose-lim%C3%B3n-tk-c346660-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.San Juan de Puerto Rico', 'http://travela.priceline.com/cheap-hotels-san-juan-puerto-rico-PR-tk-c328754-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Santo Domingo (Rep Dominicana)', 'http://travela.priceline.com/cheap-hotels-santo-domingo-distrito-nacional-dominican-republic-tk-c328060-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.San Salvador', 'http://travela.priceline.com/cheap-hotels-san-salvador-san-salvador-el-salvador-tk-c327465-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Santiago de Chile', 'http://travela.priceline.com/cheap-hotels-santiago-region-metropolitana-chile-tk-c313740-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Tegucigalpa', 'http://travela.priceline.com/cheap-hotels-tegucigalpa-francisco-morazan-honduras-tk-c327709-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
 
   end
   
