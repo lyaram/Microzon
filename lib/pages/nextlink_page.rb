@@ -49,7 +49,15 @@ class NextLinkPage
   end
   
   def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
-    @browser.goto url 
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.goto.Retries:' + reintentos.to_s 
+        @browser.goto url 
+      rescue
+        break if reintentos<=0
+        retry
+      end
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
@@ -100,7 +108,16 @@ class NextLinkPage
       end
       break if nextlink==''
       break if !@browser.element_by_xpath(nextlink).exists?
-      @browser.element_by_xpath(nextlink).click
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        @browser.element_by_xpath(nextlink).click
+      rescue
+        break if reintentos<=0
+        retry
+      end
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/
