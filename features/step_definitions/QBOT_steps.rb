@@ -39,12 +39,6 @@ When /^QBot is surfing a webpage$/ do
     
     #idLaunch = page.getLaunch
     idLaunch = "00000058"
-    page.launch idLaunch,'PRICELINE_HotelList.Bogota', 'http://travela.priceline.com/cheap-hotels-bogota-distrito-capital-colombia-tk-c328034-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Brasilia', 'http://travela.priceline.com/cheap-hotels-brasilia-distrito-federal-brazil-tk-c327718-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Caracas', 'http://travela.priceline.com/cheap-hotels-caracas-distrito-federal-venezuela-tk-c296060-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Ciudad de Mexico', 'http://travela.priceline.com/cheap-hotels-mexico-city-distrito-federal-mexico-tk-c307490-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Guatemala', 'http://travela.priceline.com/cheap-hotels-guatemala-city-guatelama-guatemala-tk-c302100-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.La Paz', 'http://travela.priceline.com/cheap-hotels-mallasa-la-paz-tk-c342630-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Lima', 'http://travela.priceline.com/cheap-hotels-lima-lima-peru-tk-c305520-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Managua', 'http://travela.priceline.com/cheap-hotels-managua-managua-nicaragua-tk-c327323-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Montevideo', 'http://travela.priceline.com/cheap-hotels-montevideo-montevideo-uruguay-tk-c327688-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
