@@ -39,9 +39,6 @@ When /^QBot is surfing a webpage$/ do
     
     #idLaunch = page.getLaunch
     idLaunch = "00000058"
-    page.launch idLaunch,'PRICELINE_HotelList.Lima', 'http://travela.priceline.com/cheap-hotels-lima-lima-peru-tk-c305520-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Managua', 'http://travela.priceline.com/cheap-hotels-managua-managua-nicaragua-tk-c327323-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Montevideo', 'http://travela.priceline.com/cheap-hotels-montevideo-montevideo-uruguay-tk-c327688-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Panama', 'http://travela.priceline.com/cheap-hotels-panama-city-panama-panama-tk-c333911-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Punta del Este', 'http://travela.priceline.com/cheap-hotels-punta-del-este-maldonado-uruguay-tk-c327628-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
     page.launch idLaunch,'PRICELINE_HotelList.Quito ', 'http://travela.priceline.com/cheap-hotels-quito-pichincha-ecuador-tk-c312170-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
