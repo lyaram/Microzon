@@ -55,8 +55,9 @@ class NextLinkPage
         puts '@browser.goto.Retries:' + reintentos.to_s 
         @browser.goto url 
       rescue
-        break if reintentos<=0
-        retry
+        if reintentos>0
+          retry
+        end
       end
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
@@ -115,8 +116,9 @@ class NextLinkPage
         puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
         @browser.element_by_xpath(nextlink).click
       rescue
-        break if reintentos<=0
-        retry
+        if reintentos>0
+          retry
+        end
       end
     end 
     #para empaquetar previo ftp, usar este comando en consola
