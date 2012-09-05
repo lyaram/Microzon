@@ -38,8 +38,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunchVENERE = page.getLaunch
     
     idLaunch = page.getLaunch
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Lima', 'http://www.travelocity.com/trips/hotellist/datelessList?ac_country=PE&city=Lima&configId=S21949757&numRooms=1&path=hotels&pTxId=3728727&guestCodes=ADULT&guestCounts=1&hotelMaxReturnPerPage=25&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
-    page.launch idLaunch,'TRAVELOCITY_HotelList.San Jose (Costa Rica)', 'http://www.travelocity.com/trips/hotellist/datelessList?ac_country=CR&city=San+Jose&configId=S21949757&numRooms=1&path=hotels&pTxId=3720490&guestCodes=ADULT&guestCounts=1&hotelMaxReturnPerPage=25&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Asuncion', 'http://travela.priceline.com/cheap-hotels-asuncion-central-paraguay-tk-c327057-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    page.launch idLaunch,'PRICELINE_HotelList.Buenos Aires', 'http://travela.priceline.com/cheap-hotels-buenos-aires-distrito-federal-argentina-tk-c295450-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
 
   end
   
