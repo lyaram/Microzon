@@ -37,18 +37,18 @@ When /^QBot is surfing a webpage$/ do
     #idLaunchEXPEDIA = page.getLaunch
     #idLaunchVENERE = page.getLaunch
     
-    #idLaunch = page.getLaunch
-    idLaunch = "00000058"
-    page.launch idLaunch,'PRICELINE_HotelList.Panama', 'http://travela.priceline.com/cheap-hotels-panama-city-panama-panama-tk-c333911-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Punta del Este', 'http://travela.priceline.com/cheap-hotels-punta-del-este-maldonado-uruguay-tk-c327628-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Quito ', 'http://travela.priceline.com/cheap-hotels-quito-pichincha-ecuador-tk-c312170-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Sao Paulo', 'http://travela.priceline.com/cheap-hotels-sao-paulo-sao-paulo-brazil-tk-c328148-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.San Jose (Costa Rica)', 'http://travela.priceline.com/cheap-hotels-san-jose-lim%C3%B3n-tk-c346660-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.San Juan de Puerto Rico', 'http://travela.priceline.com/cheap-hotels-san-juan-puerto-rico-PR-tk-c328754-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Santo Domingo (Rep Dominicana)', 'http://travela.priceline.com/cheap-hotels-santo-domingo-distrito-nacional-dominican-republic-tk-c328060-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.San Salvador', 'http://travela.priceline.com/cheap-hotels-san-salvador-san-salvador-el-salvador-tk-c327465-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Santiago de Chile', 'http://travela.priceline.com/cheap-hotels-santiago-region-metropolitana-chile-tk-c313740-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
-    page.launch idLaunch,'PRICELINE_HotelList.Tegucigalpa', 'http://travela.priceline.com/cheap-hotels-tegucigalpa-francisco-morazan-honduras-tk-c327709-hl.hotel-reviews-hotel-guides', '//*[@class="pagination"]//a[contains(./text(),">")]', '//*[@id="pclnfooterPH"]', ''
+    #idLaunch = "00000058"
+    idLaunch = page.getLaunch
+    
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Asuncion', 'http://www.hoteles.com/de1074006-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Brasilia', 'http://www.hoteles.com/de159541-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Caracas', 'http://www.hoteles.com/de1544334-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.La Paz', 'http://www.hoteles.com/de132364-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Asuncion', 'http://www.hoteles.com/de1074006-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Brasilia', 'http://www.hoteles.com/de159541-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Caracas', 'http://www.hoteles.com/de1544334-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.La Paz', 'http://www.hoteles.com/de132364-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01.Montevideo', 'http://www.hoteles.com/de1399507-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
   end
   
