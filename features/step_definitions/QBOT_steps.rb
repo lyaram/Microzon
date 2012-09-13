@@ -41,12 +41,12 @@ When /^QBot is surfing a webpage$/ do
     idLaunch = page.getLaunch
     
     page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Asuncion', 'http://www.hoteles.com/de1074006-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
-    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Brasilia', 'http://www.hoteles.com/de159541-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
-    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Caracas', 'http://www.hoteles.com/de1544334-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
-    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.La Paz', 'http://www.hoteles.com/de132364-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
     page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Asuncion', 'http://www.hoteles.com/de1074006-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Brasilia', 'http://www.hoteles.com/de159541-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
     page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Brasilia', 'http://www.hoteles.com/de159541-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.Caracas', 'http://www.hoteles.com/de1544334-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
     page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.Caracas', 'http://www.hoteles.com/de1544334-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.Repesca01-p1.La Paz', 'http://www.hoteles.com/de132364-p1/hoteles/pagina-1/', '', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
     page.launch idLaunch,'HOTELS_HotelList.Repesca01-p2.La Paz', 'http://www.hoteles.com/de132364-p2/hoteles/pagina-2/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
     page.launch idLaunch,'HOTELS_HotelList.Repesca01.Montevideo', 'http://www.hoteles.com/de1399507-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
