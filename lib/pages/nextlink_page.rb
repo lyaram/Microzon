@@ -129,6 +129,9 @@ class NextLinkPage
     #
     #para empaquetar varias carpetas de html:
     #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
+    
+    #para sincronizar carpeta trabajo y carpeta de publicacion 
+    # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/png
   end
   
   def prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted
