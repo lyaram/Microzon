@@ -40,11 +40,11 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01.Montevideo', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=UY&city=Montevideo&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01.Quito ', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=EC&city=Quito&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01.Santiago de Chile', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=CL&city=Santiago+De+Chile&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01.Santo Domingo (Rep Dominicana)', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=DO&city=Santo+Domingo&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
-    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01.San Jose (Costa Rica)', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=CR&city=San+Jose&startIndex=0', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01-DesdePagina2.Montevideo', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=UY&city=Montevideo&startIndex=25', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01-DesdePagina2.Quito ', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=EC&city=Quito&startIndex=25', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01-DesdePagina2.Santiago de Chile', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=CL&city=Santiago+De+Chile&startIndex=25', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01-DesdePagina2.Santo Domingo (Rep Dominicana)', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=DO&city=Santo+Domingo&startIndex=25', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
+    page.launch idLaunch,'TRAVELOCITY_HotelList.Repesca01-DesdePagina2.San Jose (Costa Rica)', 'http://www.travelocity.com/trips/hotellist/datelessList?sortBy=hotel_name&path=hotels&ac_country=CR&city=San+Jose&startIndex=25', '(//a[@class="nextLink"])[1]', '//div[@class="products"]/div[starts-with(@class,"product")]', ''
 
   end
   
