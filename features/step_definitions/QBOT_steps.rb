@@ -48,7 +48,7 @@ When /^QBot is surfing a webpage$/ do
     # page.launch idLaunch,'BUSCORESTAURANTES_RestList.CACERES', 'http://www.buscorestaurantes.com/Restaurantes-en-Trujillo-1-11-953/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
     # page.launch idLaunch,'BUSCORESTAURANTES_RestList.CACERES', 'http://www.buscorestaurantes.com/Restaurantes-en-Coria-1-11-918/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
     # page.launch idLaunch,'BUSCORESTAURANTES_RestList.CACERES', 'http://www.buscorestaurantes.com/Restaurantes-en-Guadalupe-1-11-923/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.CACERES', 'http://www.tripadvisor.es/Restaurants-g2435893-Province_of_Caceres_Extremadura.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[text()="\»"]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.CACERES', 'http://www.tripadvisor.es/Restaurants-g2435893-Province_of_Caceres_Extremadura.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
 
   end
   
