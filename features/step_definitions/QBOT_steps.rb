@@ -40,18 +40,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'TRIPADVISOR_RestList.A_CORUNA', 'http://www.tripadvisor.es/Restaurants-g1768740-A_Coruna_Province_Galicia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'RESTALO_RestList.A_CORUNA', 'http://www.restalo.es/restaurantes-a-coruna', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="last"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.A_CORUNA', 'http://www.atrapalo.com/restaurantes/a-coruna_d19.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]/div[@class="pagerResultsBox margintop10"]', ''
-    page.launch idLaunch,'SALIR_RestList.A_CORUNA', 'http://www.salir.com/la_coruna_a_coruna/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-A-Coruna-1-1-1/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-Santiago-Compostela-1-1-71/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-Ferrol-1-1-32/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-Oleiros-1-1-51/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-Carballo-1-1-17/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.ASTURIAS', 'http://www.tripadvisor.es/Restaurants-g187449-Asturias.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'RESTALO_RestList.ASTURIAS', 'http://www.restalo.es/restaurantes-asturias', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="last"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.ASTURIAS', 'http://www.atrapalo.com/restaurantes/asturias_d17.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]/div[@class="pagerResultsBox margintop10"]', ''
     page.launch idLaunch,'SALIR_RestList.ASTURIAS', 'http://www.salir.com/asturias/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
     page.launch idLaunch,'BUSCORESTAURANTES_RestList.ASTURIAS', 'http://www.buscorestaurantes.com/Restaurantes-en-Gijon-1-6-359/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
     page.launch idLaunch,'BUSCORESTAURANTES_RestList.ASTURIAS', 'http://www.buscorestaurantes.com/Restaurantes-en-Oviedo-1-6-376/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
