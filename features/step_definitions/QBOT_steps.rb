@@ -40,11 +40,9 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Madrid-1-35-2259/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Alcobendas-1-35-2191/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Alcala-Henares-1-35-2190/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Leganes-1-35-2254/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Fuenlabrada-1-35-2235/1-1.html', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
+    page.launch idLaunch,'RESTALO_RestList.A_CORUNA', 'http://www.restalo.es/restaurantes-a-coruna', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
+    page.launch idLaunch,'RESTALO_RestList.ASTURIAS', 'http://www.restalo.es/restaurantes-asturias', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
+    page.launch idLaunch,'RESTALO_RestList.BARCELONA', 'http://www.restalo.es/restaurantes-barcelona', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
 
   end
   
