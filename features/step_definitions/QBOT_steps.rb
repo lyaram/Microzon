@@ -40,14 +40,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'EDREAMS_RestList.ORENSE', 'http://hotels.edreams.es/searchresults.es.html?order=name;rows=50;city=-394670', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.ORENSE', 'http://www.atrapalo.com/hoteles/europa/espana/orense/orense/', '//*[@id="paginator"]/ul/li[text()=">"]', '//div[@class="pagerResultsBox margintop10"]', ''
-    page.launch idLaunch,'BOOKING_RestList.ORENSE', 'http://www.booking.com/searchresults.es.html?order=name;rows=50;city=-394670', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.ORENSE', 'http://www.tripadvisor.es/Hotels-g644337-Ourense_Ourense_Province_Galicia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'EDREAMS_RestList.BARCELONA', 'http://hotels.edreams.es/searchresults.es.html?order=name;rows=50;city=-372490', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.BARCELONA', 'http://www.atrapalo.com/hoteles/europa/espana/barcelona/barcelona/', '//*[@id="paginator"]/ul/li[text()=">"]', '//div[@class="pagerResultsBox margintop10"]', ''
-    page.launch idLaunch,'BOOKING_RestList.BARCELONA', 'http://www.booking.com/searchresults.es.html?order=name;rows=50;city=-372490', '//td[@class="next"]/a', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/Hotels-g187497-Barcelona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'ATRAPALO_RestList.ORENSE', 'http://www.atrapalo.com/hoteles/europa/espana/orense/orense/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch,'ATRAPALO_RestList.BARCELONA', 'http://www.atrapalo.com/hoteles/europa/espana/barcelona/barcelona/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
 
   end
   
