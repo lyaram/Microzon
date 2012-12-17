@@ -40,9 +40,10 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'CENTRALDERESERVAS_HotelList.ORENSE', 'http://www.centraldereservas.com/hotel/pages/Espa_a/Galicia/Ourense/Ourense/index.html', '//div[@class="paginado"]/span/a[text()="siguiente"][1]', '//div[@class="OtrosHoteles"]', ''
-    page.launch idLaunch,'HOTELINFO_HotelList.ORENSE', 'http://www.hotel.info/Search.aspx?lng=CA&hs_validate=2&hs=0&hs_locationnr=125709', '(//img[@src="/Assets/images_ca/pfeil_weiter.gif"]/..)[1]', '//*[@id="footer"]/div/small[@class="sitefooterdisclaimer"]', ''
-    page.launch idLaunch,'HOTELS_HotelList.ORENSE', 'http://www.hoteles.com/de-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.ORENSE', 'http://www.hoteles.com/de1644709/hoteles-orense-area-espana/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
+    page.launch idLaunch,'CENTRALDERESERVAS_HotelList.BARCELONA', 'http://www.centraldereservas.com/hotel/pages/Espa_a/Catalunya/Barcelona/Barcelona/index.html', '//div[@class="paginado"]/span/a[text()="siguiente"][1]', '//div[@class="OtrosHoteles"]', ''
+    page.launch idLaunch,'HOTELINFO_HotelList.BARCELONA', 'http://www.hotel.info/Search.aspx?lng=CA&hs_validate=2&hs=0&hs_locationnr=68021', '(//img[@src="/Assets/images_ca/pfeil_weiter.gif"]/..)[1]', '//*[@id="footer"]/div/small[@class="sitefooterdisclaimer"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.BARCELONA', 'http://www.hoteles.com/de444495/hoteles-barcelona-espana/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
   end
   
