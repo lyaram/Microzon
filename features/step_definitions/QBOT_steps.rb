@@ -40,10 +40,9 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'TRIVAGO_RestList.ZAMORA', 'http://www.trivago.es/zamora-31954/hotel#price_region:%22request_ident=&url_hash=0c20bf26277182586b53cf4d313ffd03&path=31954&date_range::from=1344117600&date_range::to=1344204000&room_type=7&offset=0&do_available_search=true&include_all=1&order_by=distance%20asc&view_type=0&geo_use_distance=1&geo_distance_limit=5000&category_range=0,1,2,3,4,5&category_search_condition=0&limit=25&geo_code::longitude=-5.746279&geo_code::latitude=41.503345&overall_liking=0,1,2,3,4&sem_headline=0%22', '//*[@id="hotellistbottom"]/em[./text()=">"]', '//*[@id="hotellistitems"]/div/div[@class="hotellistitem" and position()=last()]', ''
-    page.launch idLaunch,'VENERE_RestList.ZAMORA', 'http://www.venere.com/es/espana/zamora/?ref=11685#p|1;f:o|venere_ranking-t|C-z|-r|r6-c|all_rate', '//*[@id="next" and @class="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
-    page.launch idLaunch,'TRIVAGO_RestList.ZARAGOZA', 'http://www.trivago.es/zaragoza-31623/hotel#price_region:%22request_ident=&url_hash=26b19eaea43c43814c85c2ddf46d45de&path=31623&date_range::from=1344117600&date_range::to=1344204000&room_type=7&offset=0&do_available_search=true&include_all=1&order_by=relevance%20desc&view_type=0&geo_use_distance=1&geo_distance_limit=5000&category_range=0,1,2,3,4,5&category_search_condition=0&limit=25&geo_code::longitude=-0.885600&geo_code::latitude=41.647099&overall_liking=0,1,2,3,4&sem_headline=0%22', '//*[@id="hotellistbottom"]/em[./text()=">"]', '//*[@id="hotellistitems"]/div/div[@class="hotellistitem" and position()=last()]', ''
-    page.launch idLaunch,'VENERE_RestList.ZARAGOZA', 'http://www.venere.com/es/espana/zaragoza/?ref=11685#p|1;f:o|venere_ranking-t|all-z|-r|r6-c|all_rate', '//*[@id="next" and @class="next"]', '//*[@id="paging_bottom"]', '//*[@id="loading" and @style!="display: none;"]'
+    page.launch idLaunch,'CENTRALDERESERVAS_HotelList.ORENSE', 'http://www.centraldereservas.com/hotel/pages/Espa_a/Galicia/Ourense/Ourense/index.html', '//div[@class="paginado"]/span/a[text()="siguiente"][1]', '//div[@class="OtrosHoteles"]', ''
+    page.launch idLaunch,'HOTELINFO_HotelList.ORENSE', 'http://www.hotel.info/Search.aspx?lng=CA&hs_validate=2&hs=0&hs_locationnr=125709', '(//img[@src="/Assets/images_ca/pfeil_weiter.gif"]/..)[1]', '//*[@id="footer"]/div/small[@class="sitefooterdisclaimer"]', ''
+    page.launch idLaunch,'HOTELS_HotelList.ORENSE', 'http://www.hoteles.com/de-p1/hoteles/pagina-1/', '//*[@id="pagination_see_more_link" or @id="lnk_nextPage"]', '//div[@class="list_foot" or @class="see_all_hotels"]', ''
 
   end
   
