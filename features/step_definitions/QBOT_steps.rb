@@ -40,9 +40,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "00000058"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'HOTELSCOMBINED_HotelList.BARCELONA', 'http://www.hotelscombined.com/ES/City/Barcelona_1.htm#languageCode=ES&currencyCode=EUR&destination=city:Barcelona&radius=0km&Rooms=1&adults_1=1&pageSize=25&pageIndex=0&sort=Popularity-desc&showSoldOut=true&propertyType=0&view=hc_sr_summary&scroll=1368&open=3,2,1,4,7,6&mapstate=contracted', '//*[@id="pagination"]//a[@class="hc_sr_paging_next" and not(.././preceding-sibling::li[1]/@class)]', '//*[@id="hc_r_ft"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelList.BARCELONA', 'http://www.hotelsearch.com/hotels/europa/espana/cataluna/barcelona/753692.es.html#listView', '//a[@class="next_page"]', '//*[@id="footer"]', ''
-    page.launch idLaunch,'QUEHOTELES_HotelList.BARCELONA', 'http://www.quehoteles.com/hoteles-en-barcelona-4C15P116D210Z.htm', '(//a[@class="sig"])[1]', '//span[@class="bottom"]', ''
+    page.launch idLaunch,'QUEHOTELES_HotelList.BARCELONA', 'http://www.quehoteles.com/hoteles-en-barcelona-4C15P116D210Z.htm', '(//a[@class="sig" and ./text()="Siguiente"])[1]', '//span[@class="bottom"]', ''
+
 
   end
   
