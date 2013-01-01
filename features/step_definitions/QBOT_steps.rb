@@ -40,12 +40,12 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000100"
     idLaunch = page.getLaunch
     
-page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1453.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-AC-A-Coruna-4C15P109D141Z10712EF.htm', '', '//span[@class='bottom']', ''
-page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1446.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-Attica-21-4C15P109D141Z20437EF.htm', '', '//span[@class='bottom']', ''
-page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1451.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-Avenida-4C15P109D141Z10708EF.htm', '', '//span[@class='bottom']', ''
-page.launch idLaunch,'VENERE_HotelCard.IdList673.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-hesperia-finisterre/?ref=11685', '', '//*[@id="footer]', ''
-page.launch idLaunch,'VENERE_HotelCard.IdList674.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-sol/?ref=11685', '', '//*[@id="footer]', ''
-page.launch idLaunch,'VENERE_HotelCard.IdList675.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-nido/?ref=11685', '', '//*[@id="footer]', ''
+page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1453.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-AC-A-Coruna-4C15P109D141Z10712EF.htm', '', '//span[@class="bottom"]', ''
+page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1446.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-Attica-21-4C15P109D141Z20437EF.htm', '', '//span[@class="bottom"]', ''
+page.launch idLaunch,'QUEHOTELES_HotelCard.IdList1451.A_CORUNA', 'http://www.quehoteles.com/hotel-de-a-coruna-Avenida-4C15P109D141Z10708EF.htm', '', '//span[@class="bottom"]', ''
+page.launch idLaunch,'VENERE_HotelCard.IdList673.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-hesperia-finisterre/?ref=11685', '', '//*[@id="footer"]', ''
+page.launch idLaunch,'VENERE_HotelCard.IdList674.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-sol/?ref=11685', '', '//*[@id="footer"]', ''
+page.launch idLaunch,'VENERE_HotelCard.IdList675.A_CORUNA', 'http://www.venere.com/es/hoteles/la-coruna/hotel-nido/?ref=11685', '', '//*[@id="footer"]', ''
 
 
   end
