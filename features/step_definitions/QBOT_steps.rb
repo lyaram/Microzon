@@ -40,14 +40,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000100"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList627.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-eurostars-ciudad-de-la-coruna-la-coruna/1njdzl.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList628.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-ac-a-coruna-by-marriott-la-coruna/txa8j.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList629.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-riazor-la-coruna/1njlv3.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList630.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-nido-la-coruna/1njeuc.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList631.A_CORUNA', 'http://www.hotelsearch.com/hotels/hostel-la-perla-la-coruna/1njfoi.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList632.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-santa-catalina-la-coruna/1njoeb.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList633.A_CORUNA', 'http://www.hotelsearch.com/hotels/hostel-alboran-la-coruna/1nji1i.es.html', '', '//*[@id="footer"]', ''
-    page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList634.A_CORUNA', 'http://www.hotelsearch.com/hotels/hostel-linar-la-coruna/1njn0g.es.html', '', '//*[@id="footer"]', ''
     page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList635.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-zenit-coruna-la-coruna/1njomd.es.html', '', '//*[@id="footer"]', ''
     page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList636.A_CORUNA', 'http://www.hotelsearch.com/hotels/hotel-attica-21-coruna-la-coruna/zhx9i.es.html', '', '//*[@id="footer"]', ''
     page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList637.A_CORUNA', 'http://www.hotelsearch.com/hotels/hostel-la-provinciana-la-coruna/1njka2.es.html', '', '//*[@id="footer"]', ''
