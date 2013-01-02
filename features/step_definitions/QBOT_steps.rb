@@ -37,8 +37,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunchEXPEDIA = page.getLaunch
     #idLaunchVENERE = page.getLaunch
     
-    idLaunch = "000000040"
-    #idLaunch = page.getLaunch
+    #idLaunch = "000000040"
+    idLaunch = page.getLaunch
     
     page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList1515.BALEARES', 'http://www.hotelsearch.com/hotels/aparthotel-flora-mar-ferreries/1nlxqf.es.html', '', '//*[@id="footer"]', ''
     page.launch idLaunch,'HOTELSEARCH_HotelCard.IdList4208.CANARIAS', 'http://www.hotelsearch.com/hotels/rustic-house-casa-las-huertas-2-vega-de-san-mateo/1nnfip.es.html', '', '//*[@id="footer"]', ''
