@@ -43,9 +43,9 @@ When /^QBot is surfing a webpage$/ do
     page.launch idLaunch,'HOLIDAYCHECK_HotelList.ORENSE', 'http://www.holidaycheck.com/city-travel+information_Orense-oid_2409.html', '//*[starts-with(@id,"City_index_Pagination")]/span/a[contains(@title,"More")]', '//*[@id="ivw"]', ''
     page.launch idLaunch,'HOTELOPIA_HotelList.ORENSE', 'http://www.hotelopia.es/espana/ourense/ourense-ciudad/', '//span[@class="jPag-current"]/../following-sibling::li[1]/a', '//*[@id="content_basefooter"]', ''
     page.launch idLaunch,'LATEROOMS_HotelList.ORENSE', 'http://www.laterooms.com/es/r30048_hoteles-orense.aspx', './/*[@id="pager"]/text()[normalize-space()!=""]/following-sibling::a[1]', '//*[@id="footer2"]', ''
-    page.launch idLaunch,'HOLIDAYCHECK_HotelList.BARCELONA', 'http://www.holidaycheck.com/city-travel+information_Barcelona-oid_2378.html', '//*[starts-with(@id,"City_index_Pagination")]/span/a[contains(@title,"More")]', '//*[@id="ivw"]', ''
-    page.launch idLaunch,'HOTELOPIA_HotelList.BARCELONA', 'http://www.hotelopia.es/espana/barcelona/barcelona-ciudad/', '//span[@class="jPag-current"]/../following-sibling::li[1]/a', '//*[@id="content_basefooter"]', ''
-    page.launch idLaunch,'LATEROOMS_HotelList.BARCELONA', 'http://www.laterooms.com/es/k15765562_hoteles-barcelona.aspx', './/*[@id="pager"]/text()[normalize-space()!=""]/following-sibling::a[1]', '//*[@id="footer2"]', ''
+    page.launch idLaunch,'HOLIDAYCHECK_HotelList.A_CORUNA', 'http://www.holidaycheck.com/city-travel+information_A+Coruna-oid_2361.html', '//*[starts-with(@id,"City_index_Pagination")]/span/a[contains(@title,"More")]', '//*[@id="ivw"]', ''
+    page.launch idLaunch,'HOTELOPIA_HotelList.A_CORUNA', 'http://www.hotelopia.es/espana/a-coruna-provincia/a-coruna-ciudad/', '//span[@class="jPag-current"]/../following-sibling::li[1]/a', '//*[@id="content_basefooter"]', ''
+    page.launch idLaunch,'LATEROOMS_HotelList.A_CORUNA', 'http://www.laterooms.com/es/k16865584_hoteles-a-coruna.aspx', './/*[@id="pager"]/text()[normalize-space()!=""]/following-sibling::a[1]', '//*[@id="footer2"]', ''
 
 
   end
