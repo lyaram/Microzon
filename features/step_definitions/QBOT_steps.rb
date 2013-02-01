@@ -40,7 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'HOLIDAYCHECK_HotelList.A_CORUNA', 'http://www.holidaycheck.com/city-travel+information_A+Coruna-oid_2361.html', '//*[starts-with(@id,"City_index_Pagination")]/span/a[contains(@title,"More")]', '//*[@id="ivw"]', ''
+    page.launch idLaunch,'HOLIDAYCHECK_HotelList.A_CORUNA', 'http://www.holidaycheck.com/city-travel+information_A+Coruna-oid_2361.html', '//*[starts-with(@id,"City_index_Pagination")]/span/a[contains(@title,"More")]', '//*[@id="hcContent"]', ''
 
 
   end
