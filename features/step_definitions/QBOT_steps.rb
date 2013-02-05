@@ -40,10 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-page.launch idLaunch,'MUCHOVIAJE_HotelList.ORENSE', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/OURENSE/ESORE_2_3_4_5_6_7.html', '(//*[@class="filtros-der"])[2]/ul/li[./span/@class="selected"]/following-sibling::li[starts-with(./span/a/@id,"pag") and position()=1]/span/a', '//*[@id="footer"]', ''
-page.launch idLaunch,'LOGITRAVEL_HotelList.ORENSE', 'http://www.logitravel.com/hoteles/ourense-1007046.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', '//*[@id="sPaginadoSuperior"]'
-page.launch idLaunch,'MUCHOVIAJE_HotelList.BARCELONA', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/BARCELONA/-TR213_2_3_4_5_6_7.html', '(//*[@class="filtros-der"])[2]/ul/li[./span/@class="selected"]/following-sibling::li[starts-with(./span/a/@id,"pag") and position()=1]/span/a', '//*[@id="footer"]', ''
-page.launch idLaunch,'LOGITRAVEL_HotelList.BARCELONA', 'http://www.logitravel.com/hoteles/barcelona-1025880.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', '//*[@id="sPaginadoSuperior"]'
+page.launch idLaunch,'LOGITRAVEL_HotelList.ALICANTE', 'http://www.logitravel.com/hoteles/alicante-1025764.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', '//*[@id="cont_9" and @style!="display:none;"]'
 
 
   end
