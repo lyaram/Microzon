@@ -40,12 +40,10 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch,'DESTINIA_HotelList.ORENSE', 'http://destinia.com/hotels/hoteles-en-orense/orense/espana/europa/145/es', '//*[@class="paginacion_generica_new"]/div/strong/following-sibling::span[1]/a', '//*[@class="logos_footer"]', ''
-    page.launch idLaunch,'MUCHOVIAJE_HotelList.ORENSE', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/OURENSE/ESORE_2_3_4_5_6_7.html', '(//*[@id="linkNext" and not(@style="display:none")])[2]', '//*[@id="footer"]', ''
-    page.launch idLaunch,'LOGITRAVEL_HotelList.ORENSE', 'http://www.logitravel.com/hoteles/ourense-1007046.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', ''
-    page.launch idLaunch,'DESTINIA_HotelList.BARCELONA', 'http://destinia.com/hotels/hoteles-en-barcelona/barcelona/espana/europa/1390/es', '//*[@class="paginacion_generica_new"]/div/strong/following-sibling::span[1]/a', '//*[@class="logos_footer"]', ''
-    page.launch idLaunch,'MUCHOVIAJE_HotelList.BARCELONA', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/BARCELONA/-TR213_2_3_4_5_6_7.html', '(//*[@id="linkNext" and not(@style="display:none")])[2]', '//*[@id="footer"]', ''
-    page.launch idLaunch,'LOGITRAVEL_HotelList.BARCELONA', 'http://www.logitravel.com/hoteles/barcelona-1025880.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', ''
+page.launch idLaunch,'MUCHOVIAJE_HotelList.ORENSE', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/OURENSE/ESORE_2_3_4_5_6_7.html', '(//*[@class="filtros-der"])[2]/ul/li[./span/@class="selected"]/following-sibling::li[starts-with(./span/a/@id,"pag") and position()=1]/span/a', '//*[@id="footer"]', ''
+page.launch idLaunch,'LOGITRAVEL_HotelList.ORENSE', 'http://www.logitravel.com/hoteles/ourense-1007046.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', '//*[@id="sPaginadoSuperior"]'
+page.launch idLaunch,'MUCHOVIAJE_HotelList.BARCELONA', 'http://hoteles.muchoviaje.com/hoteles/hoteles_en_/BARCELONA/-TR213_2_3_4_5_6_7.html', '(//*[@class="filtros-der"])[2]/ul/li[./span/@class="selected"]/following-sibling::li[starts-with(./span/a/@id,"pag") and position()=1]/span/a', '//*[@id="footer"]', ''
+page.launch idLaunch,'LOGITRAVEL_HotelList.BARCELONA', 'http://www.logitravel.com/hoteles/barcelona-1025880.html', '(//*[@id="pagSig"]/a[text()=">"])[2]', '//*[@id="divPieVerif"]', '//*[@id="sPaginadoSuperior"]'
 
 
   end
