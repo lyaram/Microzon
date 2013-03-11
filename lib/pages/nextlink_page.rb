@@ -245,9 +245,11 @@ class NextLinkPage
 
 
 
-
-
   def launchTAReviews idLaunch, descripcion, url
+    puts 'hola'
+  end
+
+  def launchTAReviews2 idLaunch, descripcion, url
       nextlink = '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]'
       checkPageCompleted = '//div[@class="pgLinks"]'
       checkPageLoading = ''
