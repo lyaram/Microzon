@@ -40,7 +40,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    launchtareviews idLaunch
+    launch idLaunch, 'TA_GC_030', 'http://www.tripadvisor.es/Hotel_Review-g562819-d1055177-Reviews-Sunprime_Atlantic_View_Suites_Spa-Playa_del_Ingles_Gran_Canaria_Canary_Islands.html', '', '', ''
+
      
   end
   
