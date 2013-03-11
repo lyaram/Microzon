@@ -242,4 +242,88 @@ class NextLinkPage
   end
 
 
+
+
+
+
+
+  def launchTAReviews idLaunch, descripcion, url
+      nextlink = '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]'
+      checkPageCompleted = '//div[@class="pgLinks"]'
+      checkPageLoading = ''
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.goto.Retries:' + reintentos.to_s 
+        @browser.goto url 
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+      
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//*[@id="selFilterAll"]').exists?
+        @browser.element_by_xpath('//*[@id="selFilterAll"]').click
+      end
+
+    
+    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+
+    @numPag = 0
+    loop do
+      @numPag += 1
+      break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      end
+  
+      storePage idLaunch
+      
+      puts url
+      puts checkPageCompleted
+      ttt = @browser.element_by_xpath(checkPageCompleted).text
+      puts ttt
+      $stdout.flush #
+      
+      reintentos = 5
+      begin
+        reintentos += -1
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+      rescue
+        break if reintentos<=0
+        retry
+      end
+      break if nextlink==''
+      break if !@browser.element_by_xpath(nextlink).exists?
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        @browser.element_by_xpath(nextlink).click
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+    end 
+    #para empaquetar previo ftp, usar este comando en consola
+    # zip -r 00001.zip 00001/
+    #
+    #para empaquetar todos los xml de captura:
+    #zip FullCapt.zip -r */captura.xml
+    #
+    #para empaquetar varias carpetas de html:
+    #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
+    
+    #para sincronizar carpeta trabajo y carpeta de publicacion 
+    # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
+  end
+  
+
 end
