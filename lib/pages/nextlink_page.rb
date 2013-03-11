@@ -245,8 +245,8 @@ class NextLinkPage
 
 
 
-  def launchTAReviews idLaunch, descripcion, url
-    puts 'hola'
+  def launchTAReviews idLaunch
+    puts idLaunch
   end
 
   def launchTAReviews2 idLaunch, descripcion, url
