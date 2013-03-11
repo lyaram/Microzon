@@ -49,10 +49,6 @@ class NextLinkPage
   end
   
   def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
-      nextlink = '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]'
-      checkPageCompleted = '//div[@class="pgLinks"]'
-      checkPageLoading = ''
-      
       reintentos = 3
       begin
         reintentos += -1
@@ -63,26 +59,38 @@ class NextLinkPage
           retry
         end
       end
-      
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//*[@id="selFilterAll"]').exists?
-        @browser.element_by_xpath('//*[@id="selFilterAll"]').click
-      end
-
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
       @numPag += 1
-      break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      break if @numPag>350 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
-        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
-        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      sigueprobando=true
+      reintentos = 5
+      begin
+        while sigueprobando
+          reintentos += -1
+          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+          @browser.element_by_xpath(checkPageCompleted).wait_until_present
+          
+          break if checkPageLoading==''
+
+          sleep 5
+          if !@browser.element_by_xpath(checkPageLoading).exists?
+            break
+          end
+
+          if reintentos<=0  
+            sigueprobando = false
+          end
+        end
+      rescue Exception => e
+        puts e.message
+        break if reintentos<=0
+        retry
       end
-  
       storePage idLaunch
       
       puts url
@@ -233,10 +241,5 @@ class NextLinkPage
     @browser.send sym, *args, &block
   end
 
-
-
-
-
-  
 
 end
