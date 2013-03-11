@@ -48,7 +48,7 @@ class NextLinkPage
     return indexLaunch
   end
   
-  def launch2 idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
+  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
       reintentos = 3
       begin
         reintentos += -1
@@ -247,7 +247,7 @@ class NextLinkPage
 
 
 
-  def launch idLaunch, descripcion, url
+  def launchTAReviews idLaunch, descripcion, url
       nextlink = '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]'
       checkPageCompleted = '//div[@class="pgLinks"]'
       checkPageLoading = ''
