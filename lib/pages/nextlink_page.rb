@@ -245,7 +245,7 @@ class NextLinkPage
 
 
 
-  def launchTAReviews idLaunch
+  def launchtareviews idLaunch
     puts idLaunch
   end
 

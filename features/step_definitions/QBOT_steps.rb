@@ -40,7 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    launchTAReviews idLaunch
+    launchtareviews idLaunch
      
   end
   
