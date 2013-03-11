@@ -276,6 +276,7 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
+      sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
       if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
         @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
