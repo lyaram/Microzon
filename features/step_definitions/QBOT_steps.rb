@@ -40,22 +40,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d543153-Reviews-Casa_Camper_Hotel_Barcelona-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d2102457-Reviews-Alma_Barcelona-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d3400654-Reviews-Mercer_Hotel_Barcelona-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d2558794-Reviews-K_K_Hotel_Picasso-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d1077341-Reviews-ABaC_Barcelona-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d2649154-Reviews-Hotel_DO_Placa_Reial-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d2367494-Reviews-Hotel_Primero_Primera-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d506158-Reviews-Hotel_1898-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d190617-Reviews-El_Palace_Hotel-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d238594-Reviews-Hotel_Montecarlo_Barcelona-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d231514-Reviews-Apartments_Restaurant_Hispanos_7_Suiza-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d296916-Reviews-Hotel_Jazz-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d232781-Reviews-EuroPark_Hotel-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d623893-Reviews-Villa_Emilia-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d1931533-Reviews-Hotel_Bagues-Barcelona_Catalonia.html'
-    page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d1456413-Reviews-Mandarin_Oriental_Barcelona-Barcelona_Catalonia.html'
     page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d619946-Reviews-Hostal_L_Antic_Espai-Barcelona_Catalonia.html'
     page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d1498205-Reviews-Catalonia_Catedral-Barcelona_Catalonia.html'
     page.launchTAReviews idLaunch, 'TAIndivMob.BARCELONA#01', 'http://www.tripadvisor.es/Hotel_Review-g187497-d234572-Reviews-U232_Hotel-Barcelona_Catalonia.html'
