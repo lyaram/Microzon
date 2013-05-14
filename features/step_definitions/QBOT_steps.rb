@@ -40,7 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'TAForo.Dipu#000', 'http://www.tripadvisor.es/ShowTopic-g1-i1-k5760661-Los_debates_politicos_no_estan_permitidos_en_TA-World.html', '(//*[@id="pager_top2"]/a[text()="»"])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#000', 'http://www.tripadvisor.es/ShowTopic-g1-i1-k5760661-Los_debates_politicos_no_estan_permitidos_en_TA-World.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
      
   end
   
