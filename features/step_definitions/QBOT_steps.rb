@@ -40,7 +40,13 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'TAForo.Dipu#000', 'http://www.tripadvisor.es/ShowTopic-g1-i1-k5760661-Los_debates_politicos_no_estan_permitidos_en_TA-World.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#001', 'http://www.tripadvisor.es/ShowTopic-g1-i1-k3728404-Ver_los_MENSAJES_MAS_RECIENTES_de_todos_los_destinos-World.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#002', 'http://www.tripadvisor.es/ShowTopic-g652129-i12583-k6488575-Casal_de_verano_para_ninos_a_partir_de_3_anos-Castelldefels_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#003', 'http://www.tripadvisor.es/ShowTopic-g187497-i44-k6454995-Lugares_de_comida_tipicos_de_barcelona_no_tan_turisticos-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#004', 'http://www.tripadvisor.es/ShowTopic-g187497-i44-k6488103-Hoteles_en_Sitges-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#005', 'http://www.tripadvisor.es/ShowTopic-g187497-i44-k6452479-Fiesta_en_Barcelona-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#006', 'http://www.tripadvisor.es/ShowTopic-g187497-i44-k6419095-Entrenamiento_del_barca-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAForo.Dipu#007', 'http://www.tripadvisor.es/ShowTopic-g187497-i44-k5736367-Conociendo_un_poco_de_Barcelona_Lugares_mas_significativos-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
      
   end
   
