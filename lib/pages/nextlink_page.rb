@@ -91,6 +91,14 @@ class NextLinkPage
         break if reintentos<=0
         retry
       end
+      
+      sleep 5
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      end
+
       storePage idLaunch
       
       puts url
