@@ -40,11 +40,18 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#2096', 'http://www.tripadvisor.es/Attraction_Review-g642221-d1999399-Reviews-Denilo_SL-Mataro_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#2241', 'http://www.tripadvisor.es/Attraction_Review-g1063735-d3264887-Reviews-Oller_del_Mas-Manresa_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#2263', 'http://www.tripadvisor.es/Attraction_Review-g1969684-d2041750-Reviews-Parque_Natural_de_Sant_Llorenc_del_Munt_i_l_Obac-Province_of_Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#2287', 'http://www.tripadvisor.es/Attraction_Review-g187501-d646065-Reviews-Rabbies_to_Montserrat-Montserrat_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#2308', 'http://www.tripadvisor.es/Attraction_Review-g187502-d4228142-Reviews-Sitges_Fitness-Sitges_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'ATRAPALO_HotelList.Lleida', 'http://www.atrapalo.com/hoteles/europa/espana/lleida/ , '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch, 'BOOKING_HotelList.Lleida', 'http://www.booking.com/searchresults.es.html?order=name&rows=50&region=763, '//*[@id="ajaxsrwrap"]/div/a[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.Lleida', 'http://www.tripadvisor.es/Hotels-g2431169-Province_of_Lleida_Catalonia-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.Lleida', 'http://www.tripadvisor.es/Hotels-g2431169-c2-Province_of_Lleida_Catalonia-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.Lleida', 'http://www.tripadvisor.es/Hotels-g2431169-c3-Province_of_Lleida_Catalonia-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.Lleida', 'http://www.tripadvisor.es/VacationRentals-g2431169-Reviews-Province_of_Lleida_Catalonia-Vacation_Rentals.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'ATRAPALO_HotelList.Huesca', 'http://www.atrapalo.com/hoteles/europa/espana/huesca/, '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch, 'BOOKING_HotelList.Huesca', 'http://www.booking.com/searchresults.es.html?order=name&rows=50&region=2078, '//*[@id="ajaxsrwrap"]/div/a[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.Huesca', 'http://www.tripadvisor.es/Hotels-g1238673-Province_of_Huesca_Aragon-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.Huesca', 'http://www.tripadvisor.es/Hotels-g1238673-c2-Province_of_Huesca_Aragon-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.Huesca', 'http://www.tripadvisor.es/Hotels-g1238673-c3-Province_of_Huesca_Aragon-Hotels.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.Huesca', 'http://www.tripadvisor.es/VacationRentals-g1238673-Reviews-Province_of_Huesca_Aragon-Vacation_Rentals.html, '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 
      
   end
