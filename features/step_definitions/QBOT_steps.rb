@@ -40,7 +40,15 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'BOOKING_HotelList.Barcelona', 'http://www.booking.com/searchresults.es.html?order=name;rows=50;city=-372490', '//*[@id="ajaxsrwrap"]/div/a[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0330', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2235308-Reviews-Afternoon_in_Montserrat-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0451', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1628366-Reviews-Battlefield_Live_Barcelona-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0467', 'http://www.tripadvisor.es/Attraction_Review-g187497-d244859-Reviews-Isla_de_Fantasia-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0597', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2218952-Reviews-Barcelona_Turisme_Market_and_Culture_in_Vic_Day_Tour-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0599', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2218949-Reviews-Barcelona_Turisme_Montserrat_Sitges_Day_Tour-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0600', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2235353-Reviews-Barcelona_Turisme_Sitges_Cavas_Freixenet_Tour-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0647', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1602326-Reviews-Explore_Catalunya-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0776', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2402833-Reviews-Miguel_Torres_Winery-Barcelona_Catalonia.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0778', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1759052-Reviews-Sitges_and_Freixenet_s_Cava_Wine_Cellars_Day_Trip_from_Barcelona-Barcelona_Catalo.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
 
      
   end
