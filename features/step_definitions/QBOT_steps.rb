@@ -40,9 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0599', 'http://www.tripadvisor.es/ShowUserReviews-g187497-d2218949-r150969819-Barcelona_Turisme_Montserrat_Sitges_Day_Tour-Barcelona_Catalonia.html#REVIEWS', '(//*[@class="pgLinks"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0776', 'http://www.tripadvisor.es/ShowUserReviews-g187497-d2402833-r147299097-Miguel_Torres_Winery-Barcelona_Catalonia.html#REVIEWS', '(//*[@class="pgLinks"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0778', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1759052-Reviews-Sitges_and_Freixenet_s_Cava_Wine_Cellars_Day_Trip_from_Barcelona-Barcelona_Catalo.html', '(//*[@id="pager_top2"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0778', 'http://www.tripadvisor.es/ShowUserReviews-g187497-d1759052-r150587491-Sitges_and_Freixenet_s_Cava_Wine_Cellars_Day_Trip_from_Barcelona-Barcelona_Catal.html#REVIEWS', '(//*[@class="pgLinks"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
 
      
   end
