@@ -40,8 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0778', 'http://www.tripadvisor.es/ShowUserReviews-g187497-d1759052-r150587491-Sitges_and_Freixenet_s_Cava_Wine_Cellars_Day_Trip_from_Barcelona-Barcelona_Catal.html#REVIEWS', '(//*[@class="pgLinks"]/a[contains(@class,"pageNext")])[1]', '//*[@id="FOOT"]', ''
-
+    page.launch idLaunch, 'QUNARHotelList.Barcelona', 'http://hotel.qunar.com/city/barcelona_spain/', '//*[@id="bottomPagerPanel"]//a[@class="next"]', '//*[@id="bottomPagerPanel"]', ''
      
   end
   
