@@ -1,3 +1,5 @@
+# coding: utf-8
+
 Given /^QBot is running$/ do
   visit BookingPage
 end
