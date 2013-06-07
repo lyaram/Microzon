@@ -42,7 +42,12 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
+	page.launch idLaunch, 'ATRAPALO_HotelFicha.Lleida#1291', 'http://www.atrapalo.com/hoteles/131189-0_albergue-les-daines#opiniones', '//*[@id="paginator"]/ul/li/a[text()="»"]', '//*[@id="footer"]', ''
+	page.launch idLaunch, 'BOOKING_HotelFicha.Lleida#0721', 'http://www.booking.com/hotel/es/alberg-les-daines.es.html#hash-blockdisplay4', '(//*[@id="guest_reviews"]//a[starts-with(@class,"pagenext")])[1]', '//*[@id="footer"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelFicha.Lleida#0930', 'http://www.tripadvisor.es/VacationRentalReview-g1594152-d3891266-15524-Montferrer_Province_of_Lleida_Catalonia.html', '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'ATRAPALO_HotelFicha.Lleida#1792', 'http://www.atrapalo.com/hoteles/4247-0_ac-hotel-lleida-by-marriott#opiniones', '//*[@id="paginator"]/ul/li/a[text()="»"]', '//*[@id="footer"]', ''
+	page.launch idLaunch, 'BOOKING_HotelFicha.Huesca#1062', 'http://www.booking.com/hotel/es/a-boira.es.html#hash-blockdisplay4', '(//*[@id="guest_reviews"]//a[starts-with(@class,"pagenext")])[1]', '//*[@id="footer"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelFicha.Huesca#1247', 'http://www.tripadvisor.es/Hotel_Review-g187446-d634316-Reviews-Abba_Huesca_Hotel-Huesca_Province_of_Huesca_Aragon.html', '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelFicha.Lleida#0960', 'http://www.tripadvisor.es/VacationRentalReview-g1594152-d3893143-15543-Montferrer_Province_of_Lleida_Catalonia.html', '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelFicha.Lleida#1025', 'http://www.tripadvisor.es/VacationRentalReview-g1594152-d3893140-15546-Montferrer_Province_of_Lleida_Catalonia.html', '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelFicha.Lleida#1040', 'http://www.tripadvisor.es/VacationRentalReview-g2443342-d3886263-16316-Coll_de_Nargo_Province_of_Lleida_Catalonia.html', '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
