@@ -42,15 +42,15 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0330', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2235308-Reviews-Afternoon_in_Montserrat-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0451', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1628366-Reviews-Battlefield_Live_Barcelona-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0467', 'http://www.tripadvisor.es/Attraction_Review-g187497-d244859-Reviews-Isla_de_Fantasia-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0597', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2218952-Reviews-Barcelona_Turisme_Market_and_Culture_in_Vic_Day_Tour-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0599', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2218949-Reviews-Barcelona_Turisme_Montserrat_Sitges_Day_Tour-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0600', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2235353-Reviews-Barcelona_Turisme_Sitges_Cavas_Freixenet_Tour-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0647', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1602326-Reviews-Explore_Catalunya-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0776', 'http://www.tripadvisor.es/Attraction_Review-g187497-d2402833-Reviews-Miguel_Torres_Winery-Barcelona_Catalonia.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-   page.launch idLaunch, 'TAAtraccionesFicha.Dipu#0778', 'http://www.tripadvisor.es/Attraction_Review-g187497-d1759052-Reviews-Sitges_and_Freixenet_s_Cava_Wine_Cellars_Day_Trip_from_Barcelona-Barcelona_Catalo.html', '//*[@class="pgLinks"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'NiumbaListado.apartamentos.Lleida', 'http://www.niumba.com/cataluna/lleida/apartamentos'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.casas-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/casas-rurales'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.casas.Lleida', 'http://www.niumba.com/cataluna/lleida/casas'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.estudios.Lleida', 'http://www.niumba.com/cataluna/lleida/estudios'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.bungalows.Lleida', 'http://www.niumba.com/cataluna/lleida/bungalows'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.bed-and-breakfast.Lleida', 'http://www.niumba.com/cataluna/lleida/bed-and-breakfast'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.albergues.Lleida', 'http://www.niumba.com/cataluna/lleida/albergues'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.hoteles-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/hoteles-rurales'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.villas.Lleida', 'http://www.niumba.com/cataluna/lleida/villas'', '//a[@rel="next"]', '//*[@id="foot3"]', ''
 	
      
   end
