@@ -42,15 +42,15 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-    page.launch idLaunch, 'NiumbaListado.apartamentos.Lleida', 'http://www.niumba.com/cataluna/lleida/apartamentos'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.casas-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/casas-rurales'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.casas.Lleida', 'http://www.niumba.com/cataluna/lleida/casas'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.estudios.Lleida', 'http://www.niumba.com/cataluna/lleida/estudios'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.bungalows.Lleida', 'http://www.niumba.com/cataluna/lleida/bungalows'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.bed-and-breakfast.Lleida', 'http://www.niumba.com/cataluna/lleida/bed-and-breakfast'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.albergues.Lleida', 'http://www.niumba.com/cataluna/lleida/albergues'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.hoteles-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/hoteles-rurales'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
-    page.launch idLaunch, 'NiumbaListado.villas.Lleida', 'http://www.niumba.com/cataluna/lleida/villas'', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.apartamentos.Lleida', 'http://www.niumba.com/cataluna/lleida/apartamentos', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.casas-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/casas-rurales', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.casas.Lleida', 'http://www.niumba.com/cataluna/lleida/casas', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.estudios.Lleida', 'http://www.niumba.com/cataluna/lleida/estudios', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.bungalows.Lleida', 'http://www.niumba.com/cataluna/lleida/bungalows', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.bed-and-breakfast.Lleida', 'http://www.niumba.com/cataluna/lleida/bed-and-breakfast', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.albergues.Lleida', 'http://www.niumba.com/cataluna/lleida/albergues', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.hoteles-rurales.Lleida', 'http://www.niumba.com/cataluna/lleida/hoteles-rurales', '//a[@rel="next"]', '//div[@id="foot3"]', ''
+    page.launch idLaunch, 'NiumbaListado.villas.Lleida', 'http://www.niumba.com/cataluna/lleida/villas', '//a[@rel="next"]', '//div[@id="foot3"]', ''
 	
      
   end
