@@ -115,7 +115,6 @@ class NextLinkPage
 		end
 		
 		if estoprural
-		begin
 			@browser.goto @browser.url.gsub('#page','?page=')
 		    sleep 1
 		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
