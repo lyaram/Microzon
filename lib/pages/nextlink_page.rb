@@ -103,6 +103,15 @@ class NextLinkPage
         end
       end
 
+		begin
+		  while @browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+			@browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').click
+			sleep 3
+		  end
+		rescue
+		  #fallo
+		end
+
       storePage idLaunch
       
       puts url
