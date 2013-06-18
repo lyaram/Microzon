@@ -103,15 +103,24 @@ class NextLinkPage
         end
       end
 
+		estoprural = false
 		begin
 		  while @browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+			estoprural = true
 			@browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').click
 			sleep 3
 		  end
 		rescue
 		  #fallo
 		end
-
+		
+		if estoprural
+		begin
+			@browser.goto @browser.url.gsub('#page','?page=')
+		    sleep 1
+		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+		end
+			
       storePage idLaunch
       
       puts url
