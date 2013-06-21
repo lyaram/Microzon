@@ -120,7 +120,7 @@ class NextLinkPage
 		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
 		end
 
-
+puts "llega aqui?"
 		begin
 		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
 			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
@@ -129,7 +129,8 @@ class NextLinkPage
 		rescue
 		  #fallo
 		end
-		
+puts "y aquiiii?"
+
       storePage idLaunch
       
       puts url
