@@ -123,6 +123,7 @@ class NextLinkPage
 puts "llega aqui?"
 		begin
 		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+puts "y estoo?"
 			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
 			sleep 3
 		  end
