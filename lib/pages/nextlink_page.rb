@@ -120,17 +120,17 @@ class NextLinkPage
 		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
 		end
 
-puts "llega aqui?"
+puts 'llega aqui?'
 		begin
 		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
-puts "y estoo?"
+puts 'y estoo?'
 			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
 			sleep 3
 		  end
 		rescue
 		  #fallo
 		end
-puts "y aquiiii?"
+puts 'y aquiiii?'
 
       storePage idLaunch
       
