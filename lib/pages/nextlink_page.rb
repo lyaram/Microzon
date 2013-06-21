@@ -119,7 +119,17 @@ class NextLinkPage
 		    sleep 1
 		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
 		end
-			
+
+
+		begin
+		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
+			sleep 3
+		  end
+		rescue
+		  #fallo
+		end
+		
       storePage idLaunch
       
       puts url
