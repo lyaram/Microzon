@@ -87,10 +87,12 @@ class NextLinkPage
           end
         end
       rescue Exception => e
-        puts e.message
-		aFile = File.new(@folderbase + "/debug/debug.htm", "w")
+		strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
 		aFile.write(@browser.html)
 		aFile.close
+        puts strDT + ": " + e.message
+		$stdout.flush
         break if reintentos<=0
         retry
       end
