@@ -88,6 +88,9 @@ class NextLinkPage
         end
       rescue Exception => e
         puts e.message
+		aFile = File.new(@folderbase + "/debug/debug.htm", "w")
+		aFile.write(@browser.html)
+		aFile.close
         break if reintentos<=0
         retry
       end
