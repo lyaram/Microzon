@@ -6,17 +6,78 @@ class NextLinkPage
   require 'rexml/document'
   include REXML 
     
-  def launch descripcion, url, nextlink, checkPageCompleted, checkPageLoading
-    @browser.goto url 
+  def getLaunch
+    #para reiniciar la carpeta BotStoring usar el comando en consola 
+    # rm -rf BotStoring
+    # mkdir BotStoring
+    # mkdir BotStoring/png
+    # mkdir BotStoring/launches
+
+    @folderbase = Dir.home() + "/" + "BotStoring"
+
+    launchesLogXml = @folderbase + "/launcheslog.xml"
+
+    indexLaunch = ""
+    if not File.file?(launchesLogXml)
+      File.open(launchesLogXml, "w") do |f|
+        f.puts '<Launches/>'
+      end
+      indexLaunch = "%08d" % 1
+    end
     
-    prepararStore descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    file = File.new(launchesLogXml)
+    doc = Document.new(file)
+    
+    if indexLaunch == ""
+      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
+      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+    end
+    
+    subdoc = Document.new("<Launch />")
+    subdoc.root.attributes["id"] = indexLaunch
+
+    doc.root.elements.add(subdoc.root)
+
+    File.open(launchesLogXml,"w") do |data|
+      data<<doc
+    end
+ 
+    ruta = @folderbase + "/launches/" + indexLaunch
+    Dir::mkdir(ruta)
+
+    return indexLaunch
+  end
+  
+  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.goto.Retries:' + reintentos.to_s 
+        @browser.goto url 
+		if descripcion.include? 'MiNube_Usuarios.Id_'
+<<<<<<< HEAD
+			jumptosuer = '//div[1]/div[1]/a[1]'
+=======
+			jumptosuer = '//a[contains(@href,"viajeros.minube.com/")][1]'
+>>>>>>> origin/master
+			sleep 5
+			@browser.element_by_xpath(jumptouser).wait_until_present
+			@browser.element_by_xpath(jumptouser).click
+		end
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+    
+    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
       @numPag += 1
-      break if @numPag>50 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      break if @numPag>350 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
-      sigueprobando=false
+      sigueprobando=true
       reintentos = 5
       begin
         while sigueprobando
@@ -24,32 +85,73 @@ class NextLinkPage
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
           @browser.element_by_xpath(checkPageCompleted).wait_until_present
           
+          break if checkPageLoading==''
+
           sleep 5
-          if checkPageLoading!=''
-<<<<<<< HEAD
-            if !@browser.element_by_xpath(checkPageLoading).exists?
-=======
-            if !@browser.element(:xpath => checkPageLoading).exists?
->>>>>>> origin/master
-              break
-            end
+          if !@browser.element_by_xpath(checkPageLoading).exists?
+            break
           end
+
           if reintentos<=0  
             sigueprobando = false
           end
         end
       rescue Exception => e
-        puts e.message
+		strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
+		aFile.write(@browser.html)
+		aFile.close
+        puts strDT + ": " + e.message
+		$stdout.flush
         break if reintentos<=0
         retry
       end
-      storePage
       
-<<<<<<< HEAD
+      sleep 5
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        begin
+          @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+        rescue
+          #fallo
+        end
+      end
+
+		estoprural = false
+		begin
+		  while @browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+			estoprural = true
+			@browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').click
+			sleep 3
+		  end
+		rescue
+		  #fallo
+		end
+		
+		if estoprural
+			@browser.goto @browser.url.gsub('#page','?page=')
+		    sleep 1
+		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+		end
+
+puts 'llega aqui?'
+		begin
+		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+puts 'y estoo?'
+			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
+			sleep 3
+		  end
+		rescue
+		  #fallo
+		end
+puts 'y aquiiii?'
+
+      storePage idLaunch
+      
+      puts url
+      puts checkPageCompleted
       ttt = @browser.element_by_xpath(checkPageCompleted).text
-=======
-      ttt = @browser.element(:xpath => checkPageCompleted).text
->>>>>>> origin/master
       puts ttt
       $stdout.flush #
       
@@ -63,7 +165,17 @@ class NextLinkPage
       end
       break if nextlink==''
       break if !@browser.element_by_xpath(nextlink).exists?
-      @browser.element_by_xpath(nextlink).click
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        @browser.element_by_xpath(nextlink).click
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/
@@ -73,47 +185,31 @@ class NextLinkPage
     #
     #para empaquetar varias carpetas de html:
     #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
+    
+    #para sincronizar carpeta trabajo y carpeta de publicacion 
+    # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
   end
   
-  def prepararStore descripcion, url, nextlink, checkPageCompleted
-    #para reiniciar la carpeta BotStoring usar el comando en consola 
-    # rm -rf BotStoring
-    # mkdir BotStoring
-    # mkdir BotStoring/html
-    # mkdir BotStoring/png
+  def prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     @folderbase = Dir.home() + "/" + "BotStoring"
 
-    capturasXml = @folderbase + "/capturas.xml"
+    launchesLogXml = @folderbase + "/launcheslog.xml"
 
-    @indexStore = ""
-    if not File.file?(capturasXml)
-      File.open(capturasXml, "w") do |f|
-        f.puts '<Capturas/>'
-      end
-      @indexStore = "%08d" % 1
-    end
-    
-    file = File.new(capturasXml)
+    file = File.new(launchesLogXml)
     doc = Document.new(file)
+    eLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']").first
     
-    if @indexStore == ""
-      ultimaCaptura = XPath.match(doc.root, "//Capturas/Captura[last()]").first
-      @indexStore = "%08d" % ((ultimaCaptura.attributes["id"]).to_i+1)
+    @indexCaptura = ""
+    if XPath.match(eLaunch, "./Captura").empty?
+      @indexCaptura = "%08d" % 1      
+    else
+      lastLaunch = XPath.match(eLaunch, "./Captura[last()]").first
+      @indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
     end
-    
-#    p = <<EOF
-#  <Captura>
-#    <FechaHora />
-#    <Description />
-#    <Link />
-#    <NextLink />
-#  </Captura>
-#EOF
-#    subdoc = Document.new(p)
 
     subdoc = Document.new("<Captura />")
-    subdoc.root.attributes["id"] = @indexStore
+    subdoc.root.attributes["id"] = @indexCaptura
     eFechaHora = subdoc.root.add_element "FechaHora"
     eFechaHora.text = Time.now.to_s
     eDescripcion = subdoc.root.add_element "Descripcion"
@@ -125,13 +221,13 @@ class NextLinkPage
     ePageCompleted = subdoc.root.add_element "ePageCompleted"
     ePageCompleted.text = checkPageCompleted
     
-    doc.root.elements.add(subdoc.root)
+    eLaunch.elements.add(subdoc.root)
 
-    File.open(capturasXml,"w") do |data|
+    File.open(launchesLogXml,"w") do |data|
       data<<doc
     end
  
-    ruta = @folderbase + "/html/" + @indexStore
+    ruta = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura
     Dir::mkdir(ruta)
 
     ruta <<  "/captura.xml"
@@ -141,11 +237,11 @@ class NextLinkPage
    
   end
 
-  def storePage
+  def storePage idLaunch
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
     storePagePng strDT
-    storePageHtml strDT
+    storePageHtml idLaunch, strDT
   end
   
   def storePagePng strDT
@@ -156,7 +252,7 @@ class NextLinkPage
     embed screenshot, 'image/png'
   end
   
-  def storePageHtml strDT
+  def storePageHtml idLaunch, strDT
     
    
 # INI actualizar xml##############################################################
@@ -168,7 +264,7 @@ class NextLinkPage
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
     
-    capturaXml = @folderbase + "/html/" + @indexStore + "/captura.xml"
+    capturaXml = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
@@ -179,7 +275,7 @@ class NextLinkPage
 
 # FIN actualizar xml################################################################
 
-    htmFile = @folderbase + "/html/" + @indexStore + "/" + strDT + ".htm"
+    htmFile = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
@@ -201,5 +297,90 @@ class NextLinkPage
     @browser.send sym, *args, &block
   end
 
+
+
+
+
+
+
+  def launchTAReviews idLaunch, descripcion, url
+      nextlink = '//div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]'
+      checkPageCompleted = '//*[@id="FOOT"]'
+      checkPageLoading = ''
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.goto.Retries:' + reintentos.to_s 
+        @browser.goto url 
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+      
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//*[@id="selFilterAll"]').exists?
+        @browser.element_by_xpath('//*[@id="selFilterAll"]').click
+      end
+
+    
+    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+
+    @numPag = 0
+    loop do
+      @numPag += 1
+      break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      
+      sleep 5
+      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      end
+  
+      storePage idLaunch
+      
+      puts url
+      puts checkPageCompleted
+      ttt = @browser.element_by_xpath(checkPageCompleted).text
+      puts ttt
+      $stdout.flush #
+      
+      reintentos = 5
+      begin
+        reintentos += -1
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+      rescue
+        break if reintentos<=0
+        retry
+      end
+      break if nextlink==''
+      break if !@browser.element_by_xpath(nextlink).exists?
+      
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        @browser.element_by_xpath(nextlink).click
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+    end 
+    #para empaquetar previo ftp, usar este comando en consola
+    # zip -r 00001.zip 00001/
+    #
+    #para empaquetar todos los xml de captura:
+    #zip FullCapt.zip -r */captura.xml
+    #
+    #para empaquetar varias carpetas de html:
+    #zip FullHTML.zip -r 00000009/ 00000010/(ETC.ETC.ETC.ETC.ETC.ETC.ETC.)
+    
+    #para sincronizar carpeta trabajo y carpeta de publicacion 
+    # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
+  end
+  
 
 end
