@@ -54,6 +54,11 @@ class NextLinkPage
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s 
         @browser.goto url 
+		if descripcion.include? 'MiNube_Usuarios.Id_'
+			jumptosuer = '(//a[contains(@href,"viajeros.minube.com/")])[1]'
+			@browser.element_by_xpath(jumptouser).wait_until_present
+			@browser.element_by_xpath(jumptouser).click
+		end
       rescue
         if reintentos>0
           retry
