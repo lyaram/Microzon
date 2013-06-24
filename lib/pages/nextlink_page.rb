@@ -55,10 +55,10 @@ class NextLinkPage
         puts '@browser.goto.Retries:' + reintentos.to_s 
         @browser.goto url 
 		#if descripcion.include? 'MiNube_Usuarios.Id_'   
-			jumptosuer = '//div[1]/div[1]/a[1]'
-			sleep 5
-			@browser.element_by_xpath(jumptouser).wait_until_present
-			@browser.element_by_xpath(jumptouser).click
+		#	jumptosuer = '//div[1]/div[1]/a[1]'
+		#	sleep 5
+		#	@browser.element_by_xpath(jumptouser).wait_until_present
+		#	@browser.element_by_xpath(jumptouser).click
 		#end
       rescue
         if reintentos>0
