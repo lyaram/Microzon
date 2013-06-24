@@ -60,7 +60,7 @@ class NextLinkPage
 puts 'entrando en Minube_usuarios'		
 			jumptosuer = '//div[1]/div[1]/a[1]'
 			sleep 5
-			@browser.element_by_xpath('//a[contains(@href,"viajeros.minube.com")])[1]').click
+			@browser.element_by_xpath('(//a[contains(@href,"viajeros.minube.com")])[1]').click
 			sleep 5
 		end
       rescue Exception => e
