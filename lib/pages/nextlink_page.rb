@@ -57,11 +57,9 @@ class NextLinkPage
 		sleep 1
 		browser.element_by_xpath('(//a[contains(@href,"viajeros.minube.com")])[1]').wait_until_present
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
-puts 'entrando en Minube_usuarios'		
 			jumptosuer = '//div[1]/div[1]/a[1]'
-			sleep 5
 			@browser.element_by_xpath('(//a[contains(@href,"viajeros.minube.com")])[1]').click
-			sleep 5
+			sleep 1
 		end
       rescue Exception => e
 	    puts e.message
