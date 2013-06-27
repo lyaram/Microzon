@@ -55,10 +55,10 @@ class NextLinkPage
         puts '@browser.goto.Retries:' + reintentos.to_s 
         @browser.goto url 
 		sleep 1
-		browser.element_by_xpath('(//a[contains(@href,"viajeros.minube.com")])[1]').wait_until_present
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
-			jumptosuer = '//div[1]/div[1]/a[1]'
-			@browser.element_by_xpath('(//a[contains(@href,"viajeros.minube.com")])[1]').click
+			jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
+			browser.element_by_xpath(jumptosuer).wait_until_present
+			@browser.element_by_xpath(jumptosuer).click
 			sleep 1
 		end
       rescue Exception => e
