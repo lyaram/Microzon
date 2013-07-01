@@ -61,6 +61,12 @@ class NextLinkPage
 			@browser.element_by_xpath(jumptosuer).click
 			sleep 1
 		end
+		if descripcion.include? 'Eurocampings_ReviewList.Id_'  
+			jumptosuer = '//*[@id="review_links"]/a'
+			browser.element_by_xpath(jumptosuer).wait_until_present
+			@browser.element_by_xpath(jumptosuer).click
+			sleep 1
+		end
       rescue Exception => e
 	    puts e.message
         if reintentos>0
