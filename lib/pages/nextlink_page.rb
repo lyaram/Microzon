@@ -51,27 +51,49 @@ class NextLinkPage
   def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
       reintentos = 3
       begin
+puts '--------------------------------------------> A'
         reintentos += -1
+puts '--------------------------------------------> B'
         puts '@browser.goto.Retries:' + reintentos.to_s 
+puts '--------------------------------------------> C'
         @browser.goto url 
+puts '--------------------------------------------> D'
 		sleep 1
+puts '--------------------------------------------> E'
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
+puts '--------------------------------------------> F'
 			jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
+puts '--------------------------------------------> G'
 			browser.element_by_xpath(jumptosuer).wait_until_present
+puts '--------------------------------------------> H'
 			@browser.element_by_xpath(jumptosuer).click
+puts '--------------------------------------------> I'
 			sleep 1
+puts '--------------------------------------------> J'
 		end
+puts '--------------------------------------------> K'
 		if descripcion.include? 'Eurocampings_ReviewList.Id_'  
+puts '--------------------------------------------> L'
 			jumptosuer = '//*[@id="review_links"]/a'
+puts '--------------------------------------------> M'
 			browser.element_by_xpath(jumptosuer).wait_until_present
+puts '--------------------------------------------> N'
 			@browser.element_by_xpath(jumptosuer).click
+puts '--------------------------------------------> O'
 			sleep 1
+puts '--------------------------------------------> P'
 		end
+puts '--------------------------------------------> Q'
       rescue Exception => e
+puts '--------------------------------------------> R'
 	    puts e.message
+puts '--------------------------------------------> S'
         if reintentos>0
+puts '--------------------------------------------> T'
           retry
+puts '--------------------------------------------> U'
         end
+puts '--------------------------------------------> V'
       end
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
