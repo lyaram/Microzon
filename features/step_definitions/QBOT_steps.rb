@@ -42,8 +42,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
     
-  page.launch idLaunch, 'Campinguia_ReviewList.Id_150363', 'http://www.campinguia.com/campings/lleida/camping-aigues-braves/', '', '//form[@action="enviar_camping_amigo.asp"]', ''
   page.launch idLaunch, 'Zoover_ReviewList.Id_150145', 'http://www.zoover.es/espana/cataluna-costa-brava-y-costa-dorada/llavorsi/aigues-braves/camping', '(//a[text()="siguiente"])[1]', '//div[@class="footer wrapper"]', ''
+  page.launch idLaunch, 'Campinguia_ReviewList.Id_150363', 'http://www.campinguia.com/campings/lleida/camping-aigues-braves/', '', '//form[@action="enviar_camping_amigo.asp"]', ''
   page.launch idLaunch, 'SpainCamping_ReviewList.Id_150444', 'http://www.spaincamping.es/camping-aig%EF%BF%BDesbraves/', '', '//*[@id="footer1"]', ''
   page.launch idLaunch, 'Campinguia_ReviewList.Id_150343', 'http://www.campinguia.com/campings/lleida/camping-alta-ribagorca/', '', '//form[@action="enviar_camping_amigo.asp"]', ''
   page.launch idLaunch, 'Eurocampings_ReviewList.Id_150394', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-alta-ribagor%e7a-108247/', '', '//*[@id="Footer"]', ''
