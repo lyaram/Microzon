@@ -42,12 +42,14 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150394', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-alta-ribagor%e7a-108247/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150389', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-del-card%f3s-106741/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150388', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/nou-camping-101371/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150398', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-castellb%f2-buchaca-106744/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150406', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-sol-i-neu-106738/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
-  page.launch idLaunch, 'Eurocampings_ReviewList.Id_150390', 'http://www.eurocampings.es/es/europa/espa%f1a/catalu%f1a/lerida/camping-voraparc-115937/', '(//*[@id="pagebrowser"]/a[@class="next"])[1]', '//*[@id="Footer"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-c2-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-c3-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.PirineuCatala', 'http://www.tripadvisor.es/VacationRentals-g187498-Reviews-Catalonian_Pyrenees_Catalonia-Vacation_Rentals.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-c2-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-c3-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.PirineoAragones', 'http://www.tripadvisor.es/VacationRentals-g187447-Reviews-Aragonian_Pyrenees_Aragon-Vacation_Rentals.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
    
 
      
