@@ -42,13 +42,10 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-c2-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.PirineuCatala', 'http://www.tripadvisor.es/Hotels-g187498-c3-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.PirineuCatala', 'http://www.tripadvisor.es/VacationRentals-g187498-Reviews-Catalonian_Pyrenees_Catalonia-Vacation_Rentals.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST1.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST2.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-c2-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST3.PirineoAragones', 'http://www.tripadvisor.es/Hotels-g187447-c3-Aragonian_Pyrenees_Aragon-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.PirineuCatala', 'http://www.tripadvisor.es/VacationRentals-g187498-Reviews-Catalonian_Pyrenees_Catalonia-Vacation_Rentals.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_HotelList.EST4.PirineoAragones', 'http://www.tripadvisor.es/VacationRentals-g187447-Reviews-Aragonian_Pyrenees_Aragon-Vacation_Rentals.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
    
 
