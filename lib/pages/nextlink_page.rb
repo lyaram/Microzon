@@ -121,6 +121,14 @@ class NextLinkPage
           #fallo
         end
       end
+      if @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
+        @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
+        begin
+          @browser.element_by_xpath('//div[@class="note"]').wait_until_present
+        rescue
+          #fallo
+        end
+      end
 
 		estoprural = false
 		begin
