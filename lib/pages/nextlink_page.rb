@@ -117,16 +117,22 @@ class NextLinkPage
 puts 'BEGIN click MORE'
       linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]'
       reintentos = 10
-puts 'while @browser.element_by_xpath(linkMore).exists?'
-      while @browser.element_by_xpath(linkMore).exists?
+puts 'loop do'
+      loop do
+puts '  elemMore = @browser.element_by_xpath(linkMore)'
+        elemMore = @browser.element_by_xpath(linkMore)
+puts '  break if not elemMore.exists?'
+        break if not elemMore.exists?
 puts '  reintentos += -1'
         reintentos += -1
 puts '  break if reintentos<0'
         break if reintentos<0
-puts '  @browser.element_by_xpath(linkMore).click'
-        @browser.element_by_xpath(linkMore).click
-puts '  sleep 3'
-        sleep 3
+puts '  elemMore.click'
+        elemMore.click
+puts '  elemMore.wait_while_present'
+        elemMore.wait_while_present
+puts '  sleep 1'
+        sleep 1
       end
 puts 'FIN click MORE'
      
