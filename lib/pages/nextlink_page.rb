@@ -120,7 +120,7 @@ puts Time.now.to_s + '>BEGIN click MORE'
 puts Time.now.to_s + '>loop do'
       loop do
 puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(xpathElemMore)'
-        elemMore = @browser.element_by_xpath(linkMore)
+        elemMore = @browser.element_by_xpath(xpathElemMore)
 puts Time.now.to_s + '>  break if not elemMore.exists?'
         break if not elemMore.exists?
 puts Time.now.to_s + '>  reintentos += -1'
