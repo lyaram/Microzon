@@ -113,6 +113,18 @@ class NextLinkPage
       
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
+<<<<<<< HEAD
+      
+      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
+        sleep 5      
+      end
+      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
+        sleep 5      
+      end
+=======
+>>>>>>> origin/master
       
 puts Time.now.to_s + '>BEGIN click MORE'
       xpathElemMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]/ancestor::div[starts-with(@id,"review_")]'
@@ -120,11 +132,7 @@ puts Time.now.to_s + '>BEGIN click MORE'
 puts Time.now.to_s + '>loop do'
       loop do
 puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(xpathElemMore)'
-<<<<<<< HEAD
         elemMore = @browser.element_by_xpath(xpathElemMore)
-=======
-        elemMore = @browser.element_by_xpath(linkMore)
->>>>>>> origin/master
 puts Time.now.to_s + '>  break if not elemMore.exists?'
         break if not elemMore.exists?
 puts Time.now.to_s + '>  reintentos += -1'
@@ -177,14 +185,6 @@ puts Time.now.to_s + '>FIN click MORE'
 		  #fallo
 		end
 
-      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
-        sleep 5      
-      end
-      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
-        sleep 5      
-      end
       
       storePage idLaunch
       
