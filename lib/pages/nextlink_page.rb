@@ -129,10 +129,12 @@ puts Time.now.to_s + '>  break if reintentos<0'
         break if reintentos<0
 puts Time.now.to_s + '>  elemMore.click'
         elemMore.click
+puts Time.now.to_s + '>  sleep 10'
+        sleep 10
 puts Time.now.to_s + '>  elemMore.wait_while_present'
         elemMore.wait_while_present
-puts Time.now.to_s + '>  sleep 3'
-        sleep 3
+puts Time.now.to_s + '>  sleep 10'
+        sleep 10
       end
 puts Time.now.to_s + '>FIN click MORE'
      
