@@ -114,14 +114,14 @@ class NextLinkPage
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
       
-      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL" and @selected]').wait_until_present
+      if @browser.element_by_xpath('//select[@id="filterLang"]').exists?
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').click
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@selected and @value="ALL"]').wait_until_present
         sleep 3      
       end
-      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru" and @selected]').wait_until_present
+      if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').exists?
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').click
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@selected and @value="ALL"]').wait_until_present
         sleep 3      
       end
       

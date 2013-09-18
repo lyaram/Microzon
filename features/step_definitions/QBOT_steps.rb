@@ -42,7 +42,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#028', 'http://www.tripadvisor.es/Hotel_Review-g562814-d291838-Reviews-Cala_Font_Hotel-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#029', 'http://www.tripadvisor.es/Hotel_Review-g562814-d263744-Reviews-Best_Da_Vinci_Royal-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#030', 'http://www.tripadvisor.es/Hotel_Review-g562814-d287668-Reviews-Complejo_Best_Negresco-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#031', 'http://www.tripadvisor.es/Hotel_Review-g562814-d566699-Reviews-Eurosalou_Hotel-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
@@ -115,6 +114,7 @@ When /^QBot is surfing a webpage$/ do
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#098', 'http://www.tripadvisor.es/Hotel_Review-g562814-d1212109-Reviews-Olympic_92_Golf_de_Sant_Jordi_Hotel_Salou-Salou_Costa_Dorada_Province_of_Tarragona_Cat.html', '', '//*[@id="FOOT"]', ''
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#099', 'http://www.tripadvisor.es/Hotel_Review-g562814-d1221622-Reviews-Top_Secret_Ibersol_Apartments-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
     page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#100', 'http://www.tripadvisor.es/Hotel_Review-g562814-d566639-Reviews-Via_Aurelia-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
+    page.launch idLaunch, 'TRIPADVISOR_HotelFicha.RussianSalou#028', 'http://www.tripadvisor.es/Hotel_Review-g562814-d291838-Reviews-Cala_Font_Hotel-Salou_Costa_Dorada_Province_of_Tarragona_Catalonia.html', '', '//*[@id="FOOT"]', ''
  
 
      
