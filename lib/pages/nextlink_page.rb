@@ -116,11 +116,13 @@ class NextLinkPage
       
       if @browser.element_by_xpath('//select[@id="filterLang"]').exists?
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').click
+        sleep 3
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@selected and @value="ALL"]').wait_until_present
         sleep 3      
       end
       if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').exists?
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').click
+        sleep 3
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@selected and @value="ALL"]').wait_until_present
         sleep 3      
       end
