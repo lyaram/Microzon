@@ -167,12 +167,12 @@ class NextLinkPage
 		  #fallo
 		end
 
-      if @browser.element_by_xpath('//*[@id"filterLang"]').exists?
-        @browser.element_by_xpath('//*[@id"filterLang"]/option[@value="ALL"]').click
+      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
         sleep 5      
       end
-      if @browser.element_by_xpath('//*[@id"filterLang"]/option[@value="ru"]').exists?
-        @browser.element_by_xpath('//*[@id"filterLang"]/option[@value="ru"]').click
+      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
         sleep 5      
       end
       
