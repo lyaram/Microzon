@@ -115,11 +115,11 @@ class NextLinkPage
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
       
 puts Time.now.to_s + '>BEGIN click MORE'
-      linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]'
+      xpathElemMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]/ancestor::div[starts-with(@id,"review_")]'
       reintentos = 10
 puts Time.now.to_s + '>loop do'
       loop do
-puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(linkMore)'
+puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(xpathElemMore)'
         elemMore = @browser.element_by_xpath(linkMore)
 puts Time.now.to_s + '>  break if not elemMore.exists?'
         break if not elemMore.exists?
@@ -127,12 +127,12 @@ puts Time.now.to_s + '>  reintentos += -1'
         reintentos += -1
 puts Time.now.to_s + '>  break if reintentos<0'
         break if reintentos<0
-puts Time.now.to_s + '>  elemMore.click'
-        elemMore.click
+puts Time.now.to_s + '>  elemMore.element_by_xpath(...).click'
+        elemMore.element_by_xpath('./div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
 puts Time.now.to_s + '>  sleep 10'
         sleep 10
-puts Time.now.to_s + '>  elemMore.wait_while_present'
-        elemMore.wait_while_present
+puts Time.now.to_s + '>  elemMore.element_by_xpath(...).wait_until_present'
+        elemMore.element_by_xpath('./div[starts-with(@class,"review dyn_full_review")]').wait_until_present
 puts Time.now.to_s + '>  sleep 10'
         sleep 10
       end
