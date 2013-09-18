@@ -114,27 +114,27 @@ class NextLinkPage
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
       
-puts 'BEGIN click MORE'
+puts Time.now.to_s + '>BEGIN click MORE'
       linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]'
       reintentos = 10
-puts 'loop do'
+puts Time.now.to_s + '>loop do'
       loop do
-puts '  elemMore = @browser.element_by_xpath(linkMore)'
+puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(linkMore)'
         elemMore = @browser.element_by_xpath(linkMore)
-puts '  break if not elemMore.exists?'
+puts Time.now.to_s + '>  break if not elemMore.exists?'
         break if not elemMore.exists?
-puts '  reintentos += -1'
+puts Time.now.to_s + '>  reintentos += -1'
         reintentos += -1
-puts '  break if reintentos<0'
+puts Time.now.to_s + '>  break if reintentos<0'
         break if reintentos<0
-puts '  elemMore.click'
+puts Time.now.to_s + '>  elemMore.click'
         elemMore.click
-puts '  elemMore.wait_while_present'
+puts Time.now.to_s + '>  elemMore.wait_while_present'
         elemMore.wait_while_present
-puts '  sleep 1'
-        sleep 1
+puts Time.now.to_s + '>  sleep 3'
+        sleep 3
       end
-puts 'FIN click MORE'
+puts Time.now.to_s + '>FIN click MORE'
      
       if @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
