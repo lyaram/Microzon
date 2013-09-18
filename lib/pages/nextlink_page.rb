@@ -113,14 +113,14 @@ class NextLinkPage
       
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      #//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]
-      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
-        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
-        begin
-          @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
-        rescue
-          #fallo
-        end
+      
+      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
+        sleep 5      
+      end
+      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
+        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
+        sleep 5      
       end
       
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
@@ -167,14 +167,6 @@ class NextLinkPage
 		  #fallo
 		end
 
-      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
-        sleep 5      
-      end
-      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
-        sleep 5      
-      end
       
       storePage idLaunch
       
