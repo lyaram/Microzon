@@ -114,22 +114,22 @@ class NextLinkPage
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
       
-      begin
+      #begin
         if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
-          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').click
+          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').select
           sleep 3      
           @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"][@selected]').wait_until_present
           sleep 3      
         end
         if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
-          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').click
+          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').select
           sleep 3      
           @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"][@selected]').wait_until_present
           sleep 3      
         end
-      rescue
+      #rescue
         #fallo
-      end
+      #end
       
       
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
@@ -178,7 +178,7 @@ class NextLinkPage
 
       
       storePage idLaunch
-      abort("Aborting to check fail")
+      #abort("Aborting to check fail")
       
       puts url
       puts checkPageCompleted
