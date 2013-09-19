@@ -76,6 +76,29 @@ class NextLinkPage
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
+    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+    
+    if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
+      @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').select
+      sleep 3      
+      begin  
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+       rescue Exception => e
+         puts e.message    
+       end
+      sleep 3      
+    end
+    if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
+      @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').select
+      sleep 3      
+      begin
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
+      rescue Exception => e
+        puts e.message    
+      end
+      sleep 3      
+    end
+
     @numPag = 0
     loop do
       @numPag += 1
@@ -113,28 +136,6 @@ class NextLinkPage
       
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      
-      if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
-        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').select
-        sleep 3      
-        begin  
-          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
-         rescue Exception => e
-           puts e.message    
-         end
-        sleep 3      
-      end
-      if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
-        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').select
-        sleep 3      
-        begin
-          @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
-        rescue Exception => e
-          puts e.message    
-        end
-        sleep 3      
-      end
-      
       
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
       reintentos = 10
