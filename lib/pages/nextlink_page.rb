@@ -121,7 +121,7 @@ class NextLinkPage
       end
       if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').click
-        @browser.element_by_xpath('//select[@id="filterLang"]/option[@selected and @value="ru"]').wait_until_present
+        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"][@selected]').wait_until_present
         sleep 3      
       end
       
