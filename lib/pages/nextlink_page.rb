@@ -145,6 +145,15 @@ class NextLinkPage
         @browser.element_by_xpath(linkMore).click
         sleep 3
       end
+
+      buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
+      reintentos = 10
+      while @browser.element_by_xpath(buttonNoTranslation).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element_by_xpath(buttonNoTranslation).click
+        sleep 3
+      end
       
       if @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
