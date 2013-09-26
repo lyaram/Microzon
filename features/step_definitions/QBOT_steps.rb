@@ -42,12 +42,12 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch,'ATRAPALO_RestList.CACERES', 'http://www.atrapalo.com/restaurantes/caceres_d23.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.CACERES', 'http://www.buscorestaurantes.com/Restaurantes-en-Caceres', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'RESTALO_RestList.CACERES', 'http://www.restalo.es/restaurantes-caceres', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'SALIR_RestList.CACERES', 'http://www.salir.com/caceres/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.CACERES', 'http://www.tripadvisor.es/Restaurants-g2435893-Province_of_Caceres_Extremadura.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'VEREMA_RestList.CACERES', 'http://www.verema.com/restaurantes/spain/caceres', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
+    page.launch idLaunch,'ATRAPALO_RestList.MADRID', 'http://www.atrapalo.com/restaurantes/madrid_d35.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
+    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Madrid', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
+    page.launch idLaunch,'RESTALO_RestList.MADRID', 'http://www.restalo.es/restaurantes-madrid', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
+    page.launch idLaunch,'SALIR_RestList.MADRID', 'http://www.salir.com/madrid/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.MADRID', 'http://www.tripadvisor.es/Restaurants-g562642-Community_of_Madrid.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
+    page.launch idLaunch,'VEREMA_RestList.MADRID', 'http://www.verema.com/restaurantes/spain/madrid', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
 
 
      
