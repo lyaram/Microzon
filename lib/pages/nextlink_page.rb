@@ -195,9 +195,9 @@ class NextLinkPage
       #abort("Aborting to check fail")
       
       puts url
-      puts checkPageCompleted
-      ttt = @browser.element_by_xpath(checkPageCompleted).text
-      puts ttt
+      #puts checkPageCompleted
+      #ttt = @browser.element_by_xpath(checkPageCompleted).text
+      #puts ttt
       $stdout.flush #
       
       reintentos = 5
