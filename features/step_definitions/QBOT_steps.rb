@@ -42,7 +42,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/Restaurants-g1969684-Barcelona_Province_Catalonia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/RestaurantSearch-g1969684-oa4200-Province_of_Barcelona_Catalonia.html#EATERY_LIST_CONTENTS', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
     page.launch idLaunch,'VEREMA_RestList.BARCELONA', 'http://www.verema.com/restaurantes/spain/barcelona', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
     page.launch idLaunch,'ATRAPALO_RestList.CANTABRIA', 'http://www.atrapalo.com/restaurantes/cantabria_d16.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
     page.launch idLaunch,'BUSCORESTAURANTES_RestList.CANTABRIA', 'http://www.buscorestaurantes.com/Restaurantes-en-Cantabria', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
