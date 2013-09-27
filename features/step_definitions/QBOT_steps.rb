@@ -42,12 +42,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch,'TRIPADVISOR_RestList.MALAGA', 'http://www.tripadvisor.es/Restaurants-g187435-Costa_del_Sol_Andalusia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'VEREMA_RestList.MALAGA', 'http://www.verema.com/restaurantes/spain/malaga', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.MALLORCA', 'http://www.atrapalo.com/restaurantes/mallorca_d55.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MALLORCA', 'http://www.buscorestaurantes.com/Restaurantes-en-mallorca-isla', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'RESTALO_RestList.MALLORCA', 'http://www.restalo.es/restaurantes-islas-baleares/ciudad-palma-de-mallorca/', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'SALIR_RestList.MALLORCA', 'http://www.salir.com/islas_baleares/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
     page.launch idLaunch,'TRIPADVISOR_RestList.MALLORCA', 'http://www.tripadvisor.es/Restaurants-g187462-Majorca_Balearic_Islands.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
     page.launch idLaunch,'VEREMA_RestList.MALLORCA', 'http://www.verema.com/restaurantes/spain/baleares', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
     page.launch idLaunch,'ATRAPALO_RestList.MURCIA', 'http://www.atrapalo.com/restaurantes/murcia_d39.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
