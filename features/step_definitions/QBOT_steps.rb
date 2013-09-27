@@ -42,23 +42,6 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch,'VEREMA_RestList.MADRID', 'http://www.verema.com/restaurantes/spain/madrid', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.A_CORUNA', 'http://www.atrapalo.com/restaurantes/a-coruna_d19.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.A_CORUNA', 'http://www.buscorestaurantes.com/Restaurantes-en-A-Coruna', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'RESTALO_RestList.A_CORUNA', 'http://www.restalo.es/restaurantes-a-coruna', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'SALIR_RestList.A_CORUNA', 'http://www.salir.com/la_coruna_a_coruna/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.A_CORUNA', 'http://www.tripadvisor.es/Restaurants-g1768740-A_Coruna_Province_Galicia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'VEREMA_RestList.A_CORUNA', 'http://www.verema.com/restaurantes/spain/a-coruna', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.ASTURIAS', 'http://www.atrapalo.com/restaurantes/asturias_d17.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.ASTURIAS', 'http://www.buscorestaurantes.com/Restaurantes-en-Asturias', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'RESTALO_RestList.ASTURIAS', 'http://www.restalo.es/restaurantes-asturias', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'SALIR_RestList.ASTURIAS', 'http://www.salir.com/asturias/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.ASTURIAS', 'http://www.tripadvisor.es/Restaurants-g187449-Asturias.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
-    page.launch idLaunch,'VEREMA_RestList.ASTURIAS', 'http://www.verema.com/restaurantes/spain/asturias', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
-    page.launch idLaunch,'ATRAPALO_RestList.BARCELONA', 'http://www.atrapalo.com/restaurantes/barcelona_d6.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.BARCELONA', 'http://www.buscorestaurantes.com/Restaurantes-en-Barcelona', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
-    page.launch idLaunch,'RESTALO_RestList.BARCELONA', 'http://www.restalo.es/restaurantes-barcelona', '//div[@id="pagerContainerList"]/ul[@id="pager"]/li[@class="next"]/a', '//div[@id="pagerContainerList"]', ''
-    page.launch idLaunch,'SALIR_RestList.BARCELONA', 'http://www.salir.com/barcelona/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
     page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/Restaurants-g1969684-Barcelona_Province_Catalonia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
     page.launch idLaunch,'VEREMA_RestList.BARCELONA', 'http://www.verema.com/restaurantes/spain/barcelona', '//*[@class="pagination"]/*[@class="next_page"]', '//*[@id="cuerpo_footer"]', ''
     page.launch idLaunch,'ATRAPALO_RestList.CANTABRIA', 'http://www.atrapalo.com/restaurantes/cantabria_d16.html', '//*[@id="resultados_restaurantes"]//a[@title="Siguiente"]', '//div[@id="resultados_restaurantes"]//div[@id="paginator"]', ''
