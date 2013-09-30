@@ -102,7 +102,7 @@ class NextLinkPage
     @numPag = 0
     loop do
       @numPag += 1
-      break if @numPag>350 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      break if @numPag>1000 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
       sigueprobando=true
       reintentos = 5
