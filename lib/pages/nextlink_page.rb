@@ -127,7 +127,8 @@ class NextLinkPage
 		strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message
 		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
-		aFile.write(@browser.html)
+		htmlPage = @browser.html
+		aFile.write(htmlPage)
 		aFile.close
 		$stdout.flush
         break if reintentos<=0
