@@ -42,8 +42,9 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
-    page.launch idLaunch,'BUSCORESTAURANTES_RestList.MADRID', 'http://www.buscorestaurantes.com/Restaurantes-en-Madrid', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
     page.launch idLaunch,'BUSCORESTAURANTES_RestList.BARCELONA', 'http://www.buscorestaurantes.com/Restaurantes-en-Barcelona', '//div[@class="block-pagination"]/a[text()="Siguiente"]', '//div[@class="block-pagination"]', ''
+    page.launch idLaunch,'SALIR_RestList.MADRID', 'http://www.salir.com/madrid/restaurantes', '//*[@id="itemList"]//a[@class="siguiente linkPaginador"]', '//div[@class="footer"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/Restaurants-g1969684-Barcelona_Province_Catalonia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
 
      
   end
