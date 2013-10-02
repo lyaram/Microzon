@@ -128,7 +128,7 @@ class NextLinkPage
         puts strDT + ": " + e.message
 		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
 		
-		htmlPage = @browser.html
+		htmlPage = Nokogiri::HTML.parse(@browser.html)
 		
 		aFile.write(htmlPage)
 		aFile.close
