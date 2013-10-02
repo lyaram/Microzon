@@ -128,8 +128,33 @@ class NextLinkPage
         puts strDT + ": " + e.message
 		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
 		
-		htmlPage = Nokogiri::HTML.parse(@browser.html)
+		#htmlPage = Nokogiri::HTML.parse(@browser.html)
 		
+
+    #$DEBUG = true
+
+		 puts 'Ejecutando htmlPage = @browser.html'
+     sigueprobando=true
+     reintentos = 5
+     while sigueprobando
+       begin 
+          puts 'Intento #' + reintentos
+          reintentos += -1
+          htmlPage = @browser.html
+          sigueprobando = false 
+       rescue Exception => e
+          puts 'Intento fallido: ' + e.message    
+          if reintentos<=0  
+            sigueprobando=false
+          else
+            @browser.refresh
+            @browser.wait 60
+          end
+       end
+     end
+
+     #$DEBUG = false
+	
 		aFile.write(htmlPage)
 		aFile.close
 		$stdout.flush
