@@ -42,6 +42,8 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
+$DEBUG = true
+
     page.launch idLaunch,'TRIPADVISOR_RestList.BARCELONA', 'http://www.tripadvisor.es/Restaurants-g1969684-Barcelona_Province_Catalonia.html', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
 
      
