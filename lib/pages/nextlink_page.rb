@@ -104,12 +104,20 @@ class NextLinkPage
       @numPag += 1
       break if @numPag>1000 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
+      recargar = false
       sigueprobando=true
       reintentos = 5
       begin
         while sigueprobando
           reintentos += -1
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+          
+          if recargar
+            @browser.refresh
+            @browser.wait 60
+          end
+          recargar = false
+          
           @browser.element_by_xpath(checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
@@ -124,16 +132,29 @@ class NextLinkPage
           end
         end
       rescue Exception => e
-		strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message
-		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
-		
-		#htmlPage = Nokogiri::HTML.parse(@browser.html)
-		
-
+    		$stdout.flush
+        
+        if e.message='end of file reached'
+          recargar=true
+        else
+          aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
+          htmlPage=@browser.html
+          aFile.write(htmlPage)
+          aFile.close
+        end
+    		
+        break if reintentos<=0
+        retry
+      end
+      
+      
+          #htmlPage = Nokogiri::HTML.parse(@browser.html)
+    
     #$DEBUG = true
 
-		 puts 'Ejecutando htmlPage = @browser.html'
+     puts 'Ejecutando htmlPage = @browser.html'
      sigueprobando=true
      reintentos = 5
      while sigueprobando
@@ -154,13 +175,10 @@ class NextLinkPage
      end
 
      #$DEBUG = false
-	
-		aFile.write(htmlPage)
-		aFile.close
-		$stdout.flush
-        break if reintentos<=0
-        retry
-      end
+
+      
+      
+      
       
       sleep 5
       @browser.element_by_xpath(checkPageCompleted).wait_until_present
