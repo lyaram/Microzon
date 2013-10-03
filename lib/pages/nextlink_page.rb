@@ -136,7 +136,7 @@ class NextLinkPage
         puts strDT + ": " + e.message
     		$stdout.flush
         
-        if e.message='end of file reached'
+        if e.message == 'end of file reached'
           recargar=true
         else
           aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
