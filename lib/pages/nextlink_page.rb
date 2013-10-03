@@ -138,7 +138,7 @@ class NextLinkPage
      reintentos = 5
      while sigueprobando
        begin 
-          puts 'Intento #' + reintentos
+          puts 'Intento #' + reintentos.to_s
           reintentos += -1
           htmlPage = @browser.html
           sigueprobando = false 
