@@ -20,7 +20,7 @@ class NextLinkPage
     indexLaunch = ""
     if not File.file?(launchesLogXml)
       File.open(launchesLogXml, "w") do |f|
-        f.puts '<Launches/>'
+        f.puts '<Launches/>'; $stdout.flush
       end
       indexLaunch = "%08d" % 1
     end
@@ -52,7 +52,7 @@ class NextLinkPage
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.goto.Retries:' + reintentos.to_s 
+        puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
 		sleep 1
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
@@ -68,7 +68,7 @@ class NextLinkPage
 			sleep 1
 		end
       rescue Exception => e
-	    puts e.message
+	    puts e.message; $stdout.flush
         if reintentos>0
           retry
         end
@@ -84,7 +84,7 @@ class NextLinkPage
       begin  
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
        rescue Exception => e
-         puts e.message    
+         puts e.message    ; $stdout.flush
        end
       sleep 3      
     end
@@ -94,7 +94,7 @@ class NextLinkPage
       begin
         @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
       rescue Exception => e
-        puts e.message    
+        puts e.message    ; $stdout.flush
       end
       sleep 3      
     end
@@ -110,7 +110,7 @@ class NextLinkPage
       begin
         while sigueprobando
           reintentos += -1
-          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
           
           if recargar
             @browser.refresh
@@ -133,8 +133,7 @@ class NextLinkPage
         end
       rescue Exception => e
 		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
-        puts strDT + ": " + e.message
-    		$stdout.flush
+        puts strDT + ": " + e.message; $stdout.flush
         
         if e.message == 'end of file reached'
           recargar=true
@@ -154,17 +153,18 @@ class NextLinkPage
     
     #$DEBUG = true
 
-     puts 'Ejecutando htmlPage = @browser.html'
+     puts 'Ejecutando htmlPage = @browser.html'; $stdout.flush
+  
      sigueprobando=true
      reintentos = 5
      while sigueprobando
        begin 
-          puts 'Intento #' + reintentos.to_s
+          puts 'Intento #' + reintentos.to_s; $stdout.flush
           reintentos += -1
           htmlPage = @browser.html
           sigueprobando = false 
        rescue Exception => e
-          puts 'Intento fallido: ' + e.message    
+          puts 'Intento fallido: ' + e.message    ; $stdout.flush
           if reintentos<=0  
             sigueprobando=false
           else
@@ -240,16 +240,15 @@ class NextLinkPage
       storePage idLaunch
       #abort("Aborting to check fail")
       
-      puts url
+      puts url; $stdout.flush
       #puts checkPageCompleted
       #ttt = @browser.element_by_xpath(checkPageCompleted).text
       #puts ttt
-      $stdout.flush #
       
       reintentos = 5
       begin
         reintentos += -1
-        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
       rescue
         break if reintentos<=0
         retry
@@ -260,7 +259,7 @@ class NextLinkPage
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.element_by_xpath(nextlink).click
       rescue
         if reintentos>0
@@ -323,7 +322,7 @@ class NextLinkPage
 
     ruta <<  "/captura.xml"
     File.open(ruta, "w") do |f|
-      f.puts '<Captura/>'
+      f.puts '<Captura/>'; $stdout.flush
     end
    
   end
@@ -402,7 +401,7 @@ class NextLinkPage
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.goto.Retries:' + reintentos.to_s 
+        puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
       rescue
         if reintentos>0
@@ -432,16 +431,15 @@ class NextLinkPage
   
       storePage idLaunch
       
-      puts url
-      puts checkPageCompleted
+      puts url; $stdout.flush
+      puts checkPageCompleted; $stdout.flush
       ttt = @browser.element_by_xpath(checkPageCompleted).text
-      puts ttt
-      $stdout.flush #
+      puts ttt; $stdout.flush
       
       reintentos = 5
       begin
         reintentos += -1
-        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ;$stdout.flush
       rescue
         break if reintentos<=0
         retry
@@ -452,7 +450,7 @@ class NextLinkPage
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
+        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.element_by_xpath(nextlink).click
       rescue
         if reintentos>0
