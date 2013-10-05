@@ -11,7 +11,7 @@ class BookingPage
 
 
 
-   include WatirPageHelper
+   #include WatirPageHelper
   
     direct_url "http://www.google.com/ncr"
     expected_element :text_field, :name => "q"
