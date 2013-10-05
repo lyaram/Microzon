@@ -2,7 +2,7 @@ BASE_URL = "http://www.yahoo.es/"
 
 require 'watir-webdriver'
 require 'watir-webdriver-performance'
-require 'watir-page-helper'
+#require 'watir-page-helper'
 #require 'nokogiri'
 
 $: << File.dirname(__FILE__)+'/../../lib'
