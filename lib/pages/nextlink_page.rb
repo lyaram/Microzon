@@ -57,14 +57,14 @@ class NextLinkPage
 		sleep 1
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
 			jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
-			browser.element_by_xpath(jumptosuer).wait_until_present
-			@browser.element_by_xpath(jumptosuer).click
+			browser.element(:xpath,jumptosuer).wait_until_present
+			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
 		if descripcion.include? 'Eurocampings_ReviewList.Id_'  
 			jumptosuer = '//*[@id="review_links"]/a'
-			browser.element_by_xpath(jumptosuer).wait_until_present
-			@browser.element_by_xpath(jumptosuer).click
+			browser.element(:xpath,jumptosuer).wait_until_present
+			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
       rescue Exception => e
@@ -76,23 +76,23 @@ class NextLinkPage
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
-    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+    @browser.element(:xpath,checkPageCompleted).wait_until_present
     
-    if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
-      @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]').select
+    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
+      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
       sleep 3      
       begin  
-        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
        rescue Exception => e
          puts e.message    ; $stdout.flush
        end
       sleep 3      
     end
-    if @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
-      @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]').select
+    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
+      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
       sleep 3      
       begin
-        @browser.element_by_xpath('//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
+        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
       rescue Exception => e
         puts e.message    ; $stdout.flush
       end
@@ -118,12 +118,12 @@ class NextLinkPage
           end
           recargar = false
           
-          @browser.element_by_xpath(checkPageCompleted).wait_until_present
+          @browser.element(:xpath,checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
 
           sleep 5
-          if !@browser.element_by_xpath(checkPageLoading).exists?
+          if !@browser.element(:xpath,checkPageLoading).exists?
             break
           end
 
@@ -181,30 +181,30 @@ class NextLinkPage
       
       
       sleep 5
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
       
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
       reintentos = 10
-      while @browser.element_by_xpath(linkMore).exists?
+      while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
-        @browser.element_by_xpath(linkMore).click
+        @browser.element(:xpath,linkMore).click
         sleep 3
       end
 
       buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
       reintentos = 10
-      while @browser.element_by_xpath(buttonNoTranslation).exists?
+      while @browser.element(:xpath,buttonNoTranslation).exists?
         reintentos += -1
         break if reintentos<0
-        @browser.element_by_xpath(buttonNoTranslation).click
+        @browser.element(:xpath,buttonNoTranslation).click
         sleep 3
       end
       
-      if @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
-        @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
+      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
+        @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
-          @browser.element_by_xpath('//div[@class="note"]').wait_until_present
+          @browser.element(:xpath,'//div[@class="note"]').wait_until_present
         rescue
           #fallo
         end
@@ -212,9 +212,9 @@ class NextLinkPage
 
 		estoprural = false
 		begin
-		  while @browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+		  while @browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
 			estoprural = true
-			@browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').click
+			@browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').click
 			sleep 3
 		  end
 		rescue
@@ -224,12 +224,12 @@ class NextLinkPage
 		if estoprural
 			@browser.goto @browser.url.gsub('#page','?page=')
 		    sleep 1
-		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+		    @browser.element(:xpath,checkPageCompleted).wait_until_present
 		end
 
 		begin
-		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
-			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
+		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+			@browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
 			sleep 3
 		  end
 		rescue
@@ -242,7 +242,7 @@ class NextLinkPage
       
       puts url; $stdout.flush
       #puts checkPageCompleted
-      #ttt = @browser.element_by_xpath(checkPageCompleted).text
+      #ttt = @browser.element(:xpath,checkPageCompleted).text
       #puts ttt
       
       reintentos = 5
@@ -254,13 +254,13 @@ class NextLinkPage
         retry
       end
       break if nextlink==''
-      break if !@browser.element_by_xpath(nextlink).exists?
+      break if !@browser.element(:xpath,nextlink).exists?
       
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
-        @browser.element_by_xpath(nextlink).click
+        puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.element(:xpath,nextlink).click
       rescue
         if reintentos>0
           retry
@@ -409,9 +409,9 @@ class NextLinkPage
         end
       end
       
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//*[@id="selFilterAll"]').exists?
-        @browser.element_by_xpath('//*[@id="selFilterAll"]').click
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      if @browser.element(:xpath,'//*[@id="selFilterAll"]').exists?
+        @browser.element(:xpath,'//*[@id="selFilterAll"]').click
       end
 
     
@@ -423,17 +423,17 @@ class NextLinkPage
       break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
       sleep 5
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
-        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
-        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      if @browser.element(:xpath,'//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element(:xpath,'//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        @browser.element(:xpath,'//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
       end
   
       storePage idLaunch
       
       puts url; $stdout.flush
       puts checkPageCompleted; $stdout.flush
-      ttt = @browser.element_by_xpath(checkPageCompleted).text
+      ttt = @browser.element(:xpath,checkPageCompleted).text
       puts ttt; $stdout.flush
       
       reintentos = 5
@@ -445,13 +445,13 @@ class NextLinkPage
         retry
       end
       break if nextlink==''
-      break if !@browser.element_by_xpath(nextlink).exists?
+      break if !@browser.element(:xpath,nextlink).exists?
       
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
-        @browser.element_by_xpath(nextlink).click
+        puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.element(:xpath,nextlink).click
       rescue
         if reintentos>0
           retry
