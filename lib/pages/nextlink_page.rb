@@ -1,6 +1,6 @@
 class NextLinkPage
 
-  include WatirPageHelper
+  #include WatirPageHelper
  
   #si al final hay que instalar gem, considerar Hpricot
   require 'rexml/document'
