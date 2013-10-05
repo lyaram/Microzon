@@ -1,5 +1,5 @@
 class BasePageClass
-  include WatirPageHelper
+  #include WatirPageHelper
 
   def initialize browser, page_metrics, visit = false
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 07")
