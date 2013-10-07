@@ -239,14 +239,12 @@ class NextLinkPage
     #cargando dims en AT
     i = 0
     elems = @browser.spans(:class, /opi-rating/i)
-    if elems.exists?
-      elems.each do |elem|
-        i += 1
-        puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
-        elem.click
-      end
+    elems.each do |elem|
+      i += 1
+      puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
+      elem.click
     end
-    
+  
       
       storePage idLaunch
       #abort("Aborting to check fail")
