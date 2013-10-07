@@ -44,9 +44,6 @@ When /^QBot is surfing a webpage$/ do
 
  #$DEBUG = true
  
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.LLEIDA', 'http://www.tripadvisor.es/Hotels-g2431169-Province_of_Lleida_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.LLEIDA', 'http://www.tripadvisor.es/Hotels-g2431169-c2-Province_of_Lleida_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.LLEIDA', 'http://www.tripadvisor.es/Hotels-g2431169-c3-Province_of_Lleida_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
     page.launch idLaunch,'ATRAPALO_HotelList.LLEIDA', 'http://www.atrapalo.com/hoteles/europa/espana/lleida/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
     page.launch idLaunch,'BOOKING_HotelList.LLEIDA', 'https://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=763', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
 

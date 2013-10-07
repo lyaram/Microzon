@@ -238,7 +238,7 @@ class NextLinkPage
 
     #cargando dims en AT
     i = 0
-    elems = @browser.span(:class, /opi-rating/i)
+    elems = @browser.spans(:class, /opi-rating/i)
     if elems.exists?
       elems.each do |elem|
         i += 1
