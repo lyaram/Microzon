@@ -44,8 +44,26 @@ When /^QBot is surfing a webpage$/ do
 
  #$DEBUG = true
  
+    page.launch idLaunch,'ATRAPALO_HotelList.BARCELONA', 'http://www.atrapalo.com/hoteles/europa/espana/barcelona/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch,'BOOKING_HotelList.BARCELONA', 'http://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=745', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.BARCELONA', 'http://www.tripadvisor.es/Hotels-g1969684-Province_of_Barcelona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.BARCELONA', 'http://www.tripadvisor.es/Hotels-g1969684-c2-Province_of_Barcelona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.BARCELONA', 'http://www.tripadvisor.es/Hotels-g1969684-c3-Province_of_Barcelona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'ATRAPALO_HotelList.GIRONA', 'http://www.atrapalo.com/hoteles/europa/espana/girona/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch,'BOOKING_HotelList.GIRONA', 'https://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=753', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.GIRONA', 'http://www.tripadvisor.es/Hotels-g2431168-Province_of_Girona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.GIRONA', 'http://www.tripadvisor.es/Hotels-g2431168-c2-Province_of_Girona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.GIRONA', 'http://www.tripadvisor.es/Hotels-g2431168-c3-Province_of_Girona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'ATRAPALO_HotelList.PIRINEOCATALAN', 'http://www.atrapalo.com/ski/pirineo-catalan_39/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.PIRINEOCATALAN', 'http://www.tripadvisor.es/Hotels-g187498-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.PIRINEOCATALAN', 'http://www.tripadvisor.es/Hotels-g187498-c2-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.PIRINEOCATALAN', 'http://www.tripadvisor.es/Hotels-g187498-c3-Catalonian_Pyrenees_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'ATRAPALO_HotelList.TARRAGONA', 'http://www.atrapalo.com/hoteles/europa/espana/tarragona/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
+    page.launch idLaunch,'BOOKING_HotelList.TARRAGONA', 'http://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=776', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.TARRAGONA', 'http://www.tripadvisor.es/Hotels-g2431170-Province_of_Tarragona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.TARRAGONA', 'http://www.tripadvisor.es/Hotels-g2431170-c2-Province_of_Tarragona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.TARRAGONA', 'http://www.tripadvisor.es/Hotels-g2431170-c3-Province_of_Tarragona_Catalonia-Hotels.html', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
     page.launch idLaunch,'ATRAPALO_HotelList.LLEIDA', 'http://www.atrapalo.com/hoteles/europa/espana/lleida/', '//*[@id="paginator"]/ul/li[text()=">"]', '//*[@id="content"]//div[@class="box box-paginacion clear"]', ''
-    page.launch idLaunch,'BOOKING_HotelList.LLEIDA', 'https://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=763', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
 
      
   end

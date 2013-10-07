@@ -243,6 +243,7 @@ class NextLinkPage
       i += 1
       puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
       elem.click
+      sleep 1
     end
   
       
