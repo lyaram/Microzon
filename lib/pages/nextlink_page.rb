@@ -236,6 +236,11 @@ class NextLinkPage
 		  #fallo
 		end
 
+    #cargando dims en AT
+    elems = @browser.elems(:class => 'opi-rating')
+    elems.each do |elem|
+      elem.click
+    end
       
       storePage idLaunch
       #abort("Aborting to check fail")
