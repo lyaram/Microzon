@@ -237,8 +237,11 @@ class NextLinkPage
 		end
 
     #cargando dims en AT
-    elems = @browser.elems(:class => 'opi-rating')
+    i = 0
+    elems = @browser.span(:class, /opi-rating/i)
     elems.each do |elem|
+      i += 1
+      puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
       elem.click
     end
       
