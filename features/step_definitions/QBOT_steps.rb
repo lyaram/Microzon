@@ -44,20 +44,10 @@ When /^QBot is surfing a webpage$/ do
 
  #$DEBUG = true
  
-    page.launch idLaunch,'BOOKING_HotelList.ALICANTE', 'http://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=742', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.ALICANTE', 'http://www.tripadvisor.es/Hotels-g187524-Alicante_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.ALICANTE', 'http://www.tripadvisor.es/Hotels-g187524-c2-Alicante_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.ALICANTE', 'http://www.tripadvisor.es/Hotels-g187524-c3-Alicante_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'BOOKING_HotelList.CASTELLON', 'https://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=1520', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.CASTELLON', 'http://www.tripadvisor.es/Hotels-g1064289-Castellon_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.CASTELLON', 'http://www.tripadvisor.es/Hotels-g1064289-c2-Castellon_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.CASTELLON', 'http://www.tripadvisor.es/Hotels-g1064289-c3-Castellon_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'BOOKING_HotelList.VALENCIA', 'http://www.booking.com/searchresults.html?order=name;rows=50;dest_type=region&dest_id=779', '//*[starts-with(@class,"results-paging")]/*[starts-with(@class,"paging-next")]', '//*[@id="footernote"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C1.VALENCIA', 'http://www.tripadvisor.es/Hotels-g1117466-Valencia_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C2.VALENCIA', 'http://www.tripadvisor.es/Hotels-g1117466-c2-Valencia_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_HotelList.C3.VALENCIA', 'http://www.tripadvisor.es/Hotels-g1117466-c3-Valencia_Province_Valencian_Country-Hotels.html?sortOrder=distLow', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.ALICANTE', 'http://www.tripadvisor.es/Restaurants-g187524-Alicante_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.CASTELLON', 'http://www.tripadvisor.es/Restaurants-g1064289-Castellon_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.VALENCIA', 'http://www.tripadvisor.es/Restaurants-g1117466-Valencia_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
 
-     
   end
   
 end
