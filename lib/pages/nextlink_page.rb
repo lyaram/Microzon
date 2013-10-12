@@ -236,15 +236,16 @@ class NextLinkPage
 		  #fallo
 		end
 
-    #cargando dims en AT
-    i = 0
-    elems = @browser.spans(:class, /opi-rating/i)
-    elems.each do |elem|
-      i += 1
-      puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
-      elem.click
-      sleep 1
-    end
+#Descartado porque no carga siempre
+   # #cargando dims en AT
+   # i = 0
+   # elems = @browser.spans(:class, /opi-rating/i)
+   # elems.each do |elem|
+   #   i += 1
+   #   puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
+   #   elem.click
+   #   sleep 1
+   # end
   
       
       storePage idLaunch
