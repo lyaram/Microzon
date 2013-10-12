@@ -44,9 +44,9 @@ When /^QBot is surfing a webpage$/ do
 
  #$DEBUG = true
  
-    page.launch idLaunch,'TRIPADVISOR_RestList.ALICANTE', 'http://www.tripadvisor.es/Restaurants-g187524-Alicante_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.CASTELLON', 'http://www.tripadvisor.es/Restaurants-g1064289-Castellon_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
-    page.launch idLaunch,'TRIPADVISOR_RestList.VALENCIA', 'http://www.tripadvisor.es/Restaurants-g1117466-Valencia_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="pager_bottom"]/a[contains(@class,"pageNext")]', '//*[@id="FOOT"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.ALICANTE', 'http://www.tripadvisor.es/Restaurants-g187524-Alicante_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.CASTELLON', 'http://www.tripadvisor.es/Restaurants-g1064289-Castellon_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
+    page.launch idLaunch,'TRIPADVISOR_RestList.VALENCIA', 'http://www.tripadvisor.es/Restaurants-g1117466-Valencia_Province_Valencian_Country.html?sortOrder=alphabetical', '//*[@id="EATERY_LIST_CONTENTS"]//a[contains(@class,"sprite-pageNext")]', '//*[@id="EATERY_LIST_CONTENTS"]', ''
 
   end
   
