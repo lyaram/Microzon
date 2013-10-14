@@ -77,17 +77,20 @@ class NextLinkPage
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @browser.element(:xpath,checkPageCompleted).wait_until_present
+ 
+ 
+ #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
-    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
-      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
-      sleep 3      
-      #begin  
-      #  @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
-      # rescue Exception => e
-      #   puts e.message    ; $stdout.flush
-      # end
-      #sleep 3      
-    end
+#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
+#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
+#      sleep 3      
+#      #begin  
+#      #  @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+#      # rescue Exception => e
+#      #   puts e.message    ; $stdout.flush
+#      # end
+#      #sleep 3      
+#    end
 #    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
 #      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
 #      sleep 3      
