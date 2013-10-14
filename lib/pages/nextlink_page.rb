@@ -81,12 +81,12 @@ class NextLinkPage
     if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
       @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
       sleep 3      
-      begin  
-        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
-       rescue Exception => e
-         puts e.message    ; $stdout.flush
-       end
-      sleep 3      
+      #begin  
+      #  @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+      # rescue Exception => e
+      #   puts e.message    ; $stdout.flush
+      # end
+      #sleep 3      
     end
 #    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
 #      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
