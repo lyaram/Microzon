@@ -88,16 +88,16 @@ class NextLinkPage
        end
       sleep 3      
     end
-    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
-      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
-      sleep 3      
-      begin
-        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
-      rescue Exception => e
-        puts e.message    ; $stdout.flush
-      end
-      sleep 3      
-    end
+#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
+#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
+#      sleep 3      
+#      begin
+#        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
+#      rescue Exception => e
+#        puts e.message    ; $stdout.flush
+#      end
+#      sleep 3      
+#    end
 
     @numPag = 0
     loop do
@@ -346,7 +346,7 @@ class NextLinkPage
   end
   
   def storePagePng strDT
-    folderpng = @folderbase + "/png/" + strDT.gsub("_","")[0..8] + "X"
+    folderpng = "/volPNG/" + strDT[0,4] + "/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
     screenshot = folderpng + "/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
