@@ -13,8 +13,8 @@ class NextLinkPage
     puts @folderlaunches
     
     maxi = 1
-    carpetas = Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f}
-    carpetas.map(&:basename).each do |carpeta|
+    carpetas = Dir.entries(@folderlaunches).select {|f| File.directory? f}
+    carpetas.each do |carpeta|
      puts 'Dir... ' + carpeta
      numcarp = carpeta.basename.to_i
       maxi = numcarp if numcarp > maxi
