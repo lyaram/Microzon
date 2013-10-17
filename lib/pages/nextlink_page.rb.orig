@@ -1,12 +1,34 @@
 class NextLinkPage
 
-  include WatirPageHelper
+  #include WatirPageHelper
  
   #si al final hay que instalar gem, considerar Hpricot
   require 'rexml/document'
   include REXML 
     
   def getLaunch
+
+    puts Dir.home()
+    @folderlaunches = Dir.home() + "/BotStoring/launches"
+    puts @folderlaunches
+    
+    maxi = 1
+
+    carpetas = Dir.glob(@folderlaunches + '/00*') #(@folderlaunches + '/00*').select {|f| File.directory? f}
+    carpetas.each do |pathcarpeta|
+      carpeta = File.basename(pathcarpeta)
+      puts 'Dir... ' + carpeta
+      numcarp = carpeta.to_i
+      maxi = numcarp if numcarp > maxi
+      puts '> ' *+ maxi
+    end
+
+    puts "%08d" % maxi
+    
+    return
+    
+    puts "sigue?"
+   
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
     # mkdir BotStoring
@@ -20,7 +42,7 @@ class NextLinkPage
     indexLaunch = ""
     if not File.file?(launchesLogXml)
       File.open(launchesLogXml, "w") do |f|
-        f.puts '<Launches/>'
+        f.puts '<Launches/>'; $stdout.flush
       end
       indexLaunch = "%08d" % 1
     end
@@ -52,23 +74,23 @@ class NextLinkPage
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.goto.Retries:' + reintentos.to_s 
+        puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
 		sleep 1
 		if descripcion.include? 'MiNube_Usuarios.Id_'  
 			jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
-			browser.element_by_xpath(jumptosuer).wait_until_present
-			@browser.element_by_xpath(jumptosuer).click
+			browser.element(:xpath,jumptosuer).wait_until_present
+			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
 		if descripcion.include? 'Eurocampings_ReviewList.Id_'  
 			jumptosuer = '//*[@id="review_links"]/a'
-			browser.element_by_xpath(jumptosuer).wait_until_present
-			@browser.element_by_xpath(jumptosuer).click
+			browser.element(:xpath,jumptosuer).wait_until_present
+			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
       rescue Exception => e
-	    puts e.message
+	    puts e.message; $stdout.flush
         if reintentos>0
           retry
         end
@@ -76,23 +98,57 @@ class NextLinkPage
     
     prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
+    @browser.element(:xpath,checkPageCompleted).wait_until_present
+ 
+ 
+ #Aplicar el siguiente codigo para ordenaciones por idioma en TA
+    
+#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
+#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
+#      sleep 3      
+#      #begin  
+#      #  @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+#      # rescue Exception => e
+#      #   puts e.message    ; $stdout.flush
+#      # end
+#      #sleep 3      
+#    end
+#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
+#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
+#      sleep 3      
+#      begin
+#        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
+#      rescue Exception => e
+#        puts e.message    ; $stdout.flush
+#      end
+#      sleep 3      
+#    end
+
     @numPag = 0
     loop do
       @numPag += 1
-      break if @numPag>350 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
+      break if @numPag>1000 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
+      recargar = false
       sigueprobando=true
       reintentos = 5
       begin
         while sigueprobando
           reintentos += -1
-          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
-          @browser.element_by_xpath(checkPageCompleted).wait_until_present
+          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
+          
+          if recargar
+            @browser.refresh
+            @browser.wait 60
+          end
+          recargar = false
+          
+          @browser.element(:xpath,checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
 
           sleep 5
-          if !@browser.element_by_xpath(checkPageLoading).exists?
+          if !@browser.element(:xpath,checkPageLoading).exists?
             break
           end
 
@@ -101,59 +157,79 @@ class NextLinkPage
           end
         end
       rescue Exception => e
-		strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
-        puts strDT + ": " + e.message
-		aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
-		aFile.write(@browser.html)
-		aFile.close
-		$stdout.flush
+		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+        puts strDT + ": " + e.message; $stdout.flush
+        
+        if e.message == 'end of file reached'
+          recargar=true
+        else
+          aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
+          htmlPage=@browser.html
+          aFile.write(htmlPage)
+          aFile.close
+        end
+    		
         break if reintentos<=0
         retry
       end
       
+      
+          #htmlPage = Nokogiri::HTML.parse(@browser.html)
+    
+    #$DEBUG = true
+
+     puts 'Ejecutando htmlPage = @browser.html'; $stdout.flush
+  
+     sigueprobando=true
+     reintentos = 5
+     while sigueprobando
+       begin 
+          puts 'Intento #' + reintentos.to_s; $stdout.flush
+          reintentos += -1
+          htmlPage = @browser.html
+          sigueprobando = false 
+       rescue Exception => e
+          puts 'Intento fallido: ' + e.message    ; $stdout.flush
+          if reintentos<=0  
+            sigueprobando=false
+          else
+            @browser.refresh
+            @browser.wait 60
+          end
+       end
+     end
+
+     #$DEBUG = false
+
+      
+      
+      
+      
       sleep 5
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-<<<<<<< HEAD
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
       
-      if @browser.element_by_xpath('//*[@id="filterLang"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ALL"]').click
-        sleep 5      
-      end
-      if @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').exists?
-        @browser.element_by_xpath('//*[@id="filterLang"]/option[@value="ru"]').click
-        sleep 5      
-      end
-=======
->>>>>>> origin/master
-      
-puts Time.now.to_s + '>BEGIN click MORE'
-      xpathElemMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")])[1]/ancestor::div[starts-with(@id,"review_")]'
+      linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
       reintentos = 10
-puts Time.now.to_s + '>loop do'
-      loop do
-puts Time.now.to_s + '>  elemMore = @browser.element_by_xpath(xpathElemMore)'
-        elemMore = @browser.element_by_xpath(xpathElemMore)
-puts Time.now.to_s + '>  break if not elemMore.exists?'
-        break if not elemMore.exists?
-puts Time.now.to_s + '>  reintentos += -1'
+      while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
-puts Time.now.to_s + '>  break if reintentos<0'
         break if reintentos<0
-puts Time.now.to_s + '>  elemMore.element_by_xpath(...).click'
-        elemMore.element_by_xpath('./div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
-puts Time.now.to_s + '>  sleep 10'
-        sleep 10
-puts Time.now.to_s + '>  elemMore.element_by_xpath(...).wait_until_present'
-        elemMore.element_by_xpath('./div[starts-with(@class,"review dyn_full_review")]').wait_until_present
-puts Time.now.to_s + '>  sleep 10'
-        sleep 10
+        @browser.element(:xpath,linkMore).click
+        sleep 3
       end
-puts Time.now.to_s + '>FIN click MORE'
-     
-      if @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
-        @browser.element_by_xpath('//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
+
+      buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
+      reintentos = 10
+      while @browser.element(:xpath,buttonNoTranslation).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element(:xpath,buttonNoTranslation).click
+        sleep 3
+      end
+      
+      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
+        @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
-          @browser.element_by_xpath('//div[@class="note"]').wait_until_present
+          @browser.element(:xpath,'//div[@class="note"]').wait_until_present
         rescue
           #fallo
         end
@@ -161,9 +237,9 @@ puts Time.now.to_s + '>FIN click MORE'
 
 		estoprural = false
 		begin
-		  while @browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+		  while @browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
 			estoprural = true
-			@browser.element_by_xpath('//p[not(@style="display: none;")]/*[@id="twentymore"]').click
+			@browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').click
 			sleep 3
 		  end
 		rescue
@@ -173,43 +249,54 @@ puts Time.now.to_s + '>FIN click MORE'
 		if estoprural
 			@browser.goto @browser.url.gsub('#page','?page=')
 		    sleep 1
-		    @browser.element_by_xpath(checkPageCompleted).wait_until_present
+		    @browser.element(:xpath,checkPageCompleted).wait_until_present
 		end
 
 		begin
-		  while @browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
-			@browser.element_by_xpath('//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
+		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+			@browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
 			sleep 3
 		  end
 		rescue
 		  #fallo
 		end
 
+#Descartado porque no carga siempre
+   # #cargando dims en AT
+   # i = 0
+   # elems = @browser.spans(:class, /opi-rating/i)
+   # elems.each do |elem|
+   #   i += 1
+   #   puts i.to_s + '. opi-rating: ' + elem.text    ; $stdout.flush
+   #   elem.click
+   #   sleep 1
+   # end
+  
       
       storePage idLaunch
+      #abort("Aborting to check fail")
       
-      puts url
-      puts checkPageCompleted
-      ttt = @browser.element_by_xpath(checkPageCompleted).text
-      puts ttt
-      $stdout.flush #
+      puts url; $stdout.flush
+      #puts checkPageCompleted
+      #ttt = @browser.element(:xpath,checkPageCompleted).text
+      #puts ttt
       
       reintentos = 5
       begin
         reintentos += -1
-        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
       rescue
         break if reintentos<=0
         retry
       end
       break if nextlink==''
-      break if !@browser.element_by_xpath(nextlink).exists?
+      break if !@browser.element(:xpath,nextlink).exists?
       
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
-        @browser.element_by_xpath(nextlink).click
+        puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.element(:xpath,nextlink).click
       rescue
         if reintentos>0
           retry
@@ -271,7 +358,7 @@ puts Time.now.to_s + '>FIN click MORE'
 
     ruta <<  "/captura.xml"
     File.open(ruta, "w") do |f|
-      f.puts '<Captura/>'
+      f.puts '<Captura/>'; $stdout.flush
     end
    
   end
@@ -284,7 +371,7 @@ puts Time.now.to_s + '>FIN click MORE'
   end
   
   def storePagePng strDT
-    folderpng = @folderbase + "/png/" + strDT.gsub("_","")[0..8] + "X"
+    folderpng = "/volPNG/" + strDT[0,4] + "/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
     screenshot = folderpng + "/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
@@ -350,7 +437,7 @@ puts Time.now.to_s + '>FIN click MORE'
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.goto.Retries:' + reintentos.to_s 
+        puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
       rescue
         if reintentos>0
@@ -358,9 +445,9 @@ puts Time.now.to_s + '>FIN click MORE'
         end
       end
       
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//*[@id="selFilterAll"]').exists?
-        @browser.element_by_xpath('//*[@id="selFilterAll"]').click
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      if @browser.element(:xpath,'//*[@id="selFilterAll"]').exists?
+        @browser.element(:xpath,'//*[@id="selFilterAll"]').click
       end
 
     
@@ -372,36 +459,35 @@ puts Time.now.to_s + '>FIN click MORE'
       break if @numPag>5 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
       sleep 5
-      @browser.element_by_xpath(checkPageCompleted).wait_until_present
-      if @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
-        @browser.element_by_xpath('//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
-        @browser.element_by_xpath('//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      if @browser.element(:xpath,'//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').exists?
+        @browser.element(:xpath,'//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]').click
+        @browser.element(:xpath,'//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
       end
   
       storePage idLaunch
       
-      puts url
-      puts checkPageCompleted
-      ttt = @browser.element_by_xpath(checkPageCompleted).text
-      puts ttt
-      $stdout.flush #
+      puts url; $stdout.flush
+      puts checkPageCompleted; $stdout.flush
+      ttt = @browser.element(:xpath,checkPageCompleted).text
+      puts ttt; $stdout.flush
       
       reintentos = 5
       begin
         reintentos += -1
-        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s 
+        puts descripcion + '.chkNEXT.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ;$stdout.flush
       rescue
         break if reintentos<=0
         retry
       end
       break if nextlink==''
-      break if !@browser.element_by_xpath(nextlink).exists?
+      break if !@browser.element(:xpath,nextlink).exists?
       
       reintentos = 3
       begin
         reintentos += -1
-        puts '@browser.element_by_xpath(nextlink).click.Retries:' + reintentos.to_s 
-        @browser.element_by_xpath(nextlink).click
+        puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.element(:xpath,nextlink).click
       rescue
         if reintentos>0
           retry
