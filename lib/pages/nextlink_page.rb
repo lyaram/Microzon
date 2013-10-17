@@ -8,12 +8,15 @@ class NextLinkPage
     
   def getLaunch
 
-    @folderlaunches = Dir.home() + "/" + "BotStoring/launches"
-
+    puts Dir.Home()
+    @folderlaunches = Dir.home() + "/BotStoring/launches"
+    puts @folderlaunches
+    
     maxi = 1
     carpetas = Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f}
     carpetas.each do |carpeta|
-      numcarp = carpeta.to_i
+     puts 'Dir... ' + carpeta
+     numcarp = carpeta.to_i
       maxi = numcarp if numcarp > maxi
     end
 
