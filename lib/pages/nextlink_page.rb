@@ -13,14 +13,13 @@ class NextLinkPage
     puts @folderlaunches
     
     maxi = 1
-    carpetas = Dir.glob('*') #(@folderlaunches + '/00*').select {|f| File.directory? f}
-    carpetas.each do |carpeta|
-     puts 'Dir... ' + carpeta
-     unless carpeta == '.' or carpeta == '..'
-       numcarp = carpeta.to_i
-       maxi = numcarp if numcarp > maxi
-     end
-      
+    carpetas = Dir.glob(@folderlaunches + '/00*') #(@folderlaunches + '/00*').select {|f| File.directory? f}
+    carpetas.each do |pathcarpeta|
+      carpeta = File.basename(pathcarpeta)
+      puts 'Dir... ' + carpeta
+      numcarp = carpeta.to_i
+      maxi = numcarp if numcarp > maxi
+      puts '> ' *+ maxi
     end
 
     puts "%08d" % maxi
