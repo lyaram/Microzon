@@ -8,23 +8,26 @@ class NextLinkPage
     
   def getLaunch
 
-    puts Dir.home()
-    @folderlaunches = Dir.home() + "/BotStoring/launches"
-    puts @folderlaunches
-    
-    maxi = 1
-    carpetas = Dir.entries(@folderlaunches).select {|f| File.directory? f}
-    carpetas.each do |carpeta|
-     puts 'Dir... ' + carpeta
-     numcarp = carpeta.to_i
-      maxi = numcarp if numcarp > maxi
-    end
-
-    puts "%08d" % maxi
-    
-    return
-    
-    puts "sigue?"
+#    puts Dir.home()
+#    @folderlaunches = Dir.home() + "/BotStoring/launches"
+#    puts @folderlaunches
+#    
+#    maxi = 1
+#    carpetas = Dir.entries(@folderlaunches).select {|f| File.directory? f}
+#    carpetas.each do |carpeta|
+#     puts 'Dir... ' + carpeta
+#     if carpeta != '.' && carpeta != '..'
+#       numcarp = carpeta.to_i
+#       maxi = numcarp if numcarp > maxi
+#     end
+#      
+#    end
+#
+#    puts "%08d" % maxi
+#    
+#    return
+#    
+#    puts "sigue?"
     
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
@@ -32,6 +35,7 @@ class NextLinkPage
     # mkdir BotStoring/png
     # mkdir BotStoring/launches
 
+    @folderbase = Dir.home() + "/" + "BotStoring"
 
     launchesLogXml = @folderbase + "/launcheslog.xml"
 
