@@ -42,11 +42,11 @@ When /^QBot is surfing a webpage$/ do
     #idLaunch = "000000040"
     idLaunch = page.getLaunch
 
- ##$DEBUG = true
- #   puts "chimpon"
- #   return
- #   idLaunch = "zzzzz"
- #   puts "zzzz... sigue?"
+ #$DEBUG = true
+    puts "chimpon"
+    return
+    idLaunch = "zzzzz"
+    puts "zzzz... sigue?"
  
 	page.launch idLaunch, 'TRIPADVISOR_RestFicha.ID1587', 'http://www.tripadvisor.es/Restaurant_Review-g1899416-d2363659-Reviews-Nan_King_Chinese_Restaurant-Villamartin_Alicante_Province_Valencian_Country.html', '//div[@class="pagination"]/div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_RestFicha.ID1950', 'http://www.tripadvisor.es/Restaurant_Review-g609044-d3486282-Reviews-El_Rancho-Javea_Costa_Blanca_Alicante_Province_Valencian_Country.html', '//div[@class="pagination"]/div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
