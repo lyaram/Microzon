@@ -7,13 +7,27 @@ class NextLinkPage
   include REXML 
     
   def getLaunch
+
+    @folderlaunches = Dir.home() + "/" + "BotStoring/launches"
+
+    maxi = 1
+    Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f} do |carpeta|
+      numcarp = carpeta.to_i
+      maxi = numcarp if numcarp > maxi? 
+    end
+
+    puts "%08d" % maxi
+    
+    return
+    
+    puts "sigue?"
+    
     #para reiniciar la carpeta BotStoring usar el comando en consola 
     # rm -rf BotStoring
     # mkdir BotStoring
     # mkdir BotStoring/png
     # mkdir BotStoring/launches
 
-    @folderbase = Dir.home() + "/" + "BotStoring"
 
     launchesLogXml = @folderbase + "/launcheslog.xml"
 

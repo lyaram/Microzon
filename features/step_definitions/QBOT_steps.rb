@@ -43,6 +43,10 @@ When /^QBot is surfing a webpage$/ do
     idLaunch = page.getLaunch
 
  #$DEBUG = true
+    puts "chimpon"
+    return
+    idLaunch = "zzzzz"
+    puts "zzzz... sigue?"
  
 	page.launch idLaunch, 'TRIPADVISOR_RestFicha.ID4493', 'http://www.tripadvisor.es/Restaurant_Review-g658376-d2001824-Reviews-Dietrich-Museros_Valencia_Province_Valencian_Country.html', '//div[@class="pagination"]/div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
 	page.launch idLaunch, 'TRIPADVISOR_RestFicha.ID1443', 'http://www.tripadvisor.es/Restaurant_Review-g187527-d4090517-Reviews-Masa-Torrevieja_Costa_Blanca_Alicante_Province_Valencian_Country.html', '//div[@class="pagination"]/div[@class="pgLinks"]/a[contains(@class,"sprite-pageNext")]', '//*[@id="FOOT"]', ''
