@@ -14,7 +14,7 @@ class NextLinkPage
     carpetas = Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f}
     carpetas.each do |carpeta|
       numcarp = carpeta.to_i
-      maxi = numcarp if numcarp > maxi? 
+      maxi = numcarp if numcarp > maxi
     end
 
     puts "%08d" % maxi
