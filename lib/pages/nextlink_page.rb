@@ -11,7 +11,8 @@ class NextLinkPage
     @folderlaunches = Dir.home() + "/" + "BotStoring/launches"
 
     maxi = 1
-    Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f} do |carpeta|
+    carpetas = Dir.glob(@folderlaunches + '/00*').select {|f| File.directory? f}
+    carpetas.each do |carpeta|
       numcarp = carpeta.to_i
       maxi = numcarp if numcarp > maxi? 
     end
