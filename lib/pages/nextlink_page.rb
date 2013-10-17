@@ -13,7 +13,7 @@ class NextLinkPage
     puts @folderlaunches
     
     maxi = 1
-    carpetas = Dir.entries(@folderlaunches).select {|f| File.directory? f}
+    carpetas = Dir.glob('*') #(@folderlaunches + '/00*').select {|f| File.directory? f}
     carpetas.each do |carpeta|
      puts 'Dir... ' + carpeta
      unless carpeta == '.' or carpeta == '..'
