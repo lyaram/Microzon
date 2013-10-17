@@ -8,7 +8,7 @@ class NextLinkPage
     
   def getLaunch
 
-    puts Dir.Home()
+    puts Dir.home()
     @folderlaunches = Dir.home() + "/BotStoring/launches"
     puts @folderlaunches
     
