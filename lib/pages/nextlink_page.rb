@@ -16,7 +16,7 @@ class NextLinkPage
     carpetas = Dir.entries(@folderlaunches).select {|f| File.directory? f}
     carpetas.each do |carpeta|
      puts 'Dir... ' + carpeta
-     numcarp = carpeta.basename.to_i
+     numcarp = carpeta.to_i
       maxi = numcarp if numcarp > maxi
     end
 
