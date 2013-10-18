@@ -309,7 +309,7 @@ class NextLinkPage
     folderlaunches = Dir.home() + "/BotStoring/launches/" 
     folderlaunch = Dir.home() + "/BotStoring/launches/" + idLaunch + '/'
 
-    launchLogXml = folderlaunch + "launchlog.xml"
+    launchLogXml = Dir.home() + "/BotStoring" + "launchlog.xml"
 
     file = File.new(launchLogXml)
     doc = Document.new(file)
@@ -369,7 +369,7 @@ class NextLinkPage
   
   def storePageHtml idLaunch, strDT
     
-   
+    folderCaptura = Dir.home() + "/BotStoring/launches/" + idLaunch + "/" + indexCaptura + "/" 
 # INI actualizar xml##############################################################
 
     subdoc = Document.new("<Pagina />")
@@ -379,7 +379,7 @@ class NextLinkPage
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
     
-    capturaXml = folderbase + "/launches/" + idLaunch + "/" + indexCaptura + "/captura.xml"
+    capturaXml = folderCaptura + "captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
@@ -390,7 +390,7 @@ class NextLinkPage
 
 # FIN actualizar xml################################################################
 
-    htmFile = folderbase + "/launches/" + idLaunch + "/" + indexCaptura + "/" + strDT + ".htm"
+    htmFile = folderCaptura + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
