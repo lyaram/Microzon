@@ -83,7 +83,7 @@ class NextLinkPage
         end
       end
     
-    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    indexCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @browser.element(:xpath,checkPageCompleted).wait_until_present
  
@@ -303,7 +303,7 @@ class NextLinkPage
     # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
   end
   
-  def prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted
+  def prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     #folderbase = Dir.home() + "/BotStoring"
     folderlaunches = Dir.home() + "/BotStoring/launches/" 
@@ -350,13 +350,14 @@ class NextLinkPage
       f.puts '<Captura/>'; $stdout.flush
     end
    
+    return indexCaptura
   end
 
-  def storePage idLaunch
+  def storePage idLaunch, idCaptura
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
     storePagePng strDT
-    storePageHtml idLaunch, strDT
+    storePageHtml idLaunch, idCaptura, strDT
   end
   
   def storePagePng strDT
@@ -367,9 +368,9 @@ class NextLinkPage
     embed screenshot, 'image/png'
   end
   
-  def storePageHtml idLaunch, strDT
+  def storePageHtml idLaunch, idCaptura, strDT
     
-    folderCaptura = Dir.home() + "/BotStoring/launches/" + idLaunch + "/" + indexCaptura + "/" 
+    folderCaptura = Dir.home() + "/BotStoring/launches/" + idLaunch + "/" + idCaptura + "/" 
 # INI actualizar xml##############################################################
 
     subdoc = Document.new("<Pagina />")
@@ -440,7 +441,7 @@ class NextLinkPage
       end
 
     
-    prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
@@ -454,7 +455,7 @@ class NextLinkPage
         @browser.element(:xpath,'//div[starts-with(@class,"review dyn_full_review")]').wait_until_present
       end
   
-      storePage idLaunch
+      storePage idLaunch, idCaptura
       
       puts url; $stdout.flush
       puts checkPageCompleted; $stdout.flush
