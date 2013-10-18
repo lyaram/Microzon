@@ -83,7 +83,7 @@ class NextLinkPage
         end
       end
     
-    indexCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @browser.element(:xpath,checkPageCompleted).wait_until_present
  
@@ -260,7 +260,7 @@ class NextLinkPage
    # end
   
       
-      storePage idLaunch
+      storePage idLaunch, idCaptura
       #abort("Aborting to check fail")
       
       puts url; $stdout.flush
