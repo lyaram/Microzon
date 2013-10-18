@@ -338,7 +338,7 @@ class NextLinkPage
     
     eLaunch.elements.add(subdoc.root)
 
-    File.open(launchesLogXml,"w") do |data|
+    File.open(launchLogXml,"w") do |data|
       data<<doc
     end
  
