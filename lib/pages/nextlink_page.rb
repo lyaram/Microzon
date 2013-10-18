@@ -8,8 +8,9 @@ class NextLinkPage
     
   def getLaunch
 
-    folderbase = Dir.home() + "/BotStoring"
-    folderlaunches = folderbase + "/launches"
+    #folderbase = Dir.home() + "/BotStoring"
+	folderbase = "/volHTML"
+    folderlaunches = "/volHTML"
     
     maxi = 0
     carpetas = Dir.glob(folderlaunches + '/00*')
@@ -57,7 +58,7 @@ class NextLinkPage
     return indexLaunch
   end
   
-  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading
+  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
       reintentos = 3
       begin
         reintentos += -1
@@ -82,10 +83,17 @@ class NextLinkPage
           retry
         end
       end
-    
+  
+
+  
     idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @browser.element(:xpath,checkPageCompleted).wait_until_present
+
+      #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
+      if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
+        @browser.element(:xpath,'//option[@id="selFilterAll"]').click
+      end
  
  
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
@@ -114,7 +122,6 @@ class NextLinkPage
     @numPag = 0
     loop do
       @numPag += 1
-      break if @numPag>1000 #SOLO PARA TESTS, COMPROBANDO QUE NO EMPIEZA A PAGINAR HASTA EL INFINITO
       
       recargar = false
       sigueprobando=true
@@ -146,15 +153,20 @@ class NextLinkPage
       rescue Exception => e
 		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message; $stdout.flush
+
+        aFile = File.new(Dir.home() + "/BotStoring/debug/" + strDT + ".htm", "w")
+        htmlPage=@browser.html
+        aFile.write(htmlPage)
+        aFile.close
         
-        if e.message == 'end of file reached'
-          recargar=true
-        else
-          aFile = File.new(folderbase + "/debug/" + strDT + ".htm", "w")
-          htmlPage=@browser.html
-          aFile.write(htmlPage)
-          aFile.close
-        end
+#        if e.message == 'end of file reached'
+#          recargar=true
+#        else
+#          aFile = File.new(Dir.home() + "/BotStoring/debug/" + strDT + ".htm", "w")
+#          htmlPage=@browser.html
+#          aFile.write(htmlPage)
+#          aFile.close
+#        end
     		
         break if reintentos<=0
         retry
@@ -268,6 +280,18 @@ class NextLinkPage
       #ttt = @browser.element(:xpath,checkPageCompleted).text
       #puts ttt
       
+      break if @numPag>=maxPage
+
+	  if descripcion.include? 'Hotels_Ficha.'
+		xpage = '//div[1]/div/ul/li/em'
+		break if !@browser.element(:xpath,xpage).exists?
+		indicepagina = @browser.element(:xpath,xpage).text
+		postotal = 4 + (indicepagina.index ' de ')
+		ptotal = indicepagina[postotal..-1].to_i
+		break if @numPag >= ptotal
+	  end	  
+
+
       reintentos = 5
       begin
         reintentos += -1
@@ -306,8 +330,8 @@ class NextLinkPage
   def prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     #folderbase = Dir.home() + "/BotStoring"
-    folderlaunches = Dir.home() + "/BotStoring/launches/" 
-    folderlaunch = Dir.home() + "/BotStoring/launches/" + idLaunch + '/'
+    folderlaunches = "/volHTML/" #"Dir.home() + "/BotStoring/launches/" 
+    folderlaunch = "/volHTML/" + idLaunch + '/' #Dir.home() + "/BotStoring/launches/" + idLaunch + '/'
 
     launchLogXml = folderlaunch + "launchlog.xml"
 
@@ -361,7 +385,7 @@ class NextLinkPage
   end
   
   def storePagePng strDT
-    folderpng = "/volPNG/" + strDT[0,4] + "/" + strDT.gsub("_","")[0..8] + "X"
+    folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
     screenshot = folderpng + "/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
@@ -370,7 +394,7 @@ class NextLinkPage
   
   def storePageHtml idLaunch, idCaptura, strDT
     
-    folderCaptura = Dir.home() + "/BotStoring/launches/" + idLaunch + "/" + idCaptura + "/" 
+    folderCaptura = "/volHTML/" + idLaunch + "/" + idCaptura + "/" 
 # INI actualizar xml##############################################################
 
     subdoc = Document.new("<Pagina />")
