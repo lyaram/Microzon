@@ -309,7 +309,7 @@ class NextLinkPage
     folderlaunches = Dir.home() + "/BotStoring/launches/" 
     folderlaunch = Dir.home() + "/BotStoring/launches/" + idLaunch + '/'
 
-    launchLogXml = Dir.home() + "/BotStoring" + "launchlog.xml"
+    launchLogXml = folderlaunch + "launchlog.xml"
 
     file = File.new(launchLogXml)
     doc = Document.new(file)
