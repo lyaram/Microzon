@@ -8,64 +8,52 @@ class NextLinkPage
     
   def getLaunch
 
-    puts Dir.home()
-    @folderlaunches = Dir.home() + "/BotStoring/launches"
-    puts @folderlaunches
+    folderbase = Dir.home() + "/BotStoring"
+    folderlaunches = folderbase + "/launches"
     
-    maxi = 1
-    carpetas = Dir.glob(@folderlaunches + '/00*') #(@folderlaunches + '/00*').select {|f| File.directory? f}
+    maxi = 0
+    carpetas = Dir.glob(folderlaunches + '/00*')
     carpetas.each do |pathcarpeta|
       carpeta = File.basename(pathcarpeta)
-      puts 'Dir... ' + carpeta
       numcarp = carpeta.to_i
       maxi = numcarp if numcarp > maxi
-      puts '> ' *+ maxi
     end
 
-    puts "%08d" % maxi
+    raise "No hay historial de carpetas para poder continuar" if maxi == 0
     
-    return
-    
-    puts "sigue?"
-   
-    #para reiniciar la carpeta BotStoring usar el comando en consola 
-    # rm -rf BotStoring
-    # mkdir BotStoring
-    # mkdir BotStoring/png
-    # mkdir BotStoring/launches
+    indexLaunch = "%08d" % (maxi+1)
+    ruta = folderlaunches + "/" + indexLaunch
+    Dir::mkdir(ruta)
 
-    @folderbase = Dir.home() + "/" + "BotStoring"
 
-    launchesLogXml = @folderbase + "/launcheslog.xml"
+#    launchesLogXml = folderbase + "/launcheslog.xml"
+#
+#    if not File.file?(launchesLogXml)
+#      File.open(launchesLogXml, "w") do |f|
+#        f.puts '<Launches/>'; $stdout.flush
+#      end
+#      indexLaunch = "%08d" % 1
+#    end
+#    
+#    file = File.new(launchesLogXml)
+#    doc = Document.new(file)
+#    
+#    if indexLaunch == ""
+#      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
+#      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+#    end
+#    
+#    subdoc = Document.new("<Launch />")
+#    subdoc.root.attributes["id"] = indexLaunch
+#
+#    doc.root.elements.add(subdoc.root)
 
-    indexLaunch = ""
-    if not File.file?(launchesLogXml)
-      File.open(launchesLogXml, "w") do |f|
-        f.puts '<Launches/>'; $stdout.flush
-      end
-      indexLaunch = "%08d" % 1
-    end
-    
-    file = File.new(launchesLogXml)
-    doc = Document.new(file)
-    
-    if indexLaunch == ""
-      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
-      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
-    end
-    
-    subdoc = Document.new("<Launch />")
-    subdoc.root.attributes["id"] = indexLaunch
-
-    doc.root.elements.add(subdoc.root)
-
-    File.open(launchesLogXml,"w") do |data|
+    launchLogXml = ruta + "/launchlog.xml"
+    doc = Document.new("<Launch />")
+    File.open(launchLogXml,"w") do |data|
       data<<doc
     end
  
-    ruta = @folderbase + "/launches/" + indexLaunch
-    Dir::mkdir(ruta)
-
     return indexLaunch
   end
   
@@ -162,7 +150,7 @@ class NextLinkPage
         if e.message == 'end of file reached'
           recargar=true
         else
-          aFile = File.new(@folderbase + "/debug/" + strDT + ".htm", "w")
+          aFile = File.new(folderbase + "/debug/" + strDT + ".htm", "w")
           htmlPage=@browser.html
           aFile.write(htmlPage)
           aFile.close
@@ -317,24 +305,26 @@ class NextLinkPage
   
   def prepararStore idLaunch, descripcion, url, nextlink, checkPageCompleted
 
-    @folderbase = Dir.home() + "/" + "BotStoring"
+    #folderbase = Dir.home() + "/BotStoring"
+    folderlaunches = Dir.home() + "/BotStoring/launches/" 
+    folderlaunch = Dir.home() + "/BotStoring/launches/" + idLaunch + '/'
 
-    launchesLogXml = @folderbase + "/launcheslog.xml"
+    launchLogXml = folderlaunch + "launchlog.xml"
 
-    file = File.new(launchesLogXml)
+    file = File.new(launchLogXml)
     doc = Document.new(file)
-    eLaunch = XPath.match(doc.root, "//Launches/Launch[@id='" + idLaunch + "']").first
+    eLaunch = XPath.match(doc.root, "/Launch").first
     
-    @indexCaptura = ""
+    indexCaptura = ""
     if XPath.match(eLaunch, "./Captura").empty?
-      @indexCaptura = "%08d" % 1      
+      indexCaptura = "%08d" % 1      
     else
       lastLaunch = XPath.match(eLaunch, "./Captura[last()]").first
-      @indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+      indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
     end
 
     subdoc = Document.new("<Captura />")
-    subdoc.root.attributes["id"] = @indexCaptura
+    subdoc.root.attributes["id"] = indexCaptura
     eFechaHora = subdoc.root.add_element "FechaHora"
     eFechaHora.text = Time.now.to_s
     eDescripcion = subdoc.root.add_element "Descripcion"
@@ -352,7 +342,7 @@ class NextLinkPage
       data<<doc
     end
  
-    ruta = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura
+    ruta = folderlaunch + indexCaptura
     Dir::mkdir(ruta)
 
     ruta <<  "/captura.xml"
@@ -389,7 +379,7 @@ class NextLinkPage
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
     
-    capturaXml = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/captura.xml"
+    capturaXml = folderbase + "/launches/" + idLaunch + "/" + indexCaptura + "/captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
@@ -400,7 +390,7 @@ class NextLinkPage
 
 # FIN actualizar xml################################################################
 
-    htmFile = @folderbase + "/launches/" + idLaunch + "/" + @indexCaptura + "/" + strDT + ".htm"
+    htmFile = folderbase + "/launches/" + idLaunch + "/" + indexCaptura + "/" + strDT + ".htm"
     
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
