@@ -48,15 +48,60 @@ When /^QBot is surfing a webpage$/ do
  #   idLaunch = "zzzzz"
  #   puts "zzzz... sigue?"
 
-    con = Mysql.new 'localhost', File.read('/var/lib/jenkins/Init/db/param1'), File.read('/var/lib/jenkins/Init/db/param2'), 'Navigator'
-    rs = con.query("SELECT * FROM tblTargets")
-    n_rows= rs.num_rows
-    n_rows.times do
-      puts rs.fetch_row.join("\s")
-    end
-    con.close
+    p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
+    p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
 
-#    page.launch idLaunch, 'BOOKING_HotelFicha.ID0565', 'http://www.booking.com/hotel/es/camping-bon-sol.en-us.html#hash-blockdisplay4', '(//*[@id="guest_reviews"]//a[starts-with(@class,"pagenext")])[1]', '//*[@id="footer"]', ''
+    #codificando:
+    # 1. Agregar Drone de lanzazamiento en tblLaunches y recoger el idLaunch generado
+    #    (en teoria ahora ya deberia empezar a generar idLaunch a partir del numero 696)
+    # 2. Mientras existan registros, hacer bucle recogiendo el minimo idTarget de la tabla tblTargets sin estar Disabled
+    # 3. Intentar incorporar el idTarget minimo anterior a la tabla tblDoneTargets
+    # 4. Si no hay fallo, marcar como Disabled el registro de tblTargets de ese idTarget y ejecutar codigo
+    # 5. Si hay error significa que ya lo ha recogido otro drone. Volver a 2
+
+    begin
+      con = Mysql.new 'localhost', p1, p2, 'Navigator'
+
+      con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
+      idLaunch = con.query('select last_insert_id()').fetch_row.first
+      puts idLaunch
+
+      loop do
+        idTarget = con.query('SELECT min(idTarget) FROM tblTargets where not(Disabled)').fetch_row.first
+        puts idTarget
+
+        break if idTarget.nil?
+
+        idPillado = false
+        begin
+          con.query("INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget})")
+        rescue
+          idPillado = true
+          puts 'Fallo insert en tblDoneTargets'
+        end
+
+        unless idPillado?
+          con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
+
+          rs = con.query("SELECT * FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
+
+          description = rs['Description']
+          url = rs['URL']
+          nextLink = rs['NextLink']
+          checkPageCompleted = rs['checkPageCompleted']
+          checkPageLoading = rs['checkPageLoading']
+          maxPages = rs['MaxPages']
+
+          page.launch idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+        end
+      end
+
+    rescue Mysql::Error => e
+      puts e.errno
+      puts e.error
+    ensure
+      con.close if con
+    end
 
   end
   
