@@ -48,7 +48,6 @@ When /^QBot is surfing a webpage$/ do
  #   idLaunch = "zzzzz"
  #   puts "zzzz... sigue?"
 
-    require 'mysql'
     con = Mysql.new 'localhost', File.read('/var/lib/jenkins/Init/db/param1'), File.read('/var/lib/jenkins/Init/db/param2'), 'Navigator'
     rs = con.query("SELECT * FROM tblTargets")
     n_rows= rs.num_rows
