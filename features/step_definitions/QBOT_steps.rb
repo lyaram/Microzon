@@ -66,6 +66,8 @@ When /^QBot is surfing a webpage$/ do
       idLaunch = con.query('select last_insert_id()').fetch_row.first
       puts idLaunch
 
+      pillamientos = 0
+
       loop do
         idTarget = con.query('SELECT min(idTarget) FROM tblTargets where not(Disabled)').fetch_row.first
         puts idTarget
@@ -77,19 +79,21 @@ When /^QBot is surfing a webpage$/ do
           con.query("INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget})")
         rescue
           idPillado = true
+          pillamientos += 1
           puts 'Fallo insert en tblDoneTargets'
         end
+        break if pillamientos>100
 
         unless idPillado
           con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
 
           rs = con.query("SELECT * FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
 
-          description = rs['Description']
-          url = rs['URL']
-          nextLink = rs['NextLink']
-          checkPageCompleted = rs['checkPageCompleted']
-          checkPageLoading = rs['checkPageLoading']
+          description = rs['Description'].to_s
+          url = rs['URL'].to_s
+          nextLink = rs['NextLink'].to_s
+          checkPageCompleted = rs['checkPageCompleted'].to_s
+          checkPageLoading = rs['checkPageLoading'].to_s
           maxPages = rs['MaxPages']
 
           page.launch idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
