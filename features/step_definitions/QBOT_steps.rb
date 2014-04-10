@@ -80,7 +80,7 @@ When /^QBot is surfing a webpage$/ do
           puts 'Fallo insert en tblDoneTargets'
         end
 
-        unless idPillado?
+        unless idPillado
           con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
 
           rs = con.query("SELECT * FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
