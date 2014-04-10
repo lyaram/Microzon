@@ -62,8 +62,7 @@ class NextLinkPage
 
     folderlaunches = "/volHTML"
 
-    indexLaunch = "%08d" % (idLaunch)
-    ruta = folderlaunches + "/" + indexLaunch
+    ruta = folderlaunches + "/" + idLaunch
     Dir::mkdir(ruta)
 
     launchLogXml = ruta + "/launchlog.xml"
