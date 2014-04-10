@@ -40,7 +40,7 @@ When /^QBot is surfing a webpage$/ do
     #idLaunchVENERE = page.getLaunch
     
     #idLaunch = "000000040"
-    idLaunch = page.getLaunch
+    #idLaunch = page.getLaunch
 
  ##$DEBUG = true
  #   puts "chimpon"
