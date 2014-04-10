@@ -64,7 +64,7 @@ When /^QBot is surfing a webpage$/ do
 
       con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
       idLaunch = con.query('select last_insert_id()').fetch_row.first
-      prepararLaunch idLaunch
+      page.prepararLaunch idLaunch
       puts idLaunch
 
       pillamientos = 0
