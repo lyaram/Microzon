@@ -57,7 +57,23 @@ class NextLinkPage
  
     return indexLaunch
   end
-  
+
+  def prepararLaunch idLaunch
+
+    folderlaunches = "/volHTML"
+
+    indexLaunch = "%08d" % (idLaunch)
+    ruta = folderlaunches + "/" + indexLaunch
+    Dir::mkdir(ruta)
+
+    launchLogXml = ruta + "/launchlog.xml"
+    doc = Document.new("<Launch />")
+    File.open(launchLogXml,"w") do |data|
+      data<<doc
+    end
+
+  end
+
   def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
       reintentos = 3
       begin
