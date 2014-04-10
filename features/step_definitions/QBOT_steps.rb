@@ -63,7 +63,8 @@ When /^QBot is surfing a webpage$/ do
       con = Mysql.new 'localhost', p1, p2, 'Navigator'
 
       con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
-      idLaunch = con.query('select last_insert_id()').fetch_row.first
+      int_idLaunch = con.query('select last_insert_id()').fetch_row.first
+      idLaunch = "%08d" % int_idLaunch
       page.prepararLaunch idLaunch
       puts idLaunch
 

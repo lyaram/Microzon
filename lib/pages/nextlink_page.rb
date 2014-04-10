@@ -355,16 +355,16 @@ class NextLinkPage
     doc = Document.new(file)
     eLaunch = XPath.match(doc.root, "/Launch").first
     
-    indexCaptura = ""
-    if XPath.match(eLaunch, "./Captura").empty?
-      indexCaptura = "%08d" % 1      
-    else
-      lastLaunch = XPath.match(eLaunch, "./Captura[last()]").first
-      indexCaptura = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
-    end
+#    idLaunch = ""
+#    if XPath.match(eLaunch, "./Captura").empty?
+#      idLaunch = "%08d" % 1
+#    else
+#      lastLaunch = XPath.match(eLaunch, "./Captura[last()]").first
+#      idLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+#    end
 
     subdoc = Document.new("<Captura />")
-    subdoc.root.attributes["id"] = indexCaptura
+    subdoc.root.attributes["id"] = idLaunch
     eFechaHora = subdoc.root.add_element "FechaHora"
     eFechaHora.text = Time.now.to_s
     eDescripcion = subdoc.root.add_element "Descripcion"
@@ -382,7 +382,7 @@ class NextLinkPage
       data<<doc
     end
  
-    ruta = folderlaunch + indexCaptura
+    ruta = folderlaunch + idLaunch
     Dir::mkdir(ruta)
 
     ruta <<  "/captura.xml"
@@ -390,7 +390,7 @@ class NextLinkPage
       f.puts '<Captura/>'; $stdout.flush
     end
    
-    return indexCaptura
+    return idLaunch
   end
 
   def storePage idLaunch, idCaptura
