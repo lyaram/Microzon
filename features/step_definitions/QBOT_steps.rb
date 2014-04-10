@@ -97,7 +97,7 @@ When /^QBot is surfing a webpage$/ do
           nextLink = rs[2]
           checkPageCompleted = rs[3]
           checkPageLoading = rs[4]
-          maxPages = rs[5]
+          maxPages = rs[5].to_i
 
           page.launch idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
         end
