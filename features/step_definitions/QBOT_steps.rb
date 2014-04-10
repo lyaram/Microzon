@@ -87,14 +87,15 @@ When /^QBot is surfing a webpage$/ do
         unless idPillado
           con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
 
-          rs = con.query("SELECT * FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
+          rs = con.query("SELECT Description,URL,NextLink,checkPageCompleted,checkPageLoading,MaxPages"\
+                         " FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
 
-          description = rs['Description'].to_s
-          url = rs['URL'].to_s
-          nextLink = rs['NextLink'].to_s
-          checkPageCompleted = rs['checkPageCompleted'].to_s
-          checkPageLoading = rs['checkPageLoading'].to_s
-          maxPages = rs['MaxPages']
+          description = rs[0]
+          url = rs[1]
+          nextLink = rs[2]
+          checkPageCompleted = rs[3]
+          checkPageLoading = rs[4]
+          maxPages = rs[5]
 
           page.launch idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
         end
