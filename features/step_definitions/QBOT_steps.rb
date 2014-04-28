@@ -48,6 +48,7 @@ When /^QBot is surfing a webpage$/ do
  #   idLaunch = "zzzzz"
  #   puts "zzzz... sigue?"
 
+
     p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
     p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
 
