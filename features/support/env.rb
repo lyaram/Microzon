@@ -60,9 +60,12 @@ module Browser
   client.timeout = 180
 
   profile = Selenium::WebDriver::Firefox::Profile.new
-  profile['network.proxy.socks'] = 'localhost'
-  profile['network.proxy.socks_port'] = 9050
-  profile['network.proxy.type'] = 1
+
+  if system("netstat -anltp|grep :9050")
+    profile['network.proxy.socks'] = 'localhost'
+    profile['network.proxy.socks_port'] = 9050
+    profile['network.proxy.type'] = 1
+  end
 
   BROWSER = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 04")
