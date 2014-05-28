@@ -86,12 +86,18 @@ class NextLinkPage
 			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
-		if descripcion.include? 'Eurocampings_ReviewList.Id_'  
+		if descripcion.include? 'Eurocampings_ReviewList.Id_'
 			jumptosuer = '//*[@id="review_links"]/a'
 			browser.element(:xpath,jumptosuer).wait_until_present
 			@browser.element(:xpath,jumptosuer).click
 			sleep 1
 		end
+    if descripcion.include? 'Logitravel_CruceroFicha.ID_'
+      linkopis = '//*[starts-with(@id,"cruPest_")]/a[contains(./span/text(),"Opini")]'
+      browser.element(:xpath,linkopis).wait_until_present
+      @browser.element(:xpath,linkopis).click
+      sleep 1
+    end
       rescue Exception => e
 	    puts e.message; $stdout.flush
         if reintentos>0
