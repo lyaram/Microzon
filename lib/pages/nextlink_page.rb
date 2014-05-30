@@ -98,6 +98,12 @@ class NextLinkPage
       @browser.element(:xpath,linkopis).click
       sleep 1
     end
+    if descripcion.include? 'TRIPADVISOR_Atracciones.Tipo2.'
+      linkactiv = '//*[@id="tab1"]/a[contains(@href,"-c25-")]'
+      browser.element(:xpath,linkactiv).wait_until_present
+      @browser.element(:xpath,linkactiv).click
+      sleep 1
+    end
       rescue Exception => e
 	    puts e.message; $stdout.flush
         if reintentos>0
