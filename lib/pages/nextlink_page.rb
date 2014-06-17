@@ -104,6 +104,12 @@ class NextLinkPage
       @browser.element(:xpath,linkactiv).click
       sleep 1
     end
+    if descripcion.include? 'CampingsOnline_PlaceList.'
+      linkmore = '//*[@id="cart_mil"]/a[@action="see_more"]'
+      browser.element(:xpath,linkmore).wait_until_present
+      @browser.element(:xpath,linkmore).click
+      sleep 1
+    end
       rescue Exception => e
 	    puts e.message; $stdout.flush
         if reintentos>0
