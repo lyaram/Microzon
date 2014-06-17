@@ -110,7 +110,6 @@ class NextLinkPage
           linkmore = '//*[@id="cart_mil"]/a[@action="see_more"]'
           begin
             while browser.element(:xpath,linkmore).exists?
-            begin
               puts 'click' ; $stdout.flush
               browser.element(:xpath,linkmore).click
               sleep 1
@@ -119,7 +118,6 @@ class NextLinkPage
           rescue
             #fallo
           end
-
         end
         rescue Exception => e
         puts e.message; $stdout.flush
