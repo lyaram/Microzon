@@ -79,43 +79,55 @@ class NextLinkPage
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
-		sleep 1
-		if descripcion.include? 'MiNube_Usuarios.Id_'  
-			jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
-			browser.element(:xpath,jumptosuer).wait_until_present
-			@browser.element(:xpath,jumptosuer).click
-			sleep 1
-		end
-		if descripcion.include? 'Eurocampings_ReviewList.Id_'
-			jumptosuer = '//*[@id="review_links"]/a'
-			browser.element(:xpath,jumptosuer).wait_until_present
-			@browser.element(:xpath,jumptosuer).click
-			sleep 1
-		end
-    if descripcion.include? 'Logitravel_CruceroFicha.ID_'
-      linkopis = '//*[starts-with(@id,"cruPest_")]/a[contains(./span/text(),"Opini")]'
-      browser.element(:xpath,linkopis).wait_until_present
-      @browser.element(:xpath,linkopis).click
-      sleep 1
-    end
-    if descripcion.include? 'TRIPADVISOR_Atracciones.Tipo2.'
-      linkactiv = '//*[@id="tab1"]/a[contains(@href,"-c25-")]'
-      browser.element(:xpath,linkactiv).wait_until_present
-      @browser.element(:xpath,linkactiv).click
-      sleep 1
-    end
-    if descripcion.include? 'CampingsOnline_PlaceList.'
-      linkmore = '//*[@id="cart_mil"]/a[@action="see_more"]'
-      browser.element(:xpath,linkmore).wait_until_present
-      @browser.element(:xpath,linkmore).click
-      sleep 1
-    end
-      rescue Exception => e
-	    puts e.message; $stdout.flush
+        sleep 1
+        if descripcion.include? 'MiNube_Usuarios.Id_'
+          jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
+          browser.element(:xpath,jumptosuer).wait_until_present
+          @browser.element(:xpath,jumptosuer).click
+          sleep 1
+        end
+        if descripcion.include? 'Eurocampings_ReviewList.Id_'
+          jumptosuer = '//*[@id="review_links"]/a'
+          browser.element(:xpath,jumptosuer).wait_until_present
+          @browser.element(:xpath,jumptosuer).click
+          sleep 1
+        end
+        if descripcion.include? 'Logitravel_CruceroFicha.ID_'
+          linkopis = '//*[starts-with(@id,"cruPest_")]/a[contains(./span/text(),"Opini")]'
+          browser.element(:xpath,linkopis).wait_until_present
+          @browser.element(:xpath,linkopis).click
+          sleep 1
+        end
+        if descripcion.include? 'TRIPADVISOR_Atracciones.Tipo2.'
+          linkactiv = '//*[@id="tab1"]/a[contains(@href,"-c25-")]'
+          browser.element(:xpath,linkactiv).wait_until_present
+          @browser.element(:xpath,linkactiv).click
+          sleep 1
+        end
+
+        puts 'comprobando descripcion ... ' + descripcion  ; $stdout.flush
+        if descripcion.include? 'CampingsOnline_PlaceList.'
+          linkmore = '//*[@id="cart_mil"]/a[@action="see_more"]'
+          begin
+            while browser.element(:xpath,linkmore).exists?
+            begin
+              puts 'click' ; $stdout.flush
+              browser.element(:xpath,linkmore).click
+              sleep 1
+              browser.element(:xpath,linkmore).wait_until_present
+            end
+          rescue
+            #fallo
+          end
+
+        end
+        rescue Exception => e
+        puts e.message; $stdout.flush
         if reintentos>0
           retry
         end
       end
+
   
 
   
