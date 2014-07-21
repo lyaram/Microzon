@@ -303,6 +303,15 @@ class NextLinkPage
 		  #fallo
 		end
 
+      begin
+        while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
+          @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').click
+          sleep 3
+        end
+      rescue
+        #fallo
+      end
+
 #Descartado porque no carga siempre
    # #cargando dims en AT
    # i = 0
