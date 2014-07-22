@@ -131,7 +131,19 @@ class NextLinkPage
   
     idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
-    @browser.element(:xpath,checkPageCompleted).wait_until_present
+      if descripcion.include? 'EXPEDIA_HotelList.'
+        begin
+          while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
+            @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').click
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
       if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
