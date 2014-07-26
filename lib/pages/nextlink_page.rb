@@ -145,8 +145,8 @@ class NextLinkPage
 
       if descripcion.include? 'Eurocampings_ReviewList.'
         begin
-          while @browser.element(:xpath,'//li[not(contains(@class,"active"))]/a[@title="Reviews"]').exists?
-            @browser.element(:xpath,'//li[not(contains(@class,"active"))]/a[@title="Reviews"]').click
+          while @browser.element(:xpath,'descendant-or-self::*[contains(concat(" ", normalize-space(@class), " "), " fancybox-item ") and (contains(concat(" ", normalize-space(@class), " "), " fancybox-close "))]').exists?
+            @browser.element(:xpath,'descendant-or-self::*[contains(concat(" ", normalize-space(@class), " "), " fancybox-item ") and (contains(concat(" ", normalize-space(@class), " "), " fancybox-close "))]').click
             sleep 3
           end
         rescue
