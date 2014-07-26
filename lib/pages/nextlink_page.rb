@@ -143,6 +143,18 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'Eurocampings_ReviewList.'
+        begin
+          while @browser.element(:xpath,'//li[not(contains(@class,"active"))]/a[@title="Reviews"]').exists?
+            @browser.element(:xpath,'//li[not(contains(@class,"active"))]/a[@title="Reviews"]').click
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
