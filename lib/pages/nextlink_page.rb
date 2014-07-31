@@ -155,6 +155,22 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'EuroRelais_ReviewList.'
+        begin
+          while @browser.element(:xpath,'//*[not(contains(@class,"active")) and @name="tabReviews"]').exists?
+            @browser.element(:xpath,'//*[not(contains(@class,"active")) and @name="tabReviews"]').click
+            sleep 3
+          end
+          while @browser.element(:xpath,'//*[@class="display_more more plus" and not(contains(@style,"none"))]').exists?
+            @browser.element(:xpath,'//*[@class="display_more more plus" and not(contains(@style,"none"))]').click
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
