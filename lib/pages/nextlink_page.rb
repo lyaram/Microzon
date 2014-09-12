@@ -174,7 +174,7 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
-      if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
+      if @browser.element(:xpath,'//option[@id="selFilterAll"]').visible?
         @browser.element(:xpath,'//option[@id="selFilterAll"]').click
       end
  
