@@ -291,8 +291,17 @@ class NextLinkPage
       
       sleep 5
       @browser.element(:xpath,checkPageCompleted).wait_until_present
-      
+
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink")]'
+      reintentos = 10
+      while @browser.element(:xpath,linkMore).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element(:xpath,linkMore).click
+        sleep 3
+      end
+
+      linkMore = '//p/span[@class="taLnk" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
