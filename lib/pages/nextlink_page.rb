@@ -301,7 +301,7 @@ class NextLinkPage
         sleep 3
       end
 
-      linkMore = '//p/span[@class="taLnk" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
+      linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
