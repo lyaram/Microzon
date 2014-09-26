@@ -292,6 +292,15 @@ class NextLinkPage
       sleep 5
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
+      buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
+      reintentos = 10
+      while @browser.element(:xpath,buttonNoTranslation).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element(:xpath,buttonNoTranslation).click
+        sleep 3
+      end
+
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
@@ -310,15 +319,6 @@ class NextLinkPage
         sleep 3
       end
 
-      buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
-      reintentos = 10
-      while @browser.element(:xpath,buttonNoTranslation).exists?
-        reintentos += -1
-        break if reintentos<0
-        @browser.element(:xpath,buttonNoTranslation).click
-        sleep 3
-      end
-      
       if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
