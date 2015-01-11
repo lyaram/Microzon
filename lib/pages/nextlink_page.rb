@@ -439,7 +439,9 @@ class NextLinkPage
     launchLogXml = folderlaunch + "launchlog.xml"
 
     file = File.new(launchLogXml)
-    doc = Document.new(file)
+    ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+    fileclean = ic.iconv(file + ' ')[0..-2]
+    doc = Document.new(fileclean)
     eLaunch = XPath.match(doc.root, "/Launch").first
 
     indexCaptura = ""
