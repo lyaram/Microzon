@@ -74,6 +74,7 @@ module Browser
   BROWSER.goto 'about:blank'
 
 
+
   def visit page_class, &block
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 05")
     on page_class, true, &block
