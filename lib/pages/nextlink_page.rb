@@ -171,6 +171,18 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'Airbnb_PlaceList.'
+        begin
+          while @browser.element(:xpath,'//*[@id="step-close"]').exists?
+            @browser.element(:xpath,'//*[@id="step-close"]').click
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
