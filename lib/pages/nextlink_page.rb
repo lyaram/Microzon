@@ -331,7 +331,16 @@ class NextLinkPage
         sleep 3
       end
 
-      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
+      linkMore = './/*[@class="review_item_response_more"]'
+      reintentos = 10
+      while @browser.element(:xpath,linkMore).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element(:xpath,linkMore).click
+        sleep 3
+      end
+
+     if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
           @browser.element(:xpath,'//div[@class="note"]').wait_until_present
