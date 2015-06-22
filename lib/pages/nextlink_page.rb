@@ -432,7 +432,8 @@ class NextLinkPage
         reintentos += -1
         puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.element(:xpath,nextlink).click
-      rescue
+      rescue Exception
+        puts $!, $@
         if reintentos>0
           retry
         end
