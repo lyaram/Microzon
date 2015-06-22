@@ -70,8 +70,8 @@ module Browser
   BROWSER = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 04")
 
-  BROWSER.window.maximize
-
+  BROWSER.window.resize_to(1024, 768)
+  
   BROWSER.goto 'https://check.torproject.org/?lang=en_US'
   puts BROWSER.divs(:class => 'content').first.text
   BROWSER.goto 'about:blank'
