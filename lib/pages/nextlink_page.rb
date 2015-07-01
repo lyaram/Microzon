@@ -192,9 +192,13 @@ class NextLinkPage
           
           boxes = @browser.checkboxes(:class => 'language_filter_checkbox')
           boxes.each do |box| 
-            box.clear            
-            puts 'click' ; $stdout.flush
-            sleep 3
+            if box.visible?
+              if box.checked?
+                box.clear            
+                puts 'click' ; $stdout.flush
+                sleep 3
+               end
+            end
           end
 
 #        rescue
