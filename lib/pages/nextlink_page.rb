@@ -186,11 +186,11 @@ class NextLinkPage
       if descripcion.include? 'BOOKING_HotelFicha.'
 #        begin
           if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
-            @browser.element(:xpath,'//*[@id="review_sort"]').click
+            @browser.element(:id => 'review_sort').select 'f_recent_desc'
             sleep 3
           end
           
-          boxes = @browser.checkboxes(:class => '(//*[@class="language_filter_checkbox"])')
+          boxes = @browser.checkboxes(:class => 'language_filter_checkbox')
           boxes.each do |box| 
             box.clear            
             puts 'click' ; $stdout.flush
