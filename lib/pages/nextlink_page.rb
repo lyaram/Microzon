@@ -184,7 +184,7 @@ class NextLinkPage
       end
 
       if descripcion.include? 'BOOKING_HotelFicha.'
-        begin
+#        begin
           if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
             @browser.element(:xpath,'//*[@id="review_sort"]').click
             sleep 3
@@ -197,9 +197,9 @@ class NextLinkPage
             sleep 3
           end
 
-        rescue
-          #fallo
-        end
+#        rescue
+#          #fallo
+#        end
 
       end
 
