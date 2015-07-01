@@ -183,6 +183,28 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'BOOKING_HotelFicha.'
+        begin
+          if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
+            @browser.element(:xpath,'//*[@id="review_sort"]').click
+            sleep 3
+          end
+          
+          reintentos = 10
+          checklang = '(//*[@class="language_filter_checkbox" and @checked])[1]'
+          while browser.element(:xpath,checklang).exists? and reintentos > 0
+            puts 'click' ; $stdout.flush
+            browser.element(:xpath,checklang).click
+            sleep 3
+            reintentos += -1
+          end
+
+        rescue
+          #fallo
+        end
+
+      end
+
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
