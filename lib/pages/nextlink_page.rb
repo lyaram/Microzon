@@ -190,13 +190,11 @@ class NextLinkPage
             sleep 3
           end
           
-          reintentos = 10
-          checklang = '(//*[@class="language_filter_checkbox" and @checked])[1]'
-          while browser.element(:xpath,checklang).exists? and reintentos > 0
+          boxes = browser.element(:class => '(//*[@class="language_filter_checkbox"])')
+          boxes.each do |box| 
+            box.clear            
             puts 'click' ; $stdout.flush
-            browser.element(:xpath,checklang).click
             sleep 3
-            reintentos += -1
           end
 
         rescue
