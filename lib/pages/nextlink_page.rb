@@ -190,7 +190,7 @@ class NextLinkPage
             sleep 3
           end
           
-          boxes = browser.element(:class => '(//*[@class="language_filter_checkbox"])')
+          boxes = browser.elements(:class => '(//*[@class="language_filter_checkbox"])')
           boxes.each do |box| 
             box.clear            
             puts 'click' ; $stdout.flush
