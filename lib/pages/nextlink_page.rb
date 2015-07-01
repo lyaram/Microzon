@@ -186,7 +186,7 @@ class NextLinkPage
       if descripcion.include? 'BOOKING_HotelFicha.'
 #        begin
           if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
-            @browser.element(:id => 'review_sort').select 'Date (newer to older)'
+            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
             sleep 3
           end
           
