@@ -261,7 +261,10 @@ class NextLinkPage
           @browser.element(:xpath,checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
-
+          
+          if descripcion.include? 'Airbnb_PlaceList.'
+             sleep 10
+          end
           sleep 5
           if !@browser.element(:xpath,checkPageLoading).exists?
             break
