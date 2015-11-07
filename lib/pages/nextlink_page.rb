@@ -185,11 +185,6 @@ class NextLinkPage
 
       if descripcion.include? 'BOOKING_HotelFicha.'
 #        begin
-          if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
-            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
-            sleep 3
-          end
-          
           boxes = @browser.checkboxes(:class => 'language_filter_checkbox')
           boxes.each do |box| 
             if box.visible?
@@ -201,6 +196,11 @@ class NextLinkPage
             end
           end
 
+          if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
+            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
+            sleep 3
+          end
+          
 #        rescue
 #          #fallo
 #        end
