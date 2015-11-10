@@ -341,12 +341,16 @@ class NextLinkPage
       end
 
       linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
-      reintentos = 10
+      reintentos = 15
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
         @browser.element(:xpath,linkMore).click
         sleep 3
+        if @browser.element(:path,'//div[@class="xCloseGreen"]').exists?
+          @browser.element(:path,'//div[@class="xCloseGreen"]').click
+          sleep 3
+        end
       end
 
       linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
