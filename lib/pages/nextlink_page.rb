@@ -347,8 +347,8 @@ class NextLinkPage
         break if reintentos<0
         @browser.element(:xpath,linkMore).click
         sleep 3
-        if @browser.element(:path,'//div[@class="xCloseGreen"]').exists?
-          @browser.element(:path,'//div[@class="xCloseGreen"]').click
+        if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+          @browser.element(:xpath,'//div[@class="xCloseGreen"]').click
           sleep 3
         end
       end
