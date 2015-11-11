@@ -340,7 +340,7 @@ class NextLinkPage
         sleep 3
       end
 
-      linkMore = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
+      linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])])[1]'
       reintentos = 15
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
