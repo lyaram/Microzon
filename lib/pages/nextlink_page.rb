@@ -345,7 +345,7 @@ class NextLinkPage
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
-        @browser.element(:xpath,linkMore).click
+        @browser.find_element(:xpath,linkMore).click
         sleep 3
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
           @browser.element(:xpath,'//div[@class="xCloseGreen"]').click
@@ -456,13 +456,13 @@ class NextLinkPage
         retry
       end
       break if nextlink==''
-      break if !@browser.element(:xpath,nextlink).exists?
+      break if !@browser.find_element(:xpath,nextlink).exists?
       
       reintentos = 3
       begin
         reintentos += -1
         puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
-        @browser.element(:xpath,nextlink).click
+        @browser.element(:xpath,find_nextlink).click
         sleep 10
       rescue Exception
         puts $!, $@
