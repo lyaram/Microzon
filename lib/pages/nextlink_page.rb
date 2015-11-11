@@ -348,8 +348,9 @@ class NextLinkPage
         @browser.element(:xpath,linkMore).click
         sleep 3
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
-          b.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
-          b.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+          @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
+          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+          @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 3
         end
       end
