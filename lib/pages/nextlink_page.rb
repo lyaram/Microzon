@@ -345,6 +345,8 @@ class NextLinkPage
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
+        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
+        @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
         sleep 3
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
@@ -360,6 +362,8 @@ class NextLinkPage
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
+        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
+        @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
         sleep 3
       end
@@ -369,6 +373,8 @@ class NextLinkPage
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
         break if reintentos<0
+        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
+        @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
         sleep 3
       end
@@ -464,6 +470,8 @@ class NextLinkPage
       begin
         reintentos += -1
         puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.element(:xpath,nextlink).wd.location_once_scrolled_into_view
+        @browser.send_keys :page_up
         @browser.element(:xpath,nextlink).click
         sleep 10
       rescue Exception
