@@ -361,7 +361,7 @@ class NextLinkPage
 
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
+      linkMore = '/quitaestodeaqui//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
         reintentos += -1
