@@ -325,7 +325,7 @@ class NextLinkPage
      #$DEBUG = false
 
       
-      
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
       
       
       sleep 2
@@ -357,6 +357,8 @@ class NextLinkPage
         end
       end
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
       linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
@@ -367,6 +369,8 @@ class NextLinkPage
         @browser.element(:xpath,linkMore).click
         sleep 2
       end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 
       linkMore = './/*[@class="review_item_response_more"]'
       reintentos = 10
@@ -379,6 +383,8 @@ class NextLinkPage
         sleep 2
       end
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
@@ -387,6 +393,8 @@ class NextLinkPage
           #fallo
         end
       end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 
 		estoprural = false
 		begin
@@ -398,12 +406,16 @@ class NextLinkPage
 		rescue
 		  #fallo
 		end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 		
 		if estoprural
 			@browser.goto @browser.url.gsub('#page','?page=')
 		    sleep 1
 		    @browser.element(:xpath,checkPageCompleted).wait_until_present
 		end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 
 		begin
 		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
@@ -414,6 +426,8 @@ class NextLinkPage
 		  #fallo
 		end
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
       begin
         while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
           @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').click
@@ -422,6 +436,8 @@ class NextLinkPage
       rescue
         #fallo
       end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 
 #Descartado porque no carga siempre
    # #cargando dims en AT
@@ -438,11 +454,15 @@ class NextLinkPage
       storePage idLaunch, idCaptura
       #abort("Aborting to check fail")
       
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
       puts url; $stdout.flush
       #puts checkPageCompleted
       #ttt = @browser.element(:xpath,checkPageCompleted).text
       #puts ttt
       
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
       break if @numPag>=maxPage
 
 	  if descripcion.include? 'Hotels_Ficha.'
@@ -454,6 +474,7 @@ class NextLinkPage
 		break if @numPag >= ptotal
 	  end	  
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
 
       reintentos = 5
       begin
@@ -466,6 +487,8 @@ class NextLinkPage
       break if nextlink==''
       break if !@browser.element(:xpath,nextlink).exists?
       
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
       reintentos = 3
       begin
         reintentos += -1
@@ -480,6 +503,9 @@ class NextLinkPage
           retry
         end
       end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+
     end 
     #para empaquetar previo ftp, usar este comando en consola
     # zip -r 00001.zip 00001/
