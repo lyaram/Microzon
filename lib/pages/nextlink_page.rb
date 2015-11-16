@@ -309,7 +309,9 @@ class NextLinkPage
        begin 
           puts 'Intento #' + reintentos.to_s; $stdout.flush
           reintentos += -1
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           htmlPage = @browser.html
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           sigueprobando = false 
        rescue Exception => e
           puts 'Intento fallido: ' + e.message    ; $stdout.flush
@@ -325,7 +327,7 @@ class NextLinkPage
      #$DEBUG = false
 
       
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
       
       sleep 2
@@ -357,7 +359,7 @@ class NextLinkPage
         end
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
@@ -370,7 +372,7 @@ class NextLinkPage
         sleep 2
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       linkMore = './/*[@class="review_item_response_more"]'
       reintentos = 10
@@ -383,7 +385,7 @@ class NextLinkPage
         sleep 2
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
@@ -394,7 +396,7 @@ class NextLinkPage
         end
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
 		estoprural = false
 		begin
@@ -407,7 +409,7 @@ class NextLinkPage
 		  #fallo
 		end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 		
 		if estoprural
 			@browser.goto @browser.url.gsub('#page','?page=')
@@ -415,7 +417,7 @@ class NextLinkPage
 		    @browser.element(:xpath,checkPageCompleted).wait_until_present
 		end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
 		begin
 		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
@@ -426,7 +428,7 @@ class NextLinkPage
 		  #fallo
 		end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       begin
         while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
@@ -437,7 +439,7 @@ class NextLinkPage
         #fallo
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
 #Descartado porque no carga siempre
    # #cargando dims en AT
@@ -454,14 +456,14 @@ class NextLinkPage
       storePage idLaunch, idCaptura
       #abort("Aborting to check fail")
       
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       puts url; $stdout.flush
       #puts checkPageCompleted
       #ttt = @browser.element(:xpath,checkPageCompleted).text
       #puts ttt
       
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       break if @numPag>=maxPage
 
@@ -474,7 +476,7 @@ class NextLinkPage
 		break if @numPag >= ptotal
 	  end	  
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       reintentos = 5
       begin
@@ -487,7 +489,7 @@ class NextLinkPage
       break if nextlink==''
       break if !@browser.element(:xpath,nextlink).exists?
       
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       reintentos = 3
       begin
@@ -504,7 +506,7 @@ class NextLinkPage
         end
       end
 
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}")
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     end 
     #para empaquetar previo ftp, usar este comando en consola
