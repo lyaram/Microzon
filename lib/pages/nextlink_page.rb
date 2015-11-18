@@ -333,6 +333,11 @@ class NextLinkPage
       sleep 2
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
+      closeModal = '//*[@class="ui_close_x"]'
+      if @browser.element(:xpath,closeModal).exists?
+        @browser.element(:xpath,closeModal).click
+      end
+      
       buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
       reintentos = 10
       while @browser.element(:xpath,buttonNoTranslation).exists?
@@ -340,6 +345,11 @@ class NextLinkPage
         break if reintentos<0
         @browser.element(:xpath,buttonNoTranslation).click
         sleep 2
+
+        closeModal = '//*[@class="ui_close_x"]'
+        if @browser.element(:xpath,closeModal).exists?
+          @browser.element(:xpath,closeModal).click
+        end
       end
 
       linkMore = '(/quitaestodeaqui//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])])[1]'
@@ -356,6 +366,10 @@ class NextLinkPage
           @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 2
+        end
+        closeModal = '//*[@class="ui_close_x"]'
+        if @browser.element(:xpath,closeModal).exists?
+          @browser.element(:xpath,closeModal).click
         end
       end
 
