@@ -599,9 +599,11 @@ class NextLinkPage
   def storePagePng strDT
     folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
-    screenshot = folderpng + "/" + strDT + ".png"
+    screenshot = "/tmp/" + strDT + ".png"
     @browser.driver.save_screenshot(screenshot)
     embed screenshot, 'image/png'
+    FileUtils.cp screenshot, folderpng + "/"
+    FileUtils.rm screenshot
   end
   
   def storePageHtml idLaunch, idCaptura, strDT
