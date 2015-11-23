@@ -369,6 +369,7 @@ class NextLinkPage
         end
         closeModal = '//*[@class="ui_close_x"]'
         if @browser.element(:xpath,closeModal).exists?
+          sleep 5
           @browser.element(:xpath,closeModal).click
         end
       end
