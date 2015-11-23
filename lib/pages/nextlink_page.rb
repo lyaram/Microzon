@@ -601,7 +601,18 @@ class NextLinkPage
     folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
     Dir::mkdir(folderpng) if not File.directory?(folderpng)
     screenshot = "/tmp/" + strDT + ".png"
-    @browser.driver.save_screenshot(screenshot)
+    
+    reintentos = 5
+    begin
+      reintentos += -1
+      @browser.driver.save_screenshot(screenshot)
+    rescue Exception => e
+      puts 'screenshot fallido: ' + e.message    ; $stdout.flush
+      if reintentos>0
+        retry
+      end
+    end
+  
     embed screenshot, 'image/png'
     FileUtils.cp screenshot, folderpng + "/"
     FileUtils.rm screenshot
