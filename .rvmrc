@@ -1,2 +1,2 @@
 rvm_install_on_use_flag=1
-rvm --create use ruby-2.2.1@microzon_gemset
+rvm --create use ruby-1.9.2-p330@Microzon_gemset
