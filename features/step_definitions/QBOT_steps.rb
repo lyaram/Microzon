@@ -49,6 +49,7 @@ When /^QBot is surfing a webpage$/ do
  #   puts "zzzz... sigue?"
 
 
+    p0 = File.read('/var/lib/jenkins/Init/db/param0').gsub(/[^0-9A-Za-z]/, '')
     p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
     p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
 
@@ -61,7 +62,7 @@ When /^QBot is surfing a webpage$/ do
     # 5. Si hay error significa que ya lo ha recogido otro drone. Volver a 2
 
     begin
-      con = Mysql.new 'localhost', p1, p2, 'Navigator'
+      con = Mysql.new p0 , p1, p2, 'Navigator'
 
       con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
       int_idLaunch = con.query('select last_insert_id()').fetch_row.first.to_i
