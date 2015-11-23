@@ -24,7 +24,7 @@ class NextLinkPage
     
     indexLaunch = "%08d" % (maxi+1)
     ruta = folderlaunches + "/" + indexLaunch
-    Dir::mkdir(ruta)
+    Dir::mkdir(ruta, 0777)
 
 
 #    launchesLogXml = folderbase + "/launcheslog.xml"
@@ -63,7 +63,7 @@ class NextLinkPage
     folderlaunches = "/volHTML"
 
     ruta = folderlaunches + "/" + idLaunch
-    Dir::mkdir(ruta)
+    Dir::mkdir(ruta, 0777)
 
     launchLogXml = ruta + "/launchlog.xml"
     doc = Document.new("<Launch />")
@@ -580,7 +580,7 @@ class NextLinkPage
     end
  
     ruta = folderlaunch + indexCaptura
-    Dir::mkdir(ruta)
+    Dir::mkdir(ruta, 0777)
 
     ruta <<  "/captura.xml"
     File.open(ruta, "w") do |f|
@@ -599,7 +599,7 @@ class NextLinkPage
   
   def storePagePng strDT
     folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
-    Dir::mkdir(folderpng) if not File.directory?(folderpng)
+    Dir::mkdir(folderpng, 0777) if not File.directory?(folderpng)
     screenshot = "/tmp/" + strDT + ".png"
     
     reintentos = 5
