@@ -70,6 +70,3 @@ DEPENDENCIES
   watir-webdriver (> 0.6.4)
   watir-webdriver-performance (> 0.1.2)
   yard-cucumber
-
-BUNDLED WITH
-   1.10.6
