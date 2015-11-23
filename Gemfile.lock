@@ -45,8 +45,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    watir-webdriver (0.9.1)
-      selenium-webdriver (>= 2.46.2)
+    watir-webdriver (0.6.11)
+      selenium-webdriver (>= 2.18.0)
     watir-webdriver-performance (0.2.4)
       watir-webdriver
     websocket (1.2.2)
@@ -67,6 +67,9 @@ DEPENDENCIES
   rake
   rdiscount (~> 1.6.8)
   rspec (> 0.0)
-  watir-webdriver (> 0.6.4)
+  watir-webdriver (~> 0.6.4)
   watir-webdriver-performance (> 0.1.2)
   yard-cucumber
+
+BUNDLED WITH
+   1.10.6
