@@ -89,7 +89,7 @@ module Browser
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 08")
     block.call page if block
  
-    page
+    #page
  
   end
 
