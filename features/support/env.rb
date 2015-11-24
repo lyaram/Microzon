@@ -42,13 +42,13 @@ if ENV['HEADLESS']
 end
 
 require 'pages.rb'
-require 'page_metrics.rb'
+#require 'page_metrics.rb'
 
 module Metrics
-  def self.page_metrics
+#  def self.page_metrics
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 11")
-    @page_metrics ||= PageMetrics.new
-  end
+#    @page_metrics ||= PageMetrics.new
+#  end
 end
 
 module Browser
