@@ -87,7 +87,7 @@ module Browser
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 06")
     #page = page_class.new BROWSER, Metrics.page_metrics, visit
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 08")
-    block.call page if block
+    #block.call page if block
  
     #page
  
