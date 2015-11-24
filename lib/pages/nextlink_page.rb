@@ -86,6 +86,33 @@ class NextLinkPage
   end
 
   def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
+    
+    puts "Reiniciando firefox"
+    pid = Process.spawn('firefox')
+    @browser.close
+    begin
+        Timeout.timeout(20) do
+            Process.wait
+        end
+    rescue Timeout::Error
+        Process.kill 9, pid
+        # collect status so it doesn't stick around as zombie process
+        Process.wait pid
+    end
+    puts "#{server} child exited, pid = #{pid}"
+    
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.timeout = 180
+    profile = Selenium::WebDriver::Firefox::Profile.new
+    if system("netstat -anltp|grep :9050")
+      profile['network.proxy.socks'] = 'localhost'
+      profile['network.proxy.socks_port'] = 9050
+      profile['network.proxy.type'] = 1
+    end
+    @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
+    @browser.window.resize_to(1024, 768)
+  
+
       reintentos = 3
       begin
         reintentos += -1
