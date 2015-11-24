@@ -95,7 +95,8 @@ class NextLinkPage
             Process.wait
         end
     rescue Timeout::Error
-        system("killall firefox")
+        firefoxout = system("killall firefox")
+        Process.wait firefoxout
     end
     puts "firefox exited, pid = #{pid}"
     
