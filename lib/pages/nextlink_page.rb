@@ -99,7 +99,7 @@ class NextLinkPage
         # collect status so it doesn't stick around as zombie process
         Process.wait pid
     end
-    puts "#{server} child exited, pid = #{pid}"
+    puts "firefox exited, pid = #{pid}"
     
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 180
