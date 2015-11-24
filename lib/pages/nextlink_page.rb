@@ -95,9 +95,7 @@ class NextLinkPage
             Process.wait
         end
     rescue Timeout::Error
-        Process.kill 9, pid
-        # collect status so it doesn't stick around as zombie process
-        Process.wait pid
+        system("killall firefox")
     end
     puts "firefox exited, pid = #{pid}"
     
