@@ -24,7 +24,13 @@ class NextLinkPage
     
     indexLaunch = "%08d" % (maxi+1)
     ruta = folderlaunches + "/" + indexLaunch
-    Dir::mkdir(ruta, 0777)
+    begin
+      old_umask = File.umask
+      File.umask 0
+      Dir::mkdir(ruta, 0777)
+    ensure
+      File.umask old_umask
+    end
 
 
 #    launchesLogXml = folderbase + "/launcheslog.xml"
@@ -63,7 +69,13 @@ class NextLinkPage
     folderlaunches = "/volHTML"
 
     ruta = folderlaunches + "/" + idLaunch
-    Dir::mkdir(ruta, 0777)
+    begin
+      old_umask = File.umask
+      File.umask 0
+      Dir::mkdir(ruta, 0777)
+    ensure
+      File.umask old_umask
+    end
 
     launchLogXml = ruta + "/launchlog.xml"
     doc = Document.new("<Launch />")
@@ -580,7 +592,13 @@ class NextLinkPage
     end
  
     ruta = folderlaunch + indexCaptura
-    Dir::mkdir(ruta, 0777)
+    begin
+      old_umask = File.umask
+      File.umask 0
+      Dir::mkdir(ruta, 0777)
+    ensure
+      File.umask old_umask
+    end
 
     ruta <<  "/captura.xml"
     File.open(ruta, "w") do |f|
@@ -599,7 +617,13 @@ class NextLinkPage
   
   def storePagePng strDT
     folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
-    Dir::mkdir(folderpng, 0777) if not File.directory?(folderpng)
+    begin
+      old_umask = File.umask
+      File.umask 0
+      Dir::mkdir(folderpng, 0777) if not File.directory?(folderpng)
+    ensure
+      File.umask old_umask
+    end
     screenshot = "/tmp/" + strDT + ".png"
     
     reintentos = 5
