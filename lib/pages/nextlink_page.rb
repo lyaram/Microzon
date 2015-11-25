@@ -423,6 +423,17 @@ class NextLinkPage
         @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
         sleep 2
+        if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+          @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
+          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+          @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+          sleep 2
+        end
+        closeModal = '//*[@class="ui_close_x"]'
+        if @browser.element(:xpath,closeModal).exists?
+          sleep 5
+          @browser.element(:xpath,closeModal).click
+        end
       end
 
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush

@@ -73,7 +73,7 @@ When /^QBot is surfing a webpage$/ do
       pillamientos = 0
 
       loop do
-        idTarget = con.query('SELECT min(idTarget) FROM tblTargets where Disabled=4;').fetch_row.first
+        idTarget = con.query('SELECT min(idTarget) FROM tblTargets where Disabled=2;').fetch_row.first
         puts idTarget
 
         break if idTarget.nil?
