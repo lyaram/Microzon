@@ -669,7 +669,7 @@ class NextLinkPage
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
     con.query("INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)"\
-              " VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', '#{Page}', '#{strDT}', 99);")
+              " VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', '#{page}', '#{strDT}', 99);")
     int_idInsert = con.query("select last_insert_id()").fetch_row.first.to_i
     idInsert = "%08d" % int_idInsert
 
