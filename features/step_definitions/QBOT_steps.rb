@@ -68,16 +68,16 @@ When /^QBot is surfing a webpage$/ do
       instanceId = open('http://169.254.169.254/latest/meta-data/instance-id').read
       updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
       begin
-        idConexion = con.query('SELECT idConexion FROM tblConexiones WHERE `InstanceId` = "#{instanceId}" AND `IP` = "#{ip}" ORDER BY idConexion DESC').fetch_row.first
-        con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+        idConexion = con.query("SELECT idConexion FROM tblConexiones WHERE `InstanceId` = '#{instanceId}' AND `IP` = '#{ip}' ORDER BY idConexion DESC").fetch_row.first
+        con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
       rescue
-        con.query('INSERT INTO `Navigator`.`tblConexiones` (`IP`, `InstanceId`, `UltimaConexion`) VALUES ("#{ip}", "#{instanceId}", "#{updateDate}");')
-        int_idConexion = con.query('select last_insert_id()').fetch_row.first.to_i
+        con.query("INSERT INTO `Navigator`.`tblConexiones` (`IP`, `InstanceId`, `UltimaConexion`) VALUES ('#{ip}', '#{instanceId}', '#{updateDate}');")
+        int_idConexion = con.query("select last_insert_id()").fetch_row.first.to_i
         idConexion = "%08d" % int_idConexion
       end
       
-      con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
-      int_idLaunch = con.query('select last_insert_id()').fetch_row.first.to_i
+      con.query("INSERT INTO tblLaunches(Drone) VALUES('Unknown')")
+      int_idLaunch = con.query("select last_insert_id()").fetch_row.first.to_i
       idLaunch = "%08d" % int_idLaunch
       page.prepararLaunch idLaunch
       puts idLaunch
@@ -86,7 +86,7 @@ When /^QBot is surfing a webpage$/ do
 
       loop do
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=2;');$stdout.flush
-        idTarget = con.query('SELECT min(idTarget) FROM tblTargets where Disabled=2;').fetch_row.first
+        idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=2;").fetch_row.first
         puts idTarget
 
         break if idTarget.nil?
