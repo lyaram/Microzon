@@ -390,6 +390,13 @@ class NextLinkPage
         end
       end
 
+      if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+        @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
+        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+        @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+        sleep 2
+      end
+
       linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])])[1]'
       reintentos = 15
       while @browser.element(:xpath,linkMore).exists?
@@ -434,6 +441,15 @@ class NextLinkPage
           sleep 5
           @browser.element(:xpath,closeModal).click
         end
+      end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+      if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+        @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
+        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+        @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+        sleep 2
       end
 
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
