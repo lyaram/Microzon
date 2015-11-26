@@ -665,7 +665,7 @@ class NextLinkPage
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
-    updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+    updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
     con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
 
     con.query('INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)'\
@@ -676,7 +676,7 @@ class NextLinkPage
     storePagePng strDT
     storePageHtml idLaunch, idCaptura, strDT
 
-    updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+    updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
     con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
     con.query('UPDATE `Navigator`.`tblInserts` SET `Estado` = 1;')
 

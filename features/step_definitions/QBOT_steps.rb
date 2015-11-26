@@ -66,7 +66,7 @@ When /^QBot is surfing a webpage$/ do
 
       ip = open('http://169.254.169.254/latest/meta-data/public-ipv4').read
       instanceId = open('http://169.254.169.254/latest/meta-data/instance-id').read
-      updateDate = Time.now.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+      updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
       begin
         idConexion = con.query('SELECT idConexion FROM tblConexiones WHERE `InstanceId` = "#{instanceId}" AND `IP` = "#{ip}" ORDER BY idConexion DESC').fetch_row.first
         con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
@@ -101,7 +101,7 @@ When /^QBot is surfing a webpage$/ do
         break if pillamientos>100
 
         unless idPillado
-          updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
           con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
 
           con.query("UPDATE tblTargets SET Disabled=99 WHERE idTarget = #{idTarget}")
@@ -119,7 +119,7 @@ When /^QBot is surfing a webpage$/ do
           page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
           con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
           
-          updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
           con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
        end
       end
