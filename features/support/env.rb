@@ -3,6 +3,8 @@ BASE_URL = "http://www.yahoo.es/"     #habria que hacer limpieza...
 require 'watir-webdriver'
 require 'watir-webdriver-performance'
 require 'mysql'
+require 'open-uri'
+
 #require 'watir-page-helper'
 #require 'nokogiri'
 
