@@ -661,7 +661,7 @@ class NextLinkPage
     return indexCaptura
   end
 
-  def storePage con, idTarget, idConexion, idLaunch, idCaptura, Page
+  def storePage con, idTarget, idConexion, idLaunch, idCaptura, page
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
