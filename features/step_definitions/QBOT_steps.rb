@@ -64,6 +64,18 @@ When /^QBot is surfing a webpage$/ do
     begin
       con = Mysql.new p0 , p1, p2, 'Navigator'
 
+      ip = open('http://169.254.169.254/latest/meta-data/public-ipv4').read
+      instanceId = open('http://169.254.169.254/latest/meta-data/instance-id').read
+      updateDate = Time.now.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+      begin
+        idConexion = con.query('SELECT idConexion FROM tblConexiones WHERE `InstanceId` = "#{instanceId}" AND `IP` = "#{ip}" ORDER BY idConexion DESC').fetch_row.first
+        con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+      rescue
+        con.query('INSERT INTO `Navigator`.`tblConexiones` (`IP`, `InstanceId`, `UltimaConexion`) VALUES ("#{ip}", "#{instanceId}", "#{updateDate}");')
+        int_idConexion = con.query('select last_insert_id()').fetch_row.first.to_i
+        idConexion = "%08d" % int_idConexion
+      end
+      
       con.query('INSERT INTO tblLaunches(Drone) VALUES("Unknown")')
       int_idLaunch = con.query('select last_insert_id()').fetch_row.first.to_i
       idLaunch = "%08d" % int_idLaunch
@@ -89,7 +101,10 @@ When /^QBot is surfing a webpage$/ do
         break if pillamientos>100
 
         unless idPillado
-          con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
+          updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+
+          con.query("UPDATE tblTargets SET Disabled=99 WHERE idTarget = #{idTarget}")
 
           rs = con.query("SELECT Description,URL,NextLink,checkPageCompleted,checkPageLoading,MaxPages"\
                          " FROM tblTargets WHERE idTarget = #{idTarget}").fetch_row
@@ -101,8 +116,12 @@ When /^QBot is surfing a webpage$/ do
           checkPageLoading = rs[4]
           maxPages = rs[5].to_i
 
-          page.launch idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
-        end
+          page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+          con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
+          
+          updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+       end
       end
 
     rescue Mysql::Error => e

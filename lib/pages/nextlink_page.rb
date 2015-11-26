@@ -85,7 +85,7 @@ class NextLinkPage
 
   end
 
-  def launch idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
+  def launch con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
     
     puts "Reiniciando firefox"
     pid = Process.spawn('firefox')
@@ -533,7 +533,7 @@ class NextLinkPage
    # end
   
       
-      storePage idLaunch, idCaptura
+      storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
       #abort("Aborting to check fail")
       
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -661,11 +661,25 @@ class NextLinkPage
     return indexCaptura
   end
 
-  def storePage idLaunch, idCaptura
+  def storePage con, idTarget, idConexion, idLaunch, idCaptura, Page
     t = Time.now  
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
+
+    updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+    con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+
+    con.query('INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)'\
+              ' VALUES ("#{idConexion}", "#{idTarget}", "#{idLaunch}", "#{idCaptura}", "#{Page}", "#{strDT}", 99);')
+    int_idInsert = con.query('select last_insert_id()').fetch_row.first.to_i
+    idInsert = "%08d" % int_idInsert
+
     storePagePng strDT
     storePageHtml idLaunch, idCaptura, strDT
+
+    updateDate = Time.utc.to_s(:db)  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+    con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+    con.query('UPDATE `Navigator`.`tblInserts` SET `Estado` = 1;')
+
   end
   
   def storePagePng strDT
