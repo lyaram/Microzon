@@ -666,19 +666,19 @@ class NextLinkPage
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-    con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+    con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
-    con.query('INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)'\
-              ' VALUES ("#{idConexion}", "#{idTarget}", "#{idLaunch}", "#{idCaptura}", "#{Page}", "#{strDT}", 99);')
-    int_idInsert = con.query('select last_insert_id()').fetch_row.first.to_i
+    con.query("INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)"\
+              " VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', '#{Page}', '#{strDT}', 99);")
+    int_idInsert = con.query("select last_insert_id()").fetch_row.first.to_i
     idInsert = "%08d" % int_idInsert
 
     storePagePng strDT
     storePageHtml idLaunch, idCaptura, strDT
 
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-    con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
-    con.query('UPDATE `Navigator`.`tblInserts` SET `Estado` = 1;')
+    con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+    con.query("UPDATE `Navigator`.`tblInserts` SET `Estado` = 1;")
 
   end
   

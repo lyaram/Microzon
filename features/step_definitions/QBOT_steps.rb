@@ -93,8 +93,8 @@ When /^QBot is surfing a webpage$/ do
 
         idPillado = false
         begin
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget});');$stdout.flush
-           con.query('INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget});')
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts("INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget});");$stdout.flush
+           con.query("INSERT INTO tblDoneTargets(idTarget) VALUES(#{idTarget});")
         rescue
           idPillado = true
           pillamientos += 1
@@ -104,8 +104,8 @@ When /^QBot is surfing a webpage$/ do
 
         unless idPillado
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};');$stdout.flush
-         con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};");$stdout.flush
+         con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
           con.query("UPDATE tblTargets SET Disabled=99 WHERE idTarget = #{idTarget}")
 
@@ -123,7 +123,7 @@ When /^QBot is surfing a webpage$/ do
           con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
           
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-          con.query('UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}" WHERE `idConexion`=#{idConexion};')
+         con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
        end
       end
 
