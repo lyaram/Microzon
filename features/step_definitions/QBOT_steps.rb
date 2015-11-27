@@ -61,6 +61,8 @@ When /^QBot is surfing a webpage$/ do
     # 4. Si no hay fallo, marcar como Disabled el registro de tblTargets de ese idTarget y ejecutar codigo
     # 5. Si hay error significa que ya lo ha recogido otro drone. Volver a 2
 
+    sobrecarga = false
+    
     begin
       con = Mysql.new p0 , p1, p2, 'Navigator'
 
