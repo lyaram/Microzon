@@ -85,7 +85,7 @@ When /^QBot is surfing a webpage$/ do
       pillamientos = 0
 
       loop do
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=2;');$stdout.flush
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=4;');$stdout.flush
         idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=2;").fetch_row.first
         puts idTarget
 
