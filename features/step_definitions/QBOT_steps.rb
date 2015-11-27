@@ -126,7 +126,8 @@ When /^QBot is surfing a webpage$/ do
          con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
          
          puts('CARGA DE SISTEMA:');puts(IO.read('/proc/loadavg'));$stdout.flush
-         break if (IO.read('/proc/loadavg').split[1].to_f>1.25)
+         sobrecarga = (IO.read('/proc/loadavg').split[1].to_f>1.25)
+         break if sobrecarga
        end
       end
 
@@ -136,7 +137,9 @@ When /^QBot is surfing a webpage$/ do
     ensure
       con.close if con
     end
-
+    
+    fail "sobrecarga en servidor" if sobrecarga
+    
   end
   
 end
