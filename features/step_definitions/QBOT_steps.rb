@@ -86,7 +86,7 @@ When /^QBot is surfing a webpage$/ do
 
       loop do
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=4;');$stdout.flush
-        idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=2;").fetch_row.first
+        idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=4;").fetch_row.first
         puts idTarget
 
         break if idTarget.nil?
@@ -104,8 +104,8 @@ When /^QBot is surfing a webpage$/ do
 
         unless idPillado
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};");$stdout.flush
-         con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+          puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};");$stdout.flush
+          con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
           con.query("UPDATE tblTargets SET Disabled=99 WHERE idTarget = #{idTarget}")
 
@@ -124,6 +124,9 @@ When /^QBot is surfing a webpage$/ do
           
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
          con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+         
+         puts('CARGA DE SISTEMA:');puts(IO.read('/proc/loadavg'));$stdout.flush
+         break if (IO.read('/proc/loadavg').split[1].to_f>1.25)
        end
       end
 
