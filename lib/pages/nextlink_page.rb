@@ -334,6 +334,14 @@ class NextLinkPage
         retry
       end
       
+      if descripcion.include? 'TRIPADVISOR_RestFicha.'
+        if @browser.element(:xpath,"//*[@class='pageNum current']").exists?
+          webpage = @browser.element(:xpath,"//*[@class='pageNum current']").text
+          if (webpage.strip!=@numPag.to_s)
+            fail "CHECK TRIPADVISOR: Fallo en paginación""
+          end 
+        end
+      end
       
           #htmlPage = Nokogiri::HTML.parse(@browser.html)
     
