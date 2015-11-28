@@ -391,8 +391,9 @@ class NextLinkPage
       end
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+          sleep 30
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
-        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
         sleep 2
       end
@@ -407,8 +408,9 @@ class NextLinkPage
         @browser.element(:xpath,linkMore).click
         sleep 2
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+          sleep 30
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
-          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 2
         end
@@ -431,8 +433,9 @@ class NextLinkPage
         @browser.element(:xpath,linkMore).click
         sleep 2
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+          sleep 30
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
-          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+          @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 2
         end
@@ -446,8 +449,9 @@ class NextLinkPage
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+        sleep 30
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
-        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set "tomatutti54@gmail.com"
+        @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
         sleep 2
       end
