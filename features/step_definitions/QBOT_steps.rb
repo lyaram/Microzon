@@ -89,6 +89,7 @@ When /^QBot is surfing a webpage$/ do
       loop do
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=4;');$stdout.flush
         idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=4;").fetch_row.first
+        puts "Getting idTARGET (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ") ....... "
         puts idTarget
 
         break if idTarget.nil?
@@ -140,6 +141,7 @@ When /^QBot is surfing a webpage$/ do
       con.close if con
     end
     
+    puts "CLOSING LAUNCH (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ")"
     fail "sobrecarga en servidor" if sobrecarga
     
   end
