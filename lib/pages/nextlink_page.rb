@@ -338,7 +338,7 @@ class NextLinkPage
         if @browser.element(:xpath,"//*[@class='pageNum current']").exists?
           webpage = @browser.element(:xpath,"//*[@class='pageNum current']").text
           if (webpage.strip!=@numPag.to_s)
-            fail "CHECK TRIPADVISOR: Fallo en paginación""
+            fail "CHECK TRIPADVISOR: Fallo en paginación"
           end 
         end
       end
