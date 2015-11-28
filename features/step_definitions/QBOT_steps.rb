@@ -139,10 +139,10 @@ When /^QBot is surfing a webpage$/ do
       puts e.error
     ensure
       con.close if con
-      fail "sobrecarga en servidor" if sobrecarga
       puts "CLOSING LAUNCH (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ")"
    end
     
+   fail "sobrecarga en servidor" if sobrecarga
     
   end
 
