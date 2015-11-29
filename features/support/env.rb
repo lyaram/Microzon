@@ -5,6 +5,7 @@ require 'watir-webdriver-performance'
 require 'mysql'
 require 'open-uri'
 require 'securerandom'
+require 'timeout'
 
 #require 'watir-page-helper'
 #require 'nokogiri'
