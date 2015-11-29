@@ -48,7 +48,9 @@ When /^QBot is surfing a webpage$/ do
  #   idLaunch = "zzzzz"
  #   puts "zzzz... sigue?"
 
-
+    firefoxclean = system("rm -rf ~/.mozilla")
+    Process.wait firefoxclean
+    
     p0 = File.read('/var/lib/jenkins/Init/db/param0').gsub(/[^.0-9A-Za-z]/, '')
     p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
     p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
