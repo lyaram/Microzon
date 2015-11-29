@@ -274,7 +274,7 @@ class NextLinkPage
       @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
       sleep 3      
       begin  
-        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]/@selected').wait_until_present
+        @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
        rescue Exception => e
          puts e.message    ; $stdout.flush
        end
