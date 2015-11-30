@@ -270,7 +270,8 @@ class NextLinkPage
  
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
-    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL" and not(@selected)]').exists?
+    if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
+      @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
       @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ALL"]').select
       sleep 3      
       begin  
