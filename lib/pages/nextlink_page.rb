@@ -100,17 +100,6 @@ class NextLinkPage
     end
     puts "firefox exited, pid = #{pid}"
 
-    pid = Process.spawn('rm -rf ~/.mozilla')
-    begin
-      Timeout.timeout(5) do
-        puts 'waiting for the process to end'
-        Process.wait(pid)
-        puts 'process finished in time'
-      end
-    rescue Timeout::Error
-      puts 'process not finished in time, killing it'
-      Process.kill('TERM', pid)
-    end    
     
     
     client = Selenium::WebDriver::Remote::Http::Default.new

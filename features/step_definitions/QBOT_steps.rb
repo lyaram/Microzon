@@ -48,6 +48,18 @@ When /^QBot is surfing a webpage$/ do
  #   idLaunch = "zzzzz"
  #   puts "zzzz... sigue?"
 
+    pid = Process.spawn('rm -rf ~/.mozilla')
+    begin
+      Timeout.timeout(5) do
+        puts 'waiting for the process to end'
+        Process.wait(pid)
+        puts 'process finished in time'
+      end
+    rescue Timeout::Error
+      puts 'process not finished in time, killing it'
+      Process.kill('TERM', pid)
+    end    
+
     p0 = File.read('/var/lib/jenkins/Init/db/param0').gsub(/[^.0-9A-Za-z]/, '')
     p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
     p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
