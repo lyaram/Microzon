@@ -100,6 +100,17 @@ class NextLinkPage
     end
     puts "firefox exited, pid = #{pid}"
 
+    pid = Process.spawn('rm -rf ~/.mozilla')
+    begin
+      Timeout.timeout(5) do
+        puts 'waiting for the process to end'
+        Process.wait(pid)
+        puts 'process finished in time'
+      end
+    rescue Timeout::Error
+      puts 'process not finished in time, killing it'
+      Process.kill('TERM', pid)
+    end    
     
     
     client = Selenium::WebDriver::Remote::Http::Default.new
@@ -259,17 +270,18 @@ class NextLinkPage
  
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
-    if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
-      @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
-      @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
-      sleep 3      
-      begin  
-        @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
-       rescue Exception => e
-         puts e.message    ; $stdout.flush
-       end
-      sleep 3      
-    end
+#    if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
+#      @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
+#      @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
+#      sleep 3      
+#      begin  
+#        @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
+#       rescue Exception => e
+#         puts e.message    ; $stdout.flush
+#       end
+#      sleep 3      
+#    end
+#
 #    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
 #      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
 #      sleep 3      
