@@ -272,7 +272,7 @@ class NextLinkPage
     
     if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
       @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
-      @browser.element(:xpath,'.//*[@id="selFilterAll")').click
+      @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
       sleep 3      
       begin  
         @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
