@@ -130,6 +130,20 @@ When /^QBot is surfing a webpage$/ do
          puts('CARGA DE SISTEMA:');puts(IO.read('/proc/loadavg'));$stdout.flush
          sobrecarga = (IO.read('/proc/loadavg').split[1].to_f>1.05)
          break if sobrecarga
+         
+         #Codigo para lanzar solo una captura y autodestruirse
+         pid = Process.spawn('sudo shutdown')
+         begin
+           Timeout.timeout(60) do
+             puts 'waiting for the process to end'
+             Process.wait(pid)
+             puts 'process finished in time'
+           end
+         rescue Timeout::Error
+           puts 'process not finished in time, killing it'
+           Process.kill('TERM', pid)
+         end    
+
        end
       end
 
