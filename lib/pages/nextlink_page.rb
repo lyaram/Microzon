@@ -270,7 +270,7 @@ class NextLinkPage
  
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
-    if not(@browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?)
+    if @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?
       @browser.element(:xpath,"(//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input)[last()]").click
       sleep 5
       begin
