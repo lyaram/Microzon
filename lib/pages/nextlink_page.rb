@@ -272,6 +272,16 @@ class NextLinkPage
     
     if not(@browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?)
       @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li[last()]/span/input").click
+      sleep 1
+      begin
+        Timeout.timeout(30) do
+          while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?
+            sleep 1
+          end
+        end
+      rescue Timeout::Error
+
+      end
       @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input[@value='ALL']").click
     end    
     
