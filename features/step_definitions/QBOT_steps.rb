@@ -132,7 +132,7 @@ When /^QBot is surfing a webpage$/ do
          break if sobrecarga
          
          #Codigo para lanzar solo una captura y autodestruirse
-         pid = Process.spawn('sudo shutdown')
+         pid = Process.spawn('sudo shutdown -P now')
          begin
            Timeout.timeout(60) do
              puts 'waiting for the process to end'
