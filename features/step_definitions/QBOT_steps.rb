@@ -131,18 +131,23 @@ When /^QBot is surfing a webpage$/ do
          sobrecarga = (IO.read('/proc/loadavg').split[1].to_f>1.05)
          break if sobrecarga
          
+         
          #Codigo para lanzar solo una captura y autodestruirse
-         pid = Process.spawn('sudo shutdown -P now')
-         begin
-           Timeout.timeout(60) do
-             puts 'waiting for the process to end'
-             Process.wait(pid)
-             puts 'process finished in time'
+         while true
+           pid = Process.spawn('sudo shutdown -P now')
+           begin
+             Timeout.timeout(60) do
+               puts 'waiting for the process to end'
+               Process.wait(pid)
+               puts 'process finished in time'
+             end
+           rescue Timeout::Error
+             puts 'process not finished in time, killing it'
+             # Process.kill('TERM', pid)
            end
-         rescue Timeout::Error
-           puts 'process not finished in time, killing it'
-           Process.kill('TERM', pid)
-         end    
+           sleep 300    
+         end
+         
 
        end
       end
