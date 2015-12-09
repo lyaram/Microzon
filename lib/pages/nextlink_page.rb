@@ -275,7 +275,7 @@ class NextLinkPage
       sleep 1
       begin
         Timeout.timeout(30) do
-          while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?
+          while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?)
             sleep 1
           end
         end
