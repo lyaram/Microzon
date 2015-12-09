@@ -84,9 +84,11 @@ When /^QBot is surfing a webpage$/ do
       puts idLaunch
 
       pillamientos = 0
-
+      resetCountDown = 5
+      
       loop do
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=3;');$stdout.flush
+        resetCountDown += -1
         idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=3;").fetch_row.first
         puts "Getting idTARGET (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ") ....... "
         puts idTarget
@@ -132,8 +134,8 @@ When /^QBot is surfing a webpage$/ do
          break if sobrecarga
          
          
-         #Codigo para lanzar solo una captura y autodestruirse
-         while true
+         #Codigo para autodestruir al llegar al countdown
+         while (resetCountDown<=0)
            pid = Process.spawn('sudo shutdown -P now')
            begin
              Timeout.timeout(60) do
