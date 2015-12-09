@@ -285,7 +285,7 @@ class NextLinkPage
       @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input[@value='ALL']").click
     end    
     
-    if(@browser.element(:xpath,'//*[@id="LANG_FORM"]').exists?
+    if @browser.element(:xpath,'//*[@id="LANG_FORM"]').exists? 
       if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
         @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
         @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
