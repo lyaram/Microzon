@@ -331,7 +331,7 @@ class NextLinkPage
 		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message; $stdout.flush
 
-        aFile = File.new(Dir.home() + "/BotStoring/debug/" + strDT + ".htm", "w")
+        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
         htmlPage=@browser.html
         aFile.write(htmlPage)
         aFile.close
