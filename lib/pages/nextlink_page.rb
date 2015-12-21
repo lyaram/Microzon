@@ -301,6 +301,10 @@ class NextLinkPage
 
     if descripcion.include? 'ElTenedor_RestFicha.'
       begin
+        
+        if @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
+          @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
+        end
         if @browser.element(:xpath,'//*[@id="lafourchette_ratefilter_form_withCommentsOnly"]').exists?
           @browser.element(:xpath,'//*[@id="lafourchette_ratefilter_form_withCommentsOnly"]').click
           sleep 3
