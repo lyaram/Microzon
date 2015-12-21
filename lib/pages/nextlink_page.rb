@@ -298,6 +298,18 @@ class NextLinkPage
         sleep 3      
       end
     end
+
+    if descripcion.include? 'ElTenedor_RestFicha.'
+      begin
+        if @browser.element(:xpath,'//*[@id="lafourchette_ratefilter_form_withCommentsOnly"]').exists?
+          @browser.element(:xpath,'//*[@id="lafourchette_ratefilter_form_withCommentsOnly"]').click
+          sleep 3
+        end
+      rescue
+        #fallo
+      end
+
+    end
     
 #    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
 #      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
