@@ -160,6 +160,16 @@ When /^QBot is surfing a webpage$/ do
     ensure
       con.close if con
       puts "CLOSING LAUNCH (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ")"
+      
+      Dir::mkdir('screenshots') if not File.directory?('screenshots')
+      screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
+      Browser::BROWSER.driver.save_screenshot(screenshot)
+      embed screenshot, 'image/png'
+      
+      htmlFile = "./screenshots/HTML_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.html"
+        aFile = File.new(htmlFile, "w")
+        aFile.write(Browser::BROWSER.html)
+        aFile.close
    end
     
    fail "sobrecarga en servidor" if sobrecarga

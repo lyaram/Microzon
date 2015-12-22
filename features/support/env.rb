@@ -111,15 +111,6 @@ end
 at_exit do
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 10")
 
-  Dir::mkdir('screenshots') if not File.directory?('screenshots')
-  screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
-  Browser::BROWSER.driver.save_screenshot(screenshot)
-  embed screenshot, 'image/png'
-  
-  htmlFile = "./screenshots/HTML_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.html"
-    aFile = File.new(htmlFile, "w")
-    aFile.write(Browser::BROWSER.html)
-    aFile.close
 
 
   puts Metrics.page_metrics.summary
