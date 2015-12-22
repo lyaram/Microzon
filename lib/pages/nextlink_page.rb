@@ -123,7 +123,7 @@ class NextLinkPage
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     @browser.window.resize_to(1024, 768)
-  
+    @browser.driver.manage.timeouts.implicit_wait = 90
 
       reintentos = 3
       begin
