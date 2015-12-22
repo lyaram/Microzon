@@ -163,8 +163,10 @@ When /^QBot is surfing a webpage$/ do
       
       Dir::mkdir('screenshots') if not File.directory?('screenshots')
       screenshot = "./screenshots/DEBUG_IMG.png"
-      Browser::BROWSER.driver.save_screenshot(screenshot)
-      embed screenshot, 'image/png'
+      if headless
+        headless.take_screenshot(screenshot)
+      end
+ #     embed screenshot, 'image/png'
       
       htmlFile = "./screenshots/DEBUG_HTML.html"
         aFile = File.new(htmlFile, "w")
