@@ -316,6 +316,9 @@ class NextLinkPage
         if @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
           @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
         end
+        if @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
+          @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
+        end
         if @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').exists?
           @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').click
           sleep 3
