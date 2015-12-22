@@ -34,9 +34,9 @@ if ENV['HEADLESS']
 
   require 'headless'
  
-  headless = Headless.new(display: 100, reuse: true, destroy_at_exit: false)
+  $headless = Headless.new(display: 100, reuse: true, destroy_at_exit: false)
  
-  headless.start
+  $headless.start
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 02")
   at_exit do
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__}")

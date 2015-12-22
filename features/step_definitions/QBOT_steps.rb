@@ -163,8 +163,8 @@ When /^QBot is surfing a webpage$/ do
       
       Dir::mkdir('screenshots') if not File.directory?('screenshots')
       screenshot = "./screenshots/DEBUG_IMG.png"
-      if headless
-        headless.take_screenshot(screenshot)
+      if $headless
+        $headless.take_screenshot(screenshot)
       end
  #     embed screenshot, 'image/png'
       
