@@ -270,34 +270,45 @@ class NextLinkPage
  
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
-    if @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?
-      @browser.element(:xpath,"(//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input)[last()]").click
-      sleep 5
-      begin
-        Timeout.timeout(300) do
-          while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?)
-            sleep 1
-          end
-        end
-      rescue Timeout::Error
+#    if @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?
+#      @browser.element(:xpath,"(//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input)[last()]").click
+#      sleep 5
+#      begin
+#        Timeout.timeout(300) do
+#          while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?)
+#            sleep 1
+#          end
+#        end
+#      rescue Timeout::Error
+#
+#      end
+#      @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input[@value='ALL']").click
+#    end    
+#    
+#    if @browser.element(:xpath,'//*[@id="LANG_FORM"]').exists? 
+#      if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
+#        @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
+#        @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
+#        sleep 3      
+#        begin  
+#          @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
+#         rescue Exception => e
+#           puts e.message    ; $stdout.flush
+#         end
+#        sleep 3      
+#      end
+#    end
 
-      end
-      @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]/ul/li/span/input[@value='ALL']").click
-    end    
-    
-    if @browser.element(:xpath,'//*[@id="LANG_FORM"]').exists? 
-      if not(@browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').exists?)
-        @browser.element(:xpath,'//*[@id="LANG_FORM"]/fieldset//span[@class="sprite-date_picker-triangle"]').click
-        @browser.element(:xpath,'.//*[@id="selFilterAll"]').click
-        sleep 3      
-        begin  
-          @browser.element(:xpath,'//*[@id="LANG_FORM"]//span[@class="selected" and contains(./text(),"Any")]').wait_until_present
-         rescue Exception => e
-           puts e.message    ; $stdout.flush
-         end
-        sleep 3      
-      end
-    end
+#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
+#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
+#      sleep 3      
+#      begin
+#        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
+#      rescue Exception => e
+#        puts e.message    ; $stdout.flush
+#      end
+#      sleep 3      
+#    end
 
     if descripcion.include? 'ElTenedor_RestFicha.'
       begin
@@ -315,17 +326,6 @@ class NextLinkPage
 
     end
     
-#    if @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru" and not(@selected)]').exists?
-#      @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]').select
-#      sleep 3      
-#      begin
-#        @browser.element(:xpath,'//select[@id="filterLang"]/option[@value="ru"]/@selected').wait_until_present
-#      rescue Exception => e
-#        puts e.message    ; $stdout.flush
-#      end
-#      sleep 3      
-#    end
-
     @numPag = 0
     loop do
       @numPag += 1

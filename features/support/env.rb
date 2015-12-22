@@ -104,6 +104,13 @@ World Browser
 
 After do |scenario|
 #puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 09")
+
+#puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 09")
+end
+
+at_exit do
+#puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 10")
+
   Dir::mkdir('screenshots') if not File.directory?('screenshots')
   screenshot = "./screenshots/WEBIMG_#{scenario.name.gsub(' ','_').gsub(/[^0-9A-Za-z_]/, '')}.png"
   Browser::BROWSER.driver.save_screenshot(screenshot)
@@ -114,14 +121,11 @@ After do |scenario|
     aFile.write(Browser::BROWSER.html)
     aFile.close
 
-#puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> FIN PASO 09")
-end
 
-at_exit do
-#puts("CODETRACE >> #{__FILE__}:#{__LINE__} ----> PASO 10")
   puts Metrics.page_metrics.summary
 
   File.open('pagemetrics.yml', 'w') { |file| file.puts Metrics.page_metrics.summary }
+
  
 #  Browser::BROWSER.close
  
