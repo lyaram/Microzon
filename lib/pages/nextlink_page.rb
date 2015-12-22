@@ -258,6 +258,25 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'ElTenedor_RestFicha.'
+        begin
+          
+          if @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
+            @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
+          end
+          if @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
+            @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
+          end
+          if @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').exists?
+            @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').click
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+  
+      end
+    
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
@@ -310,25 +329,7 @@ class NextLinkPage
 #      sleep 3      
 #    end
 
-    if descripcion.include? 'ElTenedor_RestFicha.'
-      begin
-        
-        if @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
-          @browser.element(:xpath,'//*[@id="cboxClose" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
-        end
-        if @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').exists?
-          @browser.element(:xpath,'//*[@title="close" and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]').click
-        end
-        if @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').exists?
-          @browser.element(:xpath,'//*[@id="restaurantTab-reviews"]//span[@class="check"]').click
-          sleep 3
-        end
-      rescue
-        #fallo
-      end
 
-    end
-    
     @numPag = 0
     loop do
       @numPag += 1
