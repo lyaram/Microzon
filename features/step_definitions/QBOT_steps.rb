@@ -161,12 +161,13 @@ When /^QBot is surfing a webpage$/ do
       con.close if con
       puts "CLOSING LAUNCH (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ")"
       
- #     Dir::mkdir('screenshots') if not File.directory?('screenshots')
- #     screenshot = "./screenshots/DEBUG_IMG.png"
- #     if $headless
- #       $headless.take_screenshot(screenshot)
- #     end
- #     embed screenshot, 'image/png'
+      Dir::mkdir('screenshots') if not File.directory?('screenshots')
+ 
+      screenshot = "./screenshots/DEBUG_IMG.png"
+      if $headless
+        $headless.take_screenshot(screenshot)
+      end
+      embed screenshot, 'image/png'
       
       htmlFile = "./screenshots/DEBUG_HTML.html"
         aFile = File.new(htmlFile, "w")
