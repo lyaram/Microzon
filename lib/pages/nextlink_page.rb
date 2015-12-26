@@ -431,10 +431,14 @@ class NextLinkPage
       sleep 2
       @browser.element(:xpath,checkPageCompleted).wait_until_present
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       closeModal = '//*[@class="ui_close_x"]'
       if @browser.element(:xpath,closeModal).exists?
         @browser.element(:xpath,closeModal).click
       end
+
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
       buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
       reintentos = 10
@@ -444,23 +448,31 @@ class NextLinkPage
         @browser.element(:xpath,buttonNoTranslation).click
         sleep 2
 
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
+  
         closeModal = '//*[@class="ui_close_x"]'
         if @browser.element(:xpath,closeModal).exists?
           @browser.element(:xpath,closeModal).click
         end
+
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
-          sleep 30
+        sleep 30
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
         @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
         sleep 2
       end
 
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])])[1]'
       reintentos = 15
       while @browser.element(:xpath,linkMore).exists?
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
         break if reintentos<0
         @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
@@ -469,14 +481,17 @@ class NextLinkPage
         sleep 2
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
           sleep 30
+          puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
           @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 2
         end
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         closeModal = '//*[@class="ui_close_x"]'
         if @browser.element(:xpath,closeModal).exists?
           sleep 5
+          puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.element(:xpath,closeModal).click
         end
       end
@@ -486,22 +501,27 @@ class NextLinkPage
       linkMore = '//*[@class="entry"]//span[starts-with(@class,"taLnk") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       reintentos = 10
       while @browser.element(:xpath,linkMore).exists?
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
         break if reintentos<0
         @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
         @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         sleep 2
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
           sleep 30
+          puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
           @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
           @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
           sleep 2
         end
+        puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
         closeModal = '//*[@class="ui_close_x"]'
         if @browser.element(:xpath,closeModal).exists?
           sleep 5
+          puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.element(:xpath,closeModal).click
         end
       end
