@@ -165,18 +165,25 @@ When /^QBot is surfing a webpage$/ do
       
       Dir::mkdir('screenshots') if not File.directory?('screenshots')
  
-      screenshot = "./screenshots/DEBUG_IMG.png"
-      Browser::BROWSER.driver.save_screenshot(screenshot)
-      embed screenshot, 'image/png'
-      
+      begin
+        screenshot = "./screenshots/DEBUG_IMG.png"
+        Browser::BROWSER.driver.save_screenshot(screenshot)
+        embed screenshot, 'image/png'
+      rescue
+        puts "fallo de DEBUG_IMG"
+      end
       #if $headless
       #  $headless.take_screenshot(screenshot)
       #end
       
-      htmlFile = "./screenshots/DEBUG_HTML.html"
+      begin
+        htmlFile = "./screenshots/DEBUG_HTML.html"
         aFile = File.new(htmlFile, "w")
         aFile.write(Browser::BROWSER.html)
         aFile.close
+      rescue
+        puts "fallo de DEBUG_HTML"
+      end
    end
     
    fail "sobrecarga en servidor" if sobrecarga
