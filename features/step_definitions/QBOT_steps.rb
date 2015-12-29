@@ -87,9 +87,10 @@ When /^QBot is surfing a webpage$/ do
       resetCountDown = 5
       
       loop do
-      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts('SELECT min(idTarget) FROM tblTargets where Disabled=3;');$stdout.flush
+        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=99 and time_stamp > '2015-12-21';"
+      puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
-        idTarget = con.query("SELECT min(idTarget) FROM tblTargets where Disabled=3;").fetch_row.first
+        idTarget = con.query(ssql).fetch_row.first
         puts "Getting idTARGET (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ") ....... "
         puts idTarget
 
