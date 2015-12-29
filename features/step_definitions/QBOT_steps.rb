@@ -90,6 +90,7 @@ When /^QBot is surfing a webpage$/ do
         ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=99 and time_stamp > '2015-12-21';"
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
+        con.execute("DELETE FROM tblDoneTargets")
         idTarget = con.query(ssql).fetch_row.first
         puts "Getting idTARGET (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ") ....... "
         puts idTarget
