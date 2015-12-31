@@ -91,6 +91,7 @@ When /^QBot is surfing a webpage$/ do
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
         treses = con.query("SELECT count(*) FROM tblTargets WHERE disabled=3 and time_stamp > '2015-12-21';").fetch_row.first
+        puts "treses: " + treses
         if (treses==0)
           con.query("DELETE FROM tblDoneTargets")
           con.query("UPDATE tblTargets SET disabled=3 WHERE disabled=99 and time_stamp > '2015-12-21';")
