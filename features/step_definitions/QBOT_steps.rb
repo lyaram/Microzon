@@ -169,8 +169,9 @@ When /^QBot is surfing a webpage$/ do
         screenshot = "./screenshots/DEBUG_IMG.png"
         Browser::BROWSER.driver.save_screenshot(screenshot)
         embed screenshot, 'image/png'
-      rescue
+      rescue Exception => e
         puts "fallo de DEBUG_IMG"
+        puts e.message; $stdout.flush
       end
       #if $headless
       #  $headless.take_screenshot(screenshot)
@@ -181,8 +182,9 @@ When /^QBot is surfing a webpage$/ do
         aFile = File.new(htmlFile, "w")
         aFile.write(Browser::BROWSER.html)
         aFile.close
-      rescue
+      rescue Exception => e
         puts "fallo de DEBUG_HTML"
+        puts e.message; $stdout.flush
       end
    end
     
