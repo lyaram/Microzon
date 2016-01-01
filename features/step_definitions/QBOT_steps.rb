@@ -93,7 +93,7 @@ When /^QBot is surfing a webpage$/ do
         
         treses = con.query("SELECT count(*) FROM tblTargets WHERE disabled=3 and time_stamp > '2015-12-21';").fetch_row.first
         puts "treses: " + treses
-        if (treses==0)
+        if (treses=='0')
           puts "DELETE"
           con.query("DELETE FROM tblDoneTargets")
           puts "The query has affected #{con.affected_rows} rows"
