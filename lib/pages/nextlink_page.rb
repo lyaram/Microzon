@@ -355,6 +355,8 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+    repeatPageCountDown = 5
+    
     @numPag = 0
     loop do
       @numPag += 1
@@ -418,7 +420,16 @@ class NextLinkPage
         if @browser.element(:xpath,"//*[@class='pageNum current']").exists?
           webpage = @browser.element(:xpath,"//*[@class='pageNum current']").text
           if webpage.strip!=@numPag.to_s
-            fail "fallo en paginacion TRIPADVISOR"
+            puts "Paginado no esperado (#{webpage.strip} != #{@numPag})"
+            if (repeatPageCountDown > 0)
+              @numPag += -1
+              repeatPageCountDown += -1
+              puts "Reintentando paginado correcto (#{repeatPageCountDown})"
+            else
+              fail "fallo en paginacion TRIPADVISOR"
+            end
+          else
+            repeatPageCountDown = 5
           end 
         end
       end
