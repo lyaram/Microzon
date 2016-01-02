@@ -355,7 +355,9 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-    repeatPageCountDown = 5
+    
+    repeatPageCountDownMax = 20
+    repeatPageCountDown = repeatPageCountDownMax
     
     @numPag = 0
     loop do
@@ -429,7 +431,7 @@ class NextLinkPage
               fail "fallo en paginacion TRIPADVISOR"
             end
           else
-            repeatPageCountDown = 5
+            repeatPageCountDown = repeatPageCountDownMax
           end 
         end
       end
