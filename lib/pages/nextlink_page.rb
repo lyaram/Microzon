@@ -421,7 +421,7 @@ class NextLinkPage
       if descripcion.include? 'TRIPADVISOR_RestFicha.'
         if @browser.element(:xpath,"//*[@class='pageNum current']").exists?
           webpage = @browser.element(:xpath,"//*[@class='pageNum current']").text
-          if webpage.strip!=@numPag.to_s
+          if webpage.strip.to_i!=@numPag
             puts "Paginado no esperado (#{webpage.strip} != #{@numPag})"
             if (repeatPageCountDown > 0)
               @numPag += -1
