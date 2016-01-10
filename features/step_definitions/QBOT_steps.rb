@@ -87,20 +87,20 @@ When /^QBot is surfing a webpage$/ do
       resetCountDown = 5
       
       loop do
-        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=3 and time_stamp > '2015-12-21';"
+        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
         
-        treses = con.query("SELECT count(*) FROM tblTargets WHERE disabled=3 and time_stamp > '2015-12-21';").fetch_row.first
-        puts "treses: " + treses
-        if (treses=='0')
-          puts "DELETE"
-          con.query("DELETE FROM tblDoneTargets")
-          puts "The query has affected #{con.affected_rows} rows"
-          puts "UPDATE"
-          con.query("UPDATE tblTargets SET disabled=3 WHERE disabled=99 and time_stamp > '2015-12-21';")
-          puts "The query has affected #{con.affected_rows} rows"         
-        end
+        #treses = con.query("SELECT count(*) FROM tblTargets WHERE disabled=3 and time_stamp > '2015-12-21';").fetch_row.first
+        #puts "treses: " + treses
+        #if (treses=='0')
+        #  puts "DELETE"
+        #  con.query("DELETE FROM tblDoneTargets")
+        #  puts "The query has affected #{con.affected_rows} rows"
+        #  puts "UPDATE"
+        #  con.query("UPDATE tblTargets SET disabled=3 WHERE disabled=99 and time_stamp > '2015-12-21';")
+        #  puts "The query has affected #{con.affected_rows} rows"         
+        #end
  
         idTarget = con.query(ssql).fetch_row.first
         puts "Getting idTARGET (" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ") ....... "
