@@ -311,6 +311,45 @@ class NextLinkPage
       end
  
  
+       #Desactivando filtro activo si lo si hay
+       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+       if @browser.element(:xpath,'//button[@class="clear"]').exists?
+        if @browser.element(:xpath,'//button[@class="clear"]').visible?
+           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+           @browser.element(:xpath,'//button[@class="clear"]').click
+          
+           begin
+            ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            Timeout.timeout(60) do
+              ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+              while (@browser.element(:xpath,"//button[@class='clear']").exists? ||
+                     @browser.element(:xpath,".//*[@class='loadingBox' and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?)
+                 sleep 1
+              end
+              ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            end
+           rescue Timeout::Error
+            puts 'timeout para quitar filtro'
+           end
+        end
+      end
+      
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      if descripcion.include? '.TAFilterSegement'
+       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+       filternumber = description[/.*\.TAFilterSegment_(.*)\./,1]
+        filterpath = ".//li/span/input[@name='filterSegment' and @value='#{filternumber}']"
+        if @browser.element(:xpath,filterpath).exists?
+          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          @browser.element(:xpath,filterpath).click
+          @browser.element(:xpath,"//button[@class='clear']").wait_until_present
+          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        else
+          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          fail "No existe filtro #{filternumber}"
+        end
+      end
+      
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
     
 #    if @browser.element(:xpath,"//form[contains(@id,'review_filter_controls')]/div[contains(@class,'language')]").exists?
