@@ -337,6 +337,13 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       if descripcion.include? '.TAFilterSegment'
        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+       
+       begin
+        @browser.element(:xpath,"//*[@id='ratingFilter']").wait_until_present
+       rescue 
+        puts 'timeout esperando filtro'
+       end
+       
        filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
         filterpath = ".//li/span/input[@name='filterSegment' and @value='#{filternumber}']"
         puts filterpath
@@ -349,12 +356,13 @@ class NextLinkPage
         else
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
-        aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
-        htmlPage=@browser.html
-        aFile.write(htmlPage)
-        aFile.close
+          aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
+          htmlPage=@browser.html
+          aFile.write(htmlPage)
+          aFile.close
         
-          fail "No existe filtro #{filternumber}"
+          puts "No existe filtro #{filternumber}"
+          return
         end
       end
       
