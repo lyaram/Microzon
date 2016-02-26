@@ -594,8 +594,19 @@ class NextLinkPage
       end
       
       if reintentos<0
-        fail 'Imposible anular ventana modal TA' 
-      end
+           pid = Process.spawn('sudo shutdown -P now')
+           begin
+             Timeout.timeout(60) do
+               puts 'waiting for the process to end'
+               Process.wait(pid)
+               puts 'process finished in time'
+             end
+           rescue Timeout::Error
+             puts 'process not finished in time, killing it'
+             # Process.kill('TERM', pid)
+           end
+           fail 'Fallo reset paginado'
+       end
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
