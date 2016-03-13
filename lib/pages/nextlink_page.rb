@@ -591,7 +591,7 @@ class NextLinkPage
         @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
         @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
-        sleep 2
+        sleep 5
         if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
           sleep 30
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
