@@ -572,7 +572,9 @@ class NextLinkPage
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if (reintentos<25 and linkMore.split(//).last(3).join=='[1]') 
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          puts 'linkMore BEFORE:' + linkMore
           linkMore = linkMore[0..(nc.length-3)] + '[last()]'
+          puts 'linkMore AFTER:' + linkMore
         end
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
