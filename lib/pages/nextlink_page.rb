@@ -567,15 +567,17 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       linkMore = '(//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]//span[@class="partnerRvw"]/span[contains(@class,"moreLink") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])])[1]'
-      reintentos = 15
+      reintentos = 50
       while @browser.element(:xpath,linkMore).exists?
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
         if reintentos<0
-          aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
+          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
           htmlPage=@browser.html
           aFile.write(htmlPage)
           aFile.close
+          storePagePng stDT
  
           break
         end
