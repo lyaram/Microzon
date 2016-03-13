@@ -571,7 +571,14 @@ class NextLinkPage
       while @browser.element(:xpath,linkMore).exists?
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
-        break if reintentos<0
+        if reintentos<0
+          aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
+          htmlPage=@browser.html
+          aFile.write(htmlPage)
+          aFile.close
+ 
+          break
+        end
         @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
         @browser.send_keys :page_up
         @browser.element(:xpath,linkMore).click
