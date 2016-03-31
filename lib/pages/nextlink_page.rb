@@ -310,7 +310,7 @@ class NextLinkPage
         end
       end
  
-      allLangRadioButton = './/*[@name='filterLang' and @value='ALL']'
+      allLangRadioButton = './/*[@name="filterLang" and @value="ALL"]'
       if @browser.element(:xpath,allLangRadioButton).exists?
         if @browser.element(:xpath,allLangRadioButton).visible?
           @browser.element(:xpath,allLangRadioButton).click
