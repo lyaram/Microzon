@@ -621,8 +621,8 @@ class NextLinkPage
         end
       end
       
-      #if reintentos<-99999 #Desactivando la interrupcion cuando se encuentra un "more" imposible de desplegar.
-      if reintentos<0      #ACTIVAR DE NUEVO CON <0
+      if reintentos<-99999 #Desactivando la interrupcion cuando se encuentra un "more" imposible de desplegar.
+      #if reintentos<0      #ACTIVAR DE NUEVO CON <0
            pid = Process.spawn('sudo shutdown -P now')
            begin
              Timeout.timeout(60) do
