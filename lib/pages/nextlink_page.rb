@@ -354,12 +354,12 @@ class NextLinkPage
         filterpath = ".//li/span/input[@name='filterSegment' and @value='#{filternumber}']"
         puts filterpath
         
-        if @browser.element(:xpath,filterpath).exists?
+        begin
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.element(:xpath,filterpath).click
           @browser.element(:xpath,"//button[@class='clear']").wait_until_present
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        else
+        rescue
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
           aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
@@ -367,7 +367,7 @@ class NextLinkPage
           aFile.write(htmlPage)
           aFile.close
         
-          puts "No existe filtro #{filternumber}"
+          puts "Fallo con filtro #{filternumber}"
           return
         end
       end
