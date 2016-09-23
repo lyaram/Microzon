@@ -137,6 +137,11 @@ class NextLinkPage
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         @browser.goto url 
         sleep 1
+
+      puts "Antes de clicar lang..."
+      titulo = @browser.title
+      puts(titulo)
+
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if descripcion.include? 'MiNube_Usuarios.Id_'
           jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
@@ -310,9 +315,7 @@ class NextLinkPage
         end
       end
       
-      puts "Antes de clicar lang..."
-      titulo = @browser.title
-      puts(titulo)
+
       
       allLangRadioButton = './/*[@name="filterLang" and @value="ALL"]'
       if @browser.element(:xpath,allLangRadioButton).exists?
