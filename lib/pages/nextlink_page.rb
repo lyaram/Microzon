@@ -139,7 +139,7 @@ class NextLinkPage
         sleep 1
 
       puts "Buscando ventana principal..."
-      br.windows.each do |w|
+      @browser.windows.each do |w|
         puts w.title
         unless w.title.include? 'Top Tips Before You Go - TripAdvisor'
           titulo = w.title
