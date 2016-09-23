@@ -316,6 +316,11 @@ class NextLinkPage
           @browser.element(:xpath,allLangRadioButton).click
         end
       end
+      
+      sleep 1
+      if @browser.title.include? 'Top Tips Before You Go'
+        @browser.window(:title, @browser.title).close
+      end
 
        #Desactivando filtro activo si lo si hay
        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
