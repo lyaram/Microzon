@@ -310,7 +310,9 @@ class NextLinkPage
         end
       end
       
-      titulo = b.title
+      puts "Antes de clicar lang..."
+      titulo = @browser.title
+      puts(titulo)
       
       allLangRadioButton = './/*[@name="filterLang" and @value="ALL"]'
       if @browser.element(:xpath,allLangRadioButton).exists?
@@ -321,7 +323,9 @@ class NextLinkPage
       
       
       sleep 1
-      while @browser.title != titulo
+      puts "Despues de clicar lang..."
+      puts(@browser.title )
+      if @browser.title != titulo
         @browser.window(:title, titulo).use
       end
 
