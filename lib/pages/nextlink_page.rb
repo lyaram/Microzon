@@ -309,7 +309,9 @@ class NextLinkPage
           @browser.element(:xpath,'//option[@id="selFilterAll"]').click
         end
       end
- 
+      
+      titulo = b.title
+      
       allLangRadioButton = './/*[@name="filterLang" and @value="ALL"]'
       if @browser.element(:xpath,allLangRadioButton).exists?
         if @browser.element(:xpath,allLangRadioButton).visible?
@@ -317,8 +319,11 @@ class NextLinkPage
         end
       end
       
-      sleep 1
-      if @browser.title.include? 'Top Tips Before You Go'
+      while @browser.title != titulo
+        sleep 1
+        puts 'cerrando ventana'
+        puts @browser.title
+        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.window(:title, @browser.title).close
       end
 
