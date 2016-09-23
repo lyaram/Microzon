@@ -319,12 +319,10 @@ class NextLinkPage
         end
       end
       
+      
+      sleep 1
       while @browser.title != titulo
-        sleep 1
-        puts 'cerrando ventana'
-        puts @browser.title
-        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        @browser.window(:title, @browser.title).close
+        @browser.window(:title, titulo).use
       end
 
        #Desactivando filtro activo si lo si hay
