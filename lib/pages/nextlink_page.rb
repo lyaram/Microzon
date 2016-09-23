@@ -138,9 +138,21 @@ class NextLinkPage
         @browser.goto url 
         sleep 1
 
-      puts "Antes de clicar lang..."
-      titulo = @browser.title
+      puts "Buscando ventana principal..."
+      br.windows.each do |w|
+        puts w.title
+        unless w.title.include? 'Top Tips Before You Go - TripAdvisor'
+          titulo = w.title
+        end
+      end
       puts(titulo)
+
+      sleep 1
+      puts "Organizando ventanas..."
+      puts(@browser.title )
+      if @browser.title != titulo
+        @browser.window(:title, titulo).use
+      end
 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if descripcion.include? 'MiNube_Usuarios.Id_'
@@ -317,7 +329,7 @@ class NextLinkPage
       
 
       sleep 1
-      puts "Despues de clicar lang..."
+      puts "Organizando ventanas..."
       puts(@browser.title )
       if @browser.title != titulo
         @browser.window(:title, titulo).use
@@ -332,7 +344,7 @@ class NextLinkPage
       end
 
       sleep 1
-      puts "Despues de clicar lang..."
+      puts "Organizando ventanas..."
       puts(@browser.title )
       if @browser.title != titulo
         @browser.window(:title, titulo).use
