@@ -489,6 +489,12 @@ class NextLinkPage
           end
           recargar = false
           
+          puts "Organizando ventanas..."
+          puts(@browser.title )
+          if @browser.title != titulo
+            @browser.window(:title, titulo).use
+          end
+
           @browser.element(:xpath,checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
