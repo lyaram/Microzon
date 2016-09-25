@@ -375,8 +375,9 @@ class NextLinkPage
        rescue 
         puts 'timeout esperando filtro'
        end
-       
-       filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
+
+       if @browser.element(:xpath,"//*[@id='ratingFilter']").exists?
+        filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
         filterpath = ".//li/span/input[@name='filterSegment' and @value='#{filternumber}']"
         puts filterpath
         
@@ -420,6 +421,7 @@ class NextLinkPage
           puts "Fallo con filtro #{filternumber}"
           return
         end
+       end
       end
       
  #Aplicar el siguiente codigo para ordenaciones por idioma en TA
