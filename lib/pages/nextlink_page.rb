@@ -497,7 +497,12 @@ class NextLinkPage
             @browser.window(:title, titulo).use
           end
 
-          @browser.element(:xpath,checkPageCompleted).wait_until_present
+          closeModal = '//*[@class="ui_close_x"]'
+          if @browser.element(:xpath,closeModal).exists?
+            @browser.element(:xpath,closeModal).click
+          end
+          
+         @browser.element(:xpath,checkPageCompleted).wait_until_present
           
           break if checkPageLoading==''
           
