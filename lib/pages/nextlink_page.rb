@@ -398,6 +398,9 @@ class NextLinkPage
               rescue
                 puts("Filter sin clicar...")
                 ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+                @browser.refresh
+                @browser.wait 60
+
               end
               if @browser.element(:xpath,chkdfilterpath).exists?
                 retries = 0
