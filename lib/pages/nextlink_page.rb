@@ -472,8 +472,14 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+    puts descripcion
+    newurl = @browser.url
+    puts newurl
+    newurl = newurl.gsub('-Reviews-','-Reviews-or' + descripcion.scan(/\.GotoTAPag(.*)\./)[0][0] + '-')
+    puts newurl
+    raise "Ver urls"
     if descripcion.include? '.GotoTAPag'
-      @browser.goto @browser.url.gsub('-Reviews-','-Reviews-or' + descripcion.scan(/\.GotoTAPag(.*)\./)[0][0]) + '-'
+      @browser.goto @browser.url.gsub('-Reviews-','-Reviews-or' + descripcion.scan(/\.GotoTAPag(.*)\./)[0][0] + '-')
       sleep 1
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
