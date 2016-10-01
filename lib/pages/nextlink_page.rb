@@ -490,11 +490,22 @@ class NextLinkPage
       @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
       sleep 3
       @browser.element(:xpath,"//*[text()='Sort by:']").click
+      scrollcount = 0
       while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
         puts "scrolling down"
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.send_keys :space
-        sleep 0.5
+        sleep 2
+        scrollcount += 1
+        if scrollcount > 100
+          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+          storePagePng stDT
+          aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
+          htmlPage=@browser.html
+          aFile.write(htmlPage)
+          aFile.close
+          raise "SCROLL FALLIDO"
+        end
       end
     end
 
