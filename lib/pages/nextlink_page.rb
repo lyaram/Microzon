@@ -480,6 +480,21 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
     
+    if descripcion.include? 'GMapsPlace.ID' 
+      puts "In GMapsPlace"
+      @browser.element(:xpath,"//*[@class='section-write-review-container']").click
+      sleep 1
+      puts "waiting reviews"
+      @browser.element(:xpath,"//*[@jsaction='pane.review.sortMenu']").wait_until_present
+      sleep 3
+      @browser.element(:xpath,"//*[text()='Sort by:']").click
+      while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
+        puts "scrolling down"
+        @browser.send_keys :space
+        sleep 0.5
+      end
+    end
+
     repeatPageCountDownMax = 30
     repeatPageCountDown = repeatPageCountDownMax
     
