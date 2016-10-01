@@ -482,14 +482,17 @@ class NextLinkPage
     
     if descripcion.include? 'GMapsPlace.ID' 
       puts "In GMapsPlace"
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       @browser.element(:xpath,"//*[@class='section-write-review-container']").click
       sleep 1
       puts "waiting reviews"
-      @browser.element(:xpath,"//*[@jsaction='pane.review.sortMenu']").wait_until_present
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
       sleep 3
       @browser.element(:xpath,"//*[text()='Sort by:']").click
       while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
         puts "scrolling down"
+        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.send_keys :space
         sleep 0.5
       end
