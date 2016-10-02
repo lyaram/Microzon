@@ -499,11 +499,11 @@ class NextLinkPage
         scrollcount += 1
         if scrollcount > 100
           stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-          storePagePng stDT
-          aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
+          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
           htmlPage=@browser.html
           aFile.write(htmlPage)
           aFile.close
+          storePagePng stDT
           raise "SCROLL FALLIDO"
         end
       end
