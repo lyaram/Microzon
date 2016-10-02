@@ -483,6 +483,10 @@ class NextLinkPage
     if descripcion.include? 'GMapsPlace.ID' 
       puts "In GMapsPlace"
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      div_scrollable_y = "//*[contains(@class,'scrollable-y')]"
+      scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollHeight'
+      div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
+       
       enlaceReviews = "//button[contains(translate(text(),'REVIEW','review'),'review')]"
       hayReviews = true
       puts @browser.element(:xpath,enlaceReviews).outer_html
