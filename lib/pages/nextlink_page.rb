@@ -486,12 +486,17 @@ class NextLinkPage
       enlaceReviews = "//*[contains(@jsaction,'reviewChart') and not(contains(@style,'display:none'))]"
       hayReviews = true
       begin
+        puts "esperando enlaceReviews"    ; $stdout.flush
         @browser.element(:xpath,enlaceReviews).wait_until_present
-      rescue
+      rescue Exception => e
+        puts "fallo enlaceReviews"    ; $stdout.flush
+        puts e.message    ; $stdout.flush
         hayReviews = false
       end
        
+      puts "esperando enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
+        puts "clicking enlaceReviews"    ; $stdout.flush
         @browser.element(:xpath,enlaceReviews).click
         sleep 1
         puts "waiting reviews"
