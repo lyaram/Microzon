@@ -491,7 +491,7 @@ class NextLinkPage
         hayReviews = false
       end
        
-      if hayReviews
+      if @browser.element(:xpath,enlaceReviews).visible?
         @browser.element(:xpath,enlaceReviews).click
         sleep 1
         puts "waiting reviews"
