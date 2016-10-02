@@ -483,7 +483,7 @@ class NextLinkPage
     if descripcion.include? 'GMapsPlace.ID' 
       puts "In GMapsPlace"
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      enlaceReviews = "//*[contains(@jsaction,'reviewChart') and not(contains(translate(@style,' ',''),'display:none'))]"
+      enlaceReviews = "//*[contains(@jsaction,'reviewChart') and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]"
       hayReviews = true
       puts @browser.element(:xpath,"//button[contains(text(),'review')]").outer_html
       begin
