@@ -484,8 +484,14 @@ class NextLinkPage
       puts "In GMapsPlace"
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       enlaceReviews = "//*[contains(@jsaction,'reviewChart') and not(contains(@style,'display:none'))]"
-      if @browser.element(:xpath,enlaceReviews).exists?
-        
+      hayReviews = true
+      begin
+        @browser.element(:xpath,enlaceReviews).wait_until_present
+      rescue
+        hayReviews = false
+      end
+       
+      if hayReviews
         @browser.element(:xpath,enlaceReviews).click
         sleep 1
         puts "waiting reviews"
