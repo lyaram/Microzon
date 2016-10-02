@@ -490,12 +490,12 @@ class NextLinkPage
       @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
       sleep 3
       div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
+      scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 200'
       scrollcount = 0
       while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
         puts "scrolling down"
-        puts div_with_scroll.document.scrollTop
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        div_with_scroll.document.scrollTop = div_with_scroll.document.scrollTop + 200
+        div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
         sleep 2
         scrollcount += 1
         if scrollcount > 100
