@@ -498,7 +498,7 @@ class NextLinkPage
         div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
         sleep 2
         scrollcount += 1
-        if scrollcount > 100
+        if scrollcount > 10000
           stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
           aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
           htmlPage=@browser.html
