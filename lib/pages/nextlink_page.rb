@@ -125,6 +125,9 @@ class NextLinkPage
       profile['network.proxy.socks_port'] = 9050
       profile['network.proxy.type'] = 1
     end
+    if descripcion.include? 'TAListMobile_'
+      profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
+    end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     @browser.window.resize_to(1024, 768)
     #@browser.driver.manage.timeouts.implicit_wait = 2
