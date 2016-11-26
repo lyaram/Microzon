@@ -558,7 +558,12 @@ class NextLinkPage
           puts "Organizando ventanas..."
           puts(@browser.title )
           if @browser.title != titulo
-            @browser.window(:title, titulo).use
+            #agregando esta condición para los casos que la ventana activa cambia el Título
+            if @browser.window(:title, titulo).exists?
+              @browser.window(:title, titulo).use
+            else
+              titulo = @browser.title
+            end
           end
 
           closeModal = '//*[@class="ui_close_x"]'
