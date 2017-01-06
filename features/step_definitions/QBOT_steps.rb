@@ -52,8 +52,11 @@ When /^QBot is surfing a webpage$/ do
     p1 = File.read('/var/lib/jenkins/Init/db/param1').gsub(/[^0-9A-Za-z]/, '')
     p2 = File.read('/var/lib/jenkins/Init/db/param2').gsub(/[^0-9A-Za-z]/, '')
 
-    Dir::mkdir('/volArchivoPNG/2017') if not File.directory?('/volArchivoPNG/2017')
-    File.chmod(0777, "/volArchivoPNG/2017")
+    unless File.directory?('/volArchivoPNG/2017')
+      puts("Creando carpeta 2017");
+      Dir::mkdir('/volArchivoPNG/2017')
+      File.chmod(0777, "/volArchivoPNG/2017")
+    end
     
     #codificando:
     # 1. Agregar Drone de lanzazamiento en tblLaunches y recoger el idLaunch generado
