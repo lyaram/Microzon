@@ -127,8 +127,8 @@ class NextLinkPage
     end
     if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') 
       profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
-    elsif descripcion.include?('BOOKING_HotelFicha.')
-      profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; GT-P5210 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'      
+#    elsif descripcion.include?('BOOKING_HotelFicha.')
+#      profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; GT-P5210 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'      
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     @browser.window.resize_to(1024, 768)
