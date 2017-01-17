@@ -817,16 +817,17 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      linkMore = './/*[@class="review_item_response_more"]'
-      reintentos = 10
-      while @browser.element(:xpath,linkMore).exists?
-        reintentos += -1
-        break if reintentos<0
-        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
-        @browser.send_keys :page_up
-        @browser.element(:xpath,linkMore).click
-        sleep 2
-      end
+## se anula esta parte del código pensada en la versión antigua de reviews de Booking, donde se veia la página completa y había que desplegar las respuestas
+#      linkMore = './/*[@class="review_item_response_more"]'
+#      reintentos = 10
+#      while @browser.element(:xpath,linkMore).exists?
+#        reintentos += -1
+#        break if reintentos<0
+#        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
+#        @browser.send_keys :page_up
+#        @browser.element(:xpath,linkMore).click
+#        sleep 2
+#      end
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
