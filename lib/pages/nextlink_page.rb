@@ -495,10 +495,10 @@ class NextLinkPage
       enlaceReviews = "//*[@jsaction='pane.rating.moreReviews']"
       hayReviews = true
       @browser.screenshot.save '/tmp/screen1.png'
-      File.open('/tmp/html1.htm', 'w') {|f| f.write b.html }
+      File.open('/tmp/html1.htm', 'w') {|f| f.write @browser.html }
       puts @browser.element(:xpath,enlaceReviews).outer_html
       @browser.screenshot.save '/tmp/screen2.png'
-      File.open('/tmp/html2.htm', 'w') {|f| f.write b.html }
+      File.open('/tmp/html2.htm', 'w') {|f| f.write @browser.html }
       begin
         puts "esperando enlaceReviews"    ; $stdout.flush
         @browser.element(:xpath,enlaceReviews).wait_until_present
@@ -509,7 +509,7 @@ class NextLinkPage
       end
        
       @browser.screenshot.save '/tmp/screen3.png'
-      File.open('/tmp/html3.htm', 'w') {|f| f.write b.html }
+      File.open('/tmp/html3.htm', 'w') {|f| f.write @browser.html }
       puts "go clicking enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
         puts "clicking enlaceReviews"    ; $stdout.flush
