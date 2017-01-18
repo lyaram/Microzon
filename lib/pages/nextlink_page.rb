@@ -492,7 +492,7 @@ class NextLinkPage
       scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollHeight'
       div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
        
-      enlaceReviews = "//button[contains(translate(text(),'REVIEW','review'),'review')]"
+      enlaceReviews = "(//button[contains(translate(text(),'REVIEW','review'),'review')])[1]"
       hayReviews = true
       puts @browser.element(:xpath,enlaceReviews).outer_html
       begin
