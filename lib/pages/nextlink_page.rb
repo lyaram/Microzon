@@ -490,7 +490,7 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       div_scrollable_y = @browser.element(:xpath,"//*[contains(@class,'scrollable-y')]")
       scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollHeight'
-      div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
+      #div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
        
       enlaceReviews = "//*[@jsaction='pane.rating.moreReviews']"
       hayReviews = true
