@@ -517,22 +517,29 @@ class NextLinkPage
         sleep 3
         div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
         scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 200'
-        scrollcount = 0
+        repeatscroll = 0
+        oldscrollheight = div_with_scroll.style("height") 
         while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
           puts "scrolling down"
+          puts("Scroll Height: #{div_with_scroll.style('height')}")
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
-          sleep 2
-          scrollcount += 1
-          if scrollcount > 10000
-            stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-            aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
-            htmlPage=@browser.html
-            aFile.write(htmlPage)
-            aFile.close
-            storePagePng stDT
-            raise "SCROLL FALLIDO"
-          end
+          sleep 20
+          if div_with_scroll.style("height") = oldscrollheight
+            repeatscroll += 1
+            if repeatscroll > 50
+              stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+              aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
+              htmlPage=@browser.html
+              aFile.write(htmlPage)
+              aFile.close
+              storePagePng stDT
+              raise "SCROLL FALLIDO"
+             end
+           else
+             repeatscroll = 0
+             oldscrollheight = div_with_scroll.style("height") 
+           end
         end
       end
     end
