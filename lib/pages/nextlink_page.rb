@@ -487,6 +487,13 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
     
+    if descripcion.include? 'GMapsPlaceReviews.ID' 
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      puts "In GMapsPlaceReviews"
+      sleep 5
+      @browser.element(:xpath,"//*[@class='_n0j']").wd.location_once_scrolled_into_view
+    end
+    
     if descripcion.include? 'GMapsPlaceFull.ID' 
       puts "In GMapsPlace"
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
