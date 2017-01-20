@@ -516,7 +516,7 @@ class NextLinkPage
         @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
         sleep 3
         div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
-        scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 10'
+        scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 25'
         repeatscroll = 0
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
         while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
