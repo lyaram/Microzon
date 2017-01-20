@@ -489,11 +489,11 @@ class NextLinkPage
     
     if descripcion.include? 'GMapsPlaceReviews.ID' 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      sleep 60
       puts "In GMapsPlaceReviews"
       
       retries = 10
       while retries > 0
-        sleep 5
         retries += -1
         
         todoOk = true
@@ -695,10 +695,8 @@ class NextLinkPage
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
-      unless descripcion.include? 'GMapsPlaceReviews.'
-        sleep 2
-        @browser.element(:xpath,checkPageCompleted).wait_until_present
-      end 
+      sleep 2
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
