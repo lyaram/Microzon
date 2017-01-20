@@ -525,7 +525,7 @@ class NextLinkPage
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
           sleep 20
-          if div_with_scroll.style("height") = oldscrollheight
+          if div_with_scroll.style("height") == oldscrollheight
             repeatscroll += 1
             if repeatscroll > 50
               stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
