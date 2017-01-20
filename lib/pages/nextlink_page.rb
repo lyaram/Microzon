@@ -518,16 +518,16 @@ class NextLinkPage
         div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
         scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 200'
         repeatscroll = 0
-        oldscrollheight = div_with_scroll.style("height") 
+        oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
         while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
           puts "scrolling down"
           puts("Scroll Height: #{div_with_scroll.style('height')}")
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
           sleep 20
-          if div_with_scroll.style("height") == oldscrollheight
+          if oldscrollheight == @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
             repeatscroll += 1
-            if repeatscroll > 50
+            if repeatscroll > 10
               stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
               aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
               htmlPage=@browser.html
@@ -538,7 +538,7 @@ class NextLinkPage
              end
            else
              repeatscroll = 0
-             oldscrollheight = div_with_scroll.style("height") 
+             oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
            end
         end
       end
