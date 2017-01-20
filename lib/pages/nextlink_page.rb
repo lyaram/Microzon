@@ -521,6 +521,7 @@ class NextLinkPage
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
         while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
           puts "scrolling down"
+          puts("Repeat scroll: #{repeatscroll}")
           puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
           puts("Scroll Height: #{@browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)}")
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
