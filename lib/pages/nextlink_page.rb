@@ -490,8 +490,30 @@ class NextLinkPage
     if descripcion.include? 'GMapsPlaceReviews.ID' 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       puts "In GMapsPlaceReviews"
-      sleep 5
-      @browser.element(:xpath,"//*[@class='_n0j']").wd.location_once_scrolled_into_view
+      
+      retries = 10
+      while retries > 0
+        sleep 5
+        retries += -1
+        
+        todoOk = true
+        begin
+          @browser.element(:xpath,"//*[@class='_n0j']").wait_until_present
+          @browser.element(:xpath,"(//*[@class='gws-plugins-local-reviews-client-basic-reviews_leaf_page__dialog-list']//g-review-stars)[1]").wait_until_present
+          if @browser.element(:xpath,"//*[text()='Next >']").exists?
+            @browser.element(:xpath,"(//*[@class='gws-plugins-local-reviews-client-basic-reviews_leaf_page__dialog-list']//g-review-stars)[10]").wait_until_present
+          end
+        rescue
+          todoOk = false
+          puts("Faltan elementos por cargar. Refresh!")
+          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          @browser.refresh
+          @browser.wait 60
+        end
+        if todoOk
+          retries = 0
+        end
+      end
     end
     
     if descripcion.include? 'GMapsPlaceFull.ID' 
