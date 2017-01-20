@@ -568,6 +568,7 @@ class NextLinkPage
             @browser.wait 60
           end
           if todoOk
+            @browser.element(:xpath,nextlink).wd.location_once_scrolled_into_view
             retries = 0
           end
         end
