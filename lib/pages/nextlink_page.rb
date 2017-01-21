@@ -521,27 +521,41 @@ class NextLinkPage
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
         while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
           puts "scrolling down"
-          puts("Repeat scroll: #{repeatscroll}")
+#          puts("Repeat scroll: #{repeatscroll}")
+#          puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
+#          puts("Scroll Height: #{@browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)}")
+#          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+#          div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
+#          sleep 1
+#          if oldscrollheight == @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
+#            repeatscroll += 1
+#            if repeatscroll > 300
+#              stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+#              aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
+#              htmlPage=@browser.html
+#              aFile.write(htmlPage)
+#              aFile.close
+#              storePagePng stDT
+#              raise "SCROLL FALLIDO"
+#             end
+#           else
+#             repeatscroll = 0
+#             oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
+#           end
+
           puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
           puts("Scroll Height: #{@browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)}")
-          ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          div_with_scroll.browser.execute_script(scroll_top_script, div_with_scroll)
-          sleep 1
-          if oldscrollheight == @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
+          oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
+          div_with_scroll.send_keys [:control, :end]
+          repeatscroll = 0
+          while oldscrollheight == @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
             repeatscroll += 1
-            if repeatscroll > 300
-              stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-              aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
-              htmlPage=@browser.html
-              aFile.write(htmlPage)
-              aFile.close
-              storePagePng stDT
+            sleep 5
+            if repeatscroll > 20
               raise "SCROLL FALLIDO"
-             end
-           else
-             repeatscroll = 0
-             oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)
-           end
+            end
+          end
+          
         end
       end
     end
