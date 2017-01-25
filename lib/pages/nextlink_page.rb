@@ -125,7 +125,7 @@ class NextLinkPage
       profile['network.proxy.socks_port'] = 9050
       profile['network.proxy.type'] = 1
     end
-    if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') 
+    if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_') 
       profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
     elsif descripcion.include?('GPlus_About.')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 3.0.1; en-us; GT-P7100 Build/HRI83) AppleWebkit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13'
