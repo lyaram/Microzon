@@ -131,6 +131,8 @@ class NextLinkPage
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 3.0.1; en-us; GT-P7100 Build/HRI83) AppleWebkit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13'
     elsif descripcion.include?('GMapsPlaceReviews.')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 1.6; es-es; SonyEricssonX10i Build/R1FA016) AppleWebKit/528.5 (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1'      
+    elsif descripcion.include?('GMapsPlaceFull.')
+      profile['general.useragent.override']='Mozilla/5.0 (compatible; Googlebot/2.1; http://www.google.com/bot.html)'      
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     @browser.window.resize_to(1024, 768)
