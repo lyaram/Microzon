@@ -497,7 +497,7 @@ class NextLinkPage
       #div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
        
       enlaceReviews = "(//*[@jsaction='pane.rating.moreReviews' or contains(@jsaction,'pane.reviewChart.moreReviews')])[last()]"
-      boton = = @browser.element(:xpath,enlaceReviews)
+      boton = @browser.element(:xpath,enlaceReviews)
       @browser.execute_script('arguments[0].scrollIntoView();', boton)
       
       hayReviews = true
