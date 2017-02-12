@@ -150,7 +150,7 @@ class NextLinkPage
         #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
         puts 'URL Final: ' + @browser.url
-        @browser.screenshot.save '/tmp/001.png'
+        #@browser.screenshot.save '/tmp/001.png'
 
       puts "Buscando ventana principal..."
       titulo = @browser.title
@@ -496,6 +496,9 @@ class NextLinkPage
     end
     
     if descripcion.include? 'GMapsLoc.ID'
+      if(@browser.url.split(//).last(3).join==',4z')
+        raise 'FALLO DE CARGA URL GMAPS'
+      end
       sleep 5
       @browser.screenshot.save '/tmp/preclick.png'
       elemento = @browser.driver.find_element(:xpath, '//body')
