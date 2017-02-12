@@ -146,8 +146,8 @@ class NextLinkPage
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         puts 'URL Original: ' + url 
-        #@browser.goto url
-        @browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
+        @browser.goto url
+        #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
         puts 'URL Final: ' + @browser.url
         @browser.screenshot.save '/tmp/001.png'
