@@ -319,6 +319,7 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      
       #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
       if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
       	if @browser.element(:xpath,'//option[@id="selFilterAll"]').visible?
@@ -491,10 +492,13 @@ class NextLinkPage
     end
     
     if descripcion.include? 'GMapsLoc.ID'
+      sleep 5
+      @browser.screenshot.save '/tmp/preclick.png'
       elemento = @browser.driver.find_element(:xpath, '//body')
       @browser.driver.action.move_to(elemento, 640, 476).perform
       @browser.driver.action.click.perform
       sleep 5
+      @browser.screenshot.save '/tmp/postclick.png'
     end
     
     if descripcion.include? 'GMapsPlaceFull.ID' 
