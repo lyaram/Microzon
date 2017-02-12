@@ -145,8 +145,10 @@ class NextLinkPage
       begin
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
+        puts 'URL Original: ' + url 
         @browser.goto url 
-        sleep 1
+        sleep 3
+        puts 'URL Final: ' + @browser.url
 
       puts "Buscando ventana principal..."
       titulo = @browser.title
