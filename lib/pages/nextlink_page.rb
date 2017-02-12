@@ -489,6 +489,13 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
     
+    if descripcion.include? 'GMapsLoc.ID'
+      elemento = @browser.driver.find_element(:xpath, '//body')
+      @browser.driver.action.move_to(elemento, 480, 335).perform
+      @browser.driver.action.click.perform
+      sleep 5
+    end
+    
     if descripcion.include? 'GMapsPlaceFull.ID' 
       puts "In GMapsPlace"
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
