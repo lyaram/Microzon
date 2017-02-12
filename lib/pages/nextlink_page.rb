@@ -149,6 +149,7 @@ class NextLinkPage
         @browser.goto url 
         sleep 3
         puts 'URL Final: ' + @browser.url
+        @browser.screenshot.save '/tmp/001.png'
 
       puts "Buscando ventana principal..."
       titulo = @browser.title
