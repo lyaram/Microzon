@@ -135,7 +135,8 @@ class NextLinkPage
       profile['general.useragent.override']='Mozilla/5.0 (compatible; Googlebot/2.1; http://www.google.com/bot.html)'      
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
-    @browser.window.resize_to(1024, 768)
+    #@browser.window.resize_to(1024, 768)
+    @browser.window.resize_to(1280, 1024)
     #@browser.driver.manage.timeouts.implicit_wait = 2
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -491,7 +492,7 @@ class NextLinkPage
     
     if descripcion.include? 'GMapsLoc.ID'
       elemento = @browser.driver.find_element(:xpath, '//body')
-      @browser.driver.action.move_to(elemento, 480, 335).perform
+      @browser.driver.action.move_to(elemento, 640, 476).perform
       @browser.driver.action.click.perform
       sleep 5
     end
