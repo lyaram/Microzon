@@ -150,7 +150,6 @@ class NextLinkPage
         #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
         puts 'URL Final: ' + @browser.url
-        @browser.screenshot.save '/tmp/001.png'
 
       puts "Buscando ventana principal..."
       titulo = @browser.title
@@ -183,7 +182,6 @@ class NextLinkPage
           sleep 1
         end
 
-        @browser.screenshot.save '/tmp/002.png'
 
         puts 'comprobando descripcion ... ' + descripcion  ; $stdout.flush
         if descripcion.include? 'CampingsOnline_PlaceList.'
@@ -206,7 +204,6 @@ class NextLinkPage
         end
       end
 
-        @browser.screenshot.save '/tmp/003.png'
   
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -240,7 +237,7 @@ class NextLinkPage
       end
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        @browser.screenshot.save '/tmp/004.png'
+
 
       if descripcion.include? 'EuroRelais_ReviewList.'
         begin
@@ -260,7 +257,6 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       end
-        @browser.screenshot.save '/tmp/005.png'
 
       if descripcion.include? 'Airbnb_PlaceList.'
         begin
@@ -290,7 +286,6 @@ class NextLinkPage
           end
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        @browser.screenshot.save '/tmp/006.png'
 
           if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
             @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
@@ -325,9 +320,7 @@ class NextLinkPage
     
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        @browser.screenshot.save '/tmp/007.png'
       @browser.element(:xpath,checkPageCompleted).wait_until_present
-        @browser.screenshot.save '/tmp/008.png'
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -493,7 +486,6 @@ class NextLinkPage
 #      sleep 3      
 #    end
 
-         @browser.screenshot.save '/tmp/009.png'
      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     if descripcion.include? '.GotoTAPag'

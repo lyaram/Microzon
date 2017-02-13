@@ -135,21 +135,26 @@ When /^QBot is surfing a webpage$/ do
           checkPageCompleted = rs[3]
           checkPageLoading = rs[4]
           maxPages = rs[5].to_i
-
-          page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
-          con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
           
-          updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-         con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+          hayfallos = false
+          begin
+            page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
+            
+            updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+            con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+          rescue
+            hayfallos = true
+          end
          
          puts('CARGA DE SISTEMA:');puts(IO.read('/proc/loadavg'));$stdout.flush
          sobrecarga = (IO.read('/proc/loadavg').split[1].to_f>1.05)
          break if sobrecarga
          
          
-         #Codigo para autodestruir al llegar al countdown
-         while (resetCountDown<=0)
-           pid = Process.spawn('sudo shutdown -P now')
+         #Codigo para autodestruir al llegar al countdown o si hay fallo en el lanzamiento
+         while (resetCountDown<=0 || hayfallos)
+           pid = Process.spawn('sudo shutdown -P 1')
            begin
              Timeout.timeout(60) do
                puts 'waiting for the process to end'
