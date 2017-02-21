@@ -226,18 +226,22 @@ class NextLinkPage
 
       if url.include? 'ShowUserReviews-'
         puts 'en showusersreviews'; $stdout.flush
-          while @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').exists?
+          while @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').exists?
             puts 'go click page 1'; $stdout.flush
-            @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').click
+            @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').click
             puts 'clicked'; $stdout.flush
+            
+            closeModal = '//*[@class="ui_close_x"]'
+            if @browser.element(:xpath,closeModal).exists?
+             puts 'ventana modal'; $stdout.flush
+             @browser.element(:xpath,closeModal).click
+             puts 'click modal'; $stdout.flush
+            end
+            
             sleep 3
             puts 'waited 3'; $stdout.flush
           end    
           puts 'end page1'; $stdout.flush
-          closeModal = '//*[@class="ui_close_x"]'
-          if @browser.element(:xpath,closeModal).exists?
-            @browser.element(:xpath,closeModal).click
-          end
 
       end
 
