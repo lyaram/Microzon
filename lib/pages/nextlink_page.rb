@@ -225,10 +225,15 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if url.include? 'ShowUserReviews-'
+        puts 'en showusersreviews'; $stdout.flush
           while @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').exists?
+            puts 'go click page 1'; $stdout.flush
             @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').click
+            puts 'clicked'; $stdout.flush
             sleep 3
-          end        
+            puts 'waited 3'; $stdout.flush
+          end    
+          puts 'end page1'; $stdout.flush
           closeModal = '//*[@class="ui_close_x"]'
           if @browser.element(:xpath,closeModal).exists?
             @browser.element(:xpath,closeModal).click
