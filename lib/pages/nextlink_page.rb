@@ -224,6 +224,15 @@ class NextLinkPage
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      if url.include? 'ShowUserReviews-'
+          while @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').exists?
+            @browser.element(:xpath,'.//*[@id="REVIEWS"]//a[@data-page-number="1"]').click
+            sleep 3
+          end        
+      end
+
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       if descripcion.include? 'Eurocampings_ReviewList.'
         begin
           while @browser.element(:xpath,'descendant-or-self::*[contains(concat(" ", normalize-space(@class), " "), " fancybox-item ") and (contains(concat(" ", normalize-space(@class), " "), " fancybox-close "))]').exists?
