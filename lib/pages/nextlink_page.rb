@@ -356,12 +356,12 @@ class NextLinkPage
       end
       
 
-      sleep 1
-      puts "Organizando ventanas..."
-      puts(@browser.title )
-      if @browser.title != titulo
-        @browser.window(:title, titulo).use
-      end
+      #sleep 1
+      #puts "Organizando ventanas..."
+      #puts(@browser.title )
+      #if @browser.title != titulo
+      #  @browser.window(:title, titulo).use
+      #end
       
       
       allLangRadioButton = './/*[@name="filterLang" and @value="ALL"]'
