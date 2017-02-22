@@ -84,7 +84,7 @@ When /^QBot is surfing a webpage$/ do
       puts idLaunch
 
       pillamientos = 0
-      resetCountDown = 50 #en TA con muchas fichas poner a 5 para evitar bloqueos
+      resetCountDown = 500 #en TA con muchas fichas poner a 5 para evitar bloqueos
       
       loop do
         ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
