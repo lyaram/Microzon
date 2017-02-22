@@ -407,7 +407,7 @@ class NextLinkPage
       end
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      if descripcion.include? '.TAFilterSegment'
+      if descripcion.include? '.TAFilterSegment' 
        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        
       puts("Ventanas: #{@browser.windows.count}")
@@ -814,7 +814,7 @@ class NextLinkPage
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       linkMore = '//*[@id="REVIEWS"]//div[starts-with(@id,"review_")]//span[contains(@class,"taLnk") and contains(text(),"More") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
-      if descripcion.include? '.TAFilterSegment' 
+      if descripcion.include? '.TAFilterSegment' || descripcion.include? '.TANoMore.'
         linkMore = '/nada'
       end
       reintentos = 50
