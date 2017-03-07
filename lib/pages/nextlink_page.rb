@@ -512,6 +512,13 @@ class NextLinkPage
 
      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+    if descripcion.include? '.GoToFirstReview.'
+      @browser.element(:xpath,"(//*[@id='REVIEWS']//div[starts-with(@id,'review_')]/div[not(@style='display: none;')]//div[starts-with(@class,'quote')]/a)[1]").click
+      sleep 3
+      maxPage = maxPage * 2
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+    end
+
     if descripcion.include? '.GotoTAPag'
       newurl = @browser.url
       newurl = newurl.gsub('-Reviews-','-Reviews-or' + descripcion.scan(/\.GotoTAPag(.*)\./)[0][0] + '-')
