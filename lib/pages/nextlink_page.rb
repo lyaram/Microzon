@@ -549,7 +549,7 @@ class NextLinkPage
       scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollHeight'
       #div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
        
-      enlaceReviews = "(//*[@jsaction='pane.rating.moreReviews' or (contains(@jsaction,'pane.reviewChart.moreReviews') and not(ancestor::*[contains(@class,'write-review')]))])[last()]"
+      enlaceReviews = "(//*[@jsaction='pane.rating.moreReviews' or ((contains(@jsaction,'pane.reviewChart.moreReviews') or contains(@jsaction,'entity.mobile.seeMoreReviews')) and not(ancestor::*[contains(@class,'write-review')]))])[last()]"
       boton = @browser.element(:xpath,enlaceReviews)
       @browser.execute_script('arguments[0].scrollIntoView();', boton)
       
