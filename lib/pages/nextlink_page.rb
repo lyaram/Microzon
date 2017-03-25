@@ -528,6 +528,11 @@ class NextLinkPage
       sleep 1
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
+
+    if descripcion.include? 'Facebook_Ficha.'
+      @browser.element(:xpath,"//*[@id='u_0_u']/span").click
+      sleep 3
+    end
     
     if descripcion.include? 'GMapsLoc.ID'
       if(@browser.url.split(//).last(3).join==',4z')
