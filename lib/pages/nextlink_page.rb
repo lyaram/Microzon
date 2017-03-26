@@ -533,7 +533,7 @@ class NextLinkPage
 
     if descripcion.include? 'Facebook_Ficha.'
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      codigoestrella = @browser.element(:xpath,'.//*[contains(@href,"choose_merge_or_claim")]/../..').outer_html
+      codigoestrella = @browser.element(:xpath,".//h1/../../../..//div[@class='clearfix']").outer_html
       puts codigoestrella
       sleep 10
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
