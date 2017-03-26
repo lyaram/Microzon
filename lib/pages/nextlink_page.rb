@@ -530,8 +530,9 @@ class NextLinkPage
     end
 
     if descripcion.include? 'Facebook_Ficha.'
-      if @browser.element(:xpath,'//div[./div/div/div/h1]//*[./span/span/text()="★"]').exists?
-        @browser.element(:xpath,'//div[./div/div/div/h1]//*[./span/span/text()="★"]').click
+      puts @browser.element(:xpath,'.//*[contains(@href,"choose_merge_or_claim")]/../..').inner_html
+      if @browser.element(:xpath,'//div[./div/div/div/h1]//*[contains(./span/span/text(),"&#9733;")]').exists?
+        @browser.element(:xpath,'//div[./div/div/div/h1]//*[contains(./span/span/text(),"&#9733;")]').click
         sleep 3
       end
     end
