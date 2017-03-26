@@ -530,8 +530,10 @@ class NextLinkPage
     end
 
     if descripcion.include? 'Facebook_Ficha.'
-      @browser.element(:xpath,"//*[@id='u_0_u']/span").click
-      sleep 3
+      if @browser.element(:xpath,'//div[./div/div/div/h1]//*[./span/span/text()="★"]').exists?
+        @browser.element(:xpath,'//div[./div/div/div/h1]//*[./span/span/text()="★"]').click
+        sleep 3
+      end
     end
     
     if descripcion.include? 'GMapsLoc.ID'
