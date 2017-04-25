@@ -126,7 +126,8 @@ class NextLinkPage
       profile['network.proxy.type'] = 1
     end
     if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_') 
-      profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
+      #profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
+      profile['general.useragent.override']='Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3'
     elsif descripcion.include?('GPlus_About.')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 3.0.1; en-us; GT-P7100 Build/HRI83) AppleWebkit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13'
     elsif descripcion.include?('GMapsPlaceReviews.')
@@ -533,10 +534,10 @@ class NextLinkPage
 
     if descripcion.include? 'Facebook_Ficha.'
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      codigoestrella = @browser.element(:xpath,".//h1/../../../..//div[@class='clearfix']").outer_html
-      puts codigoestrella
-      sleep 10
-      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      #codigoestrella = @browser.element(:xpath,".//h1/../../../..//div[@class='clearfix']").outer_html
+      #puts codigoestrella
+      #sleep 10
+      #ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       if @browser.element(:xpath,"//div[starts-with(@class,'lfloat')]//*[@tabindex]/span").exists?
         @browser.element(:xpath,"//div[starts-with(@class,'lfloat')]//*[@tabindex]/span").click
         sleep 3
