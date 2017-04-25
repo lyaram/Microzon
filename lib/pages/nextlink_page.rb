@@ -350,7 +350,19 @@ class NextLinkPage
     
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      reintentos = 0
+      if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_')
+        reintentos = 5
+      end
+      begin
+        reintentos += -1
+        @browser.element(:xpath,checkPageCompleted).wait_until_present
+      rescue
+        puts "FALLO #{reintentos}"
+        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        raise 'FALLO checkPageCompleted' if reintentos<=0
+        retry
+      end
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
