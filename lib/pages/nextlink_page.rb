@@ -139,7 +139,11 @@ class NextLinkPage
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     #@browser.window.resize_to(1024, 768)
-    @browser.window.resize_to(1280, 1024)
+    if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_')
+      @browser.window.resize_to(640, 1136)
+    else
+      @browser.window.resize_to(1280, 1024)
+    end
     #@browser.driver.manage.timeouts.implicit_wait = 2
 
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
