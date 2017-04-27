@@ -661,6 +661,10 @@ class NextLinkPage
     loop do
       @numPag += 1
       
+      if descripcion.include? '.ManualPaging.' 
+        @browser.goto "#{url}#{@numPag}"
+      end
+      
       if descripcion.include? 'GMapsPlaceReviews.ID' 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         sleep 60
@@ -1078,23 +1082,26 @@ class NextLinkPage
         break if reintentos<=0
         retry
       end
-      break if nextlink==''
-      break if !@browser.element(:xpath,nextlink).exists?
       
-      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-      reintentos = 3
-      begin
-        reintentos += -1
-        puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
-        @browser.element(:xpath,nextlink).wd.location_once_scrolled_into_view
-        @browser.send_keys :page_up
-        @browser.element(:xpath,nextlink).click
-        sleep 2
-      rescue Exception
-        puts $!, $@
-        if reintentos>0
-          retry
+      unless descripcion.include? '.ManualPaging.' 
+        break if nextlink==''
+        break if !@browser.element(:xpath,nextlink).exists?
+        
+        ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+  
+        reintentos = 3
+        begin
+          reintentos += -1
+          puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
+          @browser.element(:xpath,nextlink).wd.location_once_scrolled_into_view
+          @browser.send_keys :page_up
+          @browser.element(:xpath,nextlink).click
+          sleep 2
+        rescue Exception
+          puts $!, $@
+          if reintentos>0
+            retry
+          end
         end
       end
 
