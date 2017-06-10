@@ -87,7 +87,7 @@ When /^QBot is surfing a webpage$/ do
       resetCountDown = 5001 #en TA con muchas fichas poner a 5 para evitar bloqueos
       
       loop do
-        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=123 and time_stamp > '2015-12-21';"
+        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
         
