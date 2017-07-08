@@ -710,7 +710,9 @@ class NextLinkPage
           end
           recargar = false
           
-          puts "Organizando ventanas..."
+       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+         puts "Organizando ventanas..."
           puts(@browser.title )
           if @browser.title != titulo
             #agregando esta condición para los casos que la ventana activa cambia el Título
@@ -721,15 +723,23 @@ class NextLinkPage
             end
           end
 
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
           closeModal = '//*[@class="ui_close_x"]'
           if @browser.element(:xpath,closeModal).exists?
             @browser.element(:xpath,closeModal).click
           end
+
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           
          @browser.element(:xpath,checkPageCompleted).wait_until_present
           
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
           break if checkPageLoading==''
           
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
           if descripcion.include? 'Airbnb_PlaceList.'
              sleep 10
           end
@@ -737,6 +747,8 @@ class NextLinkPage
           if !@browser.element(:xpath,checkPageLoading).exists?
             break
           end
+
+      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           if reintentos<=0  
             sigueprobando = false
