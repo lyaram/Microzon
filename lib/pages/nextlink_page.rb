@@ -238,7 +238,7 @@ class NextLinkPage
             @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').click
             puts 'clicked'; $stdout.flush
             
-            closeModal = '//*[@class="ui_close_x"]'
+            closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
             if @browser.element(:xpath,closeModal).exists?
              puts 'ventana modal'; $stdout.flush
              @browser.element(:xpath,closeModal).click
@@ -834,7 +834,7 @@ class NextLinkPage
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      closeModal = '//*[@class="ui_close_x"]'
+      closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
       if @browser.element(:xpath,closeModal).exists?
         @browser.element(:xpath,closeModal).click
       end
@@ -851,7 +851,7 @@ class NextLinkPage
 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
-        closeModal = '//*[@class="ui_close_x"]'
+        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
         if @browser.element(:xpath,closeModal).exists?
           @browser.element(:xpath,closeModal).click
         end
@@ -911,7 +911,7 @@ class NextLinkPage
           sleep 2
         end
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        closeModal = '//*[@class="ui_close_x"]'
+        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
         if @browser.element(:xpath,closeModal).exists?
           sleep 5
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -961,7 +961,7 @@ class NextLinkPage
           sleep 2
         end
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        closeModal = '//*[@class="ui_close_x"]'
+        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
         if @browser.element(:xpath,closeModal).exists?
           sleep 5
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
