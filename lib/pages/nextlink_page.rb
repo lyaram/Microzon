@@ -546,6 +546,16 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
 
+    if descripcion.include? '.GotoTALastVisitPage.'
+      raise "No hay página configurada para 'GotoTALastVisitPage'" if con.query("select count(*) from tblLastPage").fetch_row.first.to_i == 0
+      lastpage = con.query("select lastpage from tblLastPage").fetch_row.first
+      newurl = @browser.url
+      newurl = newurl.gsub('-Reviews-','-Reviews-or' + lastpage + '0-')
+      @browser.goto newurl
+      sleep 1
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+    end
+
      ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     if descripcion.include? 'Facebook_Ficha.'
@@ -1073,6 +1083,7 @@ class NextLinkPage
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      con.query("DELETE FROM tblLastPage;")
       break if @numPag>=maxPage
 
 	  if descripcion.include? 'Hotels_Ficha.'
@@ -1099,6 +1110,8 @@ class NextLinkPage
         break if nextlink==''
         break if !@browser.element(:xpath,nextlink).exists?
         
+        con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
+
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
         reintentos = 3
