@@ -547,7 +547,7 @@ class NextLinkPage
     end
 
     if descripcion.include? '.GotoTALastVisitPage.'
-      raise "No hay página configurada para 'GotoTALastVisitPage'" if con.query("select count(*) from tblLastPage").fetch_row.first.to_i == 0
+      raise "No hay pagina configurada para 'GotoTALastVisitPage'" if con.query("select count(*) from tblLastPage").fetch_row.first.to_i == 0
       lastpage = con.query("select lastpage from tblLastPage").fetch_row.first
       newurl = @browser.url
       newurl = newurl.gsub('-Reviews-','-Reviews-or' + lastpage + '0-')
