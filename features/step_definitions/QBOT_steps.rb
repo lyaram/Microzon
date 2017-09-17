@@ -148,7 +148,7 @@ When /^QBot is surfing a webpage$/ do
           end
          
          puts('CARGA DE SISTEMA:');puts(IO.read('/proc/loadavg'));$stdout.flush
-         sobrecarga = (IO.read('/proc/loadavg').split[2].to_f>1.05)
+         sobrecarga = (IO.read('/proc/loadavg').split[2].to_f>1.20)
          break if sobrecarga
          
          
