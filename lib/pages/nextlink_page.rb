@@ -1096,7 +1096,9 @@ class NextLinkPage
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      con.query("DELETE FROM tblLastPage;")
+      if descripcion.include? '.GotoTALastVisitPage.'
+        con.query("DELETE FROM tblLastPage;")
+      end
       break if @numPag>=maxPage
 
 	  if descripcion.include? 'Hotels_Ficha.'
@@ -1123,7 +1125,9 @@ class NextLinkPage
         break if nextlink==''
         break if !@browser.element(:xpath,nextlink).exists?
         
-        con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
+        if descripcion.include? '.GotoTALastVisitPage.'
+          con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
+        end
 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
