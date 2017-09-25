@@ -459,7 +459,7 @@ class NextLinkPage
             @browser.element(:xpath,"#{filterpath}/@checked").wait_until_present
           rescue
             puts "FALLO #{reintentos}"
-            ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             raise 'FALLO Filter Checked' if reintentos<=0
             retry
           end
@@ -470,7 +470,6 @@ class NextLinkPage
 
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           
-          archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           
         rescue => error
