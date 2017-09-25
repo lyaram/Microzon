@@ -454,7 +454,7 @@ class NextLinkPage
           begin
             reintentos += -1
             ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            filterlink = @browser.element(:xpath,filterpath)
+            filterlink = @browser.element(:xpath,"//*[@class='pagination-details']")
             @browser.execute_script('arguments[0].scrollIntoView();', filterlink)
 
             @browser.element(:xpath,filterpath).click
@@ -462,6 +462,8 @@ class NextLinkPage
             @browser.element(:xpath,"#{filterpath}/@checked").wait_until_present
           rescue
             puts "FALLO #{reintentos}"
+            puts("Ventanas: #{@browser.windows.count}")
+            puts("Titulo:   #{@browser.title}")
             archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             raise 'FALLO Filter Checked' if reintentos<=0
             retry
