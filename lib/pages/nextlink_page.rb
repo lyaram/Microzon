@@ -458,7 +458,10 @@ class NextLinkPage
           @browser.element(:xpath,chkdfilterpath).wait_while_present
 
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          
+          archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+          
         rescue => error
           puts("ERROR:")
           puts("Error.class: #{error.class}")
@@ -660,10 +663,14 @@ class NextLinkPage
     loop do
       @numPag += 1
       
+      archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       if descripcion.include? '.ManualPaging.' 
         @browser.goto "#{url}#{@numPag}"
       end
       
+      archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       if descripcion.include? 'GMapsPlaceReviews.ID' 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         sleep 60
@@ -836,6 +843,8 @@ class NextLinkPage
       
       ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
       if @browser.element(:xpath,closeModal).exists?
         if @browser.element(:xpath,closeModal).visible?
@@ -864,6 +873,8 @@ class NextLinkPage
 
         ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
+
+      archivandoTraza; ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
         sleep 30
@@ -1257,6 +1268,22 @@ class NextLinkPage
     FileUtils.rm screenshot
   end
   
+  def archivandoTraza
+    stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+    storePageDebugHtml stDT
+    storePagePng stDT
+    puts("Archivando Traza (#{stDT})")
+  end
+  
+  def storePageDebugHtml strDT
+
+    htmFile = "/volHTML/debug/" + strDT + ".htm"
+    aFile = File.new(htmFile, "w")
+    aFile.write(@browser.html)
+    aFile.close
+
+  end
+
   def storePageHtml idLaunch, idCaptura, strDT
     
     folderCaptura = "/volHTML/" + idLaunch + "/" + idCaptura + "/" 
