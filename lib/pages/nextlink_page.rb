@@ -451,13 +451,13 @@ class NextLinkPage
           
           
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          filterlink = @browser.element(:xpath,"//*[@class='pagination-details']")
-          @browser.execute_script('arguments[0].scrollIntoView();', filterlink)
+          @browser.execute_script('arguments[0].scrollIntoView();', filterpath)
           @browser.element(:xpath,filterpath).click
           reintentos = 5
           begin
             reintentos += -1
 
+            ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             @browser.wait 1
             chkdfilterpath = "//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]"
             @browser.element(:xpath,chkdfilterpath).wait_while_present
