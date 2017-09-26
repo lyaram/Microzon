@@ -449,11 +449,12 @@ class NextLinkPage
           puts("Ventanas: #{@browser.windows.count}")
           puts("Titulo:   #{@browser.title}")
           
-          # wrrev = b.element(:xpath,"//a[contains(@class,'write_review')]")
-          b.execute_script('arguments[0].scrollIntoView();', filterpath)
-          b.send_keys :arrow_up
-          b.send_keys :arrow_up
-          b.send_keys :arrow_up
+          wrrev = @browser.element(:xpath,"//a[contains(@class,'write_review')]")
+          @browser.execute_script('arguments[0].scrollIntoView();', filterpath)
+          
+          #@browser.send_keys :arrow_up
+          #@browser.send_keys :arrow_up
+          #@browser.send_keys :arrow_up
 
           ahora = Time.now; tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.element(:xpath,filterpath).click
