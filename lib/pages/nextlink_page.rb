@@ -1298,10 +1298,14 @@ class NextLinkPage
   end
   
   def archivandoTraza
-    stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-    storePageDebugHtml stDT
-    storePagePng stDT
-    puts("Archivando Traza (#{stDT})")
+    begin
+      stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+      storePageDebugHtml stDT
+      storePagePng stDT
+      puts("Archivando Traza (#{stDT})")
+    rescue
+      puts("Fallo ArchivandoTraza")
+    end
   end
   
   def storePageDebugHtml strDT
