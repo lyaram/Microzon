@@ -1163,7 +1163,11 @@ class NextLinkPage
           reintentos += -1
           puts '@browser.element(:xpath,nextlink).click.Retries:' + reintentos.to_s ; $stdout.flush
           @browser.element(:xpath,nextlink).wd.location_once_scrolled_into_view
-          @browser.send_keys :page_up
+          begin
+            @browser.send_keys :page_up
+          rescue
+            puts("NoPageUP")
+          end
           @browser.element(:xpath,nextlink).click
           sleep 2
         rescue Exception
