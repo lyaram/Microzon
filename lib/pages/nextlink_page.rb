@@ -637,7 +637,7 @@ class NextLinkPage
         scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 25'
         repeatscroll = 0
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
-        while @browser.element(:xpath,"//*[contains(@class,'section-loading')]").exists?
+        while @browser.element(:xpath,"//*[contains(@class,'section-loading') and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?
           puts "scrolling down"
 #          puts("Repeat scroll: #{repeatscroll}")
 #          puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
