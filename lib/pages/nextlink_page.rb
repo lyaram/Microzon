@@ -637,6 +637,7 @@ class NextLinkPage
         scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 25'
         repeatscroll = 0
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
+        begin
         while @browser.element(:xpath,"//*[contains(@class,'section-loading') and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?
           puts "scrolling down"
 #          puts("Repeat scroll: #{repeatscroll}")
@@ -682,6 +683,10 @@ class NextLinkPage
           end
           
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        end
+        rescue Exception => e
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          puts e.message    ; $stdout.flush
         end
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
