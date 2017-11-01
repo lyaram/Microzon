@@ -623,6 +623,9 @@ class NextLinkPage
         puts e.message    ; $stdout.flush
         hayReviews = false
       end
+
+      @browser.execute_script('arguments[0].scrollIntoView();', boton)
+      @browser.send_keys :page_up
        
       puts "go clicking enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
