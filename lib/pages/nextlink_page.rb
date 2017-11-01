@@ -632,13 +632,18 @@ class NextLinkPage
         puts "waiting reviews"
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         sleep 3
         div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollTop + 25'
         repeatscroll = 0
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         begin
         while @browser.element(:xpath,"//*[contains(@class,'section-loading') and not(ancestor-or-self::*[contains(translate(@style,' ',''),'display:none')])]").exists?
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           puts "scrolling down"
 #          puts("Repeat scroll: #{repeatscroll}")
 #          puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
@@ -664,6 +669,7 @@ class NextLinkPage
 
           puts("Scroll Top: #{@browser.execute_script('return arguments[0].scrollTop', div_with_scroll)}")
           puts("Scroll Height: #{@browser.execute_script('return arguments[0].scrollHeight', div_with_scroll)}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           oldscrollheight = @browser.execute_script('return arguments[0].scrollHeight', div_with_scroll) 
 
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
