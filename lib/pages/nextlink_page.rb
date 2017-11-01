@@ -609,10 +609,14 @@ class NextLinkPage
       scroll_top_script = 'arguments[0].scrollTop = arguments[0].scrollHeight'
       #div_scrollable_y.browser.execute_script(scroll_top_script, div_scrollable_y)
        
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       enlaceReviews = "(//*[@jsaction='pane.rating.moreReviews' or ((contains(@jsaction,'pane.reviewChart.moreReviews') or contains(@jsaction,'entity.mobile.seeMoreReviews')) and not(ancestor::*[contains(@class,'write-review')]))])[last()]"
       boton = @browser.element(:xpath,enlaceReviews)
       @browser.execute_script('arguments[0].scrollIntoView();', boton)
       
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       hayReviews = true
       puts @browser.element(:xpath,enlaceReviews).outer_html
       begin
@@ -624,9 +628,13 @@ class NextLinkPage
         hayReviews = false
       end
 
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       @browser.execute_script('arguments[0].scrollIntoView();', boton)
       @browser.send_keys :page_up
        
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       puts "go clicking enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
         puts "clicking enlaceReviews"    ; $stdout.flush
