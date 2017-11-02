@@ -704,6 +704,16 @@ class NextLinkPage
         rescue Exception => e
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           puts e.message    ; $stdout.flush
+          if (defined?(scrollfailscount)).nil? 
+            scrollfailscount = 1
+          else
+            scrollfailscount += 1
+          end
+          puts("SCROLLFAILCOUNT: #{scrollfailscount}")   ; $stdout.flush
+          if scrollfailscount > 5
+            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            raise "SCROLL FALLIDO"
+          end
         end
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
