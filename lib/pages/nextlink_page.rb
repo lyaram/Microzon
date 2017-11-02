@@ -612,8 +612,6 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       enlaceReviews = "(//*[@jsaction='pane.rating.moreReviews' or ((contains(@jsaction,'pane.reviewChart.moreReviews') or contains(@jsaction,'entity.mobile.seeMoreReviews')) and not(ancestor::*[contains(@class,'write-review')]))])[last()]"
-      boton = @browser.element(:xpath,enlaceReviews)
-      @browser.execute_script('arguments[0].scrollIntoView();', boton)
       
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -630,6 +628,8 @@ class NextLinkPage
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      boton = @browser.element(:xpath,enlaceReviews)
+      @browser.execute_script('arguments[0].scrollIntoView();', boton)
       boton.wd.location_once_scrolled_into_view
       @browser.send_keys :page_up
        
@@ -637,12 +637,23 @@ class NextLinkPage
 
       puts "go clicking enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
-        puts "clicking enlaceReviews"    ; $stdout.flush
-        @browser.element(:xpath,enlaceReviews).click
-        sleep 1
-        puts "waiting reviews"
-        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
+        clickboton = 5
+        while clickboton > 0
+          begin
+            puts "clicking enlaceReviews"    ; $stdout.flush
+            @browser.element(:xpath,enlaceReviews).click
+            sleep 5
+            puts "waiting reviews"
+            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            @browser.element(:xpath,"//*[text()='Sort by:']").wait_until_present
+            clickboton = 0
+          rescue Exception => e
+            puts "fallo enlaceReviews"    ; $stdout.flush
+            puts e.message    ; $stdout.flush
+            clickboton += -1
+          end
+        end
+   
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         sleep 3
         div_with_scroll = @browser.element(:xpath,"//*[contains(@class,'section-scrollbox')]")
