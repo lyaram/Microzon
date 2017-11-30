@@ -563,6 +563,17 @@ class NextLinkPage
       @browser.element(:xpath,checkPageCompleted).wait_until_present
     end
 
+     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+    if descripcion.include? '.GotoTAFirstPage.'
+      sleep 1
+      enlacePrimeraPagina = "//*[@id='REVIEWS']//div[contains(@class,'pageNumbers')]/a[@data-page-number='1']"
+      @browser.element(:xpath,enlacePrimeraPagina).click
+      sleep 1
+    end
+
+     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
     if descripcion.include? '.GotoTALastVisitPage.'
       raise "No hay pagina configurada para 'GotoTALastVisitPage'" if con.query("select count(*) from tblLastPage").fetch_row.first.to_i == 0
       lastpage = con.query("select lastpage from tblLastPage").fetch_row.first
