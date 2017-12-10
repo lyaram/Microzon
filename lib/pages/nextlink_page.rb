@@ -1179,6 +1179,29 @@ class NextLinkPage
       
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      if descripcion.include? '.SurfTALangs'
+        puts "SurfTALangs!!!!"; $stdout.flush
+
+        langList = descripcion.scan(/\.SurfTALangs-(.*)\./)[0][0]
+        langs = langList.split('-')
+        langs.each do |lang|
+          begin
+            puts "  Surfing Lang #{lang}"; $stdout.flush
+            langpath = "//*[@id='taplc_location_review_filter_controls_hotels_0_moreLanguages']//input[@id='taplc_location_review_filter_controls_hotels_0_filterLang_more_#{lang}']"
+            if @browser.element(:xpath,langpath).exists?
+              @browser.element(:xpath,langpath).click
+              sleep 2
+              
+              storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+            end
+          rescue
+            #fallo
+          end
+        end
+      end
+
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       puts url; $stdout.flush
       #puts checkPageCompleted
       #ttt = @browser.element(:xpath,checkPageCompleted).text
