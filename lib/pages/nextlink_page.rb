@@ -1189,17 +1189,36 @@ class NextLinkPage
         langs.each do |lang|
           begin
             puts "  Surfing Lang #{lang}"; $stdout.flush
-            langpath = "//*[@id='taplc_location_review_filter_controls_hotels_0_moreLanguages']//input[@id='taplc_location_review_filter_controls_hotels_0_filterLang_more_#{lang}']"
-            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            @browser.element(:xpath,langpath).click
-            sleep 2
-            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
-            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            langSuccess = 0
+            langpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @value='#{lang}']"
+            if @browser.element(:xpath,langpath).exists?
+              puts "  Click Level 1 Lang #{lang}"; $stdout.flush
+              @browser.element(:xpath,langpath).click
+              sleep 2
+              langSuccess = 1
+            else
+              langpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/a[contains(@onclick,'moreLanguages')]"
+              if @browser.element(:xpath,langpath).exists?
+                puts "  Click Access Level 2 Lang #{lang}"; $stdout.flush
+                @browser.element(:xpath,langpath).click
+                sleep 2
+                langpath = "//*[contains(@class,'modal')]//input[@id='taplc_location_review_filter_controls_0_filterLang_more_#{lang}']"
+                if @browser.element(:xpath,langpath).exists?
+                  puts "  Click Level 2 Lang #{lang}"; $stdout.flush
+                  @browser.element(:xpath,langpath).click
+                  sleep 2
+                  langSuccess = 1
+                end
+              end            
+            end
           rescue
             puts "FALLO LANG"
             ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             #fallo
+          end
+          if langSuccess == 1
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           end
         end
       end
