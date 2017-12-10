@@ -1191,15 +1191,11 @@ class NextLinkPage
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langpath = "//*[@id='taplc_location_review_filter_controls_hotels_0_moreLanguages']//input[@id='taplc_location_review_filter_controls_hotels_0_filterLang_more_#{lang}']"
             ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            if @browser.element(:xpath,langpath).exists?
+            @browser.element(:xpath,langpath).click
+            sleep 2
             ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-              @browser.element(:xpath,langpath).click
-              sleep 2
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
             ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-              
-              storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
-            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            end
           rescue
             puts "FALLO LANG"
             ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
