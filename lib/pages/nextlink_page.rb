@@ -1161,7 +1161,7 @@ class NextLinkPage
               
               langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
               reintentos = 20
-              until @browser.element(:xpath,langchkdpath).exists?
+              until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                 sleep 3
                 reintentos += -1
                 break if reintentos<0
@@ -1181,7 +1181,7 @@ class NextLinkPage
 
                   langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
                   reintentos = 20
-                  until @browser.element(:xpath,langchkdpath).exists?
+                  until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                     sleep 3
                     reintentos += -1
                     break if reintentos<0
