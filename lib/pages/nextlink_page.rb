@@ -1195,7 +1195,7 @@ class NextLinkPage
               puts "  Click Level 1 Lang #{lang}"; $stdout.flush
               @browser.element(:xpath,langpath).click
               
-              langchkdpath = = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
+              langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
               reintentos = 20
               until @browser.element(:xpath,langchkdpath).exists?
                 sleep 3
@@ -1215,7 +1215,7 @@ class NextLinkPage
                   puts "  Click Level 2 Lang #{lang}"; $stdout.flush
                   @browser.element(:xpath,langpath).click
 
-                  langchkdpath = = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
+                  langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
                   reintentos = 20
                   until @browser.element(:xpath,langchkdpath).exists?
                     sleep 3
