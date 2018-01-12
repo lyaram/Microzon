@@ -360,7 +360,7 @@ class NextLinkPage
         reintentos += -1
         @browser.element(:xpath,checkPageCompleted).wait_until_present
       rescue
-        archivandoTraza; 
+        #archivandoTraza; 
         puts "FALLO #{reintentos}"
         if @browser.element(:xpath,checkPageCompleted).exists?
           puts "Existe"
