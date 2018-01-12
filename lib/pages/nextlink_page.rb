@@ -362,9 +362,20 @@ class NextLinkPage
       rescue
         archivandoTraza; 
         puts "FALLO #{reintentos}"
-        puts "offsetHeight: #{@browser.element(:xpath,checkPageCompleted).offsetHeight}"
-        puts "Exists: #{@browser.element(:xpath,checkPageCompleted).exists?}"
-        puts "Present #{@browser.element(:xpath,checkPageCompleted).present?}"
+        if @browser.element(:xpath,checkPageCompleted).exists?
+          puts "Existe"
+        else
+          puts "No existe"
+        end
+        if @browser.element(:xpath,checkPageCompleted).present?
+          puts "Presente"
+        else
+          puts "No presente"
+        end
+        
+        puts "offsetHeight: "
+        puts "#{@browser.element(:xpath,checkPageCompleted).offsetHeight}"
+
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         raise 'FALLO checkPageCompleted' if reintentos<=0
         retry
