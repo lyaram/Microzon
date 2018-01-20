@@ -1169,12 +1169,12 @@ class NextLinkPage
           begin
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langSuccess = 0
-            langpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @value='#{lang}']"
+            langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
             if @browser.element(:xpath,langpath).exists?
               puts "  Click Level 1 Lang #{lang}"; $stdout.flush
               @browser.element(:xpath,langpath).click
               
-              langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
+              langchkdpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
               reintentos = 20
               until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                 sleep 3
@@ -1184,17 +1184,17 @@ class NextLinkPage
               
               langSuccess = 1
             else
-              langpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/a[contains(@onclick,'moreLanguages')]"
+              langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//*[contains(text(),'More languages')]"
               if @browser.element(:xpath,langpath).exists?
                 puts "  Click Access Level 2 Lang #{lang}"; $stdout.flush
                 @browser.element(:xpath,langpath).click
                 sleep 2
-                langpath = "//*[contains(@class,'modal')]//input[@id='taplc_location_review_filter_controls_0_filterLang_more_#{lang}']"
+                langpath = "//*[contains(@class,'modal')]//input[@id='taplc_location_review_filter_controls_0_filterLang_more_#{lang}' or @id='filters_detail_language_filterLang_#{lang}']"
                 if @browser.element(:xpath,langpath).exists?
                   puts "  Click Level 2 Lang #{lang}"; $stdout.flush
                   @browser.element(:xpath,langpath).click
 
-                  langchkdpath = "//*[@id='taplc_location_review_filter_controls_0_form']/div/ul/li/span/input[@name='filterLang' and @checked and @value='#{lang}']"
+                  langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
                   reintentos = 20
                   until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                     sleep 3
