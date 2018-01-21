@@ -1174,13 +1174,13 @@ archivandoTraza;
 
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langSuccess = 0
-            langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
+            langpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
             if @browser.element(:xpath,langpath).exists?
               puts "  Click Level 1 Lang #{lang}"; $stdout.flush
               @browser.element(:xpath,langpath).click
               sleep 3
               
-              langchkdpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
+              langchkdpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
               reintentos = 20
               until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                 reintentos += -1
@@ -1190,7 +1190,7 @@ archivandoTraza;
               
               langSuccess = 1
             else
-              langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//*[contains(text(),'More languages')]"
+              langpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//*[contains(text(),'More languages')]"
               if @browser.element(:xpath,langpath).exists?
                 puts "  Click Access Level 2 Lang #{lang}"; $stdout.flush
                 @browser.element(:xpath,langpath).click
@@ -1201,7 +1201,7 @@ archivandoTraza;
                   @browser.element(:xpath,langpath).click
                   sleep 3
 
-                  langchkdpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
+                  langchkdpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
                    reintentos = 20
                   until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
                     reintentos += -1
