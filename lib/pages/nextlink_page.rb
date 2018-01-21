@@ -1167,8 +1167,9 @@ class NextLinkPage
         langs = langList.split('-')
         langs.each do |lang|
           begin
-            @browser.refresh
-            @browser.wait 60
+            @browser.goto url
+            @browser.element(:xpath,checkPageCompleted).wait_until_present
+
 
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langSuccess = 0
