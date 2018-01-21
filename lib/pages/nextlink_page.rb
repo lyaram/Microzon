@@ -1167,6 +1167,9 @@ class NextLinkPage
         langs = langList.split('-')
         langs.each do |lang|
           begin
+            @browser.refresh
+            @browser.wait 60
+
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langSuccess = 0
             langpath = "//*[@id='taplc_detail_filters_hr_resp_0' or @id='taplc_location_review_filter_controls_0']//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
