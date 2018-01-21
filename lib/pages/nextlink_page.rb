@@ -1169,6 +1169,7 @@ class NextLinkPage
           begin
             @browser.goto url
             @browser.element(:xpath,checkPageCompleted).wait_until_present
+archivandoTraza; 
 
 
             puts "  Surfing Lang #{lang}"; $stdout.flush
