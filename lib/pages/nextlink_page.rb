@@ -1176,8 +1176,11 @@ class NextLinkPage
             langpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
             if @browser.element(:xpath,langpath).exists?
               puts "  Click Level 1 Lang #{lang}"; $stdout.flush
-              @browser.element(:xpath,langpath).click
-              sleep 3
+             langpathnotchecked = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and not(@checked) and @value='#{lang}']"
+             if @browser.element(:xpath,langpathnotchecked).exists?
+               @browser.element(:xpath,langpathnotchecked).click
+               sleep 3
+             end
               
               langchkdpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @checked and @value='#{lang}']"
               reintentos = 20
