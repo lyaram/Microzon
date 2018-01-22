@@ -1194,7 +1194,7 @@ class NextLinkPage
                 puts "  Click Access Level 2 Lang #{lang}"; $stdout.flush
                 @browser.element(:xpath,langpath).click
                 sleep 2
-                langpath = "//*[contains(@class,'modal')]//input[@id='taplc_location_review_filter_controls_0_filterLang_more_#{lang}' or @id='filters_detail_language_filterLang_#{lang}']"
+                langpath = "//*[contains(@class,'modal')]//input[contains(@name,'filterLang') and @value='#{lang}']"
                 if @browser.element(:xpath,langpath).exists?
                   puts "  Click Level 2 Lang #{lang}"; $stdout.flush
                   @browser.element(:xpath,langpath).click
