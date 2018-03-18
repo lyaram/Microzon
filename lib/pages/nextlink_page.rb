@@ -1237,7 +1237,7 @@ class NextLinkPage
       if descripcion.include? '.SurfPeineNotas'
         puts "SurfPeineNotas!!!!"; $stdout.flush
         
-        @browser.element(:xpath,"(//*[contains(text(),'Traveller rating')]").wd.location_once_scrolled_into_view
+        @browser.element(:xpath,".//*[@id='REVIEWS']").wd.location_once_scrolled_into_view
 
         (1..5).each do |ipeine|
           puts "  Peine. Paso #{ipeine}"; $stdout.flush
