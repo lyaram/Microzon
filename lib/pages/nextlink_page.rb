@@ -1239,7 +1239,7 @@ class NextLinkPage
         
         (1..5).each do |ipeine|
           puts "  Peine. Paso #{ipeine}"; $stdout.flush
-          peineactivo = "(//*[@id='ratingFilter']/ul/li/span/input[@checked])[1]"
+          peineactivo = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
           while @browser.element(:xpath,peineactivo).exists?
             puts "  Desactivando peine activo"; $stdout.flush
             @browser.element(:xpath,peineactivo).click
@@ -1255,11 +1255,11 @@ class NextLinkPage
           end
           
           puts "  Activando peine"; $stdout.flush
-          peineactivo = "//*[@id='ratingFilter']/ul/li[#{ipeine}]/span/input"
+          peineactivo = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
           @browser.element(:xpath,peineactivo).click
           sleep 1
           
-          peinechkdpath = "//*[@id='ratingFilter']/ul/li[#{ipeine}]/span/input[@checked]"
+          peinechkdpath = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
           reintentos = 20
           until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
             reintentos += -1
