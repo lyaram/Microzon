@@ -1234,6 +1234,44 @@ class NextLinkPage
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      if descripcion.include? '.SurfPeineNotas'
+        puts "SurfPeineNotas!!!!"; $stdout.flush
+        
+        (1..5).each do |ipeine|
+          puts "  Peine. Paso #{ipeine}"; $stdout.flush
+          peineactivo = "(//*[@id='ratingFilter']/ul/li/span/input[@checked])[1]"
+          while @browser.element(:xpath,peineactivo).exists?
+            puts "  Desactivando peine activo"; $stdout.flush
+            @browser.element(:xpath,peineactivo).click
+            sleep 1
+ 
+            reintentos = 20
+            while @browser.element(:xpath,"//*[@class='loadingBox']").visible?
+              reintentos += -1
+              break if reintentos<0
+              sleep 3
+            end
+            raise 'FALLO loadingBox' if reintentos<=0
+          end
+          
+          puts "  Activando peine"; $stdout.flush
+          peineactivo = "//*[@id='ratingFilter']/ul/li[#{ipeine}]/span/input"
+          @browser.element(:xpath,peineactivo).click
+          sleep 1
+          
+          peinechkdpath = "//*[@id='ratingFilter']/ul/li[#{ipeine}]/span/input[@checked]"
+          reintentos = 20
+          until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
+            reintentos += -1
+            break if reintentos<0
+            sleep 3
+          end
+          
+          storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+
+        end
+      end
+      
       puts url; $stdout.flush
       #puts checkPageCompleted
       #ttt = @browser.element(:xpath,checkPageCompleted).text
