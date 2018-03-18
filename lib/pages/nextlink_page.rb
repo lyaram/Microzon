@@ -1237,9 +1237,11 @@ class NextLinkPage
       if descripcion.include? '.SurfPeineNotas'
         puts "SurfPeineNotas!!!!"; $stdout.flush
         
+        @browser.element(:xpath,"(//*[contains(text(),'Traveller rating')]").wd.location_once_scrolled_into_view
+
         (1..5).each do |ipeine|
           puts "  Peine. Paso #{ipeine}"; $stdout.flush
-          peineactivo = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
+          peineactivo = "(//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
           while @browser.element(:xpath,peineactivo).exists?
             puts "  Desactivando peine activo"; $stdout.flush
             @browser.element(:xpath,peineactivo).click
