@@ -385,10 +385,13 @@ class NextLinkPage
 
       
     if descripcion.include? '.GoToFirstReview.'
-      @browser.element(:xpath,"(//*[@id='REVIEWS']//div[starts-with(@id,'review_')]/div[not(@style='display: none;')]//div[starts-with(@class,'quote')]/a)[1]").click
-      sleep 3
-      maxPage = maxPage * 2
-      @browser.element(:xpath,checkPageCompleted).wait_until_present
+      firstreviewlink = "(//*[@id='REVIEWS']//div[starts-with(@id,'review_')]/div[not(@style='display: none;')]//div[starts-with(@class,'quote')]/a)[1]"
+      if @browser.element(:xpath,firstreviewlink).exists?
+        @browser.element(:xpath,firstreviewlink).click
+        sleep 3
+        maxPage = maxPage * 2
+        @browser.element(:xpath,checkPageCompleted).wait_until_present        
+      end
     end
 
        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -583,8 +586,10 @@ class NextLinkPage
     if descripcion.include? '.GotoTAFirstPage.'
       sleep 1
       enlacePrimeraPagina = "//*[@id='REVIEWS']//div[contains(@class,'pageNumbers')]/a[@data-page-number='1']"
-      @browser.element(:xpath,enlacePrimeraPagina).click
-      sleep 1
+      if @browser.element(:xpath,enlacePrimeraPagina).exists?
+        @browser.element(:xpath,enlacePrimeraPagina).click
+        sleep 1
+      end
     end
 
      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
