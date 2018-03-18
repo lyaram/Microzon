@@ -1253,20 +1253,25 @@ class NextLinkPage
             end
             raise 'FALLO loadingBox' if reintentos<=0
           end
+
+          begin          
+            puts "  Activando peine"; $stdout.flush
+            peineactivo = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
+            @browser.element(:xpath,peineactivo).click
+            sleep 1
+            
+            peinechkdpath = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
+            reintentos = 20
+            until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
+              reintentos += -1
+              break if reintentos<0
+              sleep 3
+            end
           
-          puts "  Activando peine"; $stdout.flush
-          peineactivo = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-          @browser.element(:xpath,peineactivo).click
-          sleep 1
-          
-          peinechkdpath = "(.//*[contains(text(),'Traveller rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
-          reintentos = 20
-          until @browser.element(:xpath,langchkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
-            reintentos += -1
-            break if reintentos<0
-            sleep 3
-          end
-          
+          rescue => e
+            puts e.inspect
+            puts e.backtrace
+          end          
           storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
 
         end
