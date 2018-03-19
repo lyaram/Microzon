@@ -1158,9 +1158,14 @@ class NextLinkPage
    # end
   
       
+begin
       storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
       #abort("Aborting to check fail")
-      
+rescue => e
+  puts e.inspect
+  puts e.backtrace
+end 
+
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if descripcion.include? '.SurfTALangs'
