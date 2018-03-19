@@ -85,6 +85,7 @@ When /^QBot is surfing a webpage$/ do
 
       pillamientos = 0
       resetCountDown = 5001 #en TA con muchas fichas poner a 5 para evitar bloqueos
+      @htmlStoreCountDown = 200 #limite de capturas para un idLaunch
       
       loop do
         ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
@@ -153,7 +154,10 @@ When /^QBot is surfing a webpage$/ do
          
          
          #Codigo para autodestruir al llegar al countdown o si hay fallo en el lanzamiento
-         while (resetCountDown<=0 || hayfallos)
+         while (resetCountDown<=0 || @htmlStoreCountDown<=0 || hayfallos)
+           
+           FileUtils.mv("/volHTML/#{idLaunch}", "/volHTML/CompletedLaunches/")
+           
            pid = Process.spawn('sudo shutdown -P 1')
            begin
              Timeout.timeout(60) do

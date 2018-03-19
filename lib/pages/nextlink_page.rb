@@ -1509,6 +1509,8 @@ class NextLinkPage
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
     aFile.close
+    
+    @htmlStoreCountDown += -1
 
   end
   
