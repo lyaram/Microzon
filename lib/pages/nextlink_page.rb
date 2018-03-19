@@ -1237,7 +1237,7 @@ class NextLinkPage
       if descripcion.include? '.SurfPeineNotas'
         puts "SurfPeineNotas!!!!"; $stdout.flush
         
-        @browser.element(:xpath,".//*[@id='REVIEWS']").wd.location_once_scrolled_into_view
+        @browser.element(:xpath,"//*[@id='REVIEWS']").wd.location_once_scrolled_into_view
 
         (1..5).each do |ipeine|
           puts "  Peine. Paso #{ipeine}"; $stdout.flush
@@ -1260,6 +1260,7 @@ class NextLinkPage
             puts "  Activando peine"; $stdout.flush
 #            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
             pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input)[#{ipeine}]"
+            puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
             @browser.element(:xpath,pathactivarpeine).click
             sleep 1
             
@@ -1271,12 +1272,12 @@ class NextLinkPage
               break if reintentos<0
               sleep 3
             end
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
           
           rescue => e
             puts e.inspect
             puts e.backtrace
           end          
-          storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
 
         end
       end
