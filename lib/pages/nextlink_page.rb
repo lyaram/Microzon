@@ -1241,7 +1241,7 @@ class NextLinkPage
 
         (1..5).each do |ipeine|
           puts "  Peine. Paso #{ipeine}"; $stdout.flush
-          peineactivo = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
+          peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
           while @browser.element(:xpath,peineactivo).exists?
             puts "  Desactivando peine activo"; $stdout.flush
             @browser.element(:xpath,"#{peineactivo}/following::label[1]").click
@@ -1258,14 +1258,14 @@ class NextLinkPage
 
           begin          
             puts "  Activando peine"; $stdout.flush
-#            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input/following::label[1])[#{ipeine}]"
+#            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
+            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
             puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
             @browser.element(:xpath,pathactivarpeine).click
             sleep 1
             
-#            peinechkdpath = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
-            peinechkdpath = "(//*[contains(text(),'Traveler rating')]/..//input)[#{ipeine}][@checked]"
+#            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
+            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
             reintentos = 20
             until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
               reintentos += -1
