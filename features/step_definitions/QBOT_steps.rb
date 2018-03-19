@@ -85,7 +85,7 @@ When /^QBot is surfing a webpage$/ do
 
       pillamientos = 0
       resetCountDown = 5001 #en TA con muchas fichas poner a 5 para evitar bloqueos
-      @htmlStoreCountDown = 200 #limite de capturas para un idLaunch
+      $htmlStoreCountDown = 200 #limite de capturas para un idLaunch
       
       loop do
         ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
