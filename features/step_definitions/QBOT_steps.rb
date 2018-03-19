@@ -154,7 +154,7 @@ When /^QBot is surfing a webpage$/ do
          
          
          #Codigo para autodestruir al llegar al countdown o si hay fallo en el lanzamiento
-         while (resetCountDown<=0 || @htmlStoreCountDown<=0 || hayfallos)
+         while (resetCountDown<=0 || $htmlStoreCountDown<=0 || hayfallos)
            
            FileUtils.mv("/volHTML/#{idLaunch}", "/volHTML/CompletedLaunches/")
            
