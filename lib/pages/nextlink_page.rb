@@ -1158,13 +1158,13 @@ class NextLinkPage
    # end
   
       
-begin
+#begin
       storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
       #abort("Aborting to check fail")
-rescue => e
-  puts e.inspect
-  puts e.backtrace
-end 
+#rescue => e
+#  puts e.inspect
+#  puts e.backtrace
+#end 
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -1515,7 +1515,7 @@ end
     aFile.write(@browser.html)
     aFile.close
     
-    @htmlStoreCountDown += -1
+    @htmlStoreCountDown = @htmlStoreCountDown - 1
 
   end
   
