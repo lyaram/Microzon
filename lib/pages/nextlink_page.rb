@@ -1515,7 +1515,7 @@ class NextLinkPage
     aFile.write(@browser.html)
     aFile.close
     
-    @htmlStoreCountDown = @htmlStoreCountDown - 1
+    $htmlStoreCountDown += -1
 
   end
   
