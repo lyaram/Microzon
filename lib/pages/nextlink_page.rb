@@ -1259,13 +1259,13 @@ class NextLinkPage
           begin          
             puts "  Activando peine"; $stdout.flush
 #            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input)[#{ipeine}]"
+            pathactivarpeine = "(//*[contains(text(),'Traveler rating')]/..//input/following::label[1])[#{ipeine}]"
             puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
             @browser.element(:xpath,pathactivarpeine).click
             sleep 1
             
 #            peinechkdpath = "(//*[contains(text(),'Traveler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
-            peinechkdpath = "(//*[contains(text(),'Traveler rating')]/..//input)[#{ipeine}][@checked]"
+            peinechkdpath = "(//*[contains(text(),'Traveler rating')]/..//input/following::label[1])[#{ipeine}][@checked]"
             reintentos = 20
             until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
               reintentos += -1
