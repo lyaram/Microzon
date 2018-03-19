@@ -360,7 +360,7 @@ class NextLinkPage
         reintentos += -1
         @browser.element(:xpath,checkPageCompleted).wait_until_present
       rescue
-        archivandoTraza; 
+        #archivandoTraza; 
         puts "FALLO #{reintentos}"
         if @browser.element(:xpath,checkPageCompleted).exists?
           puts "Existe"
@@ -1256,29 +1256,23 @@ class NextLinkPage
             raise 'FALLO loadingBox' if reintentos<=0
           end
 
-          begin          
-            puts "  Activando peine"; $stdout.flush
+          puts "  Activando peine"; $stdout.flush
 #            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
-            puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
-            @browser.element(:xpath,pathactivarpeine).click
-            sleep 1
-            
-#            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
-            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
-            reintentos = 20
-            until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
-              reintentos += -1
-              break if reintentos<0
-              sleep 3
-            end
-            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+          pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
+          puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
+          @browser.element(:xpath,pathactivarpeine).click
+          sleep 1
           
-          rescue => e
-            puts e.inspect
-            puts e.backtrace
-          end          
-
+#            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
+          peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
+          reintentos = 20
+          until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
+            reintentos += -1
+            break if reintentos<0
+            sleep 3
+          end
+          storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+          
         end
       end
       
