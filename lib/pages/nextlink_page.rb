@@ -1244,40 +1244,42 @@ class NextLinkPage
         
         @browser.element(:xpath,"//*[@id='REVIEWS']").wd.location_once_scrolled_into_view
 
-        (1..5).each do |ipeine|
-          puts "  Peine. Paso #{ipeine}"; $stdout.flush
-          peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
-          while @browser.element(:xpath,peineactivo).exists?
-            puts "  Desactivando peine activo"; $stdout.flush
-            @browser.element(:xpath,"#{peineactivo}/following::label[1]").click
+        if @browser.element(:xpath,"//*[contains(text(),'ler rating')]").exists?
+          (1..5).each do |ipeine|
+            puts "  Peine. Paso #{ipeine}"; $stdout.flush
+            peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
+            while @browser.element(:xpath,peineactivo).exists?
+              puts "  Desactivando peine activo"; $stdout.flush
+              @browser.element(:xpath,"#{peineactivo}/following::label[1]").click
+                sleep 1
+     
+                reintentos = 20
+                while @browser.element(:xpath,"//*[@class='loadingBox']").visible?
+                reintentos += -1
+                break if reintentos<0
+                sleep 3
+              end
+              raise 'FALLO loadingBox' if reintentos<=0
+            end
+    
+            puts "  Activando peine"; $stdout.flush
+    #            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
+            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
+            puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
+            @browser.element(:xpath,pathactivarpeine).click
             sleep 1
- 
+            
+    #            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
+            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
             reintentos = 20
-            while @browser.element(:xpath,"//*[@class='loadingBox']").visible?
+            until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
               reintentos += -1
               break if reintentos<0
               sleep 3
             end
-            raise 'FALLO loadingBox' if reintentos<=0
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+            
           end
-
-          puts "  Activando peine"; $stdout.flush
-#            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-          pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
-          puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
-          @browser.element(:xpath,pathactivarpeine).click
-          sleep 1
-          
-#            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
-          peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
-          reintentos = 20
-          until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
-            reintentos += -1
-            break if reintentos<0
-            sleep 3
-          end
-          storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
-          
         end
       end
       
