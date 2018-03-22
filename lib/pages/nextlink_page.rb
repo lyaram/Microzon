@@ -1242,9 +1242,9 @@ class NextLinkPage
       if descripcion.include? '.SurfPeineNotas'
         puts "SurfPeineNotas!!!!"; $stdout.flush
         
-        @browser.element(:xpath,"//*[@id='REVIEWS']").wd.location_once_scrolled_into_view
-
-        if @browser.element(:xpath,"//*[contains(text(),'ler rating')]").exists?
+        titlepath = "//*[contains(text(),'ler rating')]"
+        if @browser.element(:xpath,titlepath).exists?
+          @browser.element(:xpath,titlepath).wd.location_once_scrolled_into_view
           (1..5).each do |ipeine|
             puts "  Peine. Paso #{ipeine}"; $stdout.flush
             peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
