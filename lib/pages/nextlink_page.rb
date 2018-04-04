@@ -305,17 +305,22 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if descripcion.include? 'BOOKING_HotelFicha.'
-#        begin
+        begin
+          @browser.element(:xpath,"//*[@class='language_filter_checkbox']").wait_until_present
           boxes = @browser.checkboxes(:class => 'language_filter_checkbox')
           boxes.each do |box| 
-            if box.visible?
-              if box.checked?
-                box.clear            
-                puts 'click' ; $stdout.flush
-                sleep 3
-               end
+          if box.visible?
+            if box.checked?
+              box.clear            
+              puts 'click' ; $stdout.flush
+              sleep 3
             end
           end
+        rescue
+          #fallo
+        end
+
+      end
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
