@@ -326,8 +326,10 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
         if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
-          @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
-          sleep 3
+          if @browser.element(:xpath,'//*[@id="review_sort"]').visible?
+            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
+            sleep 3
+          end
         end
           
 #        rescue
