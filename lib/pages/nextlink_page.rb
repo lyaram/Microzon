@@ -309,11 +309,12 @@ class NextLinkPage
           @browser.element(:xpath,"//*[@class='language_filter_checkbox']").wait_until_present
           boxes = @browser.checkboxes(:class => 'language_filter_checkbox')
           boxes.each do |box| 
-          if box.visible?
-            if box.checked?
-              box.clear            
-              puts 'click' ; $stdout.flush
-              sleep 3
+            if box.visible?
+              if box.checked?
+                box.clear            
+                puts 'click' ; $stdout.flush
+                sleep 3
+              end
             end
           end
         rescue
@@ -324,10 +325,10 @@ class NextLinkPage
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-          if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
-            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
-            sleep 3
-          end
+        if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
+          @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
+          sleep 3
+        end
           
 #        rescue
 #          #fallo
