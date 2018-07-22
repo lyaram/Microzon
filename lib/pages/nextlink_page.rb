@@ -469,14 +469,14 @@ class NextLinkPage
       puts("Ventanas: #{@browser.windows.count}")
       puts("Titulo:   #{@browser.title}")
        begin
-        @browser.element(:xpath,"//*[@id='ratingFilter']").wait_until_present
+        @browser.element(:xpath,"//*[@data-param='filterSegment']").wait_until_present
        rescue 
         puts 'timeout esperando filtro'
        end
 
-       if @browser.element(:xpath,"//*[@id='ratingFilter']").exists?
+       if @browser.element(:xpath,"//*[@data-param='filterSegment']").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
-        filterpath = ".//li/span/input[@name='filterSegment' and @value='#{filternumber}']"
+        filterpath = "//*[@data-param='filterSegment']/div[@data-value='#{filternumber}']/input"
         puts filterpath
         
         begin
