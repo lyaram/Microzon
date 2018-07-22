@@ -507,7 +507,7 @@ class NextLinkPage
             @browser.wait 1
             chkdfilterpath = "//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]"
             @browser.element(:xpath,chkdfilterpath).wait_while_present
-            raise "fallo" if @browser.element(:xpath,"#{filterpath}").attribute_value('checked').nil?
+            raise "fallo" if @browser.element(:xpath,"#{filterpath}/input").attribute_value('checked').nil?
           rescue
             puts "FALLO #{reintentos}"
             puts("Ventanas: #{@browser.windows.count}")
