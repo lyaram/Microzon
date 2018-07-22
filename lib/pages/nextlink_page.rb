@@ -477,7 +477,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        if @browser.element(:xpath,"//*[@data-param='filterSegment']").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
-        filterpath = "//*[@data-param='filterSegment']/div[@data-value='#{filternumber}']/input"
+        filterpath = "//*[@data-param='filterSegment']/div[@data-value='#{filternumber}']"
         puts filterpath
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
@@ -489,7 +489,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           
           # wrrev = @browser.element(:xpath,"//a[contains(@class,'write_review')]")
-          fe = @browser.element(:xpath,"//*[@data-param='filterSegment']")
+          fe = @browser.element(:xpath,filterpath)
           @browser.execute_script('arguments[0].scrollIntoView();', fe)
        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
          
