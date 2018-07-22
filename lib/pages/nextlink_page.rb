@@ -474,21 +474,25 @@ class NextLinkPage
         puts 'timeout esperando filtro'
        end
 
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        if @browser.element(:xpath,"//*[@data-param='filterSegment']").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
         filterpath = "//*[@data-param='filterSegment']/div[@data-value='#{filternumber}']/input"
         puts filterpath
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
         begin
           #archivandoTraza; 
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           puts("Ventanas: #{@browser.windows.count}")
           puts("Titulo:   #{@browser.title}")
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           
           # wrrev = @browser.element(:xpath,"//a[contains(@class,'write_review')]")
-          fe = @browser.element(:xpath,filterpath)
+          fe = @browser.element(:xpath,"//*[@data-param='filterSegment']")
           @browser.execute_script('arguments[0].scrollIntoView();', fe)
-          
+       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+         
           fe.send_keys :arrow_up
           fe.send_keys :arrow_up
 
