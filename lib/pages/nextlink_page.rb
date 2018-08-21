@@ -477,7 +477,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        if @browser.element(:xpath,"//*[@data-param='filterSegment']").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
-        filterpath = "(//*[@name='filterSegment' and @value='#{filternumber}']/.. | //*[@data-param='filterSegment']/div[@data-value='#{filternumber}'])[1]"
+        filterpath = "(//*[@name='filterSegment' and @value='#{filternumber}']/../.. | //*[@data-param='filterSegment']/div[@data-value='#{filternumber}'])[1]"
         puts filterpath
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
@@ -497,7 +497,7 @@ class NextLinkPage
           fe.send_keys :arrow_up
 
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          @browser.element(:xpath,"#{filterpath}/input").click
+          @browser.element(:xpath,"#{filterpath}").click
           reintentos = 5
           begin
             reintentos += -1
@@ -507,7 +507,7 @@ class NextLinkPage
             @browser.wait 1
             chkdfilterpath = "//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]"
             @browser.element(:xpath,chkdfilterpath).wait_while_present
-            raise "fallo" if @browser.element(:xpath,"#{filterpath}/input").attribute_value('checked').nil?
+            raise "fallo" if @browser.element(:xpath,"#{filterpath}//input").attribute_value('checked').nil?
           rescue
             puts "FALLO #{reintentos}"
             puts("Ventanas: #{@browser.windows.count}")
