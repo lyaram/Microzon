@@ -477,7 +477,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        if @browser.element(:xpath,"//*[@data-param='filterSegment']").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
-        filterpath = "//*[@data-param='filterSegment']/div[@data-value='#{filternumber}']"
+        filterpath = "(//*[@name='filterSegment' and @value='#{filternumber}'] | //*[@data-param='filterSegment']/div[@data-value='#{filternumber}'])[1]"
         puts filterpath
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
