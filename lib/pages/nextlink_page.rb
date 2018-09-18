@@ -136,6 +136,8 @@ class NextLinkPage
       profile['general.useragent.override']='Mozilla/5.0 (compatible; Googlebot/2.1; http://www.google.com/bot.html)'      
     elsif descripcion.include?('InstagramTest')
       profile['general.useragent.override']='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'      
+    elsif descripcion.include?('S8Browser')
+      profile['general.useragent.override']='Mozilla/5.0 (Linux; Android 8.0.0; SAMSUNG SM-G950F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/7.2 Chrome/59.0.3071.125 Mobile Safari/537.36'      
     end
     @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
     #@browser.window.resize_to(1024, 768)
@@ -507,7 +509,7 @@ class NextLinkPage
             @browser.wait 5
             chkdfilterpath = "//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]"
             @browser.element(:xpath,chkdfilterpath).wait_while_present
-            raise "fallo" if @browser.element(:xpath,"#{filterpath}//input").attribute_value('checked').nil?
+            raise "fallo" if @browser.element(:xpath,"#{filterpath}/input").attribute_value('checked').nil?
           rescue
             puts "FALLO #{reintentos}"
             puts("Ventanas: #{@browser.windows.count}")
