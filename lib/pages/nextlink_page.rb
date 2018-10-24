@@ -233,30 +233,30 @@ class NextLinkPage
 
       end
 
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-      if url.include?('ShowUserReviews-') && not(descripcion.include?('.IDRev')) && not(descripcion.include?('.S8Browser.'))
-        puts 'en showusersreviews'; $stdout.flush
-          while @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').exists?
-            puts 'go click page 1'; $stdout.flush
-            @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').click
-            puts 'clicked'; $stdout.flush
-            
-            closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-            if @browser.element(:xpath,closeModal).exists?
-              if @browser.element(:xpath,closeModal).visible?
-               puts 'ventana modal'; $stdout.flush
-               @browser.element(:xpath,closeModal).click
-               puts 'click modal'; $stdout.flush
-              end
-            end
-            
-            sleep 3
-            puts 'waited 3'; $stdout.flush
-          end    
-          puts 'end page1'; $stdout.flush
-
-      end
+#      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+#
+#      if url.include?('ShowUserReviews-') && not(descripcion.include?('.IDRev')) && not(descripcion.include?('.S8Browser.'))
+#        puts 'en showusersreviews'; $stdout.flush
+#          while @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').exists?
+#            puts 'go click page 1'; $stdout.flush
+#            @browser.element(:xpath,'//*[@id="REVIEWS"]//div[@class="pageNumbers"]/a[@data-page-number="1"]').click
+#            puts 'clicked'; $stdout.flush
+#            
+#            closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
+#            if @browser.element(:xpath,closeModal).exists?
+#              if @browser.element(:xpath,closeModal).visible?
+#               puts 'ventana modal'; $stdout.flush
+#               @browser.element(:xpath,closeModal).click
+#               puts 'click modal'; $stdout.flush
+#              end
+#            end
+#            
+#            sleep 3
+#            puts 'waited 3'; $stdout.flush
+#          end    
+#          puts 'end page1'; $stdout.flush
+#
+#      end
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
