@@ -137,6 +137,17 @@ When /^QBot is surfing a webpage$/ do
           checkPageLoading = rs[4]
           maxPages = rs[5].to_i
           
+          #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
+          if descripcion.include?('.KeepOnPaging.')
+            if con.query("select count(*) from tblKeepOnPaging WHERE idTarget = #{idTarget} AND NOT(updatetime is null);").fetch_row.first.to_i == 0
+              con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")
+              con.query("INSERT tblKeepOnPaging (idTarget) VALUES (#{idTarget});")
+            else
+              url = con.query("select nextLink from tblKeepOnPaging WHERE idTarget = #{idTarget};").fetch_row.first
+            end
+          end
+
+          
           hayfallos = false
           begin
             page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages

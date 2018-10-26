@@ -1331,6 +1331,20 @@ class NextLinkPage
         retry
       end
       
+      #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
+      if descripcion.include?('.KeepOnPaging.')
+        if !@browser.element(:xpath,nextlink).exists?
+          urlNextLink = @browser.element(:xpath,nextlink + '/@href').text.strip
+          unless urlNextLink.include? 'www.tripadvisor.' 
+            urlNextLink = 'https://www.tripadvisor.es#{urlNextLink}'
+          end
+          updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}' WHERE idTarget = #{idTarget};")
+        else
+          con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")
+        end
+      end
+
       unless descripcion.include? '.ManualPaging.' 
         break if nextlink==''
         break if !@browser.element(:xpath,nextlink).exists?
