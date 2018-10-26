@@ -87,9 +87,10 @@ When /^QBot is surfing a webpage$/ do
       resetCountDown = 5001 #en TA con muchas fichas poner a 5 para evitar bloqueos
       $htmlStoreCountDown = 200 #Numero de htmls capturados antes de activar un reset. Utilizado para zipear automaticamente los paquetes cerrados      
       
-      $keep_on_paging_in_progress = false
       
       loop do
+        $keep_on_paging_in_progress = false
+
         horalim = Time.now - 300
         con.query("DELETE FROM tblDoneTargets where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
         con.query("UPDATE tblTargets SET disabled=0 where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
