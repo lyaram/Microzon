@@ -396,7 +396,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       
-    if descripcion.include? '.GoToFirstReview.'
+    if descripcion.include? '.GoToFirstReview.' && not($keep_on_paging_in_progress)
       firstreviewlink = "(//*[@id='REVIEWS']//div[starts-with(@id,'review_')]/div[not(@style='display: none;')]//div[starts-with(@class,'quote')]/a)[1]"
       if @browser.element(:xpath,firstreviewlink).exists?
         @browser.element(:xpath,firstreviewlink).click
@@ -599,7 +599,7 @@ class NextLinkPage
 
      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-    if descripcion.include? '.GotoTAFirstPage.'
+    if descripcion.include? '.GotoTAFirstPage.' && not($keep_on_paging_in_progress)
       sleep 1
       enlacePrimeraPagina = "//*[@id='REVIEWS']//div[contains(@class,'pageNumbers')]/a[@data-page-number='1']"
       if @browser.element(:xpath,enlacePrimeraPagina).exists?
@@ -1001,6 +1001,38 @@ class NextLinkPage
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
 
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      
+      buttonNoTranslation = '//*[@id="REVIEWS"]//form[@class=\'translationOptionForm\']//*[@id=\'radioNo\' and not(@checked)]'
+      reintentos = 10
+      while @browser.element(:xpath,buttonNoTranslation).exists?
+        reintentos += -1
+        break if reintentos<0
+        @browser.element(:xpath,buttonNoTranslation).click
+        sleep 2
+        begin
+          Timeout.timeout(60) do
+            while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]").exists?)
+              sleep 1
+            end
+          end
+        rescue Timeout::Error
+            puts 'timeout en loading mientras desactivaba traducciones'
+        end
+ 
+        
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+  
+        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
+        if @browser.element(:xpath,closeModal).exists?
+          if @browser.element(:xpath,closeModal).visible?
+            @browser.element(:xpath,closeModal).click
+          end
+        end
+
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      end
+
       #archivandoTraza; 
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -1347,7 +1379,8 @@ class NextLinkPage
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}' WHERE idTarget = #{idTarget};")
+          con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}', page = (page + 1) WHERE idTarget = #{idTarget};")
+          $keep_on_paging_in_progress = true
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         else
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
