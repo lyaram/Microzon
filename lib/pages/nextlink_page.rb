@@ -395,6 +395,11 @@ class NextLinkPage
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+        stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+        storePageDebugHtml strDT
+        
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         archivandoTraza; 
       
     if descripcion.include? '.GoToFirstReview.' && not($keep_on_paging_in_progress)
