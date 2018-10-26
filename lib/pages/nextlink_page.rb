@@ -1333,7 +1333,7 @@ class NextLinkPage
       
       #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
       if descripcion.include?('.KeepOnPaging.')
-        if !@browser.element(:xpath,nextlink).exists?
+        if @browser.element(:xpath,nextlink).exists?
           urlNextLink = @browser.element(:xpath,nextlink + '/@href').text.strip
           unless urlNextLink.include? 'www.tripadvisor.' 
             urlNextLink = 'https://www.tripadvisor.es#{urlNextLink}'
