@@ -138,7 +138,7 @@ When /^QBot is surfing a webpage$/ do
           maxPages = rs[5].to_i
           
           #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
-          if descripcion.include?('.KeepOnPaging.')
+          if description.include?('.KeepOnPaging.')
             if con.query("select count(*) from tblKeepOnPaging WHERE idTarget = #{idTarget} AND NOT(updatetime is null);").fetch_row.first.to_i == 0
               con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")
               con.query("INSERT tblKeepOnPaging (idTarget) VALUES (#{idTarget});")
