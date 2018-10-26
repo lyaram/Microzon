@@ -88,6 +88,10 @@ When /^QBot is surfing a webpage$/ do
       $htmlStoreCountDown = 200 #Numero de htmls capturados antes de activar un reset. Utilizado para zipear automaticamente los paquetes cerrados      
       
       loop do
+        horalim = Time.now - 300
+        con.query("DELETE FROM tblDoneTargets where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');"
+        con.query("UPDATE tblTargets SET disabled=0 where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');"
+
         ssql = "SELECT min(idTarget) FROM tblTargets where Disabled=0 and time_stamp > '2015-12-21';"
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
