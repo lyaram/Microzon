@@ -1330,17 +1330,27 @@ class NextLinkPage
         break if reintentos<=0
         retry
       end
+
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
       #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
       if descripcion.include?('.KeepOnPaging.')
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if @browser.element(:xpath,nextlink).exists?
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           urlNextLink = @browser.element(:xpath,nextlink).attribute_value('href').text.strip
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           unless urlNextLink.include? 'www.tripadvisor.' 
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             urlNextLink = 'https://www.tripadvisor.es#{urlNextLink}'
           end
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}' WHERE idTarget = #{idTarget};")
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         else
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")
         end
       end
