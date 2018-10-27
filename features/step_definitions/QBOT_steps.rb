@@ -149,7 +149,7 @@ When /^QBot is surfing a webpage$/ do
             if con.query("select count(*) from tblKeepOnPaging WHERE idTarget = #{idTarget} AND NOT(updatetime is null);").fetch_row.first.to_i == 0
               con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")          
               inserttime = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-              con.query("INSERT tblKeepOnPaging (idTarget, time_stamp) VALUES (#{idTarget}, #{inserttime});")
+              con.query("INSERT tblKeepOnPaging (idTarget, time_stamp) VALUES (#{idTarget}, '#{inserttime}');")
             else
               url = con.query("select nextLink from tblKeepOnPaging WHERE idTarget = #{idTarget};").fetch_row.first
               $keep_on_paging_in_progress = true
