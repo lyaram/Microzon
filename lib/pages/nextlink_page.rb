@@ -538,10 +538,10 @@ class NextLinkPage
           puts("Error.msg: #{error.message}")
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         
-          aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
-          htmlPage=@browser.html
-          aFile.write(htmlPage)
-          aFile.close
+#          aFile = File.new("/volHTML/debug/" + Time.now.strftime("%y%m%d_%H%M%S_%9N") + ".htm", "w")
+#          htmlPage=@browser.html
+#          aFile.write(htmlPage)
+#          aFile.close
         
           puts "Fallo con filtro #{filternumber}"
           return
@@ -899,10 +899,10 @@ class NextLinkPage
 		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message; $stdout.flush
 
-        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
-        htmlPage=@browser.html
-        aFile.write(htmlPage)
-        aFile.close
+#        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
+#        htmlPage=@browser.html
+#        aFile.write(htmlPage)
+#        aFile.close
         
 #        if e.message == 'end of file reached'
 #          recargar=true
@@ -1008,33 +1008,47 @@ class NextLinkPage
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
-      buttonNoTranslation = '//*[@id="REVIEWS"]//form[@class=\'translationOptionForm\']//*[@id=\'radioNo\' and not(@checked)]'
-      reintentos = 10
-      while @browser.element(:xpath,buttonNoTranslation).exists?
-        reintentos += -1
-        break if reintentos<0
-        @browser.element(:xpath,buttonNoTranslation).click
-        sleep 2
-        begin
-          Timeout.timeout(60) do
-            while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]").exists?)
-              sleep 1
+      begin
+        
+        buttonNoTranslation = '//*[@id="REVIEWS"]//form[@class=\'translationOptionForm\']//*[@id=\'radioNo\' and not(@checked)]'
+        reintentos = 10
+        while @browser.element(:xpath,buttonNoTranslation).exists?
+          reintentos += -1
+          break if reintentos<0
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          @browser.element(:xpath,buttonNoTranslation).click
+          sleep 2
+          begin
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            Timeout.timeout(60) do
+              while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]").exists?)
+                sleep 1
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+              end
+            end
+          rescue Timeout::Error
+              puts 'timeout en loading mientras desactivaba traducciones'
+          end
+   
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+          closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
+          if @browser.element(:xpath,closeModal).exists?
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            if @browser.element(:xpath,closeModal).visible?
+              @browser.element(:xpath,closeModal).click
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             end
           end
-        rescue Timeout::Error
-            puts 'timeout en loading mientras desactivaba traducciones'
-        end
- 
-        
-        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
-        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-        if @browser.element(:xpath,closeModal).exists?
-          if @browser.element(:xpath,closeModal).visible?
-            @browser.element(:xpath,closeModal).click
-          end
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         end
-
+      rescue
+        stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+        storePageDebugHtml stDT 
+  
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
 
@@ -1069,12 +1083,12 @@ class NextLinkPage
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         reintentos += -1
         if reintentos<0
-          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
-          htmlPage=@browser.html
-          aFile.write(htmlPage)
-          aFile.close
-          storePagePng stDT
+#          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+#          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
+#          htmlPage=@browser.html
+#          aFile.write(htmlPage)
+#          aFile.close
+#          storePagePng stDT
  
           break
         end
