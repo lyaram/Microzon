@@ -1211,7 +1211,18 @@ class NextLinkPage
    #   elem.click
    #   sleep 1
    # end
-  
+
+      if descripcion.include?('.KeepOnPaging.')
+        lastsavedpage = con.query("SELECT page FROM tblKeepOnPaging WHERE idTarget = #{idTarget};").fetch_row.first.to_i
+        currentpage = @browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip.to_i 
+        
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        raise "RETROCESO EN PAGINADO!" if currentpage<lastsavedpage
+        
+      end
+
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       
 #begin
       storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
@@ -1386,7 +1397,7 @@ class NextLinkPage
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}', page = (page + 1) WHERE idTarget = #{idTarget};")
+          con.query("UPDATE tblKeepOnPaging SET nextLink = '#{urlNextLink}', updatetime = '#{updateDate}', page = #{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip} WHERE idTarget = #{idTarget};")
           $keep_on_paging_in_progress = true
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         else
