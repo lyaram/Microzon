@@ -1213,9 +1213,25 @@ class NextLinkPage
    # end
 
       if descripcion.include?('.KeepOnPaging.')
-        lastsavedpage = con.query("SELECT page FROM tblKeepOnPaging WHERE idTarget = #{idTarget};").fetch_row.first.to_i
-        currentpage = @browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip.to_i 
-        
+        currentpage = 0
+        lastsavedpage = 1
+        begin
+          lastsavedpage = con.query("SELECT page FROM tblKeepOnPaging WHERE idTarget = #{idTarget};").fetch_row.first.to_i
+          puts("lastsavedpage: #{lastsavedpage}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          currentpage = @browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip.to_i
+          puts("currentpage: #{currentpage}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        rescue Exception => e
+          puts("ERROR:")
+          puts("Error.class: #{e.class}")
+          puts("Error.msg: #{e.message}")
+          
+          archivandoTraza
+        end
+             
+          
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
         raise "RETROCESO EN PAGINADO!" if currentpage<lastsavedpage
