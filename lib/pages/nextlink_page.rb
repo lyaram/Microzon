@@ -1017,58 +1017,26 @@ class NextLinkPage
         while @browser.element(:xpath,buttonNoTranslation).exists?
           reintentos += -1
           break if reintentos<0
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-  puts("buttonNoTranslation: #{buttonNoTranslation}")
-#ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-#  puts("exists: #{@browser.element(:xpath,buttonNoTranslation).exists?}")
-#ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-#  puts("visible: #{@browser.element(:xpath,buttonNoTranslation).visible?}")
-#ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-#  puts("visible: #{@browser.element(:xpath,buttonNoTranslation).visible}")
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza
           @browser.element(:xpath,buttonNoTranslation).fire_event('onclick')
           sleep 1
-archivandoTraza
           @browser.element(:xpath,checkPageCompleted).wait_until_present
           sleep 1
-archivandoTraza
-          begin
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            Timeout.timeout(60) do
-              while(@browser.element(:xpath,"//*[@class='loadingBox' and not(ancestor-or-self::*[contains(@class,'hidden')])]").exists?)
-                sleep 1
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-              end
-            end
-          rescue Timeout::Error
-              puts 'timeout en loading mientras desactivaba traducciones'
-          end
    
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
           closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
           if @browser.element(:xpath,closeModal).exists?
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             if @browser.element(:xpath,closeModal).visible?
               @browser.element(:xpath,closeModal).click
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             end
           end
   
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         end
-      rescue error
+      rescue Exception => e
         puts("ERROR:")
-        puts("Error.class: #{error.class}")
-        puts("Error.msg: #{error.message}")
-        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-        stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-        storePageDebugHtml stDT 
-  
+        puts("Error.class: #{e.class}")
+        puts("Error.msg: #{e.message}")
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
 

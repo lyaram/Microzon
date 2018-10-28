@@ -91,6 +91,11 @@ When /^QBot is surfing a webpage$/ do
       loop do
         $keep_on_paging_in_progress = false
 
+        horalim = Time.now - 600
+        con.query("DELETE FROM tblDoneTargets where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime is null and time_stamp < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
+        con.query("UPDATE tblTargets SET disabled=0 where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime is null and time_stamp < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
+        con.query("DELETE FROM tblKeepOnPaging WHERE updatetime is null and time_stamp < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "';")
+
         horalim = Time.now - 180
         con.query("DELETE FROM tblDoneTargets where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
         con.query("UPDATE tblTargets SET disabled=0 where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
