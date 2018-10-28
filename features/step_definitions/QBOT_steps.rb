@@ -147,7 +147,7 @@ When /^QBot is surfing a webpage$/ do
           
           #Tratamiento KeepOnPaging especial para capturas de fichas con muchas paginas que suelen caer en mitad de proceso.
           if description.include?('.KeepOnPaging.')
-            if con.query("select count(*) from tblKeepOnPaging WHERE idTarget = #{idTarget} AND NOT(updatetime is null);").fetch_row.first.to_i == 0
+            if con.query("select count(*) from tblKeepOnPaging WHERE idTarget = #{idTarget} AND NOT(nextLink is null);").fetch_row.first.to_i == 0
               con.query("DELETE FROM tblKeepOnPaging WHERE idTarget = #{idTarget};")          
               inserttime = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
               con.query("INSERT tblKeepOnPaging (idTarget, time_stamp) VALUES (#{idTarget}, '#{inserttime}');")
