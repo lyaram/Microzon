@@ -65,8 +65,6 @@ When /^QBot is surfing a webpage$/ do
     begin
       con = Mysql.new p0 , p1, p2, 'Navigator'
 
-      sleep 300
-      
       ip = open('http://169.254.169.254/latest/meta-data/public-ipv4').read
       instanceId = open('http://169.254.169.254/latest/meta-data/instance-id').read
       updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
