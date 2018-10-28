@@ -899,7 +899,7 @@ class NextLinkPage
 		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message; $stdout.flush
 
-        storePageDebugHtml stDT 
+        #storePageDebugHtml stDT 
 
 #        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
 #        htmlPage=@browser.html
