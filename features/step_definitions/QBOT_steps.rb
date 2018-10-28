@@ -165,7 +165,10 @@ When /^QBot is surfing a webpage$/ do
             
             updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
             con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
-          rescue
+          rescue error
+            puts("ERROR:")
+            puts("Error.class: #{error.class}")
+            puts("Error.msg: #{error.message}")
             hayfallos = true
           end
          
