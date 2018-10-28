@@ -129,6 +129,7 @@ When /^QBot is surfing a webpage$/ do
 
         unless idPillado
           updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
+          con.query("UPDATE tblKeepOnPaging SET updatetime = '#{updateDate}' WHERE idTarget = #{idTarget};")
           puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};");$stdout.flush
           con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
