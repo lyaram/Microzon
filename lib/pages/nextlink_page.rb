@@ -156,7 +156,25 @@ class NextLinkPage
       begin
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
-        puts 'URL Original: ' + url 
+        puts 'URL Original: ' + url
+        if descripcion.include? 'BOOKING_HotelFicha.'
+          @browser.goto "https://www.booking.com/"
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          @browser.element(:xpath,"//link[@rel='help']").wait_until_present
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          bksesion = @browser.element(:xpath,"//link[@rel='help']").attribute_value('href')
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          bksesion = "?" + bksesion.scan(/\?(.*)$/).first.first
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          if url.include? "#"
+            bksesion = bksesion + '#'
+            url = url.gsub! '#', bksesion 
+          else
+            url = url + bksesion            
+          end
+          puts 'URL Original2: ' + url
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        end
         @browser.goto url
         #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
