@@ -160,7 +160,7 @@ class NextLinkPage
         if descripcion.include? 'BOOKING_HotelFicha.'
           @browser.goto "https://www.booking.com/"
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          @browser.element(:xpath,"//link[@rel='help']").wait_until_present
+          @browser.element(:xpath,"//*[@id='booking-footer']").wait_until_present
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           bksesion = @browser.element(:xpath,"//link[@rel='help']").attribute_value('href')
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -349,7 +349,7 @@ class NextLinkPage
 
         if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
           if @browser.element(:xpath,'//*[@id="review_sort"]').visible?
-            @browser.select_list(:id => 'review_sort').select 'Date (newer to older)'
+            @browser.select_list(:id => 'review_sort').select_value('f_recent_desc')
             sleep 3
           end
         end
