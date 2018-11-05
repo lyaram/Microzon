@@ -138,6 +138,8 @@ class NextLinkPage
       profile['general.useragent.override']='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'      
     elsif descripcion.include?('S8Browser')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; Android 8.0.0; SAMSUNG SM-G950F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/7.2 Chrome/59.0.3071.125 Mobile Safari/537.36'
+    elsif descripcion.include?('OperaMiniBrowser')
+      profile['general.useragent.override']='Opera/9.80 (Android; Opera Mini/7.5.33361/34.818; U; en) Presto/2.8.119 Version/11.1010'
     elsif descripcion.include?('TestUABrowser')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 2.2; en-ca; GT-P1000M Build/FROYO) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
     end
