@@ -1464,8 +1464,12 @@ class NextLinkPage
             puts("NoPageUP")
           end
           
-          if descripcion.include? 'GMaps'
-            @browser.a(:xpath,nextlink).click
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          if descripcion.include? 'GMapsPlaceSearchLocalReviews.'
+            nextpageurl = @browser.element(:xpath,nextlink).attribute_value('href')
+            @browser.goto nextpageurl
+            @browser.element(:xpath,checkPageCompleted).wait_until_present
           else
             @browser.element(:xpath,nextlink).click
           end
