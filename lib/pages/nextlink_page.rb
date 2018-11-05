@@ -1463,7 +1463,12 @@ class NextLinkPage
           rescue
             puts("NoPageUP")
           end
-          @browser.element(:xpath,nextlink).click
+          
+          if descripcion.include? 'GMaps'
+            @browser.a(:xpath,nextlink).click
+          else
+            @browser.element(:xpath,nextlink).click
+          end
           sleep 2
         rescue Exception
           puts $!, $@
