@@ -1275,11 +1275,11 @@ archivandoTraza
         sorting = ""
         travellerTypeSel = ""
         pagDetails = ""
-        valPeine5 = ""
-        valPeine4 = ""
-        valPeine3 = ""
-        valPeine2 = ""
-        valPeine1 = ""
+        valPeine5 = "null"
+        valPeine4 = "null"
+        valPeine3 = "null"
+        valPeine2 = "null"
+        valPeine1 = "null"
         ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").innerText }
         ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").innerText }
         ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").innerText }
