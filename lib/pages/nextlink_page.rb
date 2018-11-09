@@ -498,7 +498,7 @@ class NextLinkPage
       puts("Ventanas: #{@browser.windows.count}")
       puts("Titulo:   #{@browser.title}")
        begin
-        @browser.element(:xpath,"//*[@id='filterControls']/form/div[contains(@class,'segment')]").wait_until_present
+        @browser.element(:xpath,"(//*[@id='filterControls']/form/div[contains(@class,'segment')] | //*[@data-param='filterSegment'])[1]").wait_until_present
        rescue 
         puts 'timeout esperando filtro'
        end
@@ -506,7 +506,7 @@ class NextLinkPage
 #archivandoTraza
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-       if @browser.element(:xpath,"//*[@id='filterControls']/form/div[contains(@class,'segment')]").exists?
+       if @browser.element(:xpath,"(//*[@id='filterControls']/form/div[contains(@class,'segment')] | //*[@data-param='filterSegment'])[1]").exists?
         filternumber = descripcion[/.*\.TAFilterSegment_(.*)\./,1]
         filterpath = "(//*[@name='filterSegment' and @value='#{filternumber}']/.. | //*[@data-param='filterSegment']/div[@data-value='#{filternumber}'])[1]"
         puts filterpath
