@@ -503,7 +503,7 @@ class NextLinkPage
         puts 'timeout esperando filtro'
        end
 
-archivandoTraza
+#archivandoTraza
 
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        if @browser.element(:xpath,"//*[@id='filterControls']/form/div[contains(@class,'segment')]").exists?
@@ -1251,7 +1251,7 @@ archivandoTraza
           puts("Error.class: #{e.class}")
           puts("Error.msg: #{e.message}")
           
-          archivandoTraza
+#          archivandoTraza
         end
              
           
