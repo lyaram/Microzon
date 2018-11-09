@@ -1275,6 +1275,11 @@ archivandoTraza
         sorting = ""
         travellerTypeSel = ""
         pagDetails = ""
+        valPeine5 = ""
+        valPeine4 = ""
+        valPeine3 = ""
+        valPeine2 = ""
+        valPeine1 = ""
         ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").innerText }
         ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").innerText }
         ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").innerText }
@@ -1285,14 +1290,18 @@ archivandoTraza
         ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").innerText }
         ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").innerText }
         ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").innerText }
-
+        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[1]/span[2]").innerText }
+        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[2]/span[2]").innerText }
+        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[3]/span[2]").innerText }
+        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[4]/span[2]").innerText }
+        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[5]/span[2]").innerText }
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
         sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
-                                                                 "Sorting, TravellerTypeSel, PagDetails) " +
+                                                                 "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
-                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}')"
+                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
         con.query(sqlInsert)
         
         int_id = con.query("select last_insert_id()").fetch_row.first.to_i
