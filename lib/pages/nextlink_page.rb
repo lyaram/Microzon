@@ -1266,7 +1266,7 @@ archivandoTraza
 #begin
       if descripcion.include? '.TAIdsOnDB.'
         placeName = ""
-        reviewTotalCount = ""
+        reviewTotalCount = "null"
         currentPage = ""
         langSelected = ""
         segmSelected = ""
@@ -1304,6 +1304,9 @@ archivandoTraza
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', #{reviewTotalCount}, '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
                             "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
+        puts(sqlInsert)
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         con.query(sqlInsert)
         
         int_id = con.query("select last_insert_id()").fetch_row.first.to_i
