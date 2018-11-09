@@ -1266,6 +1266,7 @@ archivandoTraza
 #begin
       if descripcion.include? '.TAIdsOnDB.'
         placeName = ""
+        reviewTotalCount = ""
         currentPage = ""
         langSelected = ""
         segmSelected = ""
@@ -1280,26 +1281,27 @@ archivandoTraza
         valPeine3 = "null"
         valPeine2 = "null"
         valPeine1 = "null"
-        ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").innerText }
-        ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").innerText }
-        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").innerText }
-        ignore_exception { segmSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").innerText }
-        ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").innerText }
-        ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").innerText }
-        ignore_exception { langFromRadioButtons = @browser.element(:xpath,"//*[contains(@class,'language')]//*[./input/@checked]/label").innerText }
-        ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").innerText }
-        ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").innerText }
-        ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").innerText }
-        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[1]").innerText }
-        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[2]").innerText }
-        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[3]").innerText }
-        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").innerText }
-        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").innerText }
+        ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").text }
+        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@property='count']").text }
+        ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").text }
+        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
+        ignore_exception { segmSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").text }
+        ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").text }
+        ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text }
+        ignore_exception { langFromRadioButtons = @browser.element(:xpath,"//*[contains(@class,'language')]//*[./input/@checked]/label").text }
+        ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text }
+        ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").text }
+        ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").text }
+        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[1]").text }
+        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[2]").text }
+        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[3]").text }
+        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").text }
+        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").text }
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
-        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, CurrentPage, " +
+        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, reviewTotalCount, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
                                                                  "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
-                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', '#{currentPage}', " +
+                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', #{reviewTotalCount}, '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
                             "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
         con.query(sqlInsert)
