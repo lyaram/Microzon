@@ -1292,7 +1292,7 @@ archivandoTraza
                                                                  "Sorting, TravellerTypeSel, PagDetails) " +
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
-                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetailst}')"
+                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}')"
         con.query(sqlInsert)
         
         int_id = con.query("select last_insert_id()").fetch_row.first.to_i
