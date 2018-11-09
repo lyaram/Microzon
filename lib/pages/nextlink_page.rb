@@ -1270,7 +1270,7 @@ class NextLinkPage
 #begin
       if descripcion.include? '.TAIdsOnDB.'
         placeName = ""
-        reviewTotalCount = "null"
+        reviewTotalCount = ""
         currentPage = ""
         langSelected = ""
         segmSelected = ""
@@ -1302,10 +1302,10 @@ class NextLinkPage
         ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").text }
         ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").text }
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
-        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, reviewTotalCount, CurrentPage, " +
+        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, reviewTotalCount2, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
                                                                  "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
-                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', #{reviewTotalCount}, '#{currentPage}', " +
+                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
                             "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
         puts(sqlInsert)
