@@ -528,7 +528,7 @@ class NextLinkPage
           fe.send_keys :arrow_up
 
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          if @browser.element(:xpath,"(#{filterpath}/label)[1]").present
+          if @browser.element(:xpath,"(#{filterpath}/label)[1]").present?
             @browser.element(:xpath,"(#{filterpath}/label)[1]").click
           else
             @browser.element(:xpath,"(#{filterpath}/input)[1]").click
