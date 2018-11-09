@@ -1319,7 +1319,7 @@ archivandoTraza
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           idTAReview = node.attribute_value('id')
           sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdTASegmentFicha, Posicion, ReviewWebId) " +
-                      "VALUES (#{IdTASegmentFicha}, #{posNode}, '#{idTAReview}')"
+                      "VALUES (#{idTASegmentFicha}, #{posNode}, '#{idTAReview}')"
           con.query(sqlInsert)
         end
       else
