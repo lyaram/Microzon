@@ -1275,16 +1275,16 @@ archivandoTraza
         sorting = ""
         travellerTypeSel = ""
         pagDetails = ""
-        ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").text }
-        ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNum current']").text }
-        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
-        ignore_exception { segmSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").text }
-        ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").text }
-        ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text }
-        ignore_exception { langFromRadioButtons = @browser.element(:xpath," .//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
-        ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text }
-        ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").text }
-        ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").text }
+        ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").innerText }
+        ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").innerText }
+        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").innerText }
+        ignore_exception { segmSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").innerText }
+        ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").innerText }
+        ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").innerText }
+        ignore_exception { langFromRadioButtons = @browser.element(:xpath,"//*[contains(@class,'language')]//*[./input/@checked]/label").innerText }
+        ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").innerText }
+        ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").innerText }
+        ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").innerText }
 
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
         sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, CurrentPage, " +
@@ -1298,11 +1298,17 @@ archivandoTraza
         int_id = con.query("select last_insert_id()").fetch_row.first.to_i
         idTASegmentFicha = "%08d" % int_id
         
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         posNode = 0
         nodes = @browser.divs(:xpath, "//*[@id='REVIEWS']//div[starts-with(@id,'review_')]")
+        
+        puts("Node count: #{nodes.size}")
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         nodes.each do |node|
           posNode += 1
-          idTAReview = node.attributes['id']
+          puts("posNode: #{posNode}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          idTAReview = node.attribute_value('id')
           sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdTASegmentFicha, Posicion, ReviewWebId) " +
                       "VALUES (#{IdTASegmentFicha}, #{posNode}, '#{idTAReview}')"
           con.query(sqlInsert)
