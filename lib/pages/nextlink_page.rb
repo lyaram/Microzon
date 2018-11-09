@@ -1299,7 +1299,7 @@ archivandoTraza
         idTASegmentFicha = "%08d" % int_id
         
         posNode = 0
-        nodes = allnodes.xpath("//*[@id='REVIEWS']//div[starts-with(@id,'review_')]")
+        nodes = @browser.divs(:xpath, "//*[@id='REVIEWS']//div[starts-with(@id,'review_')]")
         nodes.each do |node|
           posNode += 1
           idTAReview = node.attributes['id']
