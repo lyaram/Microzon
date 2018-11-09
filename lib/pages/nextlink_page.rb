@@ -1286,10 +1286,10 @@ class NextLinkPage
         valPeine2 = "null"
         valPeine1 = "null"
         ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").text }
-        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@property='count']").text }
+        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@property='count' or @class='reviewCount']").text }
         ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").text }
         ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
-        ignore_exception { segmSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").text }
+        ignore_exception { segmSelected = @browser.element(:xpath,"(//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked] | //*[@data-param='filterSegment']/div[input/@checked])[1]/label").text }
         ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").text }
         ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text }
         ignore_exception { langFromRadioButtons = @browser.element(:xpath,"//*[contains(@class,'language')]//*[./input/@checked]/label").text }
