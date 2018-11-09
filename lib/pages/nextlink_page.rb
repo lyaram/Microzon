@@ -1290,11 +1290,11 @@ archivandoTraza
         ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").innerText }
         ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").innerText }
         ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").innerText }
-        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[1]/span[2]").innerText }
-        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[2]/span[2]").innerText }
-        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[3]/span[2]").innerText }
-        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[4]/span[2]").innerText }
-        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@data-name='ta_rating'])[1]/div[5]/span[2]").innerText }
+        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[1]").innerText }
+        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[2]").innerText }
+        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[3]").innerText }
+        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").innerText }
+        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").innerText }
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
         sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
