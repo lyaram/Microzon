@@ -1286,6 +1286,7 @@ class NextLinkPage
         valPeine2 = "null"
         valPeine1 = "null"
         ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").text }
+        placeName = placeName.gsub! '\'', '\\\''
         ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@property='count' or @class='reviewCount']").text }
         ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").text }
         ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
