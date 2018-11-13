@@ -1394,7 +1394,7 @@ class NextLinkPage
           sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
                                                                    "reviewInfoTag01, reviewInfoTag02, reviewInfoTag03, reviewInfoTag04," +
                                                                    "reviewInfoTag05, reviewInfoTag06, reviewInfoTag07, reviewInfoTag08) " +
-                                                          "VALUES (#{idBKReviewsFicha}, #{posNode}, '#{idTAReview}', " +
+                                                          "VALUES (#{idBKReviewsFicha}, #{posNode}, '#{reviewerName}', " +
                                                                  "'#{nacionality}', '#{score}', '#{quote}', " +
                                                                  "'#{reviewInfoTag01}', '#{reviewInfoTag02}', '#{reviewInfoTag03}', '#{reviewInfoTag04}'," +
                                                                  "'#{reviewInfoTag05}', '#{reviewInfoTag06}', '#{reviewInfoTag07}', '#{reviewInfoTag08}')"
