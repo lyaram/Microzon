@@ -1378,19 +1378,19 @@ class NextLinkPage
           reviewInfoTag07 = ""
           reviewInfoTag08 = ""
           
-          ignore_exception { reviewerName = node.element(:xpath,".//*[@class='reviewer_name']/span").text }
-          ignore_exception { nacionality = node.element(:xpath,".//span[@itemprop='nationality']/span").text }
-          ignore_exception { reviewDate = node.element(:xpath,"./p[@class='review_item_date']").text }
-          ignore_exception { score = node.element(:xpath,".//*[@class='review-score-badge']").text }
-          ignore_exception { quote = node.element(:xpath,".//*[contains(@class,'review_item_header')]//*[@itemprop='name']").text }
-          ignore_exception { reviewInfoTag01 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[1]").text }
-          ignore_exception { reviewInfoTag02 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[2]").text }
-          ignore_exception { reviewInfoTag03 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[3]").text }
-          ignore_exception { reviewInfoTag04 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[4]").text }
-          ignore_exception { reviewInfoTag05 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[5]").text }
-          ignore_exception { reviewInfoTag06 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[6]").text }
-          ignore_exception { reviewInfoTag07 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[7]").text }
-          ignore_exception { reviewInfoTag08 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[8]").text }
+          ignore_exception { reviewerName = con.quote(node.element(:xpath,".//*[@class='reviewer_name']/span").text) }
+          ignore_exception { nacionality = con.quote(node.element(:xpath,".//span[@itemprop='nationality']/span").text) }
+          ignore_exception { reviewDate = con.quote(node.element(:xpath,"./p[@class='review_item_date']").text) }
+          ignore_exception { score = con.quote(node.element(:xpath,".//*[@class='review-score-badge']").text) }
+          ignore_exception { quote = con.quote(node.element(:xpath,".//*[contains(@class,'review_item_header')]//*[@itemprop='name']").text) }
+          ignore_exception { reviewInfoTag01 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[1]").text) }
+          ignore_exception { reviewInfoTag02 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[2]").text) }
+          ignore_exception { reviewInfoTag03 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[3]").text) }
+          ignore_exception { reviewInfoTag04 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[4]").text) }
+          ignore_exception { reviewInfoTag05 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[5]").text) }
+          ignore_exception { reviewInfoTag06 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[6]").text) }
+          ignore_exception { reviewInfoTag07 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[7]").text) }
+          ignore_exception { reviewInfoTag08 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[8]").text) }
           sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
                                                                    "reviewInfoTag01, reviewInfoTag02, reviewInfoTag03, reviewInfoTag04," +
                                                                    "reviewInfoTag05, reviewInfoTag06, reviewInfoTag07, reviewInfoTag08) " +
