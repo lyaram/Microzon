@@ -1391,7 +1391,7 @@ class NextLinkPage
           ignore_exception { reviewInfoTag06 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[6]").text }
           ignore_exception { reviewInfoTag07 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[7]").text }
           ignore_exception { reviewInfoTag08 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[8]").text }
-          sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
+          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
                                                                    "reviewInfoTag01, reviewInfoTag02, reviewInfoTag03, reviewInfoTag04," +
                                                                    "reviewInfoTag05, reviewInfoTag06, reviewInfoTag07, reviewInfoTag08) " +
                                                           "VALUES (#{idBKReviewsFicha}, #{posNode}, '#{reviewerName}', " +
