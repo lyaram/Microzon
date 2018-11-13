@@ -1303,10 +1303,10 @@ class NextLinkPage
         ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").text }
         ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").text }
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
-        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, PlaceName, reviewTotalCount2, CurrentPage, " +
+        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
                                                                  "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
-                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', " +
+                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
                             "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
         puts(sqlInsert)
@@ -1332,7 +1332,76 @@ class NextLinkPage
                       "VALUES (#{idTASegmentFicha}, #{posNode}, '#{idTAReview}')"
           con.query(sqlInsert)
         end
+      elsif descripcion.include? '.BKDimIndivsOnDB.'
+        placeName = ""
+        reviewTotalCount = ""
+        currentPage = ""
+        langSelected = ""
+        ignore_exception { placeName = @browser.element(:xpath,"//h1/a").text }
+        placeName = placeName.gsub! '\'', '\\\''
+        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@id='review_list_score']/p").text }
+        ignore_exception { currentPage = @browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text }
+        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='language']/option[@selected]").text }
+
+        sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected" +
+                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}'"
+        puts(sqlInsert)
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        con.query(sqlInsert)
+        
+        int_id = con.query("select last_insert_id()").fetch_row.first.to_i
+        idBKReviewsFicha = "%08d" % int_id
+        
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        posNode = 0
+        nodes = @browser.lis(:xpath, "//ul[@class='review_list']/li[starts-with(@class,'review_')]")
+        
+        puts("Node count: #{nodes.size}")
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        nodes.each do |node|
+          posNode += 1
+          puts("posNode: #{posNode}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          reviewerName = ""
+          nacionality = ""
+          reviewDate = ""
+          score = ""
+          quote = ""
+          reviewInfoTag01 = ""
+          reviewInfoTag02 = ""
+          reviewInfoTag03 = ""
+          reviewInfoTag04 = ""
+          reviewInfoTag05 = ""
+          reviewInfoTag06 = ""
+          reviewInfoTag07 = ""
+          reviewInfoTag08 = ""
+          
+          ignore_exception { reviewerName = node.element(:xpath,".//*[@class='reviewer_name']/span").text }
+          ignore_exception { nacionality = node.element(:xpath,".//span[@itemprop='nationality']/span").text }
+          ignore_exception { reviewDate = node.element(:xpath,"./p[@class='review_item_date']").text }
+          ignore_exception { score = node.element(:xpath,".//*[@class='review-score-badge']").text }
+          ignore_exception { quote = node.element(:xpath,".//*[contains(@class,'review_item_header')]//*[@itemprop='name']").text }
+          ignore_exception { reviewInfoTag01 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[1]").text }
+          ignore_exception { reviewInfoTag02 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[2]").text }
+          ignore_exception { reviewInfoTag03 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[3]").text }
+          ignore_exception { reviewInfoTag04 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[4]").text }
+          ignore_exception { reviewInfoTag05 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[5]").text }
+          ignore_exception { reviewInfoTag06 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[6]").text }
+          ignore_exception { reviewInfoTag07 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[7]").text }
+          ignore_exception { reviewInfoTag08 = node.element(:xpath,".//ul[@class='review_item_info_tags']/li[8]").text }
+          sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
+                                                                   "reviewInfoTag01, reviewInfoTag02, reviewInfoTag03, reviewInfoTag04," +
+                                                                   "reviewInfoTag05, reviewInfoTag06, reviewInfoTag07, reviewInfoTag08) " +
+                                                          "VALUES (#{idBKReviewsFicha}, #{posNode}, '#{idTAReview}', " +
+                                                                 "'#{nacionality}', '#{score}', '#{quote}', " +
+                                                                 "'#{reviewInfoTag01}', '#{reviewInfoTag02}', '#{reviewInfoTag03}', '#{reviewInfoTag04}'," +
+                                                                 "'#{reviewInfoTag05}', '#{reviewInfoTag06}', '#{reviewInfoTag07}', '#{reviewInfoTag08}')"
+          con.query(sqlInsert)
+        end
       else
+
         storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
       end
       
