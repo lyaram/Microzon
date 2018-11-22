@@ -449,6 +449,11 @@ class NextLinkPage
           @browser.element(:xpath,allLangRadioButton).click
           sleep 2
         end
+
+        if descripcion.include? '.KeepOnPaging.'
+          @browser.goto url
+        end
+
       end
 
       #sleep 1
