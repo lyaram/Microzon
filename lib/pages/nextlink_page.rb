@@ -385,7 +385,7 @@ class NextLinkPage
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       reintentos = 0
-      if (description.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
+      if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
         reintentos = 10
       end
       if url.include?('tripadvisor')
@@ -419,6 +419,9 @@ class NextLinkPage
           paginaenlink = (url.match('&start=(.*)')[1]).to_i + 10
 
           raise 'MaxPage superado' if paginaenlink > (maxPage*10)
+          
+          puts("paginando google #{paginaenlink}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           url = url.match('(.*)&start=')[1] + '&start=' + paginaenlink.to_s 
           @browser.goto url
