@@ -386,7 +386,7 @@ class NextLinkPage
 
       reintentos = 0
       if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
-        reintentos = 10
+        reintentos = 100
       end
       if url.include?('tripadvisor')
         reintentos = 5
