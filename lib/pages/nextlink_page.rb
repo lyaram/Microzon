@@ -890,32 +890,35 @@ class NextLinkPage
       recargar = false
       sigueprobando=true
       reintentos = 5
+      if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
+        reintentos = 100
+      end
       begin
         while sigueprobando
           reintentos += -1
-        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
-          
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
+
           if recargar
-            @browser.refresh
-            @browser.wait 60
+          @browser.refresh
+          @browser.wait 60
           end
           recargar = false
-          
-       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-         puts "Organizando ventanas..."
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          puts "Organizando ventanas..."
           puts(@browser.title )
           if @browser.title != titulo
             #agregando esta condición para los casos que la ventana activa cambia el Título
             if @browser.window(:title, titulo).exists?
               @browser.window(:title, titulo).use
             else
-              titulo = @browser.title
+            titulo = @browser.title
             end
           end
 
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
           if @browser.element(:xpath,closeModal).exists?
@@ -923,55 +926,75 @@ class NextLinkPage
               @browser.element(:xpath,closeModal).click
             end
           end
-          
 
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          
-         @browser.element(:xpath,checkPageCompleted).wait_until_present
-          
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          @browser.element(:xpath,checkPageCompleted).wait_until_present
+
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           break if checkPageLoading==''
-          
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           if descripcion.include? 'Airbnb_PlaceList.'
-             sleep 10
+            sleep 10
           end
           sleep 5
           if !@browser.element(:xpath,checkPageLoading).exists?
-            break
+          break
           end
 
-      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-          if reintentos<=0  
-            sigueprobando = false
+          if reintentos<=0
+          sigueprobando = false
           end
         end
       rescue Exception => e
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-		    strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+        strDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
         puts strDT + ": " + e.message; $stdout.flush
 
-        #storePageDebugHtml stDT 
+        if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          
+          currenturl = @browser.url
+          puts(currenturl)
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-#        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
-#        htmlPage=@browser.html
-#        aFile.write(htmlPage)
-#        aFile.close
-        
-#        if e.message == 'end of file reached'
-#          recargar=true
-#        else
-#          aFile = File.new(Dir.home() + "/BotStoring/debug/" + strDT + ".htm", "w")
-#          htmlPage=@browser.html
-#          aFile.write(htmlPage)
-#          aFile.close
-#        end
-    		
-        break if reintentos<=0
-        retry
+          paginaenlink = (currenturl.match('&start=(.*)')[1]).to_i + 10
+          puts("paginando google #{paginaenlink}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          currenturl = currenturl.match('(.*)&start=')[1] + '&start=' + paginaenlink.to_s 
+          puts(currenturl)
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          @browser.goto currenturl
+          
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          
+        end
+
+      #storePageDebugHtml stDT
+
+      #        aFile = File.new("/volHTML/debug/" + strDT + ".htm", "w")
+      #        htmlPage=@browser.html
+      #        aFile.write(htmlPage)
+      #        aFile.close
+
+      #        if e.message == 'end of file reached'
+      #          recargar=true
+      #        else
+      #          aFile = File.new(Dir.home() + "/BotStoring/debug/" + strDT + ".htm", "w")
+      #          htmlPage=@browser.html
+      #          aFile.write(htmlPage)
+      #          aFile.close
+      #        end
+
+      break if reintentos<=0
+      retry
       end
       
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
