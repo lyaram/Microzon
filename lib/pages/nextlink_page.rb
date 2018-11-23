@@ -419,7 +419,7 @@ class NextLinkPage
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         raise 'FALLO checkPageCompleted' if reintentos<=0
 
-        if (description.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
+        if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           paginaenlink = (url.match('&start=(.*)')[1]).to_i + 10
 
