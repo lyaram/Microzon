@@ -1,4 +1,4 @@
-class NextnkPage
+class NextLinkPage
 
   #include WatirPageHelper
  
