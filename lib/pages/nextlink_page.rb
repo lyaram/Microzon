@@ -1356,6 +1356,13 @@ class NextLinkPage
         ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[3]").text }
         ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").text }
         ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").text }
+
+        valPeine5 = valPeine5.gsub(',', ''); valPeine5 = valPeine5.gsub('.', '') 
+        valPeine4 = valPeine4.gsub(',', ''); valPeine4 = valPeine4.gsub('.', '') 
+        valPeine3 = valPeine3.gsub(',', ''); valPeine3 = valPeine3.gsub('.', '') 
+        valPeine2 = valPeine2.gsub(',', ''); valPeine2 = valPeine2.gsub('.', '') 
+        valPeine1 = valPeine1.gsub(',', ''); valPeine1 = valPeine1.gsub('.', '') 
+        
 #         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
         sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, " +
                                                                  "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
