@@ -1362,7 +1362,7 @@ class NextLinkPage
                                                                  "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', " +
                             "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
-                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', #{valPeine5}, #{valPeine4}, #{valPeine3}, #{valPeine2}, #{valPeine1})"
+                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', '#{valPeine5}', '#{valPeine4}', '#{valPeine3}', '#{valPeine2}', '#{valPeine1}')"
         puts(sqlInsert)
         ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
