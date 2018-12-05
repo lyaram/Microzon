@@ -113,9 +113,9 @@ at_exit do
 
 
 
-#  puts Metrics.page_metrics.summary
+  puts Metrics.page_metrics.summary
 
-#  File.open('pagemetrics.yml', 'w') { |file| file.puts Metrics.page_metrics.summary }
+  File.open('pagemetrics.yml', 'w') { |file| file.puts Metrics.page_metrics.summary }
 
  
 #  Browser::BROWSER.close
