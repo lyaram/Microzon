@@ -1471,6 +1471,9 @@ class NextLinkPage
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           con.query(sqlInsert.force_encoding("ASCII-8BIT"))
+          con.query(sqlInsert.force_encoding("UTF-8"))
+          con.query(sqlInsert.force_encoding("cp1252"))
+          con.query(sqlInsert.encode("UTF-8"))
         end
       else
 
