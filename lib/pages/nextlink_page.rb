@@ -1439,11 +1439,11 @@ class NextLinkPage
           reviewInfoTag07 = ""
           reviewInfoTag08 = ""
           
-          ignore_exception { reviewerName = con.quote(node.element(:xpath,".//*[@class='reviewer_name']/span").text).encode("UTF-8") }
+          ignore_exception { reviewerName = con.quote(node.element(:xpath,".//*[@class='reviewer_name']/span").text) }
           ignore_exception { nacionality = con.quote(node.element(:xpath,".//span[@itemprop='nationality']/span").text) }
           ignore_exception { reviewDate = con.quote(node.element(:xpath,"./p[@class='review_item_date']").text) }
           ignore_exception { score = con.quote(node.element(:xpath,".//*[@class='review-score-badge']").text) }
-          ignore_exception { quote = con.quote(node.element(:xpath,".//*[contains(@class,'review_item_header')]//*[@itemprop='name']").text).encode("UTF-8") }
+          ignore_exception { quote = con.quote(node.element(:xpath,".//*[contains(@class,'review_item_header')]//*[@itemprop='name']").text) }
           ignore_exception { reviewInfoTag01 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[1]").text) }
           ignore_exception { reviewInfoTag02 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[2]").text) }
           ignore_exception { reviewInfoTag03 = con.quote(node.element(:xpath,".//ul[@class='review_item_info_tags']/li[3]").text) }
