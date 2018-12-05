@@ -1466,7 +1466,11 @@ class NextLinkPage
                                                                  "'#{nacionality}', '#{score}', '#{quote}', '#{reviewDate}', " +
                                                                  "'#{reviewInfoTag01}', '#{reviewInfoTag02}', '#{reviewInfoTag03}', '#{reviewInfoTag04}'," +
                                                                  "'#{reviewInfoTag05}', '#{reviewInfoTag06}', '#{reviewInfoTag07}', '#{reviewInfoTag08}')"
-          con.query(sqlInsert)
+                        
+          puts("sqlInsert: #{sqlInsert}")
+          ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+          con.query(sqlInsert.force_encoding("UTF-8"))
         end
       else
 
