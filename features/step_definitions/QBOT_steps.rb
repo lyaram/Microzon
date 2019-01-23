@@ -85,7 +85,7 @@ When /^QBot is surfing a webpage$/ do
 
       pillamientos = 0
       resetCountDown = 5001 #en TA con muchas fichas poner a 5 para evitar bloqueos
-      $htmlStoreCountDown = 200 #Numero de htmls capturados antes de activar un reset. Utilizado para zipear automaticamente los paquetes cerrados      
+      $htmlStoreCountDown = 100 #Numero de htmls capturados antes de activar un reset. Utilizado para zipear automaticamente los paquetes cerrados      
       
       
       loop do
