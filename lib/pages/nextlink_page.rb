@@ -326,6 +326,26 @@ class NextLinkPage
 
       end
 
+      if descripcion.include? 'Airbnb_ExperienceList.'
+        begin
+          numItems = 0
+          while @browser.elements(:xpath, "//*[@itemprop='itemListElement']").length > numItems
+            numItems = @browser.elements(:xpath, "//*[@itemprop='itemListElement']").length
+            puts "NUMITEMS: #{numItems}"
+            ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            
+            @browser.send_keys [:control, :home]
+            sleep 3
+            @browser.send_keys [:control, :end]
+            sleep 3
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
+
       ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       if descripcion.include? 'BOOKING_HotelFicha.'
