@@ -127,15 +127,26 @@ class NextLinkPage
     else
       ipwebproxy = ""
       begin
+        
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         ipwebproxy = con.query("select IPWebProxy from tblConfig").fetch_row.first
+
+        puts "Probando con webproxy: #{ipwebproxy}"
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         if ipwebproxy != ""
           profile['network.proxy.http'] = ipwebproxy
-          profile['network.proxy.socks_port'] = 3928
+          profile['network.proxy.http_port'] = 3928
           profile['network.proxy.share_proxy_settings'] = true
           profile['network.proxy.type'] = 1
         end
+        
+        puts "Profile WebProxy montado!"
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       rescue 
-        #doevents
+        puts "ERROR WEBPROXY!!!!!!!!"
+        ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       end
     end
     
