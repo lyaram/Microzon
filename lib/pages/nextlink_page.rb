@@ -124,7 +124,21 @@ class NextLinkPage
       profile['network.proxy.socks'] = 'localhost'
       profile['network.proxy.socks_port'] = 9050
       profile['network.proxy.type'] = 1
+    elsif ipwebproxy = ""
+      begin
+        ipwebproxy = con.query("select IPWebProxy from tblConfig").fetch_row.first
+        if ipwebproxy != ""
+          profile['network.proxy.http'] = ipwebproxy
+          profile['network.proxy.socks_port'] = 3928
+          profile['network.proxy.share_proxy_settings'] = true
+          profile['network.proxy.type'] = 1
+        end
+      end
+      rescue 
+        #doevents
+      end
     end
+    
     if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_') || descripcion.include?('TRIPADVISOR_MobileMap') 
       #profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
       profile['general.useragent.override']='Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3'
