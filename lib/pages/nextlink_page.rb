@@ -124,7 +124,8 @@ class NextLinkPage
       profile['network.proxy.socks'] = 'localhost'
       profile['network.proxy.socks_port'] = 9050
       profile['network.proxy.type'] = 1
-    elsif ipwebproxy = ""
+    else
+      ipwebproxy = ""
       begin
         ipwebproxy = con.query("select IPWebProxy from tblConfig").fetch_row.first
         if ipwebproxy != ""
