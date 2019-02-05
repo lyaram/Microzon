@@ -133,7 +133,6 @@ class NextLinkPage
           profile['network.proxy.share_proxy_settings'] = true
           profile['network.proxy.type'] = 1
         end
-      end
       rescue 
         #doevents
       end
