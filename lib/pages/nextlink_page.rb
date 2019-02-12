@@ -1619,14 +1619,14 @@ class NextLinkPage
           @browser.element(:xpath,titlepath).wd.location_once_scrolled_into_view
           (1..5).each do |ipeine|
             puts "  Peine. Paso #{ipeine}"; $stdout.flush
-            peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked])[1]"
+            peineactivo = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked and not(contains(@id,'LanguageFilter'))])[1]"
             while @browser.element(:xpath,peineactivo).exists?
               puts "  Desactivando peine activo"; $stdout.flush
               @browser.element(:xpath,"#{peineactivo}/following::label[1]").click
                 sleep 1
      
                 reintentos = 20
-                while @browser.element(:xpath,"//*[@class='loadingBox']").visible?
+                while @browser.element(:xpath,"(//*[@class='loadingBox' or contains(@class,'FeedLoadingSkeleton')])[1]").visible?
                 reintentos += -1
                 break if reintentos<0
                 sleep 3
