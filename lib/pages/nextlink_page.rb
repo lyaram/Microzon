@@ -1620,7 +1620,7 @@ class NextLinkPage
 archivandoTraza
           (1..5).each do |ipeine|
             puts "  Peine. Paso #{ipeine}"; $stdout.flush
-            peineactivo = "(//*[contains(text(),'ler rating')]/../..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked and not(contains(@id,'LanguageFilter'))])[1]"
+            peineactivo = "(//*[@id='REVIEWS']/..//*[contains(text(),'ler rating')]/../..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked and not(contains(@id,'LanguageFilter'))])[1]"
             while @browser.element(:xpath,peineactivo).exists?
               puts "  Desactivando peine activo"; $stdout.flush
               @browser.element(:xpath,"#{peineactivo}/following::label[1]").click
