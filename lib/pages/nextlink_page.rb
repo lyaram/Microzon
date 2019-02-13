@@ -1617,7 +1617,7 @@ class NextLinkPage
         titlepath = "//*[contains(text(),'ler rating')]"
         if @browser.element(:xpath,titlepath).exists?
           @browser.element(:xpath,titlepath).wd.location_once_scrolled_into_view
-archivandoTraza
+#archivandoTraza
           (1..5).each do |ipeine|
             puts "  Peine. Paso #{ipeine}"; $stdout.flush
             peineactivo = "(//*[@id='REVIEWS']/..//*[contains(text(),'ler rating')]/../..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked and not(contains(@id,'LanguageFilter'))])[1]"
@@ -1637,7 +1637,7 @@ archivandoTraza
     
             puts "  Activando peine"; $stdout.flush
     #            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}]"
-            pathactivarpeine = "(//*[contains(text(),'ler rating')]/..//input/following::label[1])[#{ipeine}]"
+            pathactivarpeine = "(//*[@id='REVIEWS']/..//*[contains(text(),'ler rating')]/../..//input/following::label[1])[#{ipeine}]"
             puts "  pathactivarpeine = #{pathactivarpeine}"; $stdout.flush
             @browser.element(:xpath,pathactivarpeine).click
             sleep 1
@@ -1645,7 +1645,7 @@ archivandoTraza
     #            peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden'])])[#{ipeine}][@checked]"
             peinechkdpath = "(//*[contains(text(),'ler rating')]/..//input)[#{ipeine}][@checked]"
             reintentos = 20
-            until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"//*[@class='loadingBox']").visible?
+            until @browser.element(:xpath,peinechkdpath).exists? && !@browser.element(:xpath,"(//*[@class='loadingBox' or contains(@class,'FeedLoadingSkeleton')])[1]").present?
               reintentos += -1
               break if reintentos<0
               sleep 3
