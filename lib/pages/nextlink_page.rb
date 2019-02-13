@@ -1617,6 +1617,7 @@ class NextLinkPage
         titlepath = "//*[contains(text(),'ler rating')]"
         if @browser.element(:xpath,titlepath).exists?
           @browser.element(:xpath,titlepath).wd.location_once_scrolled_into_view
+archivandoTraza
           (1..5).each do |ipeine|
             puts "  Peine. Paso #{ipeine}"; $stdout.flush
             peineactivo = "(//*[contains(text(),'ler rating')]/../..//input[not(ancestor-or-self::*[@class='hidden' or @type='hidden']) and @checked and not(contains(@id,'LanguageFilter'))])[1]"
