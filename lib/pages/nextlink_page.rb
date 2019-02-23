@@ -1480,6 +1480,8 @@ class NextLinkPage
 
           reviewerName = ""
           nacionality = ""
+          userReviewCount = ""
+          userAgeGroup = ""
           reviewDate = ""
           reviewDate2 = ""
           score = ""
@@ -1495,6 +1497,8 @@ class NextLinkPage
           
           ignore_exception { reviewerName = con.quote(node.element(:xpath,".//*[@class='reviewer_name']/span").text) }
           ignore_exception { nacionality = con.quote(node.element(:xpath,".//span[@itemprop='nationality']/span").text) }
+          ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//*[@class='review_item_user_review_count']").text) }
+          ignore_exception { userAgeGroup = con.quote(node.element(:xpath,".//*[@class='user_age_group']").text) }
           ignore_exception { reviewDate = con.quote(node.element(:xpath,"./p[@class='review_item_date']").text) }
           ignore_exception { reviewDate2 = con.quote(node.element(:xpath,".//meta[@itemprop='datePublished']").attribute_value('content')) }
           ignore_exception { score = con.quote(node.element(:xpath,".//*[@class='review-score-badge']").text) }
@@ -1514,10 +1518,12 @@ class NextLinkPage
           puts("quote: #{quote}")
           ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           
-          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, reviewDate, reviewDate2, " +
+          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsIndiv` (IdBKReviewsFicha, Posicion, reviewerName, nacionality, score, quote, " +
+                                                                   "reviewDate, reviewDate2, userReviewCount, userAgeGroup, " +
                                                                    "reviewInfoTag01, reviewInfoTag02, reviewInfoTag03, reviewInfoTag04," +
                                                                    "reviewInfoTag05, reviewInfoTag06, reviewInfoTag07, reviewInfoTag08) " +
                                                           "VALUES (#{idBKReviewsFicha}, #{posNode}, '#{reviewerName}', " +
+                                                                 "'#{userReviewCount}', '#{userAgeGroup}', " +
                                                                  "'#{nacionality}', '#{score}', '#{quote}', '#{reviewDate}', '#{reviewDate2}', " +
                                                                  "'#{reviewInfoTag01}', '#{reviewInfoTag02}', '#{reviewInfoTag03}', '#{reviewInfoTag04}'," +
                                                                  "'#{reviewInfoTag05}', '#{reviewInfoTag06}', '#{reviewInfoTag07}', '#{reviewInfoTag08}')"
