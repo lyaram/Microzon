@@ -165,7 +165,7 @@ When /^QBot is surfing a webpage$/ do
           
           hayfallos = false
           begin
-            page.launchDataTA con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
             con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
             
             updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
