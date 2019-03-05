@@ -2108,7 +2108,7 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
     else
 
-      request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}")
+      request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
 
     end
 
