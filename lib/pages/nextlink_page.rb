@@ -2108,9 +2108,7 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
     else
 
-      request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
-
-                   'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF', "#{filtro}" => "#{ipeine}")
+      request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}")
 
     end
 
@@ -2146,7 +2144,7 @@ end
 
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
 
-    con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
+    con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = "#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
 
 
