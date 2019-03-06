@@ -113,16 +113,17 @@ puts "checkPageCompleted: #{checkPageCompleted}"
         puts "  Peine. Paso #{ipeine}"; $stdout.flush
 
         uri = URI.parse(url)
+puts "uri.host   #{uri.host}"
+puts "uri.port   #{uri.port}"
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        request = Net::HTTP::Get.new(uri.request_uri)
-        request["Accept"] = "text/html, */*"
-        request["Accept-Language"] = "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3"
-        request["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-        request["X-Requested-With"] = "XMLHttpRequest"
-        request["X-Puid"] = "XH3LRwokIj8AAM7xfXwAAAAF"
-        request["DNT"] = "1"
+        request = Net::HTTP::Post.new(uri.path, {"Accept" => "text/html, */*"
+                                                ,"Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3"
+                                                ,"Content-Type" => "application/x-www-form-urlencoded; charset=utf-8"
+                                                ,"X-Requested-With" => "XMLHttpRequest"
+                                                ,"X-Puid" => "XH3LRwokIj8AAM7xfXwAAAAF"
+                                                ,"DNT" => "1"})
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if ipeine==0
           request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'}.to_json
