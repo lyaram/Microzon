@@ -119,7 +119,7 @@ puts "uri.path   #{uri.path}"
 puts "uri.request_uri   #{uri.request_uri}"
 
 
-      http = Net::HTTP.new(uri.host)
+      http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri)
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
