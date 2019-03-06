@@ -5,6 +5,7 @@ class NextLinkPage
   #si al final hay que instalar gem, considerar Hpricot
   require 'rexml/document'
   include REXML 
+
     
   def getLaunch
 
@@ -84,6 +85,53 @@ class NextLinkPage
     end
 
   end
+
+def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
+
+    lasttime = Time.now.to_f
+
+puts "idLaunch: #{idLaunch}"
+puts "descripcion: #{descripcion}"
+puts "url: #{url}"
+puts "nextlink: #{nextlink}"
+puts "checkPageCompleted: #{checkPageCompleted}"
+    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted 
+  filtro = ""
+  if descripcion.include?('.RE.')
+    filtro = "filterRating"
+  else  
+    filtro = "trating"
+  end
+    
+    (0..5).each do |ipeine|
+        puts "  Peine. Paso #{ipeine}"; $stdout.flush
+
+        uri = URI.parse(url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        request = Net::HTTP::Get.new(uri.request_uri)
+        request["Accept"] = "text/html, */*"
+        request["Accept-Language"] = "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3"
+        request["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+        request["X-Requested-With"] = "XMLHttpRequest"
+        request["X-Puid"] = "XH3LRwokIj8AAM7xfXwAAAAF"
+        request["DNT"] = "1"
+        if ipeine==0
+          request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
+                       'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
+        else
+          request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
+        end
+        response = http.request(request)
+        sleep 1
+        retHttp = "<html><head></head><body>" + response.body + "</body></html>"
+        storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, retHttp
+    end
+
+end
+
+
 
   def launch con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
     lasttime = Time.now.to_f
@@ -2044,90 +2092,6 @@ class NextLinkPage
 
 end
 
-
-
-def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
-
-    lasttime = Time.now.to_f
-
-puts "idLaunch: #{idLaunch}"
-puts "descripcion: #{descripcion}"
-puts "url: #{url}"
-puts "nextlink: #{nextlink}"
-puts "checkPageCompleted: #{checkPageCompleted}"
-    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted 
-
-  filtro = ""
-
-  if descripcion.include?('.RE.')
-
-    filtro = "filterRating"
-
-  else  
-
-    filtro = "trating"
-
-  end
-
-    
-
-    (0..5).each do |ipeine|
-
-        puts "  Peine. Paso #{ipeine}"; $stdout.flush
-
-
-
-    uri = URI.parse(url)
-
-    http = Net::HTTP.new(uri.host, uri.port)
-
-    http.use_ssl = true
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-
-    request["Accept"] = "text/html, */*"
-
-    request["Accept-Language"] = "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3"
-
-    request["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-
-    request["X-Requested-With"] = "XMLHttpRequest"
-
-    request["X-Puid"] = "XH3LRwokIj8AAM7xfXwAAAAF"
-
-    request["DNT"] = "1"
-
-    if ipeine==0
-
-      request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
-
-                   'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
-
-    else
-
-      request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
-
-    end
-
-    
-
-
-
-    response = http.request(request)
-    sleep 1
-    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
-
-        storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, retHttp
-
-            
-
-    end
-
-
-
-end
 
 
 
