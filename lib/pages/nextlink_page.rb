@@ -110,6 +110,7 @@ puts "checkPageCompleted: #{checkPageCompleted}"
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         request = Net::HTTP::Get.new(uri.request_uri)
         request["Accept"] = "text/html, */*"
         request["Accept-Language"] = "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3"
@@ -117,16 +118,20 @@ puts "checkPageCompleted: #{checkPageCompleted}"
         request["X-Requested-With"] = "XMLHttpRequest"
         request["X-Puid"] = "XH3LRwokIj8AAM7xfXwAAAAF"
         request["DNT"] = "1"
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if ipeine==0
           request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
                        'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
         else
           request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
         end
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         response = http.request(request)
         sleep 1
         retHttp = "<html><head></head><body>" + response.body + "</body></html>"
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, retHttp
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     end
 
 end
