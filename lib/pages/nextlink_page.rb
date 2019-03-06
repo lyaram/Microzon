@@ -6,6 +6,10 @@ class NextLinkPage
   require 'rexml/document'
   include REXML 
 
+require 'net/http'
+require 'net/https'
+require 'uri'
+
     
   def getLaunch
 
