@@ -115,6 +115,8 @@ puts "checkPageCompleted: #{checkPageCompleted}"
         uri = URI.parse(url)
 puts "uri.host   #{uri.host}"
 puts "uri.port   #{uri.port}"
+puts "uri.path   #{uri.path}"
+
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -132,6 +134,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
 #                       'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
         else
 #          request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
+          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF', 'trating' => "#{ipeine}"}.to_json
+
+
         end
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         response = http.request(request)
