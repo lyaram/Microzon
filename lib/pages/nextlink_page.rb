@@ -116,28 +116,52 @@ puts "checkPageCompleted: #{checkPageCompleted}"
 puts "uri.host   #{uri.host}"
 puts "uri.port   #{uri.port}"
 puts "uri.path   #{uri.path}"
+puts "uri.request_uri   #{uri.request_uri}"
 
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        request = Net::HTTP::Post.new(uri.path, {"Accept" => "text/html, */*" ,
-                                                 "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3" ,
-                                                 "Content-Type" => "application/x-www-form-urlencoded; charset=utf-8" ,
-                                                 "X-Requested-With" => "XMLHttpRequest" ,
-                                                 "X-Puid" => "XH3LRwokIj8AAM7xfXwAAAAF" ,
-                                                 "DNT" => "1"})
+
+      http = Net::HTTP.new(uri.host)
+      http.use_ssl = true
+      request = Net::HTTP::Post.new(uri.request_uri)
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if ipeine==0
-          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'}.to_json
+#          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'}.to_json
 
 #          request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
 #                       'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
+            form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+                                              :paramSeqId => '3', :waitTime => '11', :puid => 'XH3LRwokIj8AAM7xfXwAAAAF'})
         else
 #          request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
-          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF', 'trating' => "#{ipeine}"}.to_json
+#          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF', 'trating' => "#{ipeine}"}.to_json
+            form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+                                              :paramSeqId => '3', :waitTime => '11', :puid => 'XH3LRwokIj8AAM7xfXwAAAAF', :trating => "#{ipeine}"})
 
 
         end
+      
+      request.body = form_data
+
+      request.add_field('Key', api_key)
+      request.add_field('Accept' , 'text/html, */*')
+      request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
+      request.add_field('Content-Type' , 'application/x-www-form-urlencoded; charset=utf-8' )
+      request.add_field('X-Requested-With' , 'XMLHttpRequest' )
+      request.add_field('X-Puid' , 'XH3LRwokIj8AAM7xfXwAAAAF')
+      request.add_field('DNT' , '1')
+
+#res = http.request(request)
+#puts res.body
+#
+#        http = Net::HTTP.new(uri.host, uri.port)
+#        http.use_ssl = true
+#ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+#        request = Net::HTTP::Post.new(uri.path, {"Accept" => "text/html, */*" ,
+#                                                 "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3" ,
+#                                                 "Content-Type" => "application/x-www-form-urlencoded; charset=utf-8" ,
+#                                                 "X-Requested-With" => "XMLHttpRequest" ,
+#                                                 "X-Puid" => "XH3LRwokIj8AAM7xfXwAAAAF" ,
+#                                                 "DNT" => "1"})
+
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         response = http.request(request)
         sleep 1
