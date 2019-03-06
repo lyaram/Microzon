@@ -141,7 +141,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
       
       request.body = form_data
 
-      request.add_field('Key', api_key)
       request.add_field('Accept' , 'text/html, */*')
       request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
       request.add_field('Content-Type' , 'application/x-www-form-urlencoded; charset=utf-8' )
