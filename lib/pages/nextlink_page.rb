@@ -107,7 +107,9 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
     uri = URI.parse(url)
 
-    http = Net::HTTP.new(uri.host)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+      http.use_ssl = true
 
   html = http.get(uri.request_uri).body
 
@@ -122,7 +124,7 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
   puts "uid #{uid}"
 
-  puts "uid #{rid}"
+  puts "rid #{rid}"
 
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
