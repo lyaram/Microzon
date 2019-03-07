@@ -113,9 +113,9 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
   
 
-  uid = html.scan(/pageLoadUID":"(.[^"]*)"/)
+  uid = html.scan(/pageLoadUID":"(.[^"]*)"/)[0]
 
-  rid = html.scan(/data-reviewId="(.[^"]*)"/)
+  rid = html.scan(/data-reviewId="(.[^"]*)"/)[0]
 
 
 
