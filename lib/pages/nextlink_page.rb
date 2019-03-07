@@ -93,84 +93,166 @@ require 'json'
 
 def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
 
+
+
     lasttime = Time.now.to_f
 
-puts "idLaunch: #{idLaunch}"
-puts "descripcion: #{descripcion}"
-puts "url: #{url}"
-puts "nextlink: #{nextlink}"
-puts "checkPageCompleted: #{checkPageCompleted}"
+
+
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
     idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted 
+
+
+
+    uri = URI.parse(url)
+
+    http = Net::HTTP.new(uri.host)
+
+  html = http.get(uri.request_uri).body
+
+  
+
+  uid = html.scan(/pageLoadUID":"(.[^"]*)"/)
+
+  rid = html.scan(/data-reviewId="(.[^"]*)"/)
+
+
+
+  puts "uid #{uid}"
+
+  puts "uid #{rid}"
+
+    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+  
+
+  url = url.gsub("-Reviews-", "-r#{rid}-")
+
+    url = url.gsub("/Hotel_Review-", "/ShowUserReviews-")
+
+    url = url.gsub("/Attraction_Review-", "/ShowUserReviews-")
+
+    url = url.gsub("/Restaurant_Review-", "/ShowUserReviews-")
+
+  puts "new url #{url}"
+
+    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+  
+
   filtro = ""
+
   if descripcion.include?('.RE.')
-    filtro = "filterRating"
+
+  filtro = "filterRating"
+
   else  
-    filtro = "trating"
+
+  filtro = "trating"
+
   end
+
     
+
     (0..5).each do |ipeine|
+
         puts "  Peine. Paso #{ipeine}"; $stdout.flush
 
+
+
         uri = URI.parse(url)
+
 puts "uri.host   #{uri.host}"
+
 puts "uri.port   #{uri.port}"
+
 puts "uri.path   #{uri.path}"
+
 puts "uri.request_uri   #{uri.request_uri}"
 
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      request = Net::HTTP::Post.new(uri.request_uri)
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        if ipeine==0
-#          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'}.to_json
 
-#          request.set_form_data({'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 
-#                       'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF'})
+
+
+      http = Net::HTTP.new(uri.host, uri.port)
+
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new(uri.request_uri)
+
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        if ipeine==0
+
             form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
-                                              :paramSeqId => '3', :waitTime => '11', :puid => 'XH3LRwokIj8AAM7xfXwAAAAF'})
+
+                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}"})
+
         else
-#          request.set_form_data({"filterLang" => "all", "isLastPoll" => "false", "reqNum" => "1", "changeSet" => "REVIEW_LIST", "paramSeqId" => "3", "waitTime" => "11", "puid" => "XH3LRwokIj8AAM7xfXwAAAAF", "#{filtro}" => "#{ipeine}"})
-#          request.body = {'filterLang' => 'all', 'isLastPoll' => 'false', 'reqNum' => '1', 'changeSet' => 'REVIEW_LIST', 'paramSeqId' => '3', 'waitTime' => '11', 'puid' => 'XH3LRwokIj8AAM7xfXwAAAAF', 'trating' => "#{ipeine}"}.to_json
-            form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
-                                              :paramSeqId => '3', :waitTime => '11', :puid => 'XH3LRwokIj8AAM7xfXwAAAAF', :trating => "#{ipeine}"})
+
+      if filtro=="trating"
+
+        form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+
+                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :trating => "#{ipeine}"})
+
+      else
+
+        form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+
+                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :filterRating => "#{ipeine}"})
+
+      end
+
 
 
         end
+
       
+
       request.body = form_data
 
+
+
       request.add_field('Accept' , 'text/html, */*')
+
       request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
+
       request.add_field('Content-Type' , 'application/x-www-form-urlencoded; charset=utf-8' )
+
       request.add_field('X-Requested-With' , 'XMLHttpRequest' )
-      request.add_field('X-Puid' , 'XH3LRwokIj8AAM7xfXwAAAAF')
+
+      request.add_field('X-Puid' , "#{uid}")
+
       request.add_field('DNT' , '1')
 
-#res = http.request(request)
-#puts res.body
-#
-#        http = Net::HTTP.new(uri.host, uri.port)
-#        http.use_ssl = true
-#ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-#        request = Net::HTTP::Post.new(uri.path, {"Accept" => "text/html, */*" ,
-#                                                 "Accept-Language" => "es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3" ,
-#                                                 "Content-Type" => "application/x-www-form-urlencoded; charset=utf-8" ,
-#                                                 "X-Requested-With" => "XMLHttpRequest" ,
-#                                                 "X-Puid" => "XH3LRwokIj8AAM7xfXwAAAAF" ,
-#                                                 "DNT" => "1"})
+
 
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         response = http.request(request)
+
         sleep 1
+
         retHttp = "<html><head></head><body>" + response.body + "</body></html>"
+
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, retHttp
+
+        storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, ipeine, retHttp
+
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
     end
 
+
+
 end
+
+
+
+
+
 
 
 
@@ -2138,7 +2220,7 @@ end
 
 
 
-  def storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, html
+  def storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, page, html
 
     t = Time.now  
 
@@ -2158,7 +2240,7 @@ end
     idInsert = 0
 
 
-    storeDirectPageHtml idLaunch, idCaptura, strDT, html
+    storeDirectPageHtml idLaunch, idCaptura, strDT, page, html
 
 
 
@@ -2180,7 +2262,7 @@ end
 
   
 
-  def storeDirectPageHtml idLaunch, idCaptura, strDT, html
+  def storeDirectPageHtml idLaunch, idCaptura, strDT, page, html
 
     
 
@@ -2190,7 +2272,7 @@ end
 
     subdoc = Document.new("<Pagina />")
 
-    subdoc.root.attributes["id"] = 1
+    subdoc.root.attributes["id"] = "#{page}"
 
     eFechaHora = subdoc.root.add_element "FechaHora"
 
