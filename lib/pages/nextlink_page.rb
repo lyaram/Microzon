@@ -116,9 +116,9 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
   puts html
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-  uid = html.scan(/pageLoadUID":"(.[^"]*)"/)[1]
+  uid = html.scan(/pageLoadUID":"(.[^"]*)"/)[0]
 
-  rid = html.scan(/data-reviewId="(.[^"]*)"/)[1]
+  rid = html.scan(/data-reviewId="(.[^"]*)"/)[0]
 
 
 
