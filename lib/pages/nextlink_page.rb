@@ -105,7 +105,7 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
 
 
-    uri = URI.parse(url.gsum('.co.uk/','.cn/'))
+    uri = URI.parse(url.gsub('.co.uk/','.cn/'))
 
     http = Net::HTTP.new(uri.host, uri.port)
 
