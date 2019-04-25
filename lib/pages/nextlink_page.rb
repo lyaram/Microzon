@@ -12,12 +12,12 @@ require 'uri'
 require 'json'
 
     
-  def getLaunch
+ def getLaunch
 
     #folderbase = Dir.home() + "/BotStoring"
-	folderbase = "/volHTML"
+    folderbase = "/volHTML"
     folderlaunches = "/volHTML"
-    
+
     maxi = 0
     carpetas = Dir.glob(folderlaunches + '/00*')
     carpetas.each do |pathcarpeta|
@@ -27,7 +27,7 @@ require 'json'
     end
 
     raise "No hay historial de carpetas para poder continuar" if maxi == 0
-    
+
     indexLaunch = "%08d" % (maxi+1)
     ruta = folderlaunches + "/" + indexLaunch
     begin
@@ -38,39 +38,38 @@ require 'json'
       File.umask old_umask
     end
 
-
-#    launchesLogXml = folderbase + "/launcheslog.xml"
-#
-#    if not File.file?(launchesLogXml)
-#      File.open(launchesLogXml, "w") do |f|
-#        f.puts '<Launches/>'; $stdout.flush
-#      end
-#      indexLaunch = "%08d" % 1
-#    end
-#    
-#    file = File.new(launchesLogXml)
-#    doc = Document.new(file)
-#    
-#    if indexLaunch == ""
-#      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
-#      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
-#    end
-#    
-#    subdoc = Document.new("<Launch />")
-#    subdoc.root.attributes["id"] = indexLaunch
-#
-#    doc.root.elements.add(subdoc.root)
+    #    launchesLogXml = folderbase + "/launcheslog.xml"
+    #
+    #    if not File.file?(launchesLogXml)
+    #      File.open(launchesLogXml, "w") do |f|
+    #        f.puts '<Launches/>'; $stdout.flush
+    #      end
+    #      indexLaunch = "%08d" % 1
+    #    end
+    #
+    #    file = File.new(launchesLogXml)
+    #    doc = Document.new(file)
+    #
+    #    if indexLaunch == ""
+    #      lastLaunch = XPath.match(doc.root, "//Launches/Launch[last()]").first
+    #      indexLaunch = "%08d" % ((lastLaunch.attributes["id"]).to_i+1)
+    #    end
+    #
+    #    subdoc = Document.new("<Launch />")
+    #    subdoc.root.attributes["id"] = indexLaunch
+    #
+    #    doc.root.elements.add(subdoc.root)
 
     launchLogXml = ruta + "/launchlog.xml"
     doc = Document.new("<Launch />")
     File.open(launchLogXml,"w") do |data|
       data<<doc
     end
- 
+
     return indexLaunch
   end
 
-  def prepararLaunch idLaunch
+ def prepararLaunch idLaunch
 
     folderlaunches = "/volHTML"
 
@@ -91,45 +90,34 @@ require 'json'
 
   end
 
-def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
-
-
+ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
 
     lasttime = Time.now.to_f
 
-
-
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted 
-
-
+    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     uri = URI.parse(url.gsub('.co.uk/','.cn/'))
 
     http = Net::HTTP.new(uri.host, uri.port)
 
-      http.use_ssl = true
+    http.use_ssl = true
 
-  html = http.get(uri.request_uri).body
-
-
-    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-  uid = html.scan(/"uid":"(.[^"]*)"/i).first.first
-  rid = html.scan(/data-reviewid="(.[^"]*)"/i).first.first
-
-
-
-  puts "uid #{uid}"
-
-  puts "rid #{rid}"
+    html = http.get(uri.request_uri).body
 
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-  
+    uid = html.scan(/"uid":"(.[^"]*)"/i).first.first
+    rid = html.scan(/data-reviewid="(.[^"]*)"/i).first.first
 
-  url = url.gsub("-Reviews-", "-r#{rid}-")
+    puts "uid #{uid}"
+
+    puts "rid #{rid}"
+
+    ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+    url = url.gsub("-Reviews-", "-r#{rid}-")
 
     url = url.gsub("/Hotel_Review-", "/ShowUserReviews-")
 
@@ -137,45 +125,35 @@ def launchDataTA con, idTarget, idConexion, idLaunch, descripcion, url, nextlink
 
     url = url.gsub("/Restaurant_Review-", "/ShowUserReviews-")
 
-  puts "new url #{url}"
+    puts "new url #{url}"
 
     ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-  
+    filtro = ""
 
-  filtro = ""
+    if descripcion.include?('.RE.')
 
-  if descripcion.include?('.RE.')
+      filtro = "filterRating"
 
-  filtro = "filterRating"
+    else
 
-  else  
+      filtro = "trating"
 
-  filtro = "trating"
-
-  end
-
-    
+    end
 
     (0..5).each do |ipeine|
 
-        puts "  Peine. Paso #{ipeine}"; $stdout.flush
+      puts "  Peine. Paso #{ipeine}"; $stdout.flush
 
+      uri = URI.parse(url)
 
+      puts "uri.host   #{uri.host}"
 
-        uri = URI.parse(url)
+      puts "uri.port   #{uri.port}"
 
-puts "uri.host   #{uri.host}"
+      puts "uri.path   #{uri.path}"
 
-puts "uri.port   #{uri.port}"
-
-puts "uri.path   #{uri.path}"
-
-puts "uri.request_uri   #{uri.request_uri}"
-
-
-
-
+      puts "uri.request_uri   #{uri.request_uri}"
 
       http = Net::HTTP.new(uri.host, uri.port)
 
@@ -183,39 +161,33 @@ puts "uri.request_uri   #{uri.request_uri}"
 
       request = Net::HTTP::Post.new(uri.request_uri)
 
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        if ipeine==0
+      if ipeine==0
 
-            form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+        form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST',
 
-                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}"})
-
-        else
-
-      if filtro=="trating"
-
-        form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
-
-                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :trating => "#{ipeine}"})
+          :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}"})
 
       else
 
-        form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST', 
+        if filtro=="trating"
 
-                                              :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :filterRating => "#{ipeine}"})
+          form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST',
 
-      end
+            :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :trating => "#{ipeine}"})
 
+        else
 
+          form_data = URI.encode_www_form({ :filterLang => 'all', :isLastPoll => 'false', :reqNum => '1', :changeSet => 'REVIEW_LIST',
+
+            :paramSeqId => '3', :waitTime => '11', :puid => "#{uid}", :filterRating => "#{ipeine}"})
 
         end
 
-      
+      end
 
       request.body = form_data
-
-
 
       request.add_field('Accept' , 'text/html, */*')
 
@@ -229,27 +201,23 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
 
       request.add_field('DNT' , '1')
 
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+      response = http.request(request)
 
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      sleep 1
 
-        response = http.request(request)
+      retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 
-        sleep 1
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        retHttp = "<html><head></head><body>" + response.body + "</body></html>"
+      storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, ipeine, retHttp
 
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-        storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, ipeine, retHttp
-
-ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     end
 
-
-
-end
+  end
 
 
 
@@ -2010,15 +1978,15 @@ end
     return indexCaptura
   end
 
-  def storePage con, idTarget, idConexion, idLaunch, idCaptura, page
-    t = Time.now  
+ def storePage con, idTarget, idConexion, idLaunch, idCaptura, page
+    t = Time.now
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
 
     con.query("INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado)"\
-              " VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', '#{page}', '#{strDT}', 99);")
+    " VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', '#{page}', '#{strDT}', 99);")
     int_idInsert = con.query("select last_insert_id()").fetch_row.first.to_i
     idInsert = "%08d" % int_idInsert
 
@@ -2031,7 +1999,7 @@ end
 
   end
   
-  def storePagePng strDT
+ def storePagePng strDT
     folderpng = "/volArchivoPNG/20" + strDT[0,2] + "/" + strDT[2,2] + "/" + strDT.gsub("_","")[0..8] + "X"
     begin
       old_umask = File.umask
@@ -2041,7 +2009,7 @@ end
       File.umask old_umask
     end
     screenshot = "/tmp/" + strDT + ".png"
-    
+
     reintentos = 5
     begin
       reintentos += -1
@@ -2049,10 +2017,10 @@ end
     rescue Exception => e
       puts 'screenshot fallido: ' + e.message    ; $stdout.flush
       if reintentos>0
-        retry
+      retry
       end
     end
-  
+
     embed screenshot, 'image/png'
     FileUtils.cp screenshot, folderpng + "/"
     FileUtils.rm screenshot
@@ -2060,7 +2028,7 @@ end
   
   def archivandoTraza
     begin
-      stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+      stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
       storePageDebugHtml stDT
       storePagePng stDT
       puts("Archivando Traza (#{stDT})")
@@ -2068,8 +2036,8 @@ end
       puts("Fallo ArchivandoTraza")
     end
   end
-  
-  def storePageDebugHtml strDT
+
+ def storePageDebugHtml strDT
 
     htmFile = "/volHTML/debug/" + strDT + ".htm"
     aFile = File.new(htmFile, "w")
@@ -2078,10 +2046,11 @@ end
 
   end
 
-  def storePageHtml idLaunch, idCaptura, strDT
-    
-    folderCaptura = "/volHTML/" + idLaunch + "/" + idCaptura + "/" 
-# INI actualizar xml##############################################################
+
+ def storePageHtml idLaunch, idCaptura, strDT
+
+    folderCaptura = "/volHTML/" + idLaunch + "/" + idCaptura + "/"
+    # INI actualizar xml##############################################################
 
     subdoc = Document.new("<Pagina />")
     subdoc.root.attributes["id"] = @numPag
@@ -2089,50 +2058,49 @@ end
     eFechaHora.text = strDT
     eURL = subdoc.root.add_element "URL"
     eURL.text = @browser.url
-    
+
     capturaXml = folderCaptura + "captura.xml"
     file = File.new(capturaXml)
     doc = Document.new(file)
     doc.root.elements.add(subdoc.root)
-    
+
     File.open(capturaXml,"w") do |data|
       data<<doc
     end
 
-# FIN actualizar xml################################################################
+    # FIN actualizar xml################################################################
 
     htmFile = folderCaptura + strDT + ".htm"
-    
+
     aFile = File.new(htmFile, "w")
     aFile.write(@browser.html)
     aFile.close
-    
+
     $htmlStoreCountDown += -1
 
   end
-  
+
   def initialize browser, page_metrics, visit = false
     @browser = browser
     goto if visit
-    
+
     expected_element if respond_to? :expected_element
     has_expected_title? if respond_to? :has_expected_title?
- 
-    # @browser.with_performance{|performance| page_metrics.add_page self.class, performance} unless visit
+
+  # @browser.with_performance{|performance| page_metrics.add_page self.class, performance} unless visit
   end
-  
+
   def method_missing sym, *args, &block
     @browser.send sym, *args, &block
   end
 
 
 
-
-  def ignore_exception
-     begin
-       yield  
-     rescue Exception
-     end
+ def ignore_exception
+    begin
+      yield
+    rescue Exception
+    end
   end
 
 
@@ -2219,107 +2187,49 @@ end
 
 
 
-
-
-
   def storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, page, html
-
     t = Time.now  
-
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
-
-
-
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
-
-
     con.query("INSERT INTO `Navigator`.`tblInserts` (idConexion, idTarget, idLaunch, idCaptura, Pagina, FechaHora, Estado) VALUES ('#{idConexion}', '#{idTarget}', '#{idLaunch}', '#{idCaptura}', 1, '#{strDT}', 99);")
     int_idInsert = con.query("select last_insert_id()").fetch_row.first.to_i
-
     idInsert = "%08d" % int_idInsert
     idInsert = 0
-
-
     storeDirectPageHtml idLaunch, idCaptura, strDT, page, html
-
-
-
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
-
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
-
     con.query("UPDATE `Navigator`.`tblInserts` SET `Estado` = 1 WHERE `idInsert`=#{idInsert};")
-
-
-
   end
-
   
-
   
-
   
-
   
-
   def storeDirectPageHtml idLaunch, idCaptura, strDT, page, html
-
     
-
     folderCaptura = "/volHTML/" + idLaunch + "/" + idCaptura + "/" 
-
-
-
     subdoc = Document.new("<Pagina />")
-
     subdoc.root.attributes["id"] = "#{page}"
-
     eFechaHora = subdoc.root.add_element "FechaHora"
-
     eFechaHora.text = strDT
-
     eURL = subdoc.root.add_element "URL"
-
     eURL.text = "www.tripadvisor.com"
-
     
-
     capturaXml = folderCaptura + "captura.xml"
-
     file = File.new(capturaXml)
-
     doc = Document.new(file)
-
     doc.root.elements.add(subdoc.root)
-
     
-
     File.open(capturaXml,"w") do |data|
-
       data<<doc
-
     end
-
-
-
     htmFile = folderCaptura + strDT + ".htm"
-
     
-
     aFile = File.new(htmFile, "w")
-
     aFile.write(html)
-
     aFile.close
-
     
-
     $htmlStoreCountDown += -1
-
-
-
   end
 
 
