@@ -1857,7 +1857,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
     # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
   end
   
-  def ahora = Time.now;  tiempopasado idLaunch, descripcion, url, nextlink, checkPageCompleted
+  def storePage con, idTarget, idConexion, idLaunch, idCaptura, page, descripcion, urlOrig
 
     #folderbase = Dir.home() + "/BotStoring"
     folderlaunches = "/volHTML/" #"Dir.home() + "/BotStoring/launches/" 
