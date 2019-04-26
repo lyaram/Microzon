@@ -1946,9 +1946,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             posNode += 1
                      
             captura = ""
-            urlOrig = ""
-            idLaunch = ""
-            idCaptura = ""
             numPag = 0
             urlCaptura = ""
             fechaHora = ""
