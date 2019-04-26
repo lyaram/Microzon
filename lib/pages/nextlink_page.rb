@@ -1979,22 +1979,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { urlCaptura = @browser.url }
           ignore_exception { fechaHora = "#{strDT}" }
           ignore_exception { numEntrada = "#{posNode}" }
-          ignore_exception { placeName= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) }
-          ignore_exception { placeLink= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) }
-          ignore_exception { starRating= con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) }
-          ignore_exception { fullAddress= con.quote(node.element(:xpath,".//*[@class='address']/a").text) }
-          ignore_exception { reviewCount= con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) }
-          ignore_exception { globalScore= con.quote(node.element(:xpath,"./").attribute_value('data-score')) }
-          ignore_exception { geoData= con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) }
-          ignore_exception { addedToFavListsCount= con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) }
-          ignore_exception { propertyType= con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) }
-          ignore_exception { location= con.quote(node.element(:xpath,".//*[@data-coords and @title]").text) }
-          ignore_exception { excellentChoice= con.quote(node.element(:xpath,".//*[contains(@class,'vp_hotel_badge')]/span").text) }
-          ignore_exception { priceLevel= con.quote(node.element(:xpath,".//div[contains(@class,'sr_price_estimate')]/*").attribute_value('data-title')) }
-          ignore_exception { wishListCount= con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) }
-          ignore_exception { dealSmart= con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) }
-          ignore_exception { srHotelName= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) }
-          ignore_exception { srHotelType= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) }
+           placeName = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) 
+           placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) 
+           starRating = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) 
+           fullAddress = con.quote(node.element(:xpath,".//*[@class='address']/a").text) 
+           reviewCount = con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) 
+           globalScore = con.quote(node.element(:xpath,"./").attribute_value('data-score')) 
+           geoData = con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) 
+           addedToFavListsCount = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) 
+           propertyType = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) 
+           location = con.quote(node.element(:xpath,".//*[@data-coords and @title]").text) 
+           excellentChoice = con.quote(node.element(:xpath,".//*[contains(@class,'vp_hotel_badge')]/span").text) 
+           priceLevel = con.quote(node.element(:xpath,".//div[contains(@class,'sr_price_estimate')]/*").attribute_value('data-title')) 
+           wishListCount = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) 
+           dealSmart = con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) 
+           srHotelName = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) 
+           srHotelType = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) }
   
           sqlInsert = "INSERT INTO `Navigator`.`tblDataBKList` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, `placeName`, `placeLink`, `starRating`, `fullAddress`, `reviewCount`, `globalScore`, `geoData`, `addedToFavListsCount`, `propertyType`, `location`, `excellentChoice`, `priceLevel`, `wishListCount`, `dealSmart`, `srHotelName`, `srHotelType`) "  +
                       "VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', '#{placeName}', '#{placeLink}', '#{starRating}', '#{fullAddress}', '#{reviewCount}', '#{globalScore}', '#{geoData}', '#{addedToFavListsCount}', '#{propertyType}', '#{location}', '#{excellentChoice}', '#{priceLevel}', '#{wishListCount}', '#{dealSmart}', '#{srHotelName}', '#{srHotelType}')"
