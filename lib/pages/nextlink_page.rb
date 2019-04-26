@@ -1983,7 +1983,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { starRating = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) }
             ignore_exception { fullAddress = con.quote(node.element(:xpath,".//*[@class='address']/a").text) }
             ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) }
-            ignore_exception { globalScore = con.quote(node.element(:xpath,"./").attribute_value('data-score')) }
+            ignore_exception { globalScore = con.quote(node.element(:xpath,".//*[@class='bui-review-score__badge']").text) }
             ignore_exception { geoData = con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) }
             ignore_exception { addedToFavListsCount = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) }
             ignore_exception { propertyType = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) }
