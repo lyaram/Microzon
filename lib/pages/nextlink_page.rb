@@ -1935,6 +1935,90 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
     con.query("UPDATE `Navigator`.`tblInserts` SET `Estado` = 1 WHERE `idInsert`=#{idInsert};")
 
+      if descripcion.include? '.LoadOnDB.'
+        if descripcion.include= 'BOOKING_HotelList.'
+
+          posNode = 0
+#          nodes = @browser.divs(:xpath, "//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])]")
+          node = @browser.divs(:xpath, "(//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])])[1]")
+#        
+#        puts("Node count: #{nodes.size}")
+#        nodes.each do |node|
+          posNode += 1
+                   
+          Captura = ""
+          idLaunch = ""
+          idCaptura = ""
+          NumPag = 0
+          URL = ""
+          FechaHora = ""
+          NumEntrada = 0
+          PlaceName = ""
+          PlaceLink = ""
+          StarRating = ""
+          FullAddress = ""
+          ReviewCount = ""
+          GlobalScore = ""
+          GeoData = ""
+          AddedToFavListsCount = ""
+          PropertyType = ""
+          Location = ""
+          ExcellentChoice = ""
+          PriceLevel = ""
+          WishListCount = ""
+          DealSmart = ""
+          SrHotelName = ""
+          SrHotelType = ""
+
+          ignore_exception { idLaunch = '#{idLaunch}' }
+          ignore_exception { idCaptura = '#{idCaptura}' }
+          ignore_exception { NumPag = '#{page}' }
+          ignore_exception { URL = '#{url}' }
+          ignore_exception { FechaHora = '#{strDT}' }
+          ignore_exception { NumEntrada = '#{posNode}' }
+          ignore_exception { placeName= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) }
+          ignore_exception { placeLink= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) }
+          ignore_exception { starRating= con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) }
+          ignore_exception { fullAddress= con.quote(node.element(:xpath,".//*[@class='address']/a").text) }
+          ignore_exception { reviewCount= con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) }
+          ignore_exception { globalScore= con.quote(node.element(:xpath,"./").attribute_value('data-score')) }
+          ignore_exception { geoData= con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) }
+          ignore_exception { addedToFavListsCount= con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) }
+          ignore_exception { propertyType= con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) }
+          ignore_exception { location= con.quote(node.element(:xpath,".//*[@data-coords and @title]").text) }
+          ignore_exception { excellentChoice= con.quote(node.element(:xpath,".//*[contains(@class,'vp_hotel_badge')]/span").text) }
+          ignore_exception { priceLevel= con.quote(node.element(:xpath,".//div[contains(@class,'sr_price_estimate')]/*").attribute_value('data-title')) }
+          ignore_exception { wishListCount= con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) }
+          ignore_exception { dealSmart= con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) }
+          ignore_exception { srHotelName= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) }
+          ignore_exception { srHotelType= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) }
+  
+          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
+                      "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
+          puts(sqlInsert)
+  
+          con.query(sqlInsert)
+        elsif descripcion.include= 'BOOKING_Hotelf.'
+          placeName = ""
+          reviewTotalCount = ""
+          currentPage = ""
+          langSelected = ""
+          ignore_exception { placeName = @browser.element(:xpath,"//h1/a").text; placeName = placeName.gsub! '\'', '\\\''; }
+          ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@id='review_list_score']/p").text }
+          ignore_exception { currentPage = @browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text }
+          ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='language']/option[@selected]").text }
+  
+          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
+                      "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
+          puts(sqlInsert)
+  
+          con.query(sqlInsert)
+        
+#          int_id = con.query("select last_insert_id()").fetch_row.first.to_i
+#          idBKReviewsFicha = "%08d" % int_id
+        end
+      end 
+ 
   end
   
  def storePagePng strDT
