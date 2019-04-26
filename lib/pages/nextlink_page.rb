@@ -1972,10 +1972,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
 
           ignore_exception { idLaunch = '#{idLaunch}' }
           ignore_exception { idCaptura = '#{idCaptura}' }
-          ignore_exception { NumPag = '#{page}' }
-          ignore_exception { URL = '#{url}' }
-          ignore_exception { FechaHora = '#{strDT}' }
-          ignore_exception { NumEntrada = '#{posNode}' }
+          ignore_exception { numPag = '#{page}' }
+          ignore_exception { url = '#{url}' }
+          ignore_exception { fechaHora = '#{strDT}' }
+          ignore_exception { numEntrada = '#{posNode}' }
           ignore_exception { placeName= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) }
           ignore_exception { placeLink= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) }
           ignore_exception { starRating= con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) }
