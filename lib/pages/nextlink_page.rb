@@ -1994,7 +1994,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
            wishListCount = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) 
            dealSmart = con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) 
            srHotelName = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) 
-           srHotelType = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) }
+           srHotelType = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) 
   
           sqlInsert = "INSERT INTO `Navigator`.`tblDataBKList` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, `placeName`, `placeLink`, `starRating`, `fullAddress`, `reviewCount`, `globalScore`, `geoData`, `addedToFavListsCount`, `propertyType`, `location`, `excellentChoice`, `priceLevel`, `wishListCount`, `dealSmart`, `srHotelName`, `srHotelType`) "  +
                       "VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', '#{placeName}', '#{placeLink}', '#{starRating}', '#{fullAddress}', '#{reviewCount}', '#{globalScore}', '#{geoData}', '#{addedToFavListsCount}', '#{propertyType}', '#{location}', '#{excellentChoice}', '#{priceLevel}', '#{wishListCount}', '#{dealSmart}', '#{srHotelName}', '#{srHotelType}')"
