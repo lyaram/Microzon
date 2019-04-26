@@ -1939,69 +1939,69 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         if descripcion.include? 'BOOKING_HotelList.'
 
           posNode = 0
-#          nodes = @browser.divs(:xpath, "//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])]")
-          node = @browser.divs(:xpath, "(//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])])[1]")
-#        
-#        puts("Node count: #{nodes.size}")
-#        nodes.each do |node|
-          posNode += 1
-                   
-          captura = ""
-          urlOrig = ""
-          idLaunch = ""
-          idCaptura = ""
-          numPag = 0
-          urlCaptura = ""
-          fechaHora = ""
-          numEntrada = 0
-          placeName = ""
-          placeLink = ""
-          starRating = ""
-          fullAddress = ""
-          reviewCount = ""
-          globalScore = ""
-          geoData = ""
-          addedToFavListsCount = ""
-          propertyType = ""
-          location = ""
-          excellentChoice = ""
-          priceLevel = ""
-          wishListCount = ""
-          dealSmart = ""
-          srHotelName = ""
-          srHotelType = ""
-
-          ignore_exception { captura = "#{descripcion}" }
-          ignore_exception { urlOrig = "#{urlOrig}" }
-          ignore_exception { idLaunch = "#{idLaunch}" }
-          ignore_exception { idCaptura = "#{idCaptura}" }
-          ignore_exception { numPag = "#{page}" }
-          ignore_exception { urlCaptura = @browser.url }
-          ignore_exception { fechaHora = "#{strDT}" }
-          ignore_exception { numEntrada = "#{posNode}" }
-           placeName = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) 
-           placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) 
-           starRating = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) 
-           fullAddress = con.quote(node.element(:xpath,".//*[@class='address']/a").text) 
-           reviewCount = con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) 
-           globalScore = con.quote(node.element(:xpath,"./").attribute_value('data-score')) 
-           geoData = con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) 
-           addedToFavListsCount = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) 
-           propertyType = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) 
-           location = con.quote(node.element(:xpath,".//*[@data-coords and @title]").text) 
-           excellentChoice = con.quote(node.element(:xpath,".//*[contains(@class,'vp_hotel_badge')]/span").text) 
-           priceLevel = con.quote(node.element(:xpath,".//div[contains(@class,'sr_price_estimate')]/*").attribute_value('data-title')) 
-           wishListCount = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) 
-           dealSmart = con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) 
-           srHotelName = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) 
-           srHotelType = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) 
+          nodes = @browser.divs(:xpath, "//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])]")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            urlOrig = ""
+            idLaunch = ""
+            idCaptura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+            placeName = ""
+            placeLink = ""
+            starRating = ""
+            fullAddress = ""
+            reviewCount = ""
+            globalScore = ""
+            geoData = ""
+            addedToFavListsCount = ""
+            propertyType = ""
+            location = ""
+            excellentChoice = ""
+            priceLevel = ""
+            wishListCount = ""
+            dealSmart = ""
+            srHotelName = ""
+            srHotelType = ""
   
-          sqlInsert = "INSERT INTO `Navigator`.`tblDataBKList` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, `placeName`, `placeLink`, `starRating`, `fullAddress`, `reviewCount`, `globalScore`, `geoData`, `addedToFavListsCount`, `propertyType`, `location`, `excellentChoice`, `priceLevel`, `wishListCount`, `dealSmart`, `srHotelName`, `srHotelType`) "  +
-                      "VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', '#{placeName}', '#{placeLink}', '#{starRating}', '#{fullAddress}', '#{reviewCount}', '#{globalScore}', '#{geoData}', '#{addedToFavListsCount}', '#{propertyType}', '#{location}', '#{excellentChoice}', '#{priceLevel}', '#{wishListCount}', '#{dealSmart}', '#{srHotelName}', '#{srHotelType}')"
-          puts(sqlInsert)
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-  
-          con.query(sqlInsert)
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+             placeName = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) 
+             placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").attribute_value('href')) 
+             starRating = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]").attribute_value('class')) 
+             fullAddress = con.quote(node.element(:xpath,".//*[@class='address']/a").text) 
+             reviewCount = con.quote(node.element(:xpath,".//*[@class='bui-review-score__text']").text) 
+             globalScore = con.quote(node.element(:xpath,"./").attribute_value('data-score')) 
+             geoData = con.quote(node.element(:xpath,".//*[@data-coords]").attribute_value('data-coords')) 
+             addedToFavListsCount = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' b-sprite ') and (contains(concat(' ', normalize-space(@class), ' '), ' icon_list_favorites '))]/following-sibling::text()[1]").text) 
+             propertyType = con.quote(node.element(:xpath,"descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' sr_property_type_icon ')]/text()[last()]").text) 
+             location = con.quote(node.element(:xpath,".//*[@data-coords and @title]").text) 
+             excellentChoice = con.quote(node.element(:xpath,".//*[contains(@class,'vp_hotel_badge')]/span").text) 
+             priceLevel = con.quote(node.element(:xpath,".//div[contains(@class,'sr_price_estimate')]/*").attribute_value('data-title')) 
+             wishListCount = con.quote(node.element(:xpath,".//i[contains(@class,'stars')]/following-sibling::span/a/*[@aria-hidden]").text) 
+             dealSmart = con.quote(node.element(:xpath,".//*[contains(@class,'icon_deal_smart')]/span").text) 
+             srHotelName = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) 
+             srHotelType = con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) 
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataBKList` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, `placeName`, `placeLink`, `starRating`, `fullAddress`, `reviewCount`, `globalScore`, `geoData`, `addedToFavListsCount`, `propertyType`, `location`, `excellentChoice`, `priceLevel`, `wishListCount`, `dealSmart`, `srHotelName`, `srHotelType`) "  +
+                        "VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', '#{placeName}', '#{placeLink}', '#{starRating}', '#{fullAddress}', '#{reviewCount}', '#{globalScore}', '#{geoData}', '#{addedToFavListsCount}', '#{propertyType}', '#{location}', '#{excellentChoice}', '#{priceLevel}', '#{wishListCount}', '#{dealSmart}', '#{srHotelName}', '#{srHotelType}')"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
         elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
           reviewTotalCount = ""
