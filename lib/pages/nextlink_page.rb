@@ -1936,7 +1936,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
     con.query("UPDATE `Navigator`.`tblInserts` SET `Estado` = 1 WHERE `idInsert`=#{idInsert};")
 
       if descripcion.include? '.LoadOnDB.'
-        if descripcion.include= 'BOOKING_HotelList.'
+        if descripcion.include? 'BOOKING_HotelList.'
 
           posNode = 0
 #          nodes = @browser.divs(:xpath, "//*[@id='hotellist_inner']/div[@data-hotelid and not(./preceding::*[contains(@class,'sr_autoextend_divider')])]")
@@ -2002,7 +2002,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
           con.query(sqlInsert)
-        elsif descripcion.include= 'BOOKING_Hotelf.'
+        elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
           reviewTotalCount = ""
           currentPage = ""
