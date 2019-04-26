@@ -94,7 +94,7 @@ require 'json'
    
     lasttime = Time.now.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
+    idCaptura = ahora = Time.now;  tiempopasado idLaunch, descripcion, url, nextlink, checkPageCompleted
     uri = URI.parse(url.gsub('.co.uk/','.cn/'))
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -351,7 +351,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
   
-    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    idCaptura = ahora = Time.now;  tiempopasado idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
       if descripcion.include? 'EXPEDIA_HotelList.'
         begin
@@ -1614,7 +1614,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
         end
       else
 
-        storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+        storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag, descripcion, url
       end
       
       #abort("Aborting to check fail")
@@ -1688,7 +1688,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
             #fallo
           end
           if langSuccess == 1
-            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag, descripcion, url
 ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           end
         end
@@ -1739,7 +1739,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
               break if reintentos<0
               sleep 3
             end
-            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag
+            storePage con, idTarget, idConexion, idLaunch, idCaptura, @numPag, descripcion, url
             
           end
         end
@@ -1857,7 +1857,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
     # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
   end
   
-  def prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
+  def ahora = Time.now;  tiempopasado idLaunch, descripcion, url, nextlink, checkPageCompleted
 
     #folderbase = Dir.home() + "/BotStoring"
     folderlaunches = "/volHTML/" #"Dir.home() + "/BotStoring/launches/" 
@@ -1916,7 +1916,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
     return indexCaptura
   end
 
- def storePage con, idTarget, idConexion, idLaunch, idCaptura, page
+ def storePage con, idTarget, idConexion, idLaunch, idCaptura, page, descripcion, urlOrig
     t = Time.now
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
@@ -1947,10 +1947,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
           posNode += 1
                    
           captura = ""
+          urlOrig = ""
           idLaunch = ""
           idCaptura = ""
           numPag = 0
-          url = ""
+          urlCaptura = ""
           fechaHora = ""
           numEntrada = 0
           placeName = ""
@@ -1970,10 +1971,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
           srHotelName = ""
           srHotelType = ""
 
+          ignore_exception { captura = '#{descripcion}' }
+          ignore_exception { urlOrig = '#{urlOrig}' }
           ignore_exception { idLaunch = '#{idLaunch}' }
           ignore_exception { idCaptura = '#{idCaptura}' }
           ignore_exception { numPag = '#{page}' }
-          ignore_exception { url = '#{url}' }
+          ignore_exception { urlCaptura = @browser.url }
           ignore_exception { fechaHora = '#{strDT}' }
           ignore_exception { numEntrada = '#{posNode}' }
           ignore_exception { placeName= con.quote(node.element(:xpath,".//a[contains(@class,'hotel_name_link')]").text) }
@@ -1993,9 +1996,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
           ignore_exception { srHotelName= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__name')]").text) }
           ignore_exception { srHotelType= con.quote(node.element(:xpath,".//h3//span[contains(@class,'sr-hotel__type')]").text) }
   
-          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
-                      "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
+          sqlInsert = "INSERT INTO `captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, `placeName`, `placeLink`, `starRating`, `fullAddress`, `reviewCount`, `globalScore`, `geoData`, `addedToFavListsCount`, `propertyType`, `location`, `excellentChoice`, `priceLevel`, `wishListCount`, `dealSmart`, `srHotelName`, `srHotelType`)"  +
+                      "VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', '#{placeName}', '#{placeLink}', '#{starRating}', '#{fullAddress}', '#{reviewCount}', '#{globalScore}', '#{geoData}', '#{addedToFavListsCount}', '#{propertyType}', '#{location}', '#{excellentChoice}', '#{priceLevel}', '#{wishListCount}', '#{dealSmart}', '#{srHotelName}', '#{srHotelType}')"
           puts(sqlInsert)
+ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
           con.query(sqlInsert)
         elsif descripcion.include= 'BOOKING_Hotelf.'
@@ -2148,7 +2152,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - lasttime; lasttime = ahora.to_f; 
       end
 
     
-    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+    idCaptura = ahora = Time.now;  tiempopasado idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
 
     @numPag = 0
     loop do
