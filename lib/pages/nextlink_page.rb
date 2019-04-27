@@ -2049,6 +2049,58 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+        elsif descripcion.include? 'TAListMobile_Aloja.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+      
+            placeName = ""
+            placeLink = ""
+            rank = ""
+            reviewCount = ""
+            reviewRating = ""
+
+  
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").attribute_value('@href')) }
+            ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popindex')]").text) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'review_count') or @class='reviewCount']").text) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'common_mobile_rating') or starts-with(@class,'review_rating_bubbles_container')]//div[starts-with(@class,'center')]").attribute_value('@class')) }
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAList_AL4` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `placeLink`, `rank`, `reviewCount`, `reviewRating`, "  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{placeLink}', '#{rank}', '#{reviewCount}', '#{reviewRating}', "  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
         elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
           reviewTotalCount = ""
