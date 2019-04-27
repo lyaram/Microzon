@@ -2101,6 +2101,65 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+        elsif descripcion.include? 'TAListMobile_Rest.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+      
+            placeName = ""
+            placeLink = ""
+            rank = ""
+            reviewCount = ""
+            reviewRating = ""
+            price = ""
+            offerPrice = ""
+            tags = ""
+
+
+  
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { rank = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { price = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { offerPrice = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+            ignore_exception { tags = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAList_RES` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `placeLink`, `rank`, `reviewCount`, `reviewRating`, `price`, `offerPrice`, `tags`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{placeLink}', '#{rank}', '#{reviewCount}', '#{reviewRating}', '#{price}', '#{offerPrice}', '#{tags}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
         elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
           reviewTotalCount = ""
