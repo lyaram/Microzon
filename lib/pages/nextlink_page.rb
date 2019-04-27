@@ -2094,7 +2094,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             sqlInsert = "INSERT INTO `Navigator`.`tblDataTAList_AL4` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `placeLink`, `rank`, `reviewCount`, `reviewRating`, "  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{placeName}', '#{placeLink}', '#{rank}', '#{reviewCount}', '#{reviewRating}', "  +
+                        "'#{placeName}', '#{placeLink}', '#{rank}', '#{reviewCount}', '#{reviewRating}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
