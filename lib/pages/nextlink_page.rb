@@ -2053,7 +2053,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-          nodes = @browser.divs(:xpath, "//*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
+          nodes = @browser.divs(:xpath, "//*[contains(@class,'listingsContainer')]/div[contains(@class,'listingContainer')] | //*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
         
           puts("Node count: #{nodes.size}")
           nodes.each do |node|
@@ -2083,11 +2083,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numEntrada = "#{posNode}" }
       
 
-            ignore_exception { placeName = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").text) }
-            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[starts-with(@class,'item') or starts-with(@class,'property')]").attribute_value('@href')) }
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//a[contains(@class,'propertyCard-Card__propertyTitle')]").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'propertyCard-Card__propertyTitle')]").attribute_value('@href')) }
             ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popindex')]").text) }
-            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'review_count') or @class='reviewCount']").text) }
-            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'common_mobile_rating') or starts-with(@class,'review_rating_bubbles_container')]//div[starts-with(@class,'center')]").attribute_value('@class')) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'reviewCount')]").text) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'review_rating')]/span[contains(@class,'ui_bubble_rating')]").attribute_value('@class')) }
 
 
     
