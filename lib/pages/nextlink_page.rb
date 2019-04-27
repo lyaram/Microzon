@@ -1999,6 +1999,56 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+        elsif descripcion.include? 'TRIPADVISOR_HotelList.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//*[starts-with(@class,'listing') and ./*/@data-index]")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0      
+            placeName = ""
+            placeLink = ""
+            precio = ""
+            globalScore = ""
+            reviewCount = ""
+            rank = ""
+  
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//*[@class='listing_title']/a").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//*[@class='listing_title']/a").attribute_value('href')) }
+            ignore_exception { precio = con.quote(node.element(:xpath,".//*[starts-with(@class,'price-wrap')]/div[starts-with(@class,'price')]").text) }
+            ignore_exception { globalScore = con.quote(node.element(:xpath,".//*[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//a[starts-with(@class,'review_count')]").text) }
+            ignore_exception { rank = con.quote(node.element(:xpath,".//*[starts-with(@class,'popindex')]").text) }
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAList_ALO` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `placeLink`, `precio`, `globalScore`, `reviewCount`, `rank`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{placeLink}', '#{precio}', '#{globalScore}', '#{reviewCount}', '#{rank}'"  +
+                        ")"
+            puts(sqlInsert)
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
         elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
           reviewTotalCount = ""
