@@ -2084,10 +2084,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
 
             ignore_exception { placeName = con.quote(node.element(:xpath,".//a[contains(@class,'propertyCard-Card__propertyTitle')]").text) }
-            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'propertyCard-Card__propertyTitle')]").attribute_value('@href')) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'propertyCard-Card__propertyTitle')]").attribute_value('href')) }
             ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popindex')]").text) }
             ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'reviewCount')]").text) }
-            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'review_rating')]/span[contains(@class,'ui_bubble_rating')]").attribute_value('@class')) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'review_rating')]/span[contains(@class,'ui_bubble_rating')]").attribute_value('class')) }
 
 
     
