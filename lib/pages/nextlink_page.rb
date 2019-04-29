@@ -3317,7 +3317,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #        
 #          puts("Node count: #{nodes.size}")
 #          nodes.each do |node|
-          node = @browser.document
+          node = @browser.body
             posNode += 1
                      
             captura = ""
