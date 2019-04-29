@@ -3313,10 +3313,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-          nodes = @browser.divs(:xpath, "/*")
-        
-          puts("Node count: #{nodes.size}")
-          nodes.each do |node|
+#          nodes = @browser.divs(:xpath, "/*")
+#        
+#          puts("Node count: #{nodes.size}")
+#          nodes.each do |node|
+          node = @browser.document
             posNode += 1
                      
             captura = ""
@@ -3713,7 +3714,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
             con.query(sqlInsert)
-          end
+#          end
 
           
         elsif descripcion.include? 'BOOKING_Hotelf.'
