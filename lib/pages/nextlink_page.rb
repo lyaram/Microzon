@@ -3583,11 +3583,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { value06_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[3]/p[1]/text()[1]").text) }
           ignore_exception { value04_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[4]/p[1]/text()[1]").text) }
           ignore_exception { value02_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[5]/p[1]/text()[1]").text) }
-          ignore_exception { value10_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[1]").text) }
-          ignore_exception { value08_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[2]").text) }
-          ignore_exception { value06_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[3]").text) }
-          ignore_exception { value04_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[4]").text) }
-          ignore_exception { value02_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[5]").text) }
+          ignore_exception { value10_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[@data-dist='1']").text) }
+          ignore_exception { value08_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[@data-dist='2']").text) }
+          ignore_exception { value06_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[@data-dist='3']").text) }
+          ignore_exception { value04_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[@data-dist='4']").text) }
+          ignore_exception { value02_Value = con.quote(@browser.element(:xpath,"//select[@id='review_score_filter']/option[@data-dist='5']").text) }
           ignore_exception { varLangField01 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[01]").text) }
           ignore_exception { varLangField02 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[02]").text) }
           ignore_exception { varLangField03 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[03]").text) }
