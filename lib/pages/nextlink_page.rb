@@ -2975,7 +2975,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-          nodes = @browser.divs(:xpath, "/")
+          nodes = @browser.divs(:xpath, "/*")
         
           puts("Node count: #{nodes.size}")
           nodes.each do |node|
