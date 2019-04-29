@@ -3578,12 +3578,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { geoLoc = con.quote(node.element(:xpath,"//img[@class='static_map_one']").attribute_value('src')) }
           ignore_exception { bookButtonTitle = con.quote(node.element(:xpath,"//*[@id='hcta']").attribute_value('title')) }
           ignore_exception { mainScore = con.quote(node.element(:xpath,"//*[@id='reviewFloater']//*[@data-review-score]//*[@class='review-score-badge']").text) }
-          ignore_exception { value10_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_name'])[1]").text) }
+          value10_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_name'])[1]").text) 
           ignore_exception { value08_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[2]/*[@class='review_score_name'])[1]").text) }
           ignore_exception { value06_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[3]/*[@class='review_score_name'])[1]").text) }
           ignore_exception { value04_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[4]/*[@class='review_score_name'])[1]").text) }
           ignore_exception { value02_Text = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[5]/*[@class='review_score_name'])[1]").text) }
-          ignore_exception { value10_Value = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_value'])[1]").text) }
+          value10_Value = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_value'])[1]").text) 
           ignore_exception { value08_Value = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[2]/*[@class='review_score_value'])[1]").text) }
           ignore_exception { value06_Value = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[3]/*[@class='review_score_value'])[1]").text) }
           ignore_exception { value04_Value = con.quote(node.element(:xpath,"(//*[@id='review_list_score_distribution']/li[4]/*[@class='review_score_value'])[1]").text) }
