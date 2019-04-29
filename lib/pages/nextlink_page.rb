@@ -3313,11 +3313,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-#          nodes = @browser.divs(:xpath, "/*")
-#        
-#          puts("Node count: #{nodes.size}")
-#          nodes.each do |node|
-          node = @browser.body
+          nodes = @browser.divs(:xpath, "/*")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
             posNode += 1
                      
             captura = ""
@@ -3579,16 +3578,16 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { geoLoc = con.quote(node.element(:xpath,"//img[@class='static_map_one']").attribute_value('src')) }
           ignore_exception { bookButtonTitle = con.quote(node.element(:xpath,"//*[@id='hcta']").attribute_value('title')) }
           ignore_exception { mainScore = con.quote(node.element(:xpath,"//*[@id='reviewFloater']//*[@data-review-score]//*[@class='review-score-badge']").text) }
-          ignore_exception { value10_Text = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[1]/p[1]").text) }
-          ignore_exception { value08_Text = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[2]/p[1]").text) }
-          ignore_exception { value06_Text = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[3]/p[1]").text) }
-          ignore_exception { value04_Text = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[4]/p[1]").text) }
-          ignore_exception { value02_Text = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[5]/p[1]").text) }
-          ignore_exception { value10_Value = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[1]/p[2]").text) }
-          ignore_exception { value08_Value = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[2]/p[2]").text) }
-          ignore_exception { value06_Value = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[3]/p[2]").text) }
-          ignore_exception { value04_Value = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[4]/p[2]").text) }
-          ignore_exception { value02_Value = con.quote(node.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[5]/p[2]").text) }
+          ignore_exception { value10_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[1]/p[1]").text) }
+          ignore_exception { value08_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[2]/p[1]").text) }
+          ignore_exception { value06_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[3]/p[1]").text) }
+          ignore_exception { value04_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[4]/p[1]").text) }
+          ignore_exception { value02_Text = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[5]/p[1]").text) }
+          ignore_exception { value10_Value = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[1]/p[2]").text) }
+          ignore_exception { value08_Value = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[2]/p[2]").text) }
+          ignore_exception { value06_Value = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[3]/p[2]").text) }
+          ignore_exception { value04_Value = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[4]/p[2]").text) }
+          ignore_exception { value02_Value = con.quote(@browser.element(:xpath,"//ul[contains(@id,'score_distribution')]/li[5]/p[2]").text) }
           ignore_exception { varLangField01 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[01]").text) }
           ignore_exception { varLangField02 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[02]").text) }
           ignore_exception { varLangField03 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[03]").text) }
@@ -3714,7 +3713,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
             con.query(sqlInsert)
-#          end
+          end
 
           
         elsif descripcion.include? 'BOOKING_Hotelf.'
