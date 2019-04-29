@@ -3308,6 +3308,413 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+
+        elsif descripcion.include? 'BOOKING_HotelFicha.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "/")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+
+
+      placeName = ""
+      location = ""
+      propertyType = ""
+      reviewCount = ""
+      globalScore = ""
+      reviewCount_FilterAll = ""
+      score_FilterAll = ""
+      cleanScore_FilterAll = ""
+      comfortScore_FilterAll = ""
+      locationScore_FilterAll = ""
+      facilitiesScore_FilterAll = ""
+      staffScore_FilterAll = ""
+      valueForMoneyScore_FilterAll = ""
+      reviewCount_FilterFamily = ""
+      score_FilterFamily = ""
+      cleanScore_FilterFamily = ""
+      comfortScore_FilterFamily = ""
+      locationScore_FilterFamily = ""
+      facilitiesScore_FilterFamily = ""
+      staffScore_FilterFamily = ""
+      valueForMoneyScore_FilterFamily = ""
+      reviewCount_FilterCouple = ""
+      score_FilterCouple = ""
+      cleanScore_FilterCouple = ""
+      comfortScore_FilterCouple = ""
+      locationScore_FilterCouple = ""
+      facilitiesScore_FilterCouple = ""
+      staffScore_FilterCouple = ""
+      valueForMoneyScore_FilterCouple = ""
+      reviewCount_FilterGroupFriends = ""
+      score_FilterGroupFriends = ""
+      cleanScore_FilterGroupFriends = ""
+      comfortScore_FilterGroupFriends = ""
+      locationScore_FilterGroupFriends = ""
+      facilitiesScore_FilterGroupFriends = ""
+      staffScore_FilterGroupFriends = ""
+      valueForMoneyScore_FilterGroupFriends = ""
+      reviewCount_FilterSoloTravellers = ""
+      score_FilterSoloTravellers = ""
+      cleanScore_FilterSoloTravellers = ""
+      comfortScore_FilterSoloTravellers = ""
+      locationScore_FilterSoloTravellers = ""
+      facilitiesScore_FilterSoloTravellers = ""
+      staffScore_FilterSoloTravellers = ""
+      valueForMoneyScore_FilterSoloTravellers = ""
+      reviewCount_FilterBusinessTravellers = ""
+      score_FilterBusinessTravellers = ""
+      cleanScore_FilterBusinessTravellers = ""
+      comfortScore_FilterBusinessTravellers = ""
+      locationScore_FilterBusinessTravellers = ""
+      facilitiesScore_FilterBusinessTravellers = ""
+      staffScore_FilterBusinessTravellers = ""
+      valueForMoneyScore_FilterBusinessTravellers = ""
+      placeRating = ""
+      geoLoc = ""
+      bookButtonTitle = ""
+      mainScore = ""
+      value10_Text = ""
+      value08_Text = ""
+      value06_Text = ""
+      value04_Text = ""
+      value02_Text = ""
+      value10_Value = ""
+      value08_Value = ""
+      value06_Value = ""
+      value04_Value = ""
+      value02_Value = ""
+      varLangField01 = ""
+      varLangField02 = ""
+      varLangField03 = ""
+      varLangField04 = ""
+      varLangField05 = ""
+      varLangField06 = ""
+      varLangField07 = ""
+      varLangField08 = ""
+      varLangField09 = ""
+      varLangField10 = ""
+      varLangField11 = ""
+      varLangField12 = ""
+      varLangField13 = ""
+      varLangField14 = ""
+      varLangField15 = ""
+      varLangField16 = ""
+      varLangField17 = ""
+      varLangField18 = ""
+      varLangField19 = ""
+      varLangField20 = ""
+      varLangField21 = ""
+      varLangField22 = ""
+      varLangField23 = ""
+      varLangField24 = ""
+      varLangField25 = ""
+      varLangField26 = ""
+      varLangField27 = ""
+      varLangField28 = ""
+      varLangField29 = ""
+      varLangField30 = ""
+      varLangField31 = ""
+      varLangField32 = ""
+      varLangField33 = ""
+      varLangField34 = ""
+      varLangField35 = ""
+      varLangField36 = ""
+      varLangField37 = ""
+      varLangField38 = ""
+      varLangField39 = ""
+      varLangField40 = ""
+      varLangField01Val = ""
+      varLangField02Val = ""
+      varLangField03Val = ""
+      varLangField04Val = ""
+      varLangField05Val = ""
+      varLangField06Val = ""
+      varLangField07Val = ""
+      varLangField08Val = ""
+      varLangField09Val = ""
+      varLangField10Val = ""
+      varLangField11Val = ""
+      varLangField12Val = ""
+      varLangField13Val = ""
+      varLangField14Val = ""
+      varLangField15Val = ""
+      varLangField16Val = ""
+      varLangField17Val = ""
+      varLangField18Val = ""
+      varLangField19Val = ""
+      varLangField20Val = ""
+      varLangField21Val = ""
+      varLangField22Val = ""
+      varLangField23Val = ""
+      varLangField24Val = ""
+      varLangField25Val = ""
+      varLangField26Val = ""
+      varLangField27Val = ""
+      varLangField28Val = ""
+      varLangField29Val = ""
+      varLangField30Val = ""
+      varLangField31Val = ""
+      varLangField32Val = ""
+      varLangField33Val = ""
+      varLangField34Val = ""
+      varLangField35Val = ""
+      varLangField36Val = ""
+      varLangField37Val = ""
+      varLangField38Val = ""
+      varLangField39Val = ""
+      varLangField40Val = ""
+      breadcrumb01 = ""
+      breadcrumb02 = ""
+      breadcrumb03 = ""
+      breadcrumb04 = ""
+      breadcrumb05 = ""
+      breadcrumb06 = ""
+      breadcrumb07 = ""
+      breadcrumb01Val = ""
+      breadcrumb02Val = ""
+      breadcrumb03Val = ""
+      breadcrumb04Val = ""
+      breadcrumb05Val = ""
+      breadcrumb06Val = ""
+      breadcrumb07Val = ""
+      geoData = ""
+      score = ""
+      varDimField01 = ""
+      varDimField01Val = ""
+      varDimField02 = ""
+      varDimField02Val = ""
+      varDimField03 = ""
+      varDimField03Val = ""
+      varDimField04 = ""
+      varDimField04Val = ""
+      varDimField05 = ""
+      varDimField05Val = ""
+      varDimField06 = ""
+      varDimField06Val = ""
+      varDimField07 = ""
+      varDimField07Val = ""
+      varDimField08 = ""
+      varDimField08Val = ""
+
+            
+  
+
+
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+          ignore_exception { placeName = con.quote(node.element(:xpath,"//h1[@class='b-crumb__hp-current']/following-sibling::meta[@property='name']").attribute_value('content')) }
+          ignore_exception { location = con.quote(node.element(:xpath,"//*[contains(@class,'hp_address_subtitle')]").text) }
+          ignore_exception { propertyType = con.quote(node.element(:xpath,"//h2/span[contains(@class,'type-badge')]").text) }
+          ignore_exception { reviewCount = con.quote(node.element(:xpath,"//a[@id='show_reviews_tab']//span").text) }
+          ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[contains(@id,'hp-gallery-scorecard')]//*[@class='bui-review-score__badge']").text) }
+          ignore_exception { reviewCount_FilterAll = con.quote(node.element(:xpath,"//*[@data-customer-type='total']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-total')) }
+          ignore_exception { cleanScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_clean')) }
+          ignore_exception { comfortScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_comfort')) }
+          ignore_exception { locationScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_services')) }
+          ignore_exception { staffScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_value')) }
+          ignore_exception { reviewCount_FilterFamily = con.quote(node.element(:xpath,"//*[@data-customer-type='family_with_children']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-family_with_children')) }
+          ignore_exception { cleanScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_clean')) }
+          ignore_exception { comfortScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_comfort')) }
+          ignore_exception { locationScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_services')) }
+          ignore_exception { staffScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_value')) }
+          ignore_exception { reviewCount_FilterCouple = con.quote(node.element(:xpath,"//*[@data-customer-type='couple']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-couple')) }
+          ignore_exception { cleanScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_clean')) }
+          ignore_exception { comfortScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_comfort')) }
+          ignore_exception { locationScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_services')) }
+          ignore_exception { staffScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_value')) }
+          ignore_exception { reviewCount_FilterGroupFriends = con.quote(node.element(:xpath,"//*[@data-customer-type='review_category_group_of_friends']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-review_category_group_of_friends')) }
+          ignore_exception { cleanScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_clean')) }
+          ignore_exception { comfortScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_comfort')) }
+          ignore_exception { locationScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_services')) }
+          ignore_exception { staffScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_value')) }
+          ignore_exception { reviewCount_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[@data-customer-type='solo_traveller']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-solo_traveller')) }
+          ignore_exception { cleanScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_clean')) }
+          ignore_exception { comfortScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_comfort')) }
+          ignore_exception { locationScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_services')) }
+          ignore_exception { staffScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_value')) }
+          ignore_exception { reviewCount_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[@data-customer-type='business_traveller']").attribute_value('data-quantity')) }
+          ignore_exception { score_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-business_traveller')) }
+          ignore_exception { cleanScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_clean')) }
+          ignore_exception { comfortScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_comfort')) }
+          ignore_exception { locationScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_location')) }
+          ignore_exception { facilitiesScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_services')) }
+          ignore_exception { staffScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_staff')) }
+          ignore_exception { valueForMoneyScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_value')) }
+          ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[@id='hp_hotel_name']//..//i").attribute_value('title')) }
+          ignore_exception { geoLoc = con.quote(node.element(:xpath,"//img[@class='static_map_one']").attribute_value('src')) }
+          ignore_exception { bookButtonTitle = con.quote(node.element(:xpath,"//*[@id='hcta']").attribute_value('title')) }
+          ignore_exception { mainScore = con.quote(node.element(:xpath,"//*[@id='reviewFloater']//*[@data-review-score]//*[@class='review-score-badge']").text) }
+          ignore_exception { value10_Text = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_name']").text) }
+          ignore_exception { value08_Text = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[2]/*[@class='review_score_name']").text) }
+          ignore_exception { value06_Text = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[3]/*[@class='review_score_name']").text) }
+          ignore_exception { value04_Text = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[4]/*[@class='review_score_name']").text) }
+          ignore_exception { value02_Text = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[5]/*[@class='review_score_name']").text) }
+          ignore_exception { value10_Value = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[1]/*[@class='review_score_value']").text) }
+          ignore_exception { value08_Value = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[2]/*[@class='review_score_value']").text) }
+          ignore_exception { value06_Value = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[3]/*[@class='review_score_value']").text) }
+          ignore_exception { value04_Value = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[4]/*[@class='review_score_value']").text) }
+          ignore_exception { value02_Value = con.quote(node.element(:xpath,".//*[@id='review_list_score_distribution']/li[5]/*[@class='review_score_value']").text) }
+          ignore_exception { varLangField01 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[01]").text) }
+          ignore_exception { varLangField02 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[02]").text) }
+          ignore_exception { varLangField03 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[03]").text) }
+          ignore_exception { varLangField04 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[04]").text) }
+          ignore_exception { varLangField05 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[05]").text) }
+          ignore_exception { varLangField06 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[06]").text) }
+          ignore_exception { varLangField07 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[07]").text) }
+          ignore_exception { varLangField08 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[08]").text) }
+          ignore_exception { varLangField09 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[09]").text) }
+          ignore_exception { varLangField10 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[10]").text) }
+          ignore_exception { varLangField11 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[11]").text) }
+          ignore_exception { varLangField12 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[12]").text) }
+          ignore_exception { varLangField13 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[13]").text) }
+          ignore_exception { varLangField14 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[14]").text) }
+          ignore_exception { varLangField15 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[15]").text) }
+          ignore_exception { varLangField16 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[16]").text) }
+          ignore_exception { varLangField17 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[17]").text) }
+          ignore_exception { varLangField18 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[18]").text) }
+          ignore_exception { varLangField19 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[19]").text) }
+          ignore_exception { varLangField20 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[20]").text) }
+          ignore_exception { varLangField21 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[21]").text) }
+          ignore_exception { varLangField22 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[22]").text) }
+          ignore_exception { varLangField23 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[23]").text) }
+          ignore_exception { varLangField24 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[24]").text) }
+          ignore_exception { varLangField25 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[25]").text) }
+          ignore_exception { varLangField26 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[26]").text) }
+          ignore_exception { varLangField27 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[27]").text) }
+          ignore_exception { varLangField28 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[28]").text) }
+          ignore_exception { varLangField29 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[29]").text) }
+          ignore_exception { varLangField30 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[30]").text) }
+          ignore_exception { varLangField31 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[31]").text) }
+          ignore_exception { varLangField32 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[32]").text) }
+          ignore_exception { varLangField33 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[33]").text) }
+          ignore_exception { varLangField34 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[34]").text) }
+          ignore_exception { varLangField35 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[35]").text) }
+          ignore_exception { varLangField36 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[36]").text) }
+          ignore_exception { varLangField37 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[37]").text) }
+          ignore_exception { varLangField38 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[38]").text) }
+          ignore_exception { varLangField39 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[39]").text) }
+          ignore_exception { varLangField40 = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[40]").text) }
+          ignore_exception { varLangField01Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[01]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField02Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[02]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField03Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[03]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField04Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[04]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField05Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[05]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField06Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[06]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField07Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[07]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField08Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[08]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField09Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[09]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField10Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[10]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField11Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[11]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField12Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[12]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField13Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[13]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField14Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[14]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField15Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[15]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField16Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[16]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField17Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[17]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField18Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[18]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField19Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[19]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField20Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[20]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField21Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[21]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField22Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[22]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField23Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[23]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField24Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[24]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField25Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[25]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField26Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[26]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField27Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[27]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField28Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[28]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField29Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[29]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField30Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[30]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField31Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[31]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField32Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[32]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField33Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[33]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField34Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[34]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField35Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[35]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField36Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[36]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField37Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[37]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField38Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[38]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField39Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[39]/following-sibling::*[1]").text) }
+          ignore_exception { varLangField40Val = con.quote(node.element(:xpath,"((//*[@class='language_filter_values'])[last()]//*[@class='language_name'])[40]/following-sibling::*[1]").text) }
+          ignore_exception { breadcrumb01 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[1]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb02 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[2]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb03 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[3]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb04 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[4]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb05 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[5]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb06 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[6]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb07 = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[7]").attribute_value('data-google-track')) }
+          ignore_exception { breadcrumb01Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[1]/div/a").text) }
+          ignore_exception { breadcrumb02Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[2]/div/a").text) }
+          ignore_exception { breadcrumb03Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[3]/div/a").text) }
+          ignore_exception { breadcrumb04Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[4]/div/a").text) }
+          ignore_exception { breadcrumb05Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[5]/div/a").text) }
+          ignore_exception { breadcrumb06Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[6]/div/a").text) }
+          ignore_exception { breadcrumb07Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[7]/div/a").text) }
+          ignore_exception { geoData = con.quote(node.element(:xpath,"//a[@id='hotel_sidebar_static_map']").attribute_value('data-atlas-latlng')) }
+          ignore_exception { score = con.quote(node.element(:xpath,"//*[@data-review-score]").attribute_value('data-review-score')) }
+          ignore_exception { varDimField01 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[1]/p[1]").text) }
+          ignore_exception { varDimField01Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[1]/p[2]").text) }
+          ignore_exception { varDimField02 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[2]/p[1]").text) }
+          ignore_exception { varDimField02Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[2]/p[2]").text) }
+          ignore_exception { varDimField03 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[3]/p[1]").text) }
+          ignore_exception { varDimField03Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[3]/p[2]").text) }
+          ignore_exception { varDimField04 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[4]/p[1]").text) }
+          ignore_exception { varDimField04Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[4]/p[2]").text) }
+          ignore_exception { varDimField05 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[5]/p[1]").text) }
+          ignore_exception { varDimField05Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[5]/p[2]").text) }
+          ignore_exception { varDimField06 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[6]/p[1]").text) }
+          ignore_exception { varDimField06Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[6]/p[2]").text) }
+          ignore_exception { varDimField07 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[7]/p[1]").text) }
+          ignore_exception { varDimField07Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[7]/p[2]").text) }
+          ignore_exception { varDimField08 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[8]/p[1]").text) }
+          ignore_exception { varDimField08Val = con.quote(node.element(:xpath,"//ul[@id='review_list_score_breakdown']/li[8]/p[2]").text) }
+
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataBKFicha` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `location`, `propertyType`, `reviewCount`, `globalScore`, `reviewCount_FilterAll`, `score_FilterAll`, `cleanScore_FilterAll`, `comfortScore_FilterAll`, `locationScore_FilterAll`, `facilitiesScore_FilterAll`, `staffScore_FilterAll`, `valueForMoneyScore_FilterAll`, `reviewCount_FilterFamily`, `score_FilterFamily`, `cleanScore_FilterFamily`, `comfortScore_FilterFamily`, `locationScore_FilterFamily`, `facilitiesScore_FilterFamily`, `staffScore_FilterFamily`, `valueForMoneyScore_FilterFamily`, `reviewCount_FilterCouple`, `score_FilterCouple`, `cleanScore_FilterCouple`, `comfortScore_FilterCouple`, `locationScore_FilterCouple`, `facilitiesScore_FilterCouple`, `staffScore_FilterCouple`, `valueForMoneyScore_FilterCouple`, `reviewCount_FilterGroupFriends`, `score_FilterGroupFriends`, `cleanScore_FilterGroupFriends`, `comfortScore_FilterGroupFriends`, `locationScore_FilterGroupFriends`, `facilitiesScore_FilterGroupFriends`, `staffScore_FilterGroupFriends`, `valueForMoneyScore_FilterGroupFriends`, `reviewCount_FilterSoloTravellers`, `score_FilterSoloTravellers`, `cleanScore_FilterSoloTravellers`, `comfortScore_FilterSoloTravellers`, `locationScore_FilterSoloTravellers`, `facilitiesScore_FilterSoloTravellers`, `staffScore_FilterSoloTravellers`, `valueForMoneyScore_FilterSoloTravellers`, `reviewCount_FilterBusinessTravellers`, `score_FilterBusinessTravellers`, `cleanScore_FilterBusinessTravellers`, `comfortScore_FilterBusinessTravellers`, `locationScore_FilterBusinessTravellers`, `facilitiesScore_FilterBusinessTravellers`, `staffScore_FilterBusinessTravellers`, `valueForMoneyScore_FilterBusinessTravellers`, `placeRating`, `geoLoc`, `bookButtonTitle`, `mainScore`, `value10_Text`, `value08_Text`, `value06_Text`, `value04_Text`, `value02_Text`, `value10_Value`, `value08_Value`, `value06_Value`, `value04_Value`, `value02_Value`, `varLangField01`, `varLangField02`, `varLangField03`, `varLangField04`, `varLangField05`, `varLangField06`, `varLangField07`, `varLangField08`, `varLangField09`, `varLangField10`, `varLangField11`, `varLangField12`, `varLangField13`, `varLangField14`, `varLangField15`, `varLangField16`, `varLangField17`, `varLangField18`, `varLangField19`, `varLangField20`, `varLangField21`, `varLangField22`, `varLangField23`, `varLangField24`, `varLangField25`, `varLangField26`, `varLangField27`, `varLangField28`, `varLangField29`, `varLangField30`, `varLangField31`, `varLangField32`, `varLangField33`, `varLangField34`, `varLangField35`, `varLangField36`, `varLangField37`, `varLangField38`, `varLangField39`, `varLangField40`, `varLangField01Val`, `varLangField02Val`, `varLangField03Val`, `varLangField04Val`, `varLangField05Val`, `varLangField06Val`, `varLangField07Val`, `varLangField08Val`, `varLangField09Val`, `varLangField10Val`, `varLangField11Val`, `varLangField12Val`, `varLangField13Val`, `varLangField14Val`, `varLangField15Val`, `varLangField16Val`, `varLangField17Val`, `varLangField18Val`, `varLangField19Val`, `varLangField20Val`, `varLangField21Val`, `varLangField22Val`, `varLangField23Val`, `varLangField24Val`, `varLangField25Val`, `varLangField26Val`, `varLangField27Val`, `varLangField28Val`, `varLangField29Val`, `varLangField30Val`, `varLangField31Val`, `varLangField32Val`, `varLangField33Val`, `varLangField34Val`, `varLangField35Val`, `varLangField36Val`, `varLangField37Val`, `varLangField38Val`, `varLangField39Val`, `varLangField40Val`, `breadcrumb01`, `breadcrumb02`, `breadcrumb03`, `breadcrumb04`, `breadcrumb05`, `breadcrumb06`, `breadcrumb07`, `breadcrumb01Val`, `breadcrumb02Val`, `breadcrumb03Val`, `breadcrumb04Val`, `breadcrumb05Val`, `breadcrumb06Val`, `breadcrumb07Val`, `geoData`, `score`, `varDimField01`, `varDimField01Val`, `varDimField02`, `varDimField02Val`, `varDimField03`, `varDimField03Val`, `varDimField04`, `varDimField04Val`, `varDimField05`, `varDimField05Val`, `varDimField06`, `varDimField06Val`, `varDimField07`, `varDimField07Val`, `varDimField08`, `varDimField08Val`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{location}', '#{propertyType}', '#{reviewCount}', '#{globalScore}', '#{reviewCount_FilterAll}', '#{score_FilterAll}', '#{cleanScore_FilterAll}', '#{comfortScore_FilterAll}', '#{locationScore_FilterAll}', '#{facilitiesScore_FilterAll}', '#{staffScore_FilterAll}', '#{valueForMoneyScore_FilterAll}', '#{reviewCount_FilterFamily}', '#{score_FilterFamily}', '#{cleanScore_FilterFamily}', '#{comfortScore_FilterFamily}', '#{locationScore_FilterFamily}', '#{facilitiesScore_FilterFamily}', '#{staffScore_FilterFamily}', '#{valueForMoneyScore_FilterFamily}', '#{reviewCount_FilterCouple}', '#{score_FilterCouple}', '#{cleanScore_FilterCouple}', '#{comfortScore_FilterCouple}', '#{locationScore_FilterCouple}', '#{facilitiesScore_FilterCouple}', '#{staffScore_FilterCouple}', '#{valueForMoneyScore_FilterCouple}', '#{reviewCount_FilterGroupFriends}', '#{score_FilterGroupFriends}', '#{cleanScore_FilterGroupFriends}', '#{comfortScore_FilterGroupFriends}', '#{locationScore_FilterGroupFriends}', '#{facilitiesScore_FilterGroupFriends}', '#{staffScore_FilterGroupFriends}', '#{valueForMoneyScore_FilterGroupFriends}', '#{reviewCount_FilterSoloTravellers}', '#{score_FilterSoloTravellers}', '#{cleanScore_FilterSoloTravellers}', '#{comfortScore_FilterSoloTravellers}', '#{locationScore_FilterSoloTravellers}', '#{facilitiesScore_FilterSoloTravellers}', '#{staffScore_FilterSoloTravellers}', '#{valueForMoneyScore_FilterSoloTravellers}', '#{reviewCount_FilterBusinessTravellers}', '#{score_FilterBusinessTravellers}', '#{cleanScore_FilterBusinessTravellers}', '#{comfortScore_FilterBusinessTravellers}', '#{locationScore_FilterBusinessTravellers}', '#{facilitiesScore_FilterBusinessTravellers}', '#{staffScore_FilterBusinessTravellers}', '#{valueForMoneyScore_FilterBusinessTravellers}', '#{placeRating}', '#{geoLoc}', '#{bookButtonTitle}', '#{mainScore}', '#{value10_Text}', '#{value08_Text}', '#{value06_Text}', '#{value04_Text}', '#{value02_Text}', '#{value10_Value}', '#{value08_Value}', '#{value06_Value}', '#{value04_Value}', '#{value02_Value}', '#{varLangField01}', '#{varLangField02}', '#{varLangField03}', '#{varLangField04}', '#{varLangField05}', '#{varLangField06}', '#{varLangField07}', '#{varLangField08}', '#{varLangField09}', '#{varLangField10}', '#{varLangField11}', '#{varLangField12}', '#{varLangField13}', '#{varLangField14}', '#{varLangField15}', '#{varLangField16}', '#{varLangField17}', '#{varLangField18}', '#{varLangField19}', '#{varLangField20}', '#{varLangField21}', '#{varLangField22}', '#{varLangField23}', '#{varLangField24}', '#{varLangField25}', '#{varLangField26}', '#{varLangField27}', '#{varLangField28}', '#{varLangField29}', '#{varLangField30}', '#{varLangField31}', '#{varLangField32}', '#{varLangField33}', '#{varLangField34}', '#{varLangField35}', '#{varLangField36}', '#{varLangField37}', '#{varLangField38}', '#{varLangField39}', '#{varLangField40}', '#{varLangField01Val}', '#{varLangField02Val}', '#{varLangField03Val}', '#{varLangField04Val}', '#{varLangField05Val}', '#{varLangField06Val}', '#{varLangField07Val}', '#{varLangField08Val}', '#{varLangField09Val}', '#{varLangField10Val}', '#{varLangField11Val}', '#{varLangField12Val}', '#{varLangField13Val}', '#{varLangField14Val}', '#{varLangField15Val}', '#{varLangField16Val}', '#{varLangField17Val}', '#{varLangField18Val}', '#{varLangField19Val}', '#{varLangField20Val}', '#{varLangField21Val}', '#{varLangField22Val}', '#{varLangField23Val}', '#{varLangField24Val}', '#{varLangField25Val}', '#{varLangField26Val}', '#{varLangField27Val}', '#{varLangField28Val}', '#{varLangField29Val}', '#{varLangField30Val}', '#{varLangField31Val}', '#{varLangField32Val}', '#{varLangField33Val}', '#{varLangField34Val}', '#{varLangField35Val}', '#{varLangField36Val}', '#{varLangField37Val}', '#{varLangField38Val}', '#{varLangField39Val}', '#{varLangField40Val}', '#{breadcrumb01}', '#{breadcrumb02}', '#{breadcrumb03}', '#{breadcrumb04}', '#{breadcrumb05}', '#{breadcrumb06}', '#{breadcrumb07}', '#{breadcrumb01Val}', '#{breadcrumb02Val}', '#{breadcrumb03Val}', '#{breadcrumb04Val}', '#{breadcrumb05Val}', '#{breadcrumb06Val}', '#{breadcrumb07Val}', '#{geoData}', '#{score}', '#{varDimField01}', '#{varDimField01Val}', '#{varDimField02}', '#{varDimField02Val}', '#{varDimField03}', '#{varDimField03Val}', '#{varDimField04}', '#{varDimField04Val}', '#{varDimField05}', '#{varDimField05Val}', '#{varDimField06}', '#{varDimField06Val}', '#{varDimField07}', '#{varDimField07Val}', '#{varDimField08}', '#{varDimField08Val}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
+
           
         elsif descripcion.include? 'BOOKING_Hotelf.'
           placeName = ""
