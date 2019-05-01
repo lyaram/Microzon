@@ -31,3 +31,5 @@ junit*
 .metadata/.plugins/com.aptana.syncing.core/defaultConnection.2
 .metadata/.plugins/com.aptana.core.io/connections.2
 .metadata/.lock
+*.3
+*.tree

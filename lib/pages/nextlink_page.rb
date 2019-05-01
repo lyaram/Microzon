@@ -3789,25 +3789,67 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end          
-        elsif descripcion.include? 'BOOKING_Hotelf.'
-          placeName = ""
-          reviewTotalCount = ""
-          currentPage = ""
-          langSelected = ""
-          ignore_exception { placeName = @browser.element(:xpath,"//h1/a").text; placeName = placeName.gsub! '\'', '\\\''; }
-          ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@id='review_list_score']/p").text }
-          ignore_exception { currentPage = @browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text }
-          ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='language']/option[@selected]").text }
-  
-          sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
-                      "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
-          puts(sqlInsert)
-  
-          con.query(sqlInsert)
+        elsif descripcion.include? 'Repescando.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "/*")
         
-#          int_id = con.query("select last_insert_id()").fetch_row.first.to_i
-#          idBKReviewsFicha = "%08d" % int_id
-        end
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+
+
+      placeName = ""
+      value5_Count = ""
+      value4_Count = ""
+      value3_Count = ""
+      value2_Count = ""
+      value1_Count = ""
+
+            
+  
+
+
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+      ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").text) }
+      ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[1]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+      ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[2]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+      ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[3]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+      ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[4]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+      ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[5]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+
+
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAFicha_ATR` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}'"  +
+                        ")"
+            puts(sqlInsert)
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
+
       end 
  
   end
