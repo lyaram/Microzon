@@ -1272,47 +1272,50 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         linkMore = '/nada'
       end
       reintentos = 50
-      while @browser.element(:xpath,linkMore).exists?
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        if (reintentos<25 and linkMore.split(//).last(3).join=='[1]') 
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          puts 'linkMore BEFORE:' + linkMore
-          linkMore = linkMore[0..(linkMore.length-4)] + '[last()]'
-          puts 'linkMore AFTER:' + linkMore
-        end
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        reintentos += -1
-        if reintentos<0
-#          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
-#          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
-#          htmlPage=@browser.html
-#          aFile.write(htmlPage)
-#          aFile.close
-#          storePagePng stDT
- 
-          break
-        end
-        @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
-        @browser.send_keys :page_up
-        @browser.element(:xpath,linkMore).click
-        sleep 2
-        if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
-          sleep 30
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-          @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//*[@id='regSignIn']").wait_until_present
-          @browser.element(:xpath,'//body').click
-          #@browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
-          #@browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
-          #@browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+      
+      unless descripcion.include?('Repescando.')
+        while @browser.element(:xpath,linkMore).exists?
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          if (reintentos<25 and linkMore.split(//).last(3).join=='[1]') 
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            puts 'linkMore BEFORE:' + linkMore
+            linkMore = linkMore[0..(linkMore.length-4)] + '[last()]'
+            puts 'linkMore AFTER:' + linkMore
+          end
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          reintentos += -1
+          if reintentos<0
+  #          stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N") 
+  #          aFile = File.new("/volHTML/debug/" + stDT + ".htm", "w")
+  #          htmlPage=@browser.html
+  #          aFile.write(htmlPage)
+  #          aFile.close
+  #          storePagePng stDT
+   
+            break
+          end
+          @browser.element(:xpath,linkMore).wd.location_once_scrolled_into_view
+          @browser.send_keys :page_up
+          @browser.element(:xpath,linkMore).click
           sleep 2
-        end
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-        if @browser.element(:xpath,closeModal).exists?
-          if @browser.element(:xpath,closeModal).visible?
-            sleep 5
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            @browser.element(:xpath,closeModal).click
+          if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+            sleep 30
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//*[@id='regSignIn']").wait_until_present
+            @browser.element(:xpath,'//body').click
+            #@browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
+            #@browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
+            #@browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").click
+            sleep 2
+          end
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
+          if @browser.element(:xpath,closeModal).exists?
+            if @browser.element(:xpath,closeModal).visible?
+              sleep 5
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+              @browser.element(:xpath,closeModal).click
+            end
           end
         end
       end
