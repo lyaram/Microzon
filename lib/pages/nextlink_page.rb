@@ -3849,6 +3849,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+        end
 
       end 
  
