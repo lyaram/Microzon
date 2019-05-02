@@ -112,7 +112,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     puts "new url #{url}"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     filtro = ""
-    if descripcion.include?('.RE.')
+    if descripcion.include?('.REEEEEEE.')
       filtro = "filterRating"
     else
       filtro = "trating"
