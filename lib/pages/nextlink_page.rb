@@ -3814,22 +3814,147 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             fechaHora = ""
             numEntrada = 0
 
-            #nombre = ""
-            #valoracion = ""
-            #numOpiniones = ""
-            #tipo = ""
-            #tipo2 = ""
-            #valoracion2 = ""
-            #numOpiniones2 = ""
-            #numOpiniones_Val5 = ""
-            #numOpiniones_Val4 = ""
-            #numOpiniones_Val3 = ""
-            #numOpiniones_Val2 = ""
-            #numOpiniones_Val1 = ""
-            #address = ""
-            #horario = ""
+      placeName = ""
+      award_text = ""
+      award_class = ""
+      certificadoExcelencia = ""
+      fullAddress = ""
+      postalCode = ""
+      locality = ""
+      phone = ""
+      placeRating = ""
+      globalScore = ""
+      reviewCount = ""
+      infoRanking = ""
+      placeType = ""
+      geoLat = ""
+      geoLng = ""
+      linkPrimeraReview = ""
+      currentPage = ""
+      cuisine = ""
+      langList = ""
+      langSelected = ""
+      segmSelected = ""
+      filterSegment = ""
+      filterCount = ""
+      langFromRadioButtons = ""
+      recommendedPercent2 = ""
+      sorting = ""
+      value5_Count = ""
+      value4_Count = ""
+      value3_Count = ""
+      value2_Count = ""
+      value1_Count = ""
+      timeOfYear1_Count = ""
+      timeOfYear2_Count = ""
+      timeOfYear3_Count = ""
+      timeOfYear4_Count = ""
+      varDimField1 = ""
+      varDimField1Val = ""
+      varDimField2 = ""
+      varDimField2Val = ""
+      varDimField3 = ""
+      varDimField3Val = ""
+      varDimField4 = ""
+      varDimField4Val = ""
+      varDimField5 = ""
+      varDimField5Val = ""
+      varDimField6 = ""
+      varDimField6Val = ""
+      varDimField7 = ""
+      varDimField7Val = ""
+      varDimField8 = ""
+      varDimField8Val = ""
+      varDimField9 = ""
+      varDimField9Val = ""
+      varDimField10 = ""
+      varDimField10Val = ""
+      varDimField11 = ""
+      varDimField11Val = ""
+      varDimField12 = ""
+      varDimField12Val = ""
+      varSegmField1 = ""
+      varSegmField1Val = ""
+      varSegmField2 = ""
+      varSegmField2Val = ""
+      varSegmField3 = ""
+      varSegmField3Val = ""
+      varSegmField4 = ""
+      varSegmField4Val = ""
+      varSegmField5 = ""
+      varSegmField5Val = ""
+      varSegmField6 = ""
+      varSegmField6Val = ""
+      codeMap = ""
+      peineNotas5 = ""
+      peineNotas4 = ""
+      peineNotas3 = ""
+      peineNotas2 = ""
+      peineNotas1 = ""
+      varLangField01 = ""
+      varLangField01Val = ""
+      varLangField02 = ""
+      varLangField02Val = ""
+      varLangField03 = ""
+      varLangField03Val = ""
+      varLangField04 = ""
+      varLangField04Val = ""
+      varLangField05 = ""
+      varLangField05Val = ""
+      varLangField06 = ""
+      varLangField06Val = ""
+      varLangField07 = ""
+      varLangField07Val = ""
+      varLangField08 = ""
+      varLangField08Val = ""
+      varLangField09 = ""
+      varLangField09Val = ""
+      varLangField10 = ""
+      varLangField10Val = ""
+      varLangField11 = ""
+      varLangField11Val = ""
+      varLangField12 = ""
+      varLangField12Val = ""
+      varLangField13 = ""
+      varLangField13Val = ""
+      varLangField14 = ""
+      varLangField14Val = ""
+      varLangField15 = ""
+      varLangField15Val = ""
+      varLangField16 = ""
+      varLangField16Val = ""
+      varLangField17 = ""
+      varLangField17Val = ""
+      varLangField18 = ""
+      varLangField18Val = ""
+      varLangField19 = ""
+      varLangField19Val = ""
+      varLangField20 = ""
+      varLangField20Val = ""
+      varLangField21 = ""
+      varLangField21Val = ""
+      varLangField22 = ""
+      varLangField22Val = ""
+      varLangField23 = ""
+      varLangField23Val = ""
+      varLangField24 = ""
+      varLangField24Val = ""
+      varLangField25 = ""
+      varLangField25Val = ""
+      varLangField26 = ""
+      varLangField26Val = ""
+      varLangField27 = ""
+      varLangField27Val = ""
+      varLangField28 = ""
+      varLangField28Val = ""
+      varLangField29 = ""
+      varLangField29Val = ""
+      varLangField30 = ""
+      varLangField30Val = ""
+      langSelected2 = ""
 
-            
+
+  
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
             ignore_exception { idLaunch = "#{idLaunch}" }
@@ -3840,34 +3965,159 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numEntrada = "#{posNode}" }
 
 
-            #ignore_exception { nombre = con.quote(node.element(:xpath,"//div[contains(@class,'header')]//h1").text) }
-            #ignore_exception { valoracion = con.quote(node.element(:xpath,"//*[contains(@class,'section-rating')]//*[@class='section-star-display']").text) }
-            #ignore_exception { numOpiniones = con.quote(node.element(:xpath,"//li[@class='section-rating-term']//button").text) }
-            #ignore_exception { tipo = con.quote(node.element(:xpath,"//span[@class='section-rating-term']//button").text) }
-            #ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//li[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
-            #ignore_exception { valoracion2 = con.quote(node.element(:xpath,"//*[contains(@class,'section-reviewchart')]//*[@class='section-star-display']").text) }
-            #ignore_exception { numOpiniones2 = con.quote(node.element(:xpath,".//button[@class='section-reviewchart-numreviews']").text) }
-            #ignore_exception { numOpiniones_Val5 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[1]//div[@aria-label]").attribute_value('aria-label')) }
-            #ignore_exception { numOpiniones_Val4 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[2]//div[@aria-label]").attribute_value('aria-label')) }
-            #ignore_exception { numOpiniones_Val3 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[3]//div[@aria-label]").attribute_value('aria-label')) }
-            #ignore_exception { numOpiniones_Val2 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[4]//div[@aria-label]").attribute_value('aria-label')) }
-            #ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]//div[@aria-label]").attribute_value('aria-label')) }
-            #ignore_exception { address = con.quote(node.element(:xpath,"(//span[@class='section-info-text'])[1]/span[last()]").text) }
-            #ignore_exception { horario = con.quote(node.element(:xpath,"//*[@class='section-info-hour-text']").text) }
+      ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").text) }
+      ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
+      ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
+      ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
+      ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[starts-with(./@class,'blEntry address')] | //address)[1]").text) }
+      ignore_exception { postalCode = con.quote(node.element(:xpath,"(//*[contains(@property,'postal-code') or contains(@property,'postalCode')])[1]").text) }
+      ignore_exception { locality = con.quote(node.element(:xpath,"(//*[@property='addressLocality' or @property='v:locality'])[1]").text) }
+      ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
+      ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[starts-with(@class,'starRating')]/div[2]/text() | //span[@class='star']//img").attribute_value('alt')) }
+      ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[contains(@class,'rs rating')]//span").attribute_value('alt')) }
+      ignore_exception { reviewCount = con.quote(node.element(:xpath,"//*[contains(@class,'rs rating')]//a").text) }
+      ignore_exception { infoRanking = con.quote(node.element(:xpath,"//*[starts-with(@class,'slim_ranking') or starts-with(@class,'header_popularity')]").text) }
+      ignore_exception { placeType = con.quote(node.element(:xpath,"//*[@class='placeTypeText']").text) }
+      ignore_exception { geoLat = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lat')) }
+      ignore_exception { geoLng = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lng')) }
+      ignore_exception { linkPrimeraReview = con.quote(node.element(:xpath,"(//*[@id='REVIEWS']//div[starts-with(@id,'review_')])[1]/div[not(@style='display: none;')]//a[@id]").attribute_value('href')) }
+      ignore_exception { currentPage = con.quote(node.element(:xpath,".//*[@class='pageNum current']").text) }
+      ignore_exception { cuisine = con.quote(node.element(:xpath,"//*[starts-with(@class,'header_links')]").text) }
+      ignore_exception { langList = con.quote(node.element(:xpath,"//*[@id='filterLang']/option").attribute_value('value')) }
+      ignore_exception { langSelected = con.quote(node.element(:xpath,".//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
+      ignore_exception { segmSelected = con.quote(node.element(:xpath,".//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").text) }
+      ignore_exception { filterSegment = con.quote(node.element(:xpath,"//span[@class='filter']").text) }
+      ignore_exception { filterCount = con.quote(node.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text) }
+      ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
+      ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
+      ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
+      ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[1]/span[last()]").text) }
+      ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[2]/span[last()]").text) }
+      ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[3]/span[last()]").text) }
+      ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[4]/span[last()]").text) }
+      ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[5]/span[last()]").text) }
+      ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
+      ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
+      ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
+      ignore_exception { timeOfYear4_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[4]/label").text) }
+      ignore_exception { varDimField1 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[1]").text) }
+      ignore_exception { varDimField1Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[1]").attribute_value('alt')) }
+      ignore_exception { varDimField2 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[2]").text) }
+      ignore_exception { varDimField2Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[2]").attribute_value('alt')) }
+      ignore_exception { varDimField3 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[3]").text) }
+      ignore_exception { varDimField3Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[3]").attribute_value('alt')) }
+      ignore_exception { varDimField4 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[4]").text) }
+      ignore_exception { varDimField4Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[4]").attribute_value('alt')) }
+      ignore_exception { varDimField5 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[5]").text) }
+      ignore_exception { varDimField5Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[5]").attribute_value('alt')) }
+      ignore_exception { varDimField6 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[6]").text) }
+      ignore_exception { varDimField6Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[6]").attribute_value('alt')) }
+      ignore_exception { varDimField7 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[7]").text) }
+      ignore_exception { varDimField7Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[7]").attribute_value('alt')) }
+      ignore_exception { varDimField8 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[8]").text) }
+      ignore_exception { varDimField8Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[8]").attribute_value('alt')) }
+      ignore_exception { varDimField9 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[9]").text) }
+      ignore_exception { varDimField9Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[9]").attribute_value('alt')) }
+      ignore_exception { varDimField10 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[10]").text) }
+      ignore_exception { varDimField10Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[10]").attribute_value('alt')) }
+      ignore_exception { varDimField11 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[11]").text) }
+      ignore_exception { varDimField11Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[11]").attribute_value('alt')) }
+      ignore_exception { varDimField12 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[12]").text) }
+      ignore_exception { varDimField12Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[12]").attribute_value('alt')) }
+      ignore_exception { varSegmField1 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[1]").text) }
+      ignore_exception { varSegmField1Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[2]").text) }
+      ignore_exception { varSegmField2 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[1]").text) }
+      ignore_exception { varSegmField2Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[2]").text) }
+      ignore_exception { varSegmField3 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[1]").text) }
+      ignore_exception { varSegmField3Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[2]").text) }
+      ignore_exception { varSegmField4 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[1]").text) }
+      ignore_exception { varSegmField4Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[2]").text) }
+      ignore_exception { varSegmField5 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[1]").text) }
+      ignore_exception { varSegmField5Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[2]").text) }
+      ignore_exception { varSegmField6 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[1]").text) }
+      ignore_exception { varSegmField6Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[2]").text) }
+      ignore_exception { codeMap = con.quote(node.element(:xpath,"//*[contains(@src,'center=')]").attribute_value('src')) }
+      ignore_exception { peineNotas5 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[1]").attribute_value('checked')) }
+      ignore_exception { peineNotas4 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[2]").attribute_value('checked')) }
+      ignore_exception { peineNotas3 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[3]").attribute_value('checked')) }
+      ignore_exception { peineNotas2 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[4]").attribute_value('checked')) }
+      ignore_exception { peineNotas1 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[5]").attribute_value('checked')) }
+      ignore_exception { varLangField01 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[01]").attribute_value('value')) }
+      ignore_exception { varLangField01Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[01]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField02 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[02]").attribute_value('value')) }
+      ignore_exception { varLangField02Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[02]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField03 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[03]").attribute_value('value')) }
+      ignore_exception { varLangField03Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[03]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField04 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[04]").attribute_value('value')) }
+      ignore_exception { varLangField04Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[04]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField05 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[05]").attribute_value('value')) }
+      ignore_exception { varLangField05Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[05]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField06 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[06]").attribute_value('value')) }
+      ignore_exception { varLangField06Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[06]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField07 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[07]").attribute_value('value')) }
+      ignore_exception { varLangField07Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[07]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField08 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[08]").attribute_value('value')) }
+      ignore_exception { varLangField08Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[08]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField09 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[09]").attribute_value('value')) }
+      ignore_exception { varLangField09Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[09]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField10 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[10]").attribute_value('value')) }
+      ignore_exception { varLangField10Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[10]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField11 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[11]").attribute_value('value')) }
+      ignore_exception { varLangField11Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[11]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField12 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[12]").attribute_value('value')) }
+      ignore_exception { varLangField12Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[12]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField13 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[13]").attribute_value('value')) }
+      ignore_exception { varLangField13Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[13]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField14 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[14]").attribute_value('value')) }
+      ignore_exception { varLangField14Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[14]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField15 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[15]").attribute_value('value')) }
+      ignore_exception { varLangField15Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[15]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField16 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[16]").attribute_value('value')) }
+      ignore_exception { varLangField16Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[16]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField17 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[17]").attribute_value('value')) }
+      ignore_exception { varLangField17Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[17]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField18 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[18]").attribute_value('value')) }
+      ignore_exception { varLangField18Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[18]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField19 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[19]").attribute_value('value')) }
+      ignore_exception { varLangField19Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[19]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField20 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[20]").attribute_value('value')) }
+      ignore_exception { varLangField20Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[20]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField21 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[21]").attribute_value('value')) }
+      ignore_exception { varLangField21Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[21]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField22 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[22]").attribute_value('value')) }
+      ignore_exception { varLangField22Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[22]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField23 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[23]").attribute_value('value')) }
+      ignore_exception { varLangField23Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[23]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField24 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[24]").attribute_value('value')) }
+      ignore_exception { varLangField24Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[24]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField25 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[25]").attribute_value('value')) }
+      ignore_exception { varLangField25Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[25]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField26 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[26]").attribute_value('value')) }
+      ignore_exception { varLangField26Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[26]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField27 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[27]").attribute_value('value')) }
+      ignore_exception { varLangField27Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[27]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField28 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[28]").attribute_value('value')) }
+      ignore_exception { varLangField28Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[28]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField29 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[29]").attribute_value('value')) }
+      ignore_exception { varLangField29Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[29]/..//following-sibling::label[1]").text) }
+      ignore_exception { varLangField30 = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[30]").attribute_value('value')) }
+      ignore_exception { varLangField30Val = con.quote(node.element(:xpath,"(//input[contains(@name,'filterLang') and ..//following-sibling::label])[30]/..//following-sibling::label[1]").text) }
+      ignore_exception { langSelected2 = con.quote(node.element(:xpath,"//*[@data-name='language']/div[./input/@checked]/label").text) }
       
 
 
     
-#            sqlInsert = "INSERT INTO `Navigator`.`tblDataGMFicha` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-#                        "`nombre`, `valoracion`, `numOpiniones`, `tipo`, `tipo2`, `valoracion2`, `numOpiniones2`, `numOpiniones_Val5`, `numOpiniones_Val4`, `numOpiniones_Val3`, `numOpiniones_Val2`, `numOpiniones_Val1`, `address`, `horario`"  +
-#                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-#                        "'#{nombre}', '#{valoracion}', '#{numOpiniones}', '#{tipo}', '#{tipo2}', '#{valoracion2}', '#{numOpiniones2}', '#{numOpiniones_Val5}', '#{numOpiniones_Val4}', '#{numOpiniones_Val3}', '#{numOpiniones_Val2}', '#{numOpiniones_Val1}', '#{address}', '#{horario}'"  +
-#                        ")"
-#            puts(sqlInsert)
-#  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-#    
-#            con.query(sqlInsert)
-          end     
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAPeineFicha` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`placeName`, `award_text`, `award_class`, `certificadoExcelencia`, `fullAddress`, `postalCode`, `locality`, `phone`, `placeRating`, `globalScore`, `reviewCount`, `infoRanking`, `placeType`, `geoLat`, `geoLng`, `linkPrimeraReview`, `currentPage`, `cuisine`, `langList`, `langSelected`, `segmSelected`, `filterSegment`, `filterCount`, `langFromRadioButtons`, `recommendedPercent2`, `sorting`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, `timeOfYear1_Count`, `timeOfYear2_Count`, `timeOfYear3_Count`, `timeOfYear4_Count`, `varDimField1`, `varDimField1Val`, `varDimField2`, `varDimField2Val`, `varDimField3`, `varDimField3Val`, `varDimField4`, `varDimField4Val`, `varDimField5`, `varDimField5Val`, `varDimField6`, `varDimField6Val`, `varDimField7`, `varDimField7Val`, `varDimField8`, `varDimField8Val`, `varDimField9`, `varDimField9Val`, `varDimField10`, `varDimField10Val`, `varDimField11`, `varDimField11Val`, `varDimField12`, `varDimField12Val`, `varSegmField1`, `varSegmField1Val`, `varSegmField2`, `varSegmField2Val`, `varSegmField3`, `varSegmField3Val`, `varSegmField4`, `varSegmField4Val`, `varSegmField5`, `varSegmField5Val`, `varSegmField6`, `varSegmField6Val`, `codeMap`, `peineNotas5`, `peineNotas4`, `peineNotas3`, `peineNotas2`, `peineNotas1`, `varLangField01`, `varLangField01Val`, `varLangField02`, `varLangField02Val`, `varLangField03`, `varLangField03Val`, `varLangField04`, `varLangField04Val`, `varLangField05`, `varLangField05Val`, `varLangField06`, `varLangField06Val`, `varLangField07`, `varLangField07Val`, `varLangField08`, `varLangField08Val`, `varLangField09`, `varLangField09Val`, `varLangField10`, `varLangField10Val`, `varLangField11`, `varLangField11Val`, `varLangField12`, `varLangField12Val`, `varLangField13`, `varLangField13Val`, `varLangField14`, `varLangField14Val`, `varLangField15`, `varLangField15Val`, `varLangField16`, `varLangField16Val`, `varLangField17`, `varLangField17Val`, `varLangField18`, `varLangField18Val`, `varLangField19`, `varLangField19Val`, `varLangField20`, `varLangField20Val`, `varLangField21`, `varLangField21Val`, `varLangField22`, `varLangField22Val`, `varLangField23`, `varLangField23Val`, `varLangField24`, `varLangField24Val`, `varLangField25`, `varLangField25Val`, `varLangField26`, `varLangField26Val`, `varLangField27`, `varLangField27Val`, `varLangField28`, `varLangField28Val`, `varLangField29`, `varLangField29Val`, `varLangField30`, `varLangField30Val`, `langSelected2`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{placeName}', '#{award_text}', '#{award_class}', '#{certificadoExcelencia}', '#{fullAddress}', '#{postalCode}', '#{locality}', '#{phone}', '#{placeRating}', '#{globalScore}', '#{reviewCount}', '#{infoRanking}', '#{placeType}', '#{geoLat}', '#{geoLng}', '#{linkPrimeraReview}', '#{currentPage}', '#{cuisine}', '#{langList}', '#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', '#{recommendedPercent2}', '#{sorting}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', '#{timeOfYear1_Count}', '#{timeOfYear2_Count}', '#{timeOfYear3_Count}', '#{timeOfYear4_Count}', '#{varDimField1}', '#{varDimField1Val}', '#{varDimField2}', '#{varDimField2Val}', '#{varDimField3}', '#{varDimField3Val}', '#{varDimField4}', '#{varDimField4Val}', '#{varDimField5}', '#{varDimField5Val}', '#{varDimField6}', '#{varDimField6Val}', '#{varDimField7}', '#{varDimField7Val}', '#{varDimField8}', '#{varDimField8Val}', '#{varDimField9}', '#{varDimField9Val}', '#{varDimField10}', '#{varDimField10Val}', '#{varDimField11}', '#{varDimField11Val}', '#{varDimField12}', '#{varDimField12Val}', '#{varSegmField1}', '#{varSegmField1Val}', '#{varSegmField2}', '#{varSegmField2Val}', '#{varSegmField3}', '#{varSegmField3Val}', '#{varSegmField4}', '#{varSegmField4Val}', '#{varSegmField5}', '#{varSegmField5Val}', '#{varSegmField6}', '#{varSegmField6Val}', '#{codeMap}', '#{peineNotas5}', '#{peineNotas4}', '#{peineNotas3}', '#{peineNotas2}', '#{peineNotas1}', '#{varLangField01}', '#{varLangField01Val}', '#{varLangField02}', '#{varLangField02Val}', '#{varLangField03}', '#{varLangField03Val}', '#{varLangField04}', '#{varLangField04Val}', '#{varLangField05}', '#{varLangField05Val}', '#{varLangField06}', '#{varLangField06Val}', '#{varLangField07}', '#{varLangField07Val}', '#{varLangField08}', '#{varLangField08Val}', '#{varLangField09}', '#{varLangField09Val}', '#{varLangField10}', '#{varLangField10Val}', '#{varLangField11}', '#{varLangField11Val}', '#{varLangField12}', '#{varLangField12Val}', '#{varLangField13}', '#{varLangField13Val}', '#{varLangField14}', '#{varLangField14Val}', '#{varLangField15}', '#{varLangField15Val}', '#{varLangField16}', '#{varLangField16Val}', '#{varLangField17}', '#{varLangField17Val}', '#{varLangField18}', '#{varLangField18Val}', '#{varLangField19}', '#{varLangField19Val}', '#{varLangField20}', '#{varLangField20Val}', '#{varLangField21}', '#{varLangField21Val}', '#{varLangField22}', '#{varLangField22Val}', '#{varLangField23}', '#{varLangField23Val}', '#{varLangField24}', '#{varLangField24Val}', '#{varLangField25}', '#{varLangField25Val}', '#{varLangField26}', '#{varLangField26Val}', '#{varLangField27}', '#{varLangField27Val}', '#{varLangField28}', '#{varLangField28Val}', '#{varLangField29}', '#{varLangField29Val}', '#{varLangField30}', '#{varLangField30Val}', '#{langSelected2}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
+  
           
           
         elsif descripcion.include? 'Repescando.'
