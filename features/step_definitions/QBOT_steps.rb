@@ -166,8 +166,11 @@ When /^QBot is surfing a webpage$/ do
           
           hayfallos = false
           begin
-            page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
-#            page.launchDataTA con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            unless description.include?('TripadvisorHeaderFicha.')
+              page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            else
+              page.launchDataTA con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            end
             con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
             
             updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)

@@ -152,7 +152,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       sleep 1
       retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, ipeine, retHttp
+
+      File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
+      @browser.goto 'file:///tmp/httppage.htm'
+      storePage       con, idTarget, idConexion, idLaunch, idCaptura, ipeine, descripcion, url
+#      storeDirectPage con, idTarget, idConexion, idLaunch, idCaptura, ipeine, retHttp
+
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     end
   end
@@ -3792,6 +3797,79 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end          
+
+        elsif descripcion.include? 'TripadvisorHeaderFicha.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "/*")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            #nombre = ""
+            #valoracion = ""
+            #numOpiniones = ""
+            #tipo = ""
+            #tipo2 = ""
+            #valoracion2 = ""
+            #numOpiniones2 = ""
+            #numOpiniones_Val5 = ""
+            #numOpiniones_Val4 = ""
+            #numOpiniones_Val3 = ""
+            #numOpiniones_Val2 = ""
+            #numOpiniones_Val1 = ""
+            #address = ""
+            #horario = ""
+
+            
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+            #ignore_exception { nombre = con.quote(node.element(:xpath,"//div[contains(@class,'header')]//h1").text) }
+            #ignore_exception { valoracion = con.quote(node.element(:xpath,"//*[contains(@class,'section-rating')]//*[@class='section-star-display']").text) }
+            #ignore_exception { numOpiniones = con.quote(node.element(:xpath,"//li[@class='section-rating-term']//button").text) }
+            #ignore_exception { tipo = con.quote(node.element(:xpath,"//span[@class='section-rating-term']//button").text) }
+            #ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//li[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
+            #ignore_exception { valoracion2 = con.quote(node.element(:xpath,"//*[contains(@class,'section-reviewchart')]//*[@class='section-star-display']").text) }
+            #ignore_exception { numOpiniones2 = con.quote(node.element(:xpath,".//button[@class='section-reviewchart-numreviews']").text) }
+            #ignore_exception { numOpiniones_Val5 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[1]//div[@aria-label]").attribute_value('aria-label')) }
+            #ignore_exception { numOpiniones_Val4 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[2]//div[@aria-label]").attribute_value('aria-label')) }
+            #ignore_exception { numOpiniones_Val3 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[3]//div[@aria-label]").attribute_value('aria-label')) }
+            #ignore_exception { numOpiniones_Val2 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[4]//div[@aria-label]").attribute_value('aria-label')) }
+            #ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]//div[@aria-label]").attribute_value('aria-label')) }
+            #ignore_exception { address = con.quote(node.element(:xpath,"(//span[@class='section-info-text'])[1]/span[last()]").text) }
+            #ignore_exception { horario = con.quote(node.element(:xpath,"//*[@class='section-info-hour-text']").text) }
+      
+
+
+    
+#            sqlInsert = "INSERT INTO `Navigator`.`tblDataGMFicha` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+#                        "`nombre`, `valoracion`, `numOpiniones`, `tipo`, `tipo2`, `valoracion2`, `numOpiniones2`, `numOpiniones_Val5`, `numOpiniones_Val4`, `numOpiniones_Val3`, `numOpiniones_Val2`, `numOpiniones_Val1`, `address`, `horario`"  +
+#                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+#                        "'#{nombre}', '#{valoracion}', '#{numOpiniones}', '#{tipo}', '#{tipo2}', '#{valoracion2}', '#{numOpiniones2}', '#{numOpiniones_Val5}', '#{numOpiniones_Val4}', '#{numOpiniones_Val3}', '#{numOpiniones_Val2}', '#{numOpiniones_Val1}', '#{address}', '#{horario}'"  +
+#                        ")"
+#            puts(sqlInsert)
+#  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+#    
+#            con.query(sqlInsert)
+          end     
+          
+          
         elsif descripcion.include? 'Repescando.'
 
           posNode = 0
