@@ -104,9 +104,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     html = http.get(uri.request_uri).body
+
+archivandoTraza; 
+
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     uid = html.scan(/"uid":"(.[^"]*)"/i).first.first
-    rid = html.scan(/data-reviewid.*"(\d*)"/i).first.first
+    rid = html.scan(/data-reviewid="(.[^"]*)"/i).first.first
     puts "uid #{uid}"
     puts "rid #{rid}"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
