@@ -105,7 +105,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     http.use_ssl = true
     html = http.get(uri.request_uri).body
 
-archivandoTraza; 
+      File.open("/volHTML/debug/httppage.htm", 'w') { |file| file.write(html) }
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     uid = html.scan(/"uid":"(.[^"]*)"/i).first.first

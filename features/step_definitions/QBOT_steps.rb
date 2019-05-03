@@ -101,7 +101,7 @@ When /^QBot is surfing a webpage$/ do
         con.query("DELETE FROM tblDoneTargets where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
         con.query("UPDATE tblTargets SET disabled=0 where idTarget in (SELECT idTarget FROM tblKeepOnPaging WHERE updatetime < '" + horalim.strftime("%Y-%m-%d %H:%M:%S") + "');")
 
-        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled in (0, 2828) and time_stamp > '2015-12-21';"
+        ssql = "SELECT min(idTarget) FROM tblTargets where Disabled in 0 and time_stamp > '2015-12-21';"
       puts("CODETRACE >> #{__FILE__}:#{__LINE__}"); puts(ssql);$stdout.flush
         resetCountDown += -1
         
