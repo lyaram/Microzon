@@ -4001,11 +4001,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
       ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
       ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
-      ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[1]/span[last()]").text) }
-      ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[2]/span[last()]").text) }
-      ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[3]/span[last()]").text) }
-      ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[4]/span[last()]").text) }
-      ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating'])/div[5]/span[last()]").text) }
+      ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating']/div[1] | //label[contains(@for,'filterRating_5')])/span[last()]").text) }
+      ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating']/div[2] | //label[contains(@for,'filterRating_4')])/span[last()]").text) }
+      ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating']/div[3] | //label[contains(@for,'filterRating_3')])/span[last()]").text) }
+      ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating']/div[4] | //label[contains(@for,'filterRating_2')])/span[last()]").text) }
+      ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[@data-name='ta_rating']/div[5] | //label[contains(@for,'filterRating_1')])/span[last()]").text) }
       ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
       ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
       ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
