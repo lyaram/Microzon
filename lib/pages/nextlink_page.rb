@@ -9,7 +9,7 @@ class NextLinkPage
 require 'net/http'
 require 'net/https'
 require 'open-uri'
-url require 'json'
+require 'json'
 
     
  def getLaunch
