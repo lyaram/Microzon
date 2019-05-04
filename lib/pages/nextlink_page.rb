@@ -8,8 +8,8 @@ class NextLinkPage
 
 require 'net/http'
 require 'net/https'
-require 'uri'
-require 'json'
+require 'open-uri'
+url require 'json'
 
     
  def getLaunch
@@ -100,12 +100,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     url = url.gsub('.es/','.com.sg/')
     url = url.gsub('.co.uk/','.com.sg/')
 
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    html = http.get(uri.request_uri).body
+#    uri = URI.parse(url)
+#    http = Net::HTTP.new(uri.host, uri.port)
+#    http.use_ssl = true
+    html = open(url).read
 
-      File.open("/volHTML/debug/httppage.htm", 'w') { |file| file.write(html) }
+#      File.open("/volHTML/debug/httppage.htm", 'w') { |file| file.write(html) }
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     uid = html.scan(/"uid":"(.[^"]*)"/i).first.first
