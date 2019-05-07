@@ -4155,9 +4155,17 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       value2_Count = ""
       value1_Count = ""
 
-            
-  
-
+      status= ""
+      name = ""
+      tipo = ""
+      geolat = ""
+      geolng = ""
+      formattedaddress = ""
+      rating = ""
+      user_ratings_total = ""
+      placeid = ""
+      gid = ""
+      reference = ""
 
   
             ignore_exception { captura = "#{descripcion}" }
@@ -4176,14 +4184,28 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[4]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
       ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[5]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
 
+      ignore_exception { status = con.quote(node.element(:xpath,"/PlaceSearchResponse/status").text) }
+      ignore_exception { name = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/name").text) }
+      ignore_exception { tipo = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/type").text) }
+      ignore_exception { geolat = con.quote(node.element(:xpath,"/PlaceSearchResponse/geometry/location/lat").text) }
+      ignore_exception { geolng = con.quote(node.element(:xpath,"/PlaceSearchResponse/geometry/location/lng").text) }
+      ignore_exception { formattedaddress = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/formatted_address").text) }
+      ignore_exception { rating = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/rating").text) }
+      ignore_exception { user_ratings_total = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/user_ratings_total").text) }
+      ignore_exception { placeid = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/place_id").text) }
+      ignore_exception { gid = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/id").text) }
+      ignore_exception { reference = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/reference").text) }
+
 
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-                        "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`"  +
+                        "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
+                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}'"  +
+                        "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
+                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}'" +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
