@@ -4201,8 +4201,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { reference = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/reference").text) }
 
       ignore_exception { cert1 = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
-      ignore_exception { cert2 = con.quote(node.element(:xpath,"//*[contains(text(),'ertifica')]").text) }
-      ignore_exception { cert3 = con.quote(node.element(:xpath,"//*[contains(text(),'xcel')]").text) }
+      ignore_exception { cert2 = con.quote(node.element(:xpath,"(//*[contains(@class,'certificate')])[1]").text) }
+      ignore_exception { cert3 = con.quote(node.element(:xpath,"(//*[contains(@class,'excellence')])[1]").text) }
 
 
 
