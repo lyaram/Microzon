@@ -4168,7 +4168,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       placeid = ""
       gid = ""
       reference = ""
-
+      cert1 = ""
+      cert2 = ""
+      cert3 = ""
   
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
@@ -4198,16 +4200,19 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { gid = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/id").text) }
       ignore_exception { reference = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/reference").text) }
 
+      ignore_exception { cert1 = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
+      ignore_exception { cert2 = con.quote(node.element(:xpath,"//*[contains(text(),'ertifica')]").text) }
+      ignore_exception { cert3 = con.quote(node.element(:xpath,"//*[contains(text(),'xcel')]/*[@class='badgeText']").text) }
 
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
-                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`" +       
+                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
-                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}'" +
+                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}'" +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
