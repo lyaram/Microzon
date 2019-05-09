@@ -286,7 +286,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         reintentos += -1
         puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
         puts 'URL Original: ' + url
-        if descripcion.include? 'BOOKING_HotelFicha.' and not(description.include? 'file:///')
+        if descripcion.include? 'BOOKING_HotelFicha.' and not(url.include? 'file:///')
           @browser.goto "https://www.booking.com/"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
           @browser.element(:xpath,"//*[@id='booking-footer']").wait_until_present
