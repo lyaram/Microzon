@@ -1948,8 +1948,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
     unless urlOrig.include? 'file:///'
       storePagePng strDT
+      storePageHtml idLaunch, idCaptura, strDT
     end
-    storePageHtml idLaunch, idCaptura, strDT
 
     updateDate = Time.now.strftime("%Y-%m-%d %H:%M:%S")  #vigilar que no haya que meterlo en utc Time.now.utc.to_s(:db)
     con.query("UPDATE `Navigator`.`tblConexiones` SET `UltimaConexion` = '#{updateDate}' WHERE `idConexion`=#{idConexion};")
