@@ -1946,7 +1946,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     int_idInsert = con.query("select last_insert_id()").fetch_row.first.to_i
     idInsert = "%08d" % int_idInsert
 
-    unless urlOrig.include? 'file:///' || urlOrig.include? '.googleapis.com' 
+    unless urlOrig.include?('file:///') || urlOrig.include?('.googleapis.com') 
       storePagePng strD
     end
     unless urlOrig.include? 'file:///'
