@@ -1947,7 +1947,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     idInsert = "%08d" % int_idInsert
 
     unless urlOrig.include?('file:///') || urlOrig.include?('.googleapis.com') 
-      storePagePng strD
+      storePagePng strDT
     end
     unless urlOrig.include? 'file:///'
       storePageHtml idLaunch, idCaptura, strDT
