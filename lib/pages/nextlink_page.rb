@@ -4207,7 +4207,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { cert2 = con.quote(node.element(:xpath,"(//*[contains(@class,'certificate')])[1]").text) }
       ignore_exception { cert3 = con.quote(node.element(:xpath,"(//*[contains(@class,'excellence')])[1]").text) }
 
-      ignore_exception { securityReviews = con.quote(node.element(:xpath,"//*[contains(@for,'HealthAndSafetyFilter')]").text) }
+      ignore_exception { securityReviews = con.quote(node.element(:xpath,"//*[contains(@for,'Safety')]").text) }
 
 
     
