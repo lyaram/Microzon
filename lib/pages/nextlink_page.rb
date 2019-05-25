@@ -4219,7 +4219,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
-                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`" +       
+                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`, `isYourBusiness`, `claimed`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
                         "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}' " +
