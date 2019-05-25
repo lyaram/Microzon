@@ -4174,6 +4174,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       cert2 = ""
       cert3 = ""
       securityReviews = ""
+
+      isYourBusiness = ""
+      claimed = ""
   
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
@@ -4209,6 +4212,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       ignore_exception { securityReviews = con.quote(node.element(:xpath,"//*[contains(@for,'Safety')]").text) }
 
+      ignore_exception { isYourBusiness = con.quote(node.element(:xpath,"//*[contains(@href,'ManagementCenter')]").text) }
+      ignore_exception { claimed = con.quote(node.element(:xpath,"//*[contains(@class,'ClaimedBadge')]").text) }
+
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
@@ -4216,7 +4222,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                         "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
-                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}' " +
+                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}' " +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush

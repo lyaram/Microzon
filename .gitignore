@@ -39,3 +39,4 @@ junit*
 .metadata/.plugins/com.aptana.syncing.core/sites.4
 .metadata/.plugins/org.eclipse.core.resources/.safetable/com.aptana.core.io.4
 .metadata/.plugins/org.eclipse.core.resources/.safetable/com.aptana.syncing.core.4
+*.5
