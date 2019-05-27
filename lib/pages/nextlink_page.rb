@@ -4216,7 +4216,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       ignore_exception { isYourBusiness = con.quote(node.element(:xpath,"//*[contains(@href,'ManagementCenter')]").text) }
       ignore_exception { claimed = con.quote(node.element(:xpath,"//*[contains(@class,'ClaimedBadge')]").text) }
-      ignore_exception { propertyDescription = con.quote(node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]").text) }
+       
+      #ignore_exception { propertyDescription = con.quote(node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]").text) }
+      ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
 
 
     
