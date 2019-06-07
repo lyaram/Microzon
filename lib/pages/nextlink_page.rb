@@ -614,7 +614,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       #end
       
       
-      allLangRadioButton = '(//*[contains(@name,"filterLang") and @value="ALL"])[1]/following::label[1] | //*[contains(@for,"LanguageFilter_0")]'
+      allLangRadioButton = '(//*[contains(@name,"filterLang") and @value="ALL"])[1]/following::label[1] | //*[contains(@for,"LanguageFilter_0")] | //*[contains(@id,"LanguageFilter_0")]'
       if @browser.element(:xpath,allLangRadioButton).exists?
         if @browser.element(:xpath,allLangRadioButton).visible?
           @browser.element(:xpath,allLangRadioButton).click
