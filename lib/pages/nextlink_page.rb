@@ -4424,6 +4424,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
   end
   
   def launchGoogleHotelPrices con, idTarget, idConexion, idLaunch, descripcion, url
+      @lasttime = Time.now.to_f
+
       ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       checkPageCompleted = '//*[@id="prices"]//*[@data-show-prices]'
