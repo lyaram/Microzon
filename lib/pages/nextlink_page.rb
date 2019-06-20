@@ -4423,8 +4423,49 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     # sudo rsync -a /var/lib/jenkins/BotStoring/png /vol/BotStoring/
   end
   
+  def launchGoogleHotelPrices con, idTarget, idConexion, idLaunch, descripcion, url
+      ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-end
+      checkPageCompleted = '//*[@id="prices"]//*[@data-show-prices]'
+
+
+      reintentos = 3
+      begin
+        reintentos += -1
+        puts '@browser.goto.Retries:' + reintentos.to_s ; $stdout.flush
+        @browser.goto url 
+      rescue
+        if reintentos>0
+          retry
+        end
+      end
+
+      ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+      
+      idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
+
+      sleep 2
+      @browser.element(:xpath,checkPageCompleted).wait_until_present
+  
+      clickOpenDates = '//*[@id="prices"]//div[contains(@aria-label,"Select check-in")]'
+      @browser.element(:xpath,clickOpenDates).click
+
+      sleep 5
+      nodes = @browser.divs(:xpath, "//div[@data-iso]")
+      nodes.each do |node|
+        fecha = node.attribute_value("data-iso")
+        precio = node.element(:xpath,".//div[@jsname]").text
+        puts("Fecha: #{fecha} , precio: #{precio}")
+      end
+
+      ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+     
+#      storePage idLaunch, idCaptura
+      
+      
+
+  end
+  
 
 
 
@@ -4474,5 +4515,6 @@ end
   end
 
 
+end
 
 

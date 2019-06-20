@@ -166,10 +166,12 @@ When /^QBot is surfing a webpage$/ do
           
           hayfallos = false
           begin
-            unless description.include?('TripadvisorHeaderFicha.')
-              page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
-            else
+            if description.include?('TripadvisorHeaderFicha.')
               page.launchDataTA con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
+            elsif description.include?('GoogleHotelPrices.')
+              page.launchGoogleHotelPrices con, idTarget, idConexion, idLaunch, description, url
+            else
+              page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
             end
             con.query("UPDATE tblTargets SET Disabled=true WHERE idTarget = #{idTarget}")
             
