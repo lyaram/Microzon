@@ -305,6 +305,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         end
         @browser.goto url
+archivandoTraza;
         #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
         puts 'URL Final: ' + @browser.url
