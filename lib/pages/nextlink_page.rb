@@ -365,6 +365,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
   
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+archivandoTraza;
 
   
     idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
@@ -496,6 +497,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+archivandoTraza;
 
         if @browser.element(:xpath,'//*[@id="review_sort"]').exists?
           if @browser.element(:xpath,'//*[@id="review_sort"]').visible?
@@ -700,6 +702,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           fe = @browser.element(:xpath,filterpath)
           @browser.execute_script('arguments[0].scrollIntoView();', fe)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+archivandoTraza;
          
           fe.send_keys :arrow_up
           fe.send_keys :arrow_up
@@ -889,6 +892,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       # @browser.send_keys :page_up
        
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+archivandoTraza;
 
       puts "go clicking enlaceReviews"    ; $stdout.flush
       if @browser.element(:xpath,enlaceReviews).visible?
