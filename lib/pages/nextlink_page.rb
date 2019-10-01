@@ -210,7 +210,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     end    
     
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
     
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 180
@@ -224,7 +223,6 @@ archivandoTraza;
       begin
         
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
         ipwebproxy = con.query("select IPWebProxy from tblConfig").fetch_row.first
 
@@ -251,7 +249,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       rescue 
         puts "ERROR WEBPROXY!!!!!!!!"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       end
     end
     
@@ -283,7 +280,6 @@ archivandoTraza;
     #@browser.driver.manage.timeouts.implicit_wait = 2
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       reintentos = 3
       begin
@@ -319,7 +315,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
         if descripcion.include? 'MiNube_Usuarios.Id_'
           jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
           browser.element(:xpath,jumptosuer).wait_until_present
@@ -369,7 +364,6 @@ archivandoTraza;
 
   
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
   
     idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted #cambiar el anterior por otro proceso que verifique el ultimo indice utilizado registrado en un xml
@@ -412,7 +406,6 @@ archivandoTraza;
 #      end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? 'Eurocampings_ReviewList.'
         begin
@@ -427,7 +420,6 @@ archivandoTraza;
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 
       if descripcion.include? 'EuroRelais_ReviewList.'
@@ -482,7 +474,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? 'BOOKING_HotelFicha.'
         begin
@@ -539,7 +530,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
     
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       reintentos = 0
       if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
@@ -595,7 +585,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
     if (descripcion.include? '.GoToFirstReview.') && !($keep_on_paging_in_progress)
       firstreviewlink = "(//*[@id='REVIEWS']//div[starts-with(@id,'review_')]/div[not(@style='display: none;')]//div[starts-with(@class,'quote')]/a)[1]"
@@ -608,7 +597,6 @@ archivandoTraza;
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
      #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
       if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
@@ -647,7 +635,6 @@ archivandoTraza;
       #end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
      
     if descripcion.include? '.KeepOnPaging.'
       if @browser.element(:xpath,"//form[contains(@action,'SetReviewFilter')]/button[@class='clear']").exists?
@@ -659,7 +646,6 @@ archivandoTraza;
       
        #Desactivando filtro activo si lo si hay
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
        if @browser.element(:xpath,'//button[@class="clear"]').exists?
         if @browser.element(:xpath,'//button[@class="clear"]').visible?
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -682,7 +668,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       if descripcion.include? '.TAFilterSegment' 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
        
@@ -809,7 +794,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #    end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 
     if descripcion.include? '.GotoTAPag'
@@ -821,7 +805,6 @@ archivandoTraza;
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
     if (descripcion.include? '.GotoTAFirstPage.') && !($keep_on_paging_in_progress)
       sleep 1
@@ -829,11 +812,15 @@ archivandoTraza;
       if @browser.element(:xpath,enlacePrimeraPagina).exists?
         @browser.element(:xpath,enlacePrimeraPagina).click
         sleep 1
+        checkLangALL = "//div[contains(@data-param,'filterLang')]/div[contains(@data-value,'ALL')]/label/input[not(@checked)]"
+        if @browser.element(:xpath,checkLangALL).exists?
+          @browser.element(:xpath,checkLangALL).click
+          sleep 1
+        end
       end
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
     if descripcion.include? '.GotoTALastVisitPage.'
       raise "No hay pagina configurada para 'GotoTALastVisitPage'" if con.query("select count(*) from tblLastPage").fetch_row.first.to_i == 0
@@ -846,7 +833,6 @@ archivandoTraza;
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
     if descripcion.include? 'Facebook_Ficha.'
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -861,7 +847,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
     
     if descripcion.include? 'GMapsLoc.ID'
       if(@browser.url.split(//).last(3).join==',4z')
@@ -1006,7 +991,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
     repeatPageCountDownMax = 30
     repeatPageCountDown = repeatPageCountDownMax
@@ -1019,7 +1003,6 @@ archivandoTraza;
             
       #archivandoTraza; 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? '.ManualPaging.' 
         @browser.goto "#{url}#{@numPag}"
@@ -1027,7 +1010,6 @@ archivandoTraza;
       
       #archivandoTraza; 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? 'GMapsPlaceReviews.ID' 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
@@ -1069,7 +1051,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         while sigueprobando
           reintentos += -1
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
           puts descripcion + '.chkLOAD.Pag:' + @numPag.to_s + '.Retries:' + reintentos.to_s ; $stdout.flush
 
           if recargar
@@ -1079,7 +1060,6 @@ archivandoTraza;
           recargar = false
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           puts "Organizando ventanas..."
           puts(@browser.title )
@@ -1093,7 +1073,6 @@ archivandoTraza;
           end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
           if @browser.element(:xpath,closeModal).exists?
@@ -1103,17 +1082,14 @@ archivandoTraza;
           end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           @browser.element(:xpath,checkPageCompleted).wait_until_present
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           break if checkPageLoading==''
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           if descripcion.include? 'Airbnb_PlaceList.'
             sleep 10
@@ -1124,7 +1100,6 @@ archivandoTraza;
           end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
           if reintentos<=0
           sigueprobando = false
@@ -1177,7 +1152,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       if descripcion.include? 'TRIPADVISOR_RestFicha.'
         if @browser.element(:xpath,"//*[@class='pageNum current']").exists?
           webpage = @browser.element(:xpath,"//*[@class='pageNum current']").text
@@ -1201,7 +1175,6 @@ archivandoTraza;
     #$DEBUG = true
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
      puts 'Ejecutando htmlPage = @browser.html'; $stdout.flush
   
      sigueprobando=true
@@ -1229,7 +1202,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       
       sleep 2
       @browser.element(:xpath,checkPageCompleted).wait_until_present
@@ -1238,7 +1210,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       #archivandoTraza; 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
       if @browser.element(:xpath,closeModal).exists?
@@ -1248,7 +1219,6 @@ archivandoTraza;
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       
       buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
       reintentos = 10
@@ -1271,7 +1241,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       
       begin
         
@@ -1305,7 +1274,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       #archivandoTraza; 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
         sleep 30
@@ -1318,7 +1286,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       linkMore = '//*[@id="REVIEWS"]//div[starts-with(@id,"review_")]//span[contains(@class,"taLnk") and contains(text(),"More") and not(ancestor-or-self::*[contains(translate(@style," ",""),"display:none")])]'
       if descripcion.include?('.TAFilterSegment') || descripcion.include?('.TANoMore.')
@@ -1390,7 +1357,6 @@ archivandoTraza;
        end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
         sleep 30
@@ -1401,7 +1367,6 @@ archivandoTraza;
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 ## se anula esta parte del código pensada en la versión antigua de reviews de Booking, donde se veia la página completa y había que desplegar las respuestas
 #      linkMore = './/*[@class="review_item_response_more"]'
@@ -1416,7 +1381,6 @@ archivandoTraza;
 #      end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
      if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
@@ -1428,7 +1392,6 @@ archivandoTraza;
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 		estoprural = false
 		begin
@@ -1442,7 +1405,6 @@ archivandoTraza;
 		end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 		
 		if estoprural
 			@browser.goto @browser.url.gsub('#page','?page=')
@@ -1451,7 +1413,6 @@ archivandoTraza;
 		end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 		begin
 		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
@@ -1463,7 +1424,6 @@ archivandoTraza;
 		end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       begin
         while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
@@ -1475,7 +1435,6 @@ archivandoTraza;
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
 #Descartado porque no carga siempre
    # #cargando dims en AT
@@ -1516,7 +1475,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
       
 #begin
       if descripcion.include? '.TAIdsOnDB.'
@@ -1689,7 +1647,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #end 
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? '.SurfTALangs'
         puts "SurfTALangs!!!!"; $stdout.flush
@@ -1761,7 +1718,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-archivandoTraza;
 
       if descripcion.include? '.SurfPeineNotas'
         puts "SurfPeineNotas!!!!"; $stdout.flush
