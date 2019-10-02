@@ -814,8 +814,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         sleep 1
         checkLangALL = "//div[contains(@data-param,'filterLang')]/div[contains(@data-value,'ALL') and not(./label/input/@checked)]"
         if @browser.element(:xpath,checkLangALL).exists?
+          sleep 3
           @browser.element(:xpath,checkLangALL).click
-          sleep 1
+          sleep 3
         end
       end
     end
