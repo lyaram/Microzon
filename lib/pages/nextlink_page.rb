@@ -822,6 +822,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
        
         @browser.goto urlfirstpagefull
         sleep 3
+        
+        archivandoTraza; 
+
 #        puts 'URL Final: ' + @browser.url
 #
 #       @browser.element(:xpath,enlacePrimeraPagina).click
