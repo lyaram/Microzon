@@ -810,14 +810,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       sleep 1
       enlacePrimeraPagina = "//*[@id='REVIEWS']//div[contains(@class,'pageNumbers')]/a[@data-page-number='1']"
       if @browser.element(:xpath,enlacePrimeraPagina).exists?
-        @browser.element(:xpath,enlacePrimeraPagina).click
+        urlfirstpage = @browser.element(:xpath,enlacePrimeraPagina).attribute_value('href')
+        uri = URI.parse(url);
+        urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urlfirstpage.sub("/", "%2f") + '&filterRating=0&pid=37153&filterLang=ALL'
+        
+        @browser.goto url
         sleep 1
-        checkLangALL = "//div[contains(@data-param,'filterLang')]/div[contains(@data-value,'ALL') and not(./label/input/@checked)]"
-        if @browser.element(:xpath,checkLangALL).exists?
-          sleep 3
-          @browser.element(:xpath,checkLangALL).click
-          sleep 3
-        end
+#        puts 'URL Final: ' + @browser.url
+#
+#       @browser.element(:xpath,enlacePrimeraPagina).click
+#        sleep 1
+#        checkLangALL = "//div[contains(@data-param,'filterLang')]/div[contains(@data-value,'ALL') and not(./label/input/@checked)]"
+#        if @browser.element(:xpath,checkLangALL).exists?
+#          sleep 3
+#          @browser.element(:xpath,checkLangALL).click
+#          sleep 3
+#        end
       end
     end
 
