@@ -816,7 +816,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         urihtml = URI.parse(urlfirstpage)
 
         uri = URI.parse(url);
-        urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urihtml.path.sub("/", "%2f") + '&filterLang=ALL'
+#        urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urihtml.path.sub("/", "%2f") + '&filterLang=ALL'
+        urlfirstpagefull = 'https://www.tripadvisor.com.sg/SetLangFilter?returnTo=' + urihtml.path.sub("/", "%2f") + '&filterLang=ALL'
         puts "urlfirstpagefull: #{urlfirstpagefull}"
        
         @browser.goto urlfirstpagefull
