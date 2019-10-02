@@ -811,11 +811,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       enlacePrimeraPagina = "//*[@id='REVIEWS']//div[contains(@class,'pageNumbers')]/a[@data-page-number='1']"
       if @browser.element(:xpath,enlacePrimeraPagina).exists?
         urlfirstpage = @browser.element(:xpath,enlacePrimeraPagina).attribute_value('href')
+        puts "urlfirstpage: #{urlfirstpage}"
         uri = URI.parse(url);
         urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urlfirstpage.sub("/", "%2f") + '&filterRating=0&pid=37153&filterLang=ALL'
-        
-        @browser.goto url
-        sleep 1
+        puts "urlfirstpagefull: #{urlfirstpagefull}"
+       
+        @browser.goto urlfirstpagefull
+        sleep 3
 #        puts 'URL Final: ' + @browser.url
 #
 #       @browser.element(:xpath,enlacePrimeraPagina).click
