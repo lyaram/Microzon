@@ -813,7 +813,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         urlfirstpage = @browser.element(:xpath,enlacePrimeraPagina).attribute_value('href')
         puts "urlfirstpage: #{urlfirstpage}"
         uri = URI.parse(url);
-        urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urlfirstpage.sub("/", "%2f") + '&filterRating=0&pid=37153&filterLang=ALL'
+        urlfirstpagefull = uri.scheme + '://' + uri.host + '/SetLangFilter?returnTo=' + urlfirstpage.sub("/", "%2f") + '&filterLang=ALL'
         puts "urlfirstpagefull: #{urlfirstpagefull}"
        
         @browser.goto urlfirstpagefull
