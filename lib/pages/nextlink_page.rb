@@ -1566,6 +1566,102 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                       "VALUES (#{idTASegmentFicha}, #{posNode}, '#{idTAReview}')"
           con.query(sqlInsert)
         end
+
+
+
+
+
+
+      elsif descripcion.include? '.TAIndivdsOnDB.'
+        placeName = ""
+        reviewTotalCount = ""
+        currentPage = ""
+        langSelected = ""
+        segmSelected = ""
+        filterSegment = ""
+        filterCount = ""
+        langFromRadioButtons = ""
+        sorting = ""
+        travellerTypeSel = ""
+        pagDetails = ""
+        valPeine5 = "null"
+        valPeine4 = "null"
+        valPeine3 = "null"
+        valPeine2 = "null"
+        valPeine1 = "null"
+        ignore_exception { placeName = @browser.element(:xpath,"//*[@id='HEADING']").text }
+        placeName = placeName.gsub! '\'', '\\\''
+        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@property='count' or @class='reviewCount']").text }
+        ignore_exception { currentPage = @browser.element(:xpath,"//*[@class='pageNumbers']/*[contains(@class,'current')]").text }
+        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='filterControls']//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text }
+        ignore_exception { segmSelected = @browser.element(:xpath,"(//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked] | //*[@data-param='filterSegment']/div[input/@checked])[1]/label").text }
+        ignore_exception { filterSegment = @browser.element(:xpath,"//span[@class='filter']/text()").text }
+        ignore_exception { filterCount = @browser.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text }
+        ignore_exception { langFromRadioButtons = @browser.element(:xpath,"//*[contains(@class,'language')]//*[./input/@checked]/label").text }
+        ignore_exception { sorting = @browser.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text }
+        ignore_exception { travellerTypeSel = @browser.element(:xpath,"//li[./span/input/@name='filterSegment' and ./span/input/@checked]/label").text }
+        ignore_exception { pagDetails = @browser.element(:xpath,"//*[@class='pagination-details']").text }
+        ignore_exception { valPeine5 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[1]").text }
+        ignore_exception { valPeine4 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[2]").text }
+        ignore_exception { valPeine3 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[3]").text }
+        ignore_exception { valPeine2 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[4]").text }
+        ignore_exception { valPeine1 = @browser.element(:xpath,"(//*[@id='ratingFilter']/ul/li/label/span[2] | (//*[@data-name='ta_rating'])[1]/div/span[2])[5]").text }
+
+        valPeine5 = valPeine5.gsub(',', ''); valPeine5 = valPeine5.gsub('.', '') 
+        valPeine4 = valPeine4.gsub(',', ''); valPeine4 = valPeine4.gsub('.', '') 
+        valPeine3 = valPeine3.gsub(',', ''); valPeine3 = valPeine3.gsub('.', '') 
+        valPeine2 = valPeine2.gsub(',', ''); valPeine2 = valPeine2.gsub('.', '') 
+        valPeine1 = valPeine1.gsub(',', ''); valPeine1 = valPeine1.gsub('.', '') 
+        
+#         con.query("INSERT tblLastPage (lastpage) VALUES ('#{@browser.element(:xpath,"//*[@id='REVIEWS']//*[contains(@class,'pageNum current')]").text.strip}');")
+        sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, " +
+                                                                 "LangSelected, SegmSelected, FilterSegment, FilterCount, LangFromRadioButtons, " +
+                                                                 "Sorting, TravellerTypeSel, PagDetails, valPeine5, valPeine4, valPeine3, valPeine2, valPeine1) " +
+                    "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', " +
+                            "'#{langSelected}', '#{segmSelected}', '#{filterSegment}', '#{filterCount}', '#{langFromRadioButtons}', " +
+                            "'#{sorting}', '#{travellerTypeSel}', '#{pagDetails}', '#{valPeine5}', '#{valPeine4}', '#{valPeine3}', '#{valPeine2}', '#{valPeine1}')"
+        puts(sqlInsert)
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        con.query(sqlInsert)
+        
+        int_id = con.query("select last_insert_id()").fetch_row.first.to_i
+        idTASegmentFicha = "%08d" % int_id
+        
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        posNode = 0
+        nodes = @browser.divs(:xpath, "//*[@id='REVIEWS']//div[starts-with(@id,'review_')]")
+        
+        puts("Node count: #{nodes.size}")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        nodes.each do |node|
+          posNode += 1
+          puts("posNode: #{posNode}")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          score = "null"
+          userLoc = "null"
+          visitDate = "null"
+          userName = "null"
+          responseDate = "null"
+          responseText = "null"
+          idTAReview = node.attribute_value('id')
+          ignore_exception { score = node.element(:xpath,".//*[contains(@class,'ui_bubble_rating')]").attribute_value('class') }
+          ignore_exception { userLoc = node.element(:xpath,".//*[starts-with(@class,'userLoc')]").text }
+          ignore_exception { visitDate = node.element(:xpath,".//*[contains(@class,'reviews_stay_date')]").text }
+          ignore_exception { userName = node.element(:xpath,".//div[contains(@class,'member_info')]//div[contains(@class,'info_text')]/div[1]").text }
+          ignore_exception { responseDate = node.element(:xpath,".//*[contains(@class,'responseDate')]").text }
+          ignore_exception { responseText = node.element(:xpath,".//*[contains(@class,'mgrRspnInline')]//div[contains(@class,'entry')]/p").text }
+          sqlInsert = "INSERT INTO `Navigator`.`tblTASegmentIndiv` (IdTASegmentFicha, Posicion, ReviewWebId, Score, UserLoc, VisitDate, UserName, ResponseDate, ResponseText) " +
+                      "VALUES (#{idTASegmentFicha}, #{posNode}, '#{idTAReview}', '#{score}', '#{userLoc}', '#{visitDate}', '#{userName}', '#{responseDate}', '#{responseText}')"
+          con.query(sqlInsert)
+        end
+
+
+
+
+
+
+
       elsif descripcion.include? '.BKDimIndivsOnDB.'
         placeName = ""
         reviewTotalCount = ""
