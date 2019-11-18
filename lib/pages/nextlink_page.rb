@@ -3980,7 +3980,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             sqlInsert = "INSERT INTO `Navigator`.`tblDataGMFullIndiv` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`dataReviewId`, `userLink`, `userIcon`, `nombre`, `userReviewCount`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{dataReviewId}', '#{userLink}', '#{userIcon}', '#{nombre}', '#{userReviewCount}''"  +
+                        "'#{dataReviewId}', '#{userLink}', '#{userIcon}', '#{nombre}', '#{userReviewCount}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
