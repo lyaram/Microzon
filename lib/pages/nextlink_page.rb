@@ -3932,6 +3932,68 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             con.query(sqlInsert)
           end          
 
+
+
+        elsif descripcion.include? 'GMapsPlaceFull.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//div[contains(@class,'ripple-container') and @data-review-id]")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            dataReviewId = ""
+            userLink = ""
+            userIcon = ""
+            nombre = ""
+            userReviewCount = ""
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+            ignore_exception { dataReviewId = con.quote(node.element(:xpath,".").attribute_value('data-review-id')) }
+            ignore_exception { userLink = con.quote(node.element(:xpath,".//div[@class='section-review-icon']/a").attribute_value('href')) }
+            ignore_exception { userIcon = con.quote(node.element(:xpath,".//div[@class='section-review-icon']/a").attribute_value('style')) }
+            ignore_exception { nombre = con.quote(node.element(:xpath,".//div[@class='section-review-title']/span").text) }
+            ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//div[@class='section-review-subtitle']").text) }
+            
+      
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataGMFullIndiv` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`dataReviewId`, `userLink`, `userIcon`, `nombre`, `userReviewCount`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{dataReviewId}', '#{userLink}', '#{userIcon}', '#{nombre}', '#{userReviewCount}''"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
+
+
+
+
+
+
+
         elsif descripcion.include? 'TripadvisorHeaderFicha.'
 
           posNode = 0
