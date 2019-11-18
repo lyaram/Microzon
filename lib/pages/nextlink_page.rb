@@ -879,7 +879,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       @browser.screenshot.save '/tmp/postclick.png'
     end
     
-    if descripcion.include? 'GMapsPlaceFull.ID' 
+    if descripcion.include? 'GMapsPlaceFull.' 
       puts "In GMapsPlace"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       div_scrollable_y = @browser.element(:xpath,"//*[contains(@class,'scrollable-y') or ./div/@id='ml-panes-entity']")
@@ -3962,7 +3962,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { idLaunch = "#{idLaunch}" }
             ignore_exception { idCaptura = "#{idCaptura}" }
             ignore_exception { numPag = "#{page}" }
-            ignore_exception { urlCaptura = @browser.url.gsub! "'", "\'" }
+            ignore_exception { urlCaptura = @browser.url }
+            urlCaptura = urlCaptura.gsub("'", "\'")
             ignore_exception { fechaHora = "#{strDT}" }
             ignore_exception { numEntrada = "#{posNode}" }
 
