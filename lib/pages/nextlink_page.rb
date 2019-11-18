@@ -3958,7 +3958,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
             ignore_exception { captura = "#{descripcion}" }
-            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
             ignore_exception { idLaunch = "#{idLaunch}" }
             ignore_exception { idCaptura = "#{idCaptura}" }
             ignore_exception { numPag = "#{page}" }
