@@ -3666,11 +3666,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { fechaHora = "#{strDT}" }
             ignore_exception { numEntrada = "#{posNode}" }
       
-          ignore_exception { placeName = con.quote(node.element(:xpath,"//h1[@class='b-crumb__hp-current']/following-sibling::meta[@property='name']").attribute_value('content')) }
+          ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@data-hotel-name]").attribute_value('data-hotel-name')) }
           ignore_exception { location = con.quote(node.element(:xpath,"//*[contains(@class,'hp_address_subtitle')]").text) }
           ignore_exception { propertyType = con.quote(node.element(:xpath,"//h2/span[contains(@class,'type-badge')]").text) }
           ignore_exception { reviewCount = con.quote(node.element(:xpath,"//a[@id='show_reviews_tab']//span").text) }
-          ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[contains(@id,'hp-gallery-scorecard')]//*[@class='bui-review-score__badge']").text) }
+          ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[@data-review-score]").attribute_value('data-review-score')) }
           ignore_exception { reviewCount_FilterAll = con.quote(node.element(:xpath,"//*[@data-customer-type='total']").attribute_value('data-quantity')) }
           ignore_exception { score_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-total')) }
           ignore_exception { cleanScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_clean')) }
@@ -3828,7 +3828,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { breadcrumb06Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[6]/div/a").text) }
           ignore_exception { breadcrumb07Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[7]/div/a").text) }
           ignore_exception { geoData = con.quote(node.element(:xpath,"//a[@id='hotel_sidebar_static_map']").attribute_value('data-atlas-latlng')) }
-          ignore_exception { score = con.quote(node.element(:xpath,"//*[@data-review-score]").attribute_value('data-review-score')) }
+          ignore_exception { score = con.quote(node.element(:xpath,"//*[contains(@id,'hp-gallery-scorecard')]//*[@class='bui-review-score__badge']").text) }
           ignore_exception { varDimField01 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[1]").text) }
           ignore_exception { varDimField02 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[2]").text) }
           ignore_exception { varDimField03 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[3]").text) }
