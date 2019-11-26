@@ -2910,7 +2910,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { locality = con.quote(node.element(:xpath,"(//span[@class='locality'])[1]").text) }
             ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
             ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[contains(@class,'GoodToKnow')]//*[contains(@class,'ui_star_rating')]").attribute_value('class')) }
-            ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[@class='ratingContainer' or contains(@id,'header')]//span[contains(@class,'bubble_rating')]").attribute_value('alt')) }
+            ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[@class='ratingContainer' or contains(@id,'header')]//span[contains(@class,'bubble_rating')]").attribute_value('class')) }
             if globalScore==''
               ignore_exception { globalScore = con.quote(node.element(:xpath,"//div[contains(@class,'header')]//span[contains(@class,'ui_bubble_rating')]").attribute_value('class')) }
             end
