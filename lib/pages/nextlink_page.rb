@@ -3668,7 +3668,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
           ignore_exception { placeName = con.quote(node.element(:xpath,"//h2[contains(@id,'hp_hotel_name')]").text) }
           ignore_exception { location = con.quote(node.element(:xpath,"//*[contains(@class,'hp_address_subtitle')]").text) }
-          ignore_exception { propertyType = con.quote(node.element(:xpath,"//h2/span[contains(@class,'type-badge')]").text) }
+          ignore_exception { propertyType = con.quote(node.element(:xpath,"//h2[contains(@id,'hp_hotel_name')]/span").text) }
           ignore_exception { reviewCount = con.quote(node.element(:xpath,"//a[@id='show_reviews_tab']//span").text) }
           ignore_exception { globalScore = con.quote(node.element(:xpath,"//*[@data-review-score]").attribute_value('data-review-score')) }
           ignore_exception { reviewCount_FilterAll = con.quote(node.element(:xpath,"//*[@data-customer-type='total']").attribute_value('data-quantity')) }
