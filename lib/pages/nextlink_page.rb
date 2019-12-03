@@ -3991,6 +3991,76 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 
+        elsif descripcion.include? 'GMapsPlaceSearchLocalReviews.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//div[@class='gws-plugins-local-reviews-client-basic-reviews_leaf_page__dialog-list']/div/div")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+
+            userLink = ""
+            userName = ""
+            reviewDate = ""
+            reviewStars = ""
+            reviewText = ""
+            flagLink = ""
+            reviewScore = ""
+            responseTitle = ""
+            responseDate = ""
+            responseText = ""
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url.gsub("'", "%27") }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+            ignore_exception { userLink = con.quote(node.element(:xpath,"./img").attribute_value('src')) }
+            ignore_exception { userName = con.quote(node.element(:xpath,"./div/div[1]").text) }
+            ignore_exception { reviewDate = con.quote(node.element(:xpath,"./div/div[2]/span[1]").text) }
+            ignore_exception { reviewStars = con.quote(node.element(:xpath,".//g-review-stars/div/div").attribute_value('style')) }
+            ignore_exception { reviewText = con.quote(node.element(:xpath,"./div/div[3]/div/span").text) }
+            ignore_exception { flagLink = con.quote(node.element(:xpath,"./div/div[2]/span[2]/a").attribute_value('href')) }
+            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//g-review-stars/span").attribute_value('aria-label')) }
+            ignore_exception { responseTitle = con.quote(node.element(:xpath,"./div[2]/div/strong").text) }
+            ignore_exception { responseDate = con.quote(node.element(:xpath,"./div[2]/div/span").text) }
+            ignore_exception { responseText = con.quote(node.element(:xpath,"./div[2]").text) }
+            
+      
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`userLink`, `userName`, `reviewDate`, `reviewStars`, `reviewText`, `flagLink`, `reviewScore`, `responseTitle`, `responseDate`, `responseText`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{userLink}', '#{userName}', '#{reviewDate}', '#{reviewStars}', '#{reviewText}', '#{flagLink}', '#{reviewScore}', '#{responseTitle}', '#{responseDate}', '#{responseText}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
+
+
+
+
+
+
 
 
 
