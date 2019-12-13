@@ -252,6 +252,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
     end
     
+    if descripcion.include?('.NoImage.')  
+      profile['permissions.default.image']=2
+    end
+
+
     if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_') || descripcion.include?('TRIPADVISOR_MobileMap') 
       #profile['general.useragent.override']='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
       profile['general.useragent.override']='Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3'
