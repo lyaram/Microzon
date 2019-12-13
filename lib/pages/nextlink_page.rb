@@ -382,7 +382,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       if descripcion.include? 'TRIPADVISOR_UserReviews.'
         begin
-          clickMas = '//*[contains(text(),"Mostrar más")]'
+          clickMas = '//*[contains(text(),"Mostrar m")]'
           while @browser.element(:xpath,clickMas).exists?
             @browser.element(:xpath,clickMas).wd.location_once_scrolled_into_view
             @browser.element(:xpath,clickMas).click
