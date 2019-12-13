@@ -4121,7 +4121,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
             ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='global-nav-tourism']").text) }
-            ignore_exception { geoRef = con.quote(node.element(:xpath,".//*[@data-map-position)]").attribute_value('data-map-position')) }
+            ignore_exception { geoRef = con.quote(node.element(:xpath,".//*[@data-map-position]").attribute_value('data-map-position')) }
 
 
     
