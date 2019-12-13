@@ -380,17 +380,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       end
 
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       if descripcion.include? 'TRIPADVISOR_UserReviews.'
         begin
           clickMas = '//*[contains(text(),"Mostrar m")]'
           while @browser.element(:xpath,clickMas).exists?
             @browser.element(:xpath,clickMas).wd.location_once_scrolled_into_view
+puts("Click más")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             @browser.element(:xpath,clickMas).click
             sleep 3
           end
           reviews = '//div[@id="content"]/div/div'
           loop do
             nReviews = @browser.elements(:xpath,reviews).length
+puts("ampliando reviews #{nReviews}")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             @browser.element(:xpath,reviews + "[last()]").wd.location_once_scrolled_into_view
             sleep 3
             if nReviews = @browser.elements(:xpath,reviews).length
