@@ -380,6 +380,29 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       end
 
+      if descripcion.include? 'TRIPADVISOR_UserReviews.'
+        begin
+          clickMas = '//*[contains(text(),"Mostrar más")]'
+          while @browser.element(:xpath,clickMas).exists?
+            @browser.element(:xpath,clickMas).wd.location_once_scrolled_into_view
+            @browser.element(:xpath,clickMas).click
+            sleep 3
+          end
+          reviews = '//div[@id="content"]/div/div'
+          loop do
+            nReviews = @browser.elements(:xpath,reviews).length
+            @browser.element(:xpath,reviews + "[last()]").wd.location_once_scrolled_into_view
+            sleep 3
+            if nReviews = @browser.elements(:xpath,reviews).length
+              break
+            end
+          end
+        rescue
+          #fallo
+        end
+
+      end
+
 #ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 #
 #      if url.include?('ShowUserReviews-') && not(descripcion.include?('.IDRev')) && not(descripcion.include?('.S8Browser.'))
@@ -2361,6 +2384,70 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
             con.query(sqlInsert)
           end
+
+
+
+        elsif descripcion.include? 'TRIPADVISOR_UserReviews.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//div[@id='content']/div/div")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+      
+            reviewDate = ""
+            reviewLink = ""
+            score = ""
+            title = ""
+            text = ""
+            dateVisit = ""
+
+  
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+
+            ignore_exception { reviewDate = con.quote(node.element(:xpath,".//*[@class='ui_link']").text) }
+            ignore_exception { reviewLink = con.quote(node.element(:xpath,".//*[@class='ui_link']").attribute_value('href')) }
+            ignore_exception { score = con.quote(node.element(:xpath,".//*[contains(@class,'ReviewSection')]//*[contains(@class,'ui_bubble_rating')]").attribute_value('class')) }
+            ignore_exception { title = con.quote(node.element(:xpath,".//div[contains(@class,'social-section-review-ReviewSection__title')]").text) }
+            ignore_exception { text = con.quote(node.element(:xpath,".//div[contains(@class,'social-section-review-ReviewSection__body')]").text) }
+            ignore_exception { dateVisit = con.quote(node.element(:xpath,".//div[contains(@class,'social-review-info-EventDate__event_date')]").text) }
+
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAUserReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`reviewDate`, `reviewLink`, `score`, `title`, `text`, `dateVisit`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{reviewDate}', '#{reviewLink}', '#{score}', '#{title}', '#{text}', '#{dateVisit}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
+
+
+
+
+
+
+
         elsif descripcion.include? 'TRIPADVISOR_RestFicha.'
 
           posNode = 0
