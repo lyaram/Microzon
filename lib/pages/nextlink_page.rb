@@ -572,7 +572,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         reintentos += -1
         @browser.element(:xpath,checkPageCompleted).wait_until_present
       rescue
-#        archivandoTraza; 
+        begin
+          archivandoTraza;
+        rescue
+          #fallo
+        end
+           
         puts "FALLO #{reintentos}"
         if @browser.element(:xpath,checkPageCompleted).exists?
           puts "Existe"
