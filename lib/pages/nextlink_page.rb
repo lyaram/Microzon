@@ -391,6 +391,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             @browser.element(:xpath,clickMas).click
             sleep 3
           end
+        rescue
+          #fallo
+        end
+        
+        begin
           reviews = '//div[@id="content"]/div/div'
           loop do
             nReviews = @browser.elements(:xpath,reviews).length
