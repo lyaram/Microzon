@@ -213,7 +213,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 180
-    profile = Selenium::WebDriver::Firefox::Profile.from_name('default')
+    profile = Selenium::WebDriver::Firefox::Profile.new
     if system("netstat -anltp|grep :9050")
       profile['network.proxy.socks'] = 'localhost'
       profile['network.proxy.socks_port'] = 9050
@@ -252,9 +252,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
     end
     
-    if descripcion.include?('.NoImage.')  
-      profile['permissions.default.image']=2
-    end
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -276,7 +273,21 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     elsif descripcion.include?('TestUABrowser')
       profile['general.useragent.override']='Mozilla/5.0 (Linux; U; Android 2.2; en-ca; GT-P1000M Build/FROYO) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
     end
-    @browser = Watir::Browser.new DRIVER, :profile => profile, :http_client => client
+    
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+   
+    if descripcion.include?('.NoImage.')  
+      profile['permissions.default.image']=2
+    end
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+    options = Selenium::WebDriver::Firefox::Options.new
+    options.profile = profile
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+    @browser = Watir::Browser.new DRIVER, :options => options, :http_client => client
     #@browser.window.resize_to(1024, 768)
     if descripcion.include?('TAListMobile_') || descripcion.include?('DespegarMobile_') || descripcion.include?('TAFichaMobile_')
       @browser.window.resize_to(640, 1136)
