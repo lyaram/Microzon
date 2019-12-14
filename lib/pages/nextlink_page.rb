@@ -254,7 +254,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     if descripcion.include?('.NoImage.')  
       profile['permissions.default.image']=2
-      profile['permissions.default.image']=2
     end
 
 
