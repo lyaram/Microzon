@@ -213,7 +213,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 180
-    profile = Selenium::WebDriver::Firefox::Profile.new
+    profile = Selenium::WebDriver::Firefox::Profile.from_name "default"
     if system("netstat -anltp|grep :9050")
       profile['network.proxy.socks'] = 'localhost'
       profile['network.proxy.socks_port'] = 9050
@@ -253,6 +253,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     end
     
     if descripcion.include?('.NoImage.')  
+      profile['permissions.default.image']=2
       profile['permissions.default.image']=2
     end
 
