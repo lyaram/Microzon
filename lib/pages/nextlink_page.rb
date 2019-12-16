@@ -4680,9 +4680,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
   def archivandoTraza
     begin
       stDT = Time.now.strftime("%y%m%d_%H%M%S_%9N")
+      puts("Archivando Traza (#{stDT})")
       storePageDebugHtml stDT
       storePagePng stDT
-      puts("Archivando Traza (#{stDT})")
     rescue
       puts("Fallo ArchivandoTraza")
     end
