@@ -410,7 +410,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           while @browser.element(:xpath,lastReview).exists?
             nReviews = @browser.elements(:xpath,'//div[@id="content"]/div/div').length
 puts("ampliando reviews #{nReviews}")
+
+puts "HAY QUE BORRAR ESTO!!"
+archivandoTraza;
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
             @browser.element(:xpath,lastReview).wd.location_once_scrolled_into_view
             sleep 3
           end
