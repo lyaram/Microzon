@@ -4154,6 +4154,171 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 
+        elsif descripcion.include? 'TADataJSONLocation.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "/*")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            location_id = ""
+            latitude = ""
+            longitude = ""
+            num_reviews = ""
+            timezone = ""
+            location_string = ""
+            awards = ""
+            doubleclick_zone = ""
+            preferred_map_engine = ""
+            raw_ranking = ""
+            ranking_geo = ""
+            ranking_geo_id = ""
+            ranking_position = ""
+            ranking_denominator = ""
+            ranking_category = ""
+            ranking = ""
+            distance = ""
+            distance_string = ""
+            bearing = ""
+            rating = ""
+            is_closed = ""
+            open_now_text = ""
+            is_long_closed = ""
+            price_level = ""
+            price = ""
+            neighborhood_info = ""
+            description = ""
+            web_url = ""
+            write_review = ""
+            ancestors = ""
+            category = ""
+            subcategory = ""
+            parent_display_name = ""
+            is_jfy_enabled = ""
+            nearest_metro_station = ""
+            phone = ""
+            website = ""
+            email = ""
+            address_obj = ""
+            address = ""
+            hours = ""
+            is_candidate_for_contact_info_suppression = ""
+            cuisine = ""
+            dietary_restrictions = ""
+            photo = ""
+            tags = ""
+            display_hours = ""
+            subcategory_type = ""
+            subcategory_type_label = ""
+            hotel_class = ""
+            hotel_class_attribution = ""
+            business_listings = ""
+            special_offers = ""
+            amenities = ""
+            location_subtype = ""
+            subcategory_ranking = ""
+            fee = ""
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url.gsub("'", "%27") }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+            tjson = ""
+            ignore_exception { tjson = con.quote(node.element(:xpath,"//pre").text) }
+            
+            ignore_exception { ojson = JSON.parse(tjson) }
+            
+            ignore_exception { location_id = ojson['location_id'] }
+            ignore_exception { latitude = ojson['latitude'] }
+            ignore_exception { longitude = ojson['longitude'] }
+            ignore_exception { num_reviews = ojson['num_reviews'] }
+            ignore_exception { timezone = ojson['timezone'] }
+            ignore_exception { location_string = ojson['location_string'] }
+            ignore_exception { awards = ojson['awards'] }
+            ignore_exception { doubleclick_zone = ojson['doubleclick_zone'] }
+            ignore_exception { preferred_map_engine = ojson['preferred_map_engine'] }
+            ignore_exception { raw_ranking = ojson['raw_ranking'] }
+            ignore_exception { ranking_geo = ojson['ranking_geo'] }
+            ignore_exception { ranking_geo_id = ojson['ranking_geo_id'] }
+            ignore_exception { ranking_position = ojson['ranking_position'] }
+            ignore_exception { ranking_denominator = ojson['ranking_denominator'] }
+            ignore_exception { ranking_category = ojson['ranking_category'] }
+            ignore_exception { ranking = ojson['ranking'] }
+            ignore_exception { distance = ojson['distance'] }
+            ignore_exception { distance_string = ojson['distance_string'] }
+            ignore_exception { bearing = ojson['bearing'] }
+            ignore_exception { rating = ojson['rating'] }
+            ignore_exception { is_closed = ojson['is_closed'] }
+            ignore_exception { open_now_text = ojson['open_now_text'] }
+            ignore_exception { is_long_closed = ojson['is_long_closed'] }
+            ignore_exception { price_level = ojson['price_level'] }
+            ignore_exception { price = ojson['price'] }
+            ignore_exception { neighborhood_info = ojson['neighborhood_info'] }
+            ignore_exception { description = ojson['description'] }
+            ignore_exception { web_url = ojson['web_url'] }
+            ignore_exception { write_review = ojson['write_review'] }
+            ignore_exception { ancestors = ojson['ancestors'] }
+            ignore_exception { category = ojson['category'] }
+            ignore_exception { subcategory = ojson['subcategory'] }
+            ignore_exception { parent_display_name = ojson['parent_display_name'] }
+            ignore_exception { is_jfy_enabled = ojson['is_jfy_enabled'] }
+            ignore_exception { nearest_metro_station = ojson['nearest_metro_station'] }
+            ignore_exception { phone = ojson['phone'] }
+            ignore_exception { website = ojson['website'] }
+            ignore_exception { email = ojson['email'] }
+            ignore_exception { address_obj = ojson['address_obj'] }
+            ignore_exception { address = ojson['address'] }
+            ignore_exception { hours = ojson['hours'] }
+            ignore_exception { is_candidate_for_contact_info_suppression = ojson['is_candidate_for_contact_info_suppression'] }
+            ignore_exception { cuisine = ojson['cuisine'] }
+            ignore_exception { dietary_restrictions = ojson['dietary_restrictions'] }
+            ignore_exception { photo = ojson['photo'] }
+            ignore_exception { tags = ojson['tags'] }
+            ignore_exception { display_hours = ojson['display_hours'] }
+            ignore_exception { subcategory_type = ojson['subcategory_type'] }
+            ignore_exception { subcategory_type_label = ojson['subcategory_type_label'] }
+            ignore_exception { hotel_class = ojson['hotel_class'] }
+            ignore_exception { hotel_class_attribution = ojson['hotel_class_attribution'] }
+            ignore_exception { business_listings = ojson['business_listings'] }
+            ignore_exception { special_offers = ojson['special_offers'] }
+            ignore_exception { amenities = ojson['amenities'] }
+            ignore_exception { location_subtype = ojson['location_subtype'] }
+            ignore_exception { subcategory_ranking = ojson['subcategory_ranking'] }
+            ignore_exception { fee = ojson['fee'] }
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataJSONLocation` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`location_id`, `latitude`, `longitude`, `num_reviews`, `timezone`, `location_string`, `awards`, `doubleclick_zone`, `preferred_map_engine`, `raw_ranking`, `ranking_geo`, `ranking_geo_id`, `ranking_position`, `ranking_denominator`, `ranking_category`, `ranking`, `distance`, `distance_string`, `bearing`, `rating`, `is_closed`, `open_now_text`, `is_long_closed`, `price_level`, `price`, `neighborhood_info`, `description`, `web_url`, `write_review`, `ancestors`, `category`, `subcategory`, `parent_display_name`, `is_jfy_enabled`, `nearest_metro_station`, `phone`, `website`, `email`, `address_obj`, `address`, `hours`, `is_candidate_for_contact_info_suppression`, `cuisine`, `dietary_restrictions`, `photo`, `tags`, `display_hours`, `subcategory_type`, `subcategory_type_label`, `hotel_class`, `hotel_class_attribution`, `business_listings`, `special_offers`, `amenities`, `location_subtype`, `subcategory_ranking`, `fee`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{location_id}', '#{latitude}', '#{longitude}', '#{num_reviews}', '#{timezone}', '#{location_string}', '#{awards}', '#{doubleclick_zone}', '#{preferred_map_engine}', '#{raw_ranking}', '#{ranking_geo}', '#{ranking_geo_id}', '#{ranking_position}', '#{ranking_denominator}', '#{ranking_category}', '#{ranking}', '#{distance}', '#{distance_string}', '#{bearing}', '#{rating}', '#{is_closed}', '#{open_now_text}', '#{is_long_closed}', '#{price_level}', '#{price}', '#{neighborhood_info}', '#{description}', '#{web_url}', '#{write_review}', '#{ancestors}', '#{category}', '#{subcategory}', '#{parent_display_name}', '#{is_jfy_enabled}', '#{nearest_metro_station}', '#{phone}', '#{website}', '#{email}', '#{address_obj}', '#{address}', '#{hours}', '#{is_candidate_for_contact_info_suppression}', '#{cuisine}', '#{dietary_restrictions}', '#{photo}', '#{tags}', '#{display_hours}', '#{subcategory_type}', '#{subcategory_type_label}', '#{hotel_class}', '#{hotel_class_attribution}', '#{business_listings}', '#{special_offers}', '#{amenities}', '#{location_subtype}', '#{subcategory_ranking}', '#{fee}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
+
+
+
+
+
         elsif descripcion.include? 'GMapsPlaceSearchLocalReviews.'
 
           posNode = 0
