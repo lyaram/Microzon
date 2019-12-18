@@ -4256,13 +4256,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-           tjson = puts(tjson);
+           tjson.delete! '\\'
 
 puts(tjson);
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             
             
-            ignore_exception { ojson = JSON.parse(tjson) }
+            ojson = JSON.parse(tjson)
             
             ignore_exception { location_id = ojson['location_id'] }
             ignore_exception { latitude = ojson['latitude'] }
