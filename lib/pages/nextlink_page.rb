@@ -4154,6 +4154,81 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 
+        elsif descripcion.include? 'TADataJSONAttractionAbout.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "/*")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            tid = ""
+            taxonomyInfo1 = ""
+            taxonomyInfo2 = ""
+            taxonomyInfo3 = ""
+            taxonomyInfo4 = ""
+            taxonomyInfo5 = ""
+            taxonomyInfo6 = ""
+            taxonomyInfo7 = ""
+            taxonomyInfo8 = ""
+            taxonomyInfo9 = ""
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url.gsub("'", "%27") }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+            tjson = ""
+            ignore_exception { tjson = node.element(:xpath,"//pre").text }
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            
+            ojson = JSON.parse(tjson)
+            
+            ignore_exception { tid = con.quote(ojson['id']) }
+            ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos[0].type'] + ":" + ojson['taxonomyInfos[0].name']) }
+            ignore_exception { taxonomyInfo2 = con.quote(ojson['taxonomyInfos[1].type'] + ":" + ojson['taxonomyInfos[1].name']) }
+            ignore_exception { taxonomyInfo3 = con.quote(ojson['taxonomyInfos[2].type'] + ":" + ojson['taxonomyInfos[2].name']) }
+            ignore_exception { taxonomyInfo4 = con.quote(ojson['taxonomyInfos[3].type'] + ":" + ojson['taxonomyInfos[3].name']) }
+            ignore_exception { taxonomyInfo5 = con.quote(ojson['taxonomyInfos[4].type'] + ":" + ojson['taxonomyInfos[4].name']) }
+            ignore_exception { taxonomyInfo6 = con.quote(ojson['taxonomyInfos[5].type'] + ":" + ojson['taxonomyInfos[5].name']) }
+            ignore_exception { taxonomyInfo7 = con.quote(ojson['taxonomyInfos[6].type'] + ":" + ojson['taxonomyInfos[6].name']) }
+            ignore_exception { taxonomyInfo8 = con.quote(ojson['taxonomyInfos[7].type'] + ":" + ojson['taxonomyInfos[7].name']) }
+            ignore_exception { taxonomyInfo9 = con.quote(ojson['taxonomyInfos[8].type'] + ":" + ojson['taxonomyInfos[8].name']) }
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataJSONAttractionAbout` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`tid`, `taxonomyInfo1`, `taxonomyInfo2`, `taxonomyInfo3`, `taxonomyInfo4`, `taxonomyInfo5`, `taxonomyInfo6`, `taxonomyInfo7`, `taxonomyInfo8`, `taxonomyInfo9`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{tid}', '#{taxonomyInfo1}', '#{taxonomyInfo2}', '#{taxonomyInfo3}', '#{taxonomyInfo4}', '#{taxonomyInfo5}', '#{taxonomyInfo6}', '#{taxonomyInfo7}', '#{taxonomyInfo8}', '#{taxonomyInfo9}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
+
+
+
+
+
         elsif descripcion.include? 'TADataJSONLocation.'
 
           posNode = 0
