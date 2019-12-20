@@ -4202,14 +4202,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             
             ojson = JSON.parse(tjson)
             
-puts(ojson['id']);
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts(con.quote(ojson['id']));
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-            ignore_exception { tid = ojson['id'] }
-puts(tid);
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            ignore_exception { tid = con.quote(ojson['id'].to_s) }
             ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']) }
             ignore_exception { taxonomyInfo2 = con.quote(ojson['taxonomyInfos'][1]['type'] + ":" + ojson['taxonomyInfos'][1]['name']) }
             ignore_exception { taxonomyInfo3 = con.quote(ojson['taxonomyInfos'][2]['type'] + ":" + ojson['taxonomyInfos'][2]['name']) }
