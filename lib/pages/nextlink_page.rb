@@ -4204,22 +4204,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             
 puts(ojson['id']);
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts(ojson['taxonomyInfos[0].type']);
+puts(ojson['taxonomyInfos'][0]['type']);
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts(ojson['taxonomyInfos[0].name']);
+puts(ojson['taxonomyInfos'][0]['name']);
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts(con.quote(ojson['taxonomyInfos[2].type'] + ":" + ojson['taxonomyInfos[2].name']));
+puts(con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']));
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             ignore_exception { tid = con.quote(ojson['id']) }
-            ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos[0].type'] + ":" + ojson['taxonomyInfos[0].name']) }
-            ignore_exception { taxonomyInfo2 = con.quote(ojson['taxonomyInfos[1].type'] + ":" + ojson['taxonomyInfos[1].name']) }
-            ignore_exception { taxonomyInfo3 = con.quote(ojson['taxonomyInfos[2].type'] + ":" + ojson['taxonomyInfos[2].name']) }
-            ignore_exception { taxonomyInfo4 = con.quote(ojson['taxonomyInfos[3].type'] + ":" + ojson['taxonomyInfos[3].name']) }
-            ignore_exception { taxonomyInfo5 = con.quote(ojson['taxonomyInfos[4].type'] + ":" + ojson['taxonomyInfos[4].name']) }
-            ignore_exception { taxonomyInfo6 = con.quote(ojson['taxonomyInfos[5].type'] + ":" + ojson['taxonomyInfos[5].name']) }
-            ignore_exception { taxonomyInfo7 = con.quote(ojson['taxonomyInfos[6].type'] + ":" + ojson['taxonomyInfos[6].name']) }
-            ignore_exception { taxonomyInfo8 = con.quote(ojson['taxonomyInfos[7].type'] + ":" + ojson['taxonomyInfos[7].name']) }
-            ignore_exception { taxonomyInfo9 = con.quote(ojson['taxonomyInfos[8].type'] + ":" + ojson['taxonomyInfos[8].name']) }
+            ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']) }
+            ignore_exception { taxonomyInfo2 = con.quote(ojson['taxonomyInfos'][1]['type'] + ":" + ojson['taxonomyInfos'][1]['name']) }
+            ignore_exception { taxonomyInfo3 = con.quote(ojson['taxonomyInfos'][2]['type'] + ":" + ojson['taxonomyInfos'][2]['name']) }
+            ignore_exception { taxonomyInfo4 = con.quote(ojson['taxonomyInfos'][3]['type'] + ":" + ojson['taxonomyInfos'][3]['name']) }
+            ignore_exception { taxonomyInfo5 = con.quote(ojson['taxonomyInfos'][4]['type'] + ":" + ojson['taxonomyInfos'][4]['name']) }
+            ignore_exception { taxonomyInfo6 = con.quote(ojson['taxonomyInfos'][5]['type'] + ":" + ojson['taxonomyInfos'][5]['name']) }
+            ignore_exception { taxonomyInfo7 = con.quote(ojson['taxonomyInfos'][6]['type'] + ":" + ojson['taxonomyInfos'][6]['name']) }
+            ignore_exception { taxonomyInfo8 = con.quote(ojson['taxonomyInfos'][7]['type'] + ":" + ojson['taxonomyInfos'][7]['name']) }
+            ignore_exception { taxonomyInfo9 = con.quote(ojson['taxonomyInfos'][8]['type'] + ":" + ojson['taxonomyInfos'][8]['name']) }
 
 
     
