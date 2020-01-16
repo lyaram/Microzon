@@ -2469,6 +2469,66 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           end
 
 
+        elsif descripcion.include? 'TRIPADVISOR_ShowUserReviews.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//*[starts-with(@id,'review_')]")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+      
+            idReview = ""
+            userName = ""
+            location = ""
+            score = ""
+            replyHeader = ""
+            replyDate = ""
+            replyText = ""
+            visitDate = ""
+            tripType = ""
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+      
+
+            ignore_exception { idReview = con.quote(node.attribute_value('id')) }
+            ignore_exception { userName = con.quote(node.element(:xpath,".//div[@class='member_info']//*[starts-with(@class,'info_text')]/div[1]").text) }
+            ignore_exception { location = con.quote(node.element(:xpath,".//div[@class='member_info']//*[starts-with(@class,'info_text')]/div[@class='userLoc']").text) }
+            ignore_exception { score = con.quote(node.element(:xpath,".//*[starts-with(@class,'ui_column')]/*[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
+            ignore_exception { replyHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//div[@class='header']").text) }
+            ignore_exception { replyDate = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
+            ignore_exception { replyText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//p[1]").text) }
+            ignore_exception { visitDate = con.quote(node.element(:xpath,".//div[@class='prw_rup prw_reviews_stay_date_hsx']").text) }
+            ignore_exception { tripType = con.quote(node.element(:xpath,".//span[@class='trip_type_label']/..").text) }
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAShowUserReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`idReview`, `userName`, `location`, `score`, `replyHeader`, `replyDate`, `replyText`, `visitDate`, `tripType`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{idReview}', '#{userName}', '#{location}', '#{score}', '#{replyHeader}', '#{replyDate}', '#{replyText}', '#{visitDate}', '#{tripType}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end
+
+
 
 
 
