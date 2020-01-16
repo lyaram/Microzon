@@ -2506,9 +2506,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
 
             ignore_exception { idReview = con.quote(node.attribute_value('id')) }
-            ignore_exception { userName = con.quote(node.element(:xpath,".//div[@class='member_info']//*[starts-with(@class,'info_text')]/div[1]").text) }
-            ignore_exception { location = con.quote(node.element(:xpath,".//div[@class='member_info']//*[starts-with(@class,'info_text')]/div[@class='userLoc']").text) }
-            ignore_exception { score = con.quote(node.element(:xpath,".//*[starts-with(@class,'ui_column')]/*[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
+            ignore_exception { userName = con.quote(node.element(:xpath,".//div[@class='member_info']//*[starts-with(@class,'info_text')]/div[1] | .//div[@class='member_info']//*[starts-with(@class,'username')]").text) }
+            ignore_exception { location = con.quote(node.element(:xpath,".//div[@class='member_info']//div[@class='userLoc' or @class='location']").text) }
+            ignore_exception { score = con.quote(node.element(:xpath,".//*[starts-with(@class,'ui_column') or contains(@class,'reviewItemInline')]/*[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
             ignore_exception { replyHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//div[@class='header']").text) }
             ignore_exception { replyDate = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
             ignore_exception { replyText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//p[1]").text) }
