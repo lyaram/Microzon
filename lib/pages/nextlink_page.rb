@@ -579,7 +579,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
         reintentos = 100
       end
-      if url.include?('tripadvisor') || url.include?('getyourguide')
+      if url.include?('tripadvisor') || url.include?('getyourguide') || descripcion.include?('TRIPADVISOR_ShowUserReviews.')
         reintentos = 5
       end
       begin
