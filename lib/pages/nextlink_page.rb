@@ -4067,11 +4067,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
             
             ignore_exception { captura = "#{descripcion}" }
-            ignore_exception { urlOrig = "#{urlOrig}" }
+            ignore_exception { urlOrig = con.quote("#{urlOrig}") }
             ignore_exception { idLaunch = "#{idLaunch}" }
             ignore_exception { idCaptura = "#{idCaptura}" }
             ignore_exception { numPag = "#{page}" }
-            ignore_exception { urlCaptura = @browser.url }
+            ignore_exception { urlCaptura = con.quote(@browser.url) }
             ignore_exception { fechaHora = "#{strDT}" }
             ignore_exception { numEntrada = "#{posNode}" }
 
