@@ -2698,8 +2698,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { placeName = con.quote(node.element(:xpath,"//*[contains(@class,'header')]//h1").text) }
             ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
             ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
-            ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
-            ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | //address)[1]").text) }
+            ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").text) }
+            ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").text) }
             ignore_exception { postalCode = con.quote(node.element(:xpath,"(//span[@class='locality'])[1]").text) }
             ignore_exception { locality = con.quote(node.element(:xpath,"(//span[@class='locality'])[1]").text) }
             ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
@@ -2721,11 +2721,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
             ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
             ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
-            ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[1]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[2]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[3]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[4]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[5]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+            ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[contains(@class,'row_num')]").text) }
             ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
             ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
             ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
@@ -3077,8 +3077,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { titulo = con.quote(node.element(:xpath,"//title").text) }
             ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
             ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
-            ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
-            ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | //address)[1]").text) }
+            ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").text) }
+            ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").text) }
             ignore_exception { postalCode = con.quote(node.element(:xpath,"(//span[@class='locality'])[1]").text) }
             ignore_exception { locality = con.quote(node.element(:xpath,"(//span[@class='locality'])[1]").text) }
             ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
@@ -3088,7 +3088,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
               ignore_exception { globalScore = con.quote(node.element(:xpath,"//div[contains(@class,'header')]//span[contains(@class,'ui_bubble_rating')]").attribute_value('class')) }
             end
             ignore_exception { reviewCount = con.quote(node.element(:xpath,"//*[contains(@class,'ratingContainer')]//*[contains(@class,'reviewCount')] | //*[@class='ratingContainer' or contains(@id,'header')]//*[contains(@class,'reviewCount')]").text) }
-            ignore_exception { infoRanking = con.quote(node.element(:xpath,"//*[starts-with(@class,'slim_ranking') or starts-with(@class,'header_popularity')]").text) }
+            ignore_exception { infoRanking = con.quote(node.element(:xpath,"//div[contains(@class,'hotels-hotel-review-atf-info-parts-PopIndex__')]").text) }
             ignore_exception { placeType = con.quote(node.element(:xpath,"//*[@class='placeTypeText']").text) }
             ignore_exception { geoLat = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lat')) }
             ignore_exception { geoLng = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lng')) }
@@ -3103,11 +3103,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
             ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
             ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
-            ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[1]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[2]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[3]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[4]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-            ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[5]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+            ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[contains(@class,'row_num')]").text) }
+            ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[contains(@class,'row_num')]").text) }
             ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
             ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
             ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
@@ -3469,8 +3469,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").text) }
           ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
           ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
-          ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[contains(@class,'badge')]/*[@class='badgeText']").text) }
-          ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | //address)[1]").text) }
+          ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").text) }
+          ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").text) }
           ignore_exception { postalCode = con.quote(node.element(:xpath,"(//*[contains(@property,'postal-code') or contains(@property,'postalCode')])[1]").text) }
           ignore_exception { locality = con.quote(node.element(:xpath,"//*[contains(@class,'blRow')]//*[@class='locality']").text) }
           ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
@@ -3481,7 +3481,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { placeType = con.quote(node.element(:xpath,"//*[contains(@class,'attractionCategories')]").text) }
           ignore_exception { geoLat = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lat')) }
           ignore_exception { geoLng = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lng')) }
-          ignore_exception { linkPrimeraReview = con.quote(node.element(:xpath,"(//*[@id='REVIEWS']//div[starts-with(@id,'review_')])[1]/div[not(@style='display: none;')]//a[@id]").attribute_value('href')) }
+          ignore_exception { linkPrimeraReview = con.quote(node.element(:xpath,"(//*[@data-reviewid]//a)[1]").attribute_value('href')) }
           ignore_exception { currentPage = con.quote(node.element(:xpath,".//*[@class='pageNum current']").text) }
           ignore_exception { placeType2 = con.quote(node.element(:xpath,"//*[starts-with(@class,'header_detail')]").text) }
           ignore_exception { langList = con.quote(node.element(:xpath,"//*[@id='filterLang']/option/@value").attribute_value('value')) }
@@ -3492,11 +3492,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
           ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
           ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
-          ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[1]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-          ignore_exception { value4_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[2]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-          ignore_exception { value3_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[3]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-          ignore_exception { value2_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[4]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
-          ignore_exception { value1_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[5]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
+          ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[contains(@class,'row_num')]").text) }
+          ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[contains(@class,'row_num')]").text) }
+          ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[contains(@class,'row_num')]").text) }
+          ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[contains(@class,'row_num')]").text) }
+          ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[contains(@class,'row_num')]").text) }
           ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
           ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
           ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
