@@ -985,6 +985,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       response = http.request(request)
       sleep 1
       respuesta = response.body
+      puts "respuesta:"
+      puts(respuesta)
       htmlpage = "<style>" + respuesta.scan(/[^>];\<style\>(.*)\<\/div\>4;[^<]/).first.first + "</div>"
       retHttp = "<!DOCTYPE html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/></head><body>" + htmlpage + "</body></html>"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
