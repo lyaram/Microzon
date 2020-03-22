@@ -4671,7 +4671,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { responseTitle = con.quote(node.element(:xpath,"./div[3]/div[1]/strong[1]").text) }
             ignore_exception { responseDate = con.quote(node.element(:xpath,"./div[3]/div[1]/span[2]").text) }
             ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/div[2]/span[last()]").attribute_value('textContent')) }
-            
+            if responseText.length<=0
+              ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/text()[last()]").text) }
+            end
+              
       
             sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`userLink`, `userName`, `reviewLink`, `reviewDate`, `reviewStars`, `reviewText`, `flagLink`, `reviewScore`, `responseTitle`, `responseDate`, `responseText`"  +
