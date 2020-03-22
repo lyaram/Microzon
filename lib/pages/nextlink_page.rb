@@ -4666,11 +4666,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { reviewLink = con.quote(node.element(:xpath,"./div[1]/div[1]/a[1]").attribute_value('href')) }
             ignore_exception { reviewDate = con.quote(node.element(:xpath,"./div[1]/div[3]/div[1]/span[1]").text) }
             ignore_exception { reviewScore = con.quote(node.element(:xpath,".//g-review-stars/div/div").attribute_value('style')) }
-            ignore_exception { reviewText = con.quote(node.element(:xpath,"./div[1]/div[3]/div[2]//span[not(./span or contains(@class,'review-snippet'))]").text) }
+            ignore_exception { reviewText = con.quote(node.element(:xpath,"./div[1]/div[3]/div[2]//span[not(./span or contains(@class,'review-snippet'))]").attribute_value('textContent')) }
             ignore_exception { flagLink = con.quote(node.element(:xpath,"./div[1]/div[3]/div[1]/span[3]/a[1]").attribute_value('href')) }
             ignore_exception { responseTitle = con.quote(node.element(:xpath,"./div[3]/div[1]/strong[1]").text) }
             ignore_exception { responseDate = con.quote(node.element(:xpath,"./div[3]/div[1]/span[2]").text) }
-            ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/div[2]/span[last()]").text) }
+            ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/div[2]/span[last()]").attribute_value('textContent')) }
             
       
             sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
