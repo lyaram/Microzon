@@ -965,11 +965,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #        end
 #      end
 #      request.body = form_data
-#      request.add_field('Accept' , 'text/html, */*')
-#      request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
-#      request.add_field('Content-Type' , 'application/x-www-form-urlencoded; charset=utf-8' )
 #      request.add_field('X-Requested-With' , 'XMLHttpRequest' )
 #      request.add_field('DNT' , '1')
+#      request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
+      request.add_field('Accept' , 'text/html, */*')
+      request.add_field('Content-Type' , 'application/x-www-form-urlencoded; charset=utf-8' )
+      request.add_field('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko' )
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
       response = http.request(request)
       sleep 1
@@ -978,7 +979,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       retHttp = "<!DOCTYPE html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/></head><body>" + htmlpage + "</body></html>"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
+    File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file.write(retHttp) }
       @browser.goto 'file:///tmp/httppage.htm'      
     end
 
@@ -4621,6 +4622,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
             userLink = ""
             userName = ""
+            reviewLink = ""
             reviewDate = ""
             reviewStars = ""
             reviewText = ""
@@ -4645,18 +4647,18 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { userName = con.quote(node.element(:xpath,"./div[1]/div[1]/a[1]").text) }
             ignore_exception { reviewLink = con.quote(node.element(:xpath,"./div[1]/div[1]/a[1]").attribute_value('href')) }
             ignore_exception { reviewDate = con.quote(node.element(:xpath,"./div[1]/div[3]/div[1]/span[1]").text) }
-            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//g-review-stars/span").attribute_value('aria-label')) }
+            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//g-review-stars/div/div").attribute_value('style')) }
             ignore_exception { reviewText = con.quote(node.element(:xpath,"./div[1]/div[3]/div[2]//span[not(./span or contains(@class,'review-snippet'))]").text) }
-            ignore_exception { flagLink = con.quote(node.element(:xpath,"/div[1]/div[3]/div[1]/span[3]/a[1]").attribute_value('href')) }
+            ignore_exception { flagLink = con.quote(node.element(:xpath,"./div[1]/div[3]/div[1]/span[3]/a[1]").attribute_value('href')) }
             ignore_exception { responseTitle = con.quote(node.element(:xpath,"./div[3]/div[1]/strong[1]").text) }
             ignore_exception { responseDate = con.quote(node.element(:xpath,"./div[3]/div[1]/span[2]").text) }
             ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/div[2]/span[last()]").text) }
             
       
             sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-                        "`userLink`, `userName`, `reviewDate`, `reviewStars`, `reviewText`, `flagLink`, `reviewScore`, `responseTitle`, `responseDate`, `responseText`"  +
+                        "`userLink`, `userName`, `reviewLink`, `reviewDate`, `reviewStars`, `reviewText`, `flagLink`, `reviewScore`, `responseTitle`, `responseDate`, `responseText`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{userLink}', '#{userName}', '#{reviewDate}', '#{reviewStars}', '#{reviewText}', '#{flagLink}', '#{reviewScore}', '#{responseTitle}', '#{responseDate}', '#{responseText}'"  +
+                        "'#{userLink}', '#{userName}', '#{reviewLink}', '#{reviewDate}', '#{reviewStars}', '#{reviewText}', '#{flagLink}', '#{reviewScore}', '#{responseTitle}', '#{responseDate}', '#{responseText}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
