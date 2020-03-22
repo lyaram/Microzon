@@ -998,7 +998,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file << retHttp.force_encoding('UTF-8') }
       @browser.goto 'file:///tmp/httppage.htm'   
-archivandoTraza;       
+#archivandoTraza;       
          
     end
     
