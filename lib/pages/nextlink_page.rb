@@ -979,11 +979,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       retHttp = "<!DOCTYPE html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/></head><body>" + htmlpage + "</body></html>"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-#    File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file.write(retHttp) }
-#      @browser.goto 'file:///tmp/httppage.htm'      
-#    end
-    file = File.new "/tmp/httppage.htm", + filename, 'wb+'
-    file.write Base64.decode64( retHttp )
+      file = File.new "/tmp/httppage.htm", + filename, 'wb+'
+      file.write Base64.decode64( retHttp )
+
+#      File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file.write(retHttp) }
+      @browser.goto 'file:///tmp/httppage.htm'      
+    end
     
     if descripcion.include? 'GMapsPlaceFull.' 
       puts "In GMapsPlace"
