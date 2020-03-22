@@ -997,7 +997,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       file.write Base64.decode64( retHttp )
 
 #      File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file.write(retHttp) }
-      @browser.goto 'file:///tmp/httppage.htm'      
+      @browser.goto 'file:///tmp/httppage.htm'   
+archivandoTraza;       
+         
     end
     
     if descripcion.include? 'GMapsPlaceFull.' 
