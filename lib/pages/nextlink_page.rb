@@ -931,8 +931,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     if descripcion.include? 'GMapsReviewBox.'
-      fid = description.scan(/\.FID([^.]*)\./).first.first
-      startpage = description.scan(/\.PAG([^.]*)\./).first.first
+      fid = descripcion.scan(/\.FID([^.]*)\./).first.first
+      startpage = descripcion.scan(/\.PAG([^.]*)\./).first.first
       if startpage=='0'
         nextpagetoken=''
       else
