@@ -942,7 +942,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       puts "startpage: #{startpage}"
       puts "nextpagetoken: #{nextpagetoken}"
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-      urlgetreviews = "https://www.google.com/async/reviewSort?vet=12ahUKEwjYpczB2a7oAhXTYDUKHSsSBPoQxyx6BAgBEA8..i&ved=2ahUKEwjYpczB2a7oAhXTYDUKHSsSBPoQjit6BAgBECE&client=firefox-b-is-oem1&yv=3&async=feature_id:#{fid},review_source:All%20reviews,sort_by:newestFirst,start_index:"
+      urlgetreviews = "https://www.google.com/async/reviewSort?client=firefox-b-is-oem1&yv=3&async=feature_id:#{fid},review_source:All%20reviews,sort_by:newestFirst,start_index:"
       urlgetreviews = urlgetreviews + startpage + ",is_owner:false,filter_text:,associated_topic:,next_page_token:#{nextpagetoken},_pms:s,_fmt:pc"
       uri = URI.parse(urlgetreviews)
       puts "uri.request_uri   #{uri.request_uri}"
@@ -973,8 +973,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #      request.add_field('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko' )
 #      request.add_field('DNT' , '1')
 
-      request.add_field('Host' , 'www.google.com')
-      request.add_field('User-Agent' , 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
+#      request.add_field('Host' , 'www.google.com')
+#      request.add_field('User-Agent' , 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
       request.add_field('Accept' , 'text/html, */*')
       request.add_field('Accept-Language' , 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3')
 #      request.add_field('Accept-Encoding' , 'gzip, deflate, br')
