@@ -291,6 +291,16 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
+
+      if descripcion.include? '.PickIndivFromSelection'
+        rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
+        con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
+        url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
+      end
+
+
+
+
       reintentos = 3
       begin
         reintentos += -1
@@ -318,6 +328,26 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         #@browser.goto 'https://www.google.es/maps/@42.4589632,-2.4481047,21z' 
         sleep 3
         puts 'URL Final: ' + @browser.url
+
+        if descripcion.include? '.PickIndivFromSelection'
+          rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
+          con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
+          url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
+
+          nodes = @browser.divs(:xpath, "//div[starts-with(@id,'review_')]")
+          puts("Node count: #{nodes.size}")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+          nodes.each do |node|
+            idTAReview = node.attribute_value('id').gsub 'review_', ''
+            puts("id: #{idTAReview}")
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            con.query("UPDATE tblTAReviewSelection SET leido = 2 where reviewID=#{idTAReview};")
+          end
+        end
+
+
+        end
+
 
       puts "Buscando ventana principal..."
       titulo = @browser.title
@@ -4236,6 +4266,90 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             con.query(sqlInsert)
           end          
 
+
+
+
+
+        elsif descripcion.include? 'TripAdvisorIndivs.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//*[starts-with(@id,'review_')]")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            reviewID = ""
+            userID = ""
+            userName = ""
+            userLoc = ""
+            userReviewCount = ""
+            userLikesCount = ""
+            reviewScore = ""
+            reviewDate = ""
+            reviewDate2 = ""
+            quoteText = ""
+            reviewAbout = ""
+            reviewAboutLink = ""
+            texto = ""
+            dateVisit = ""
+            likesCount = ""
+            mobileEntry = ""
+            roomTip = ""
+            tripType = ""
+
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url.gsub("'", "%27") }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+
+            ignore_exception { reviewID= con.quote(node.element(:xpath,".").attribute_value('id')) }
+            ignore_exception { userID = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]").attribute_value('id')) }
+            ignore_exception { userName = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/div[1]").text) }
+            ignore_exception { userLoc = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/div[contains(@class,'userLoc')]").text) }
+            ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'pencil-paper')]/following-sibling::span[1][@class='badgetext']").text) }
+            ignore_exception { userLikesCount = con.quote(node.element(:xpath,".//*[contains(@class,'thumbs-up-fill')]/following-sibling::span[1][@class='badgetext']").text) }
+            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//span[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
+            ignore_exception { reviewDate = con.quote(node.element(:xpath,".//span[@class='ratingDate']").text) }
+            ignore_exception { reviewDate2 = con.quote(node.element(:xpath,".//span[@class='ratingDate']").attribute_value('title')) }
+            ignore_exception { quoteText = con.quote(node.element(:xpath,".//*[@class='quote']").text) }
+            ignore_exception { reviewAbout = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").text) }
+            ignore_exception { reviewAboutLink = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").attribute_value('href')) }
+            ignore_exception { texto = con.quote(node.element(:xpath,".//div[starts-with(@class,'entry')]").text) }
+            ignore_exception { dateVisit = con.quote(node.element(:xpath,".//span[@class='stay_date_label']/..").text) }
+            ignore_exception { likesCount = con.quote(node.element(:xpath,"//*[starts-with(@class,'numHelp')]").text) }
+            ignore_exception { mobileEntry = con.quote(node.element(:xpath,".//span[@class='viaMobile']").attribute_value('class')) }
+            ignore_exception { roomTip = con.quote(node.element(:xpath,".//div[contains(@class,'inlineRoomTip')]").text) }
+            ignore_exception { tripType = con.quote(node.element(:xpath,".//div[@class='recommend']").text) }
+
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataTAIndivs` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`reviewID`, `userID`, `userName`, `userLoc`, `userReviewCount`, `userLikesCount`, `reviewScore`, `reviewDate`, `reviewDate2`, `quoteText`, `reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{reviewID}', '#{userID}', '#{userName}', '#{userLoc}', '#{userReviewCount}', '#{userLikesCount}', '#{reviewScore}', '#{reviewDate}', '#{reviewDate2}', '#{quoteText}', '#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
 
 
 
