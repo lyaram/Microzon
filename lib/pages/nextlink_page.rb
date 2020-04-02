@@ -3555,10 +3555,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       h12 = ""
 
             
-  
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts node.element(:xpath,"//*[@id='HEADING']").attribute_value('textContent')
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
   
             ignore_exception { captura = "#{descripcion}" }
@@ -3570,77 +3566,77 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { fechaHora = "#{strDT}" }
             ignore_exception { numEntrada = "#{posNode}" }
       
-          ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").text) }
+          ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").attribute_value('textContent')) }
           ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
           ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
-          ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").text) }
-          ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").text) }
-          ignore_exception { postalCode = con.quote(node.element(:xpath,"(//*[contains(@property,'postal-code') or contains(@property,'postalCode')])[1]").text) }
-          ignore_exception { locality = con.quote(node.element(:xpath,"//*[contains(@class,'blRow')]//*[@class='locality']").text) }
-          ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").text) }
+          ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").attribute_value('textContent')) }
+          ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").attribute_value('textContent')) }
+          ignore_exception { postalCode = con.quote(node.element(:xpath,"(//*[contains(@property,'postal-code') or contains(@property,'postalCode')])[1]").attribute_value('textContent')) }
+          ignore_exception { locality = con.quote(node.element(:xpath,"//*[contains(@class,'blRow')]//*[@class='locality']").attribute_value('textContent')) }
+          ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").attribute_value('textContent')) }
           ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[starts-with(@class,'starRating')]/div[2]/text() | //span[@class='star']//img").attribute_value('alt')) }
           ignore_exception { globalScore = con.quote(node.element(:xpath,"(//*[contains(@class,'header')]//*[contains(@class,'ratingContainer') or contains(@class,'rs rating')]//span[contains(@class,'ui_bubble_rating')])").attribute_value('alt')) }
-          ignore_exception { reviewCount = con.quote(node.element(:xpath,"//*[contains(@class,'ratingContainer') or contains(@class,'rs rating')]//a").text) }
-          ignore_exception { infoRanking = con.quote(node.element(:xpath,"//*[starts-with(@class,'slim_ranking') or starts-with(@class,'header_popularity')]").text) }
-          ignore_exception { placeType = con.quote(node.element(:xpath,"//*[contains(@class,'attractionCategories')]").text) }
+          ignore_exception { reviewCount = con.quote(node.element(:xpath,"//*[contains(@class,'ratingContainer') or contains(@class,'rs rating')]//a").attribute_value('textContent')) }
+          ignore_exception { infoRanking = con.quote(node.element(:xpath,"//*[starts-with(@class,'slim_ranking') or starts-with(@class,'header_popularity')]").attribute_value('textContent')) }
+          ignore_exception { placeType = con.quote(node.element(:xpath,"//*[contains(@class,'attractionCategories')]").attribute_value('textContent')) }
           ignore_exception { geoLat = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lat')) }
           ignore_exception { geoLng = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lng')) }
           ignore_exception { linkPrimeraReview = con.quote(node.element(:xpath,"(//*[@data-reviewid]//a)[1]").attribute_value('href')) }
-          ignore_exception { currentPage = con.quote(node.element(:xpath,".//*[@class='pageNum current']").text) }
-          ignore_exception { placeType2 = con.quote(node.element(:xpath,"//*[starts-with(@class,'header_detail')]").text) }
+          ignore_exception { currentPage = con.quote(node.element(:xpath,".//*[@class='pageNum current']").attribute_value('textContent')) }
+          ignore_exception { placeType2 = con.quote(node.element(:xpath,"//*[starts-with(@class,'header_detail')]").attribute_value('textContent')) }
           ignore_exception { langList = con.quote(node.element(:xpath,"//*[@id='filterLang']/option/@value").attribute_value('value')) }
-          ignore_exception { langSelected = con.quote(node.element(:xpath,"//*[@data-prwidget-name='filters_detail_language' or @class='ui_column is-3 language']//input[./@checked and not(ancestor-or-self::*[contains(./@class,'hidden')])]/following::label[1]").text) }
-          ignore_exception { segmSelected = con.quote(node.element(:xpath,".//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").text) }
-          ignore_exception { filterSegment = con.quote(node.element(:xpath,"//span[@class='filter']").text) }
-          ignore_exception { filterCount = con.quote(node.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").text) }
-          ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").text) }
-          ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").text) }
-          ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").text) }
-          ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[contains(@class,'row_num')]").text) }
-          ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[contains(@class,'row_num')]").text) }
-          ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[contains(@class,'row_num')]").text) }
-          ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[contains(@class,'row_num')]").text) }
-          ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[contains(@class,'row_num')]").text) }
-          ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").text) }
-          ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").text) }
-          ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").text) }
-          ignore_exception { timeOfYear4_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[4]/label").text) }
-          ignore_exception { varDimField1 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[1]").text) }
+          ignore_exception { langSelected = con.quote(node.element(:xpath,"//*[@data-prwidget-name='filters_detail_language' or @class='ui_column is-3 language']//input[./@checked and not(ancestor-or-self::*[contains(./@class,'hidden')])]/following::label[1]").attribute_value('textContent')) }
+          ignore_exception { segmSelected = con.quote(node.element(:xpath,".//*[@id='filterControls']//*[contains(@class,'segment')]/ul/li[./span/input/@checked]/label").attribute_value('textContent')) }
+          ignore_exception { filterSegment = con.quote(node.element(:xpath,"//span[@class='filter']").attribute_value('textContent')) }
+          ignore_exception { filterCount = con.quote(node.element(:xpath,"//span[@class='filter']/preceding-sibling::b[1]").attribute_value('textContent')) }
+          ignore_exception { langFromRadioButtons = con.quote(node.element(:xpath,".//*[contains(@class,'language')]/ul/li[./span/input/@checked]/label").attribute_value('textContent')) }
+          ignore_exception { recommendedPercent2 = con.quote(node.element(:xpath,"//fieldset[@class='review_filter_eatery']/div/div[1]/div").attribute_value('textContent')) }
+          ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").attribute_value('textContent')) }
+          ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[contains(@class,'row_num')]").attribute_value('textContent')) }
+          ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[contains(@class,'row_num')]").attribute_value('textContent')) }
+          ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[contains(@class,'row_num')]").attribute_value('textContent')) }
+          ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[contains(@class,'row_num')]").attribute_value('textContent')) }
+          ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[contains(@class,'row_num')]").attribute_value('textContent')) }
+          ignore_exception { timeOfYear1_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[1]/label").attribute_value('textContent')) }
+          ignore_exception { timeOfYear2_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[2]/label").attribute_value('textContent')) }
+          ignore_exception { timeOfYear3_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[3]/label").attribute_value('textContent')) }
+          ignore_exception { timeOfYear4_Count = con.quote(node.element(:xpath,"//*[starts-with(@class,'col season')]/ul/li[4]/label").attribute_value('textContent')) }
+          ignore_exception { varDimField1 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[1]").attribute_value('textContent')) }
           ignore_exception { varDimField1Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[1]").attribute_value('alt')) }
-          ignore_exception { varDimField2 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[2]").text) }
+          ignore_exception { varDimField2 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[2]").attribute_value('textContent')) }
           ignore_exception { varDimField2Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[2]").attribute_value('alt')) }
-          ignore_exception { varDimField3 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[3]").text) }
+          ignore_exception { varDimField3 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[3]").attribute_value('textContent')) }
           ignore_exception { varDimField3Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[3]").attribute_value('alt')) }
-          ignore_exception { varDimField4 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[4]").text) }
+          ignore_exception { varDimField4 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[4]").attribute_value('textContent')) }
           ignore_exception { varDimField4Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[4]").attribute_value('alt')) }
-          ignore_exception { varDimField5 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[5]").text) }
+          ignore_exception { varDimField5 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[5]").attribute_value('textContent')) }
           ignore_exception { varDimField5Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[5]").attribute_value('alt')) }
-          ignore_exception { varDimField6 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[6]").text) }
+          ignore_exception { varDimField6 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[6]").attribute_value('textContent')) }
           ignore_exception { varDimField6Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[6]").attribute_value('alt')) }
-          ignore_exception { varDimField7 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[7]").text) }
+          ignore_exception { varDimField7 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[7]").attribute_value('textContent')) }
           ignore_exception { varDimField7Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[7]").attribute_value('alt')) }
-          ignore_exception { varDimField8 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[8]").text) }
+          ignore_exception { varDimField8 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[8]").attribute_value('textContent')) }
           ignore_exception { varDimField8Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[8]").attribute_value('alt')) }
-          ignore_exception { varDimField9 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[9]").text) }
+          ignore_exception { varDimField9 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[9]").attribute_value('textContent')) }
           ignore_exception { varDimField9Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[9]").attribute_value('alt')) }
-          ignore_exception { varDimField10 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[10]").text) }
+          ignore_exception { varDimField10 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[10]").attribute_value('textContent')) }
           ignore_exception { varDimField10Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[10]").attribute_value('alt')) }
-          ignore_exception { varDimField11 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[11]").text) }
+          ignore_exception { varDimField11 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[11]").attribute_value('textContent')) }
           ignore_exception { varDimField11Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[11]").attribute_value('alt')) }
-          ignore_exception { varDimField12 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[12]").text) }
+          ignore_exception { varDimField12 = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/div | //*[@class='ratingSummary wrap']//li//span[@class='text'])[12]").attribute_value('textContent')) }
           ignore_exception { varDimField12Val = con.quote(node.element(:xpath,"(//*[@id='SUMMARYBOX']/ul/li/span/span | //*[@class='ratingSummary wrap']//li//span)[12]").attribute_value('alt')) }
-          ignore_exception { varSegmField1 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[1]").text) }
-          ignore_exception { varSegmField1Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[2]").text) }
-          ignore_exception { varSegmField2 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[1]").text) }
-          ignore_exception { varSegmField2Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[2]").text) }
-          ignore_exception { varSegmField3 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[1]").text) }
-          ignore_exception { varSegmField3Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[2]").text) }
-          ignore_exception { varSegmField4 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[1]").text) }
-          ignore_exception { varSegmField4Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[2]").text) }
-          ignore_exception { varSegmField5 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[1]").text) }
-          ignore_exception { varSegmField5Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[2]").text) }
-          ignore_exception { varSegmField6 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[1]").text) }
-          ignore_exception { varSegmField6Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[2]").text) }
+          ignore_exception { varSegmField1 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField1Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[2]").attribute_value('textContent')) }
+          ignore_exception { varSegmField2 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField2Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[2]").attribute_value('textContent')) }
+          ignore_exception { varSegmField3 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField3Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[3]/div/div[2]").attribute_value('textContent')) }
+          ignore_exception { varSegmField4 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField4Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[4]/div/div[2]").attribute_value('textContent')) }
+          ignore_exception { varSegmField5 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField5Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[5]/div/div[2]").attribute_value('textContent')) }
+          ignore_exception { varSegmField6 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[1]").attribute_value('textContent')) }
+          ignore_exception { varSegmField6Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[6]/div/div[2]").attribute_value('textContent')) }
           ignore_exception { codeMap = con.quote(node.element(:xpath,"//*[contains(@src,'center=')]").attribute_value('src')) }
           ignore_exception { peineNotas5 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[1]").attribute_value('checked')) }
           ignore_exception { peineNotas4 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[2]").attribute_value('checked')) }
@@ -3648,72 +3644,72 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { peineNotas2 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[4]").attribute_value('checked')) }
           ignore_exception { peineNotas1 = con.quote(node.element(:xpath,"(//*[contains(text(),'ler rating')]/..//input[1])[5]").attribute_value('checked')) }
           ignore_exception { varLangField01 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[01]").attribute_value('value')) }
-          ignore_exception { varLangField01Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[01]/following::label[1]").text) }
+          ignore_exception { varLangField01Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[01]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField02 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[02]").attribute_value('value')) }
-          ignore_exception { varLangField02Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[02]/following::label[1]").text) }
+          ignore_exception { varLangField02Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[02]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField03 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[03]").attribute_value('value')) }
-          ignore_exception { varLangField03Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[03]/following::label[1]").text) }
+          ignore_exception { varLangField03Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[03]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField04 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[04]").attribute_value('value')) }
-          ignore_exception { varLangField04Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[04]/following::label[1]").text) }
+          ignore_exception { varLangField04Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[04]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField05 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[05]").attribute_value('value')) }
-          ignore_exception { varLangField05Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[05]/following::label[1]").text) }
+          ignore_exception { varLangField05Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[05]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField06 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[06]").attribute_value('value')) }
-          ignore_exception { varLangField06Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[06]/following::label[1]").text) }
+          ignore_exception { varLangField06Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[06]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField07 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[07]").attribute_value('value')) }
-          ignore_exception { varLangField07Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[07]/following::label[1]").text) }
+          ignore_exception { varLangField07Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[07]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField08 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[08]").attribute_value('value')) }
-          ignore_exception { varLangField08Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[08]/following::label[1]").text) }
+          ignore_exception { varLangField08Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[08]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField09 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[09]").attribute_value('value')) }
-          ignore_exception { varLangField09Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[09]/following::label[1]").text) }
+          ignore_exception { varLangField09Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[09]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField10 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[10]").attribute_value('value')) }
-          ignore_exception { varLangField10Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[10]/following::label[1]").text) }
+          ignore_exception { varLangField10Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[10]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField11 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[11]").attribute_value('value')) }
-          ignore_exception { varLangField11Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[11]/following::label[1]").text) }
+          ignore_exception { varLangField11Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[11]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField12 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[12]").attribute_value('value')) }
-          ignore_exception { varLangField12Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[12]/following::label[1]").text) }
+          ignore_exception { varLangField12Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[12]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField13 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[13]").attribute_value('value')) }
-          ignore_exception { varLangField13Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[13]/following::label[1]").text) }
+          ignore_exception { varLangField13Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[13]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField14 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[14]").attribute_value('value')) }
-          ignore_exception { varLangField14Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[14]/following::label[1]").text) }
+          ignore_exception { varLangField14Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[14]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField15 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[15]").attribute_value('value')) }
-          ignore_exception { varLangField15Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[15]/following::label[1]").text) }
+          ignore_exception { varLangField15Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[15]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField16 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[16]").attribute_value('value')) }
-          ignore_exception { varLangField16Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[16]/following::label[1]").text) }
+          ignore_exception { varLangField16Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[16]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField17 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[17]").attribute_value('value')) }
-          ignore_exception { varLangField17Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[17]/following::label[1]").text) }
+          ignore_exception { varLangField17Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[17]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField18 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[18]").attribute_value('value')) }
-          ignore_exception { varLangField18Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[18]/following::label[1]").text) }
+          ignore_exception { varLangField18Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[18]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField19 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[19]").attribute_value('value')) }
-          ignore_exception { varLangField19Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[19]/following::label[1]").text) }
+          ignore_exception { varLangField19Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[19]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField20 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[20]").attribute_value('value')) }
-          ignore_exception { varLangField20Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[20]/following::label[1]").text) }
+          ignore_exception { varLangField20Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[20]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField21 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[21]").attribute_value('value')) }
-          ignore_exception { varLangField21Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[21]/following::label[1]").text) }
+          ignore_exception { varLangField21Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[21]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField22 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[22]").attribute_value('value')) }
-          ignore_exception { varLangField22Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[22]/following::label[1]").text) }
+          ignore_exception { varLangField22Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[22]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField23 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[23]").attribute_value('value')) }
-          ignore_exception { varLangField23Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[23]/following::label[1]").text) }
+          ignore_exception { varLangField23Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[23]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField24 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[24]").attribute_value('value')) }
-          ignore_exception { varLangField24Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[24]/following::label[1]").text) }
+          ignore_exception { varLangField24Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[24]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField25 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[25]").attribute_value('value')) }
-          ignore_exception { varLangField25Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[25]/following::label[1]").text) }
+          ignore_exception { varLangField25Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[25]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField26 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[26]").attribute_value('value')) }
-          ignore_exception { varLangField26Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[26]/following::label[1]").text) }
+          ignore_exception { varLangField26Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[26]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField27 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[27]").attribute_value('value')) }
-          ignore_exception { varLangField27Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[27]/following::label[1]").text) }
+          ignore_exception { varLangField27Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[27]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField28 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[28]").attribute_value('value')) }
-          ignore_exception { varLangField28Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[28]/following::label[1]").text) }
+          ignore_exception { varLangField28Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[28]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField29 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[29]").attribute_value('value')) }
-          ignore_exception { varLangField29Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[29]/following::label[1]").text) }
+          ignore_exception { varLangField29Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[29]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { varLangField30 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[30]").attribute_value('value')) }
-          ignore_exception { varLangField30Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[30]/following::label[1]").text) }
-          ignore_exception { placeName2 = con.quote(node.element(:xpath,"//ul[@class='breadcrumbs']/li[last()]").text) }
-          ignore_exception { fullAddress2 = con.quote(node.element(:xpath,"//*[contains(@class,'ContactCard__contactRow') and contains(./span/@class,'map-pin')]").text) }
+          ignore_exception { varLangField30Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[30]/following::label[1]").attribute_value('textContent')) }
+          ignore_exception { placeName2 = con.quote(node.element(:xpath,"//ul[@class='breadcrumbs']/li[last()]").attribute_value('textContent')) }
+          ignore_exception { fullAddress2 = con.quote(node.element(:xpath,"//*[contains(@class,'ContactCard__contactRow') and contains(./span/@class,'map-pin')]").attribute_value('textContent')) }
           ignore_exception { globalScore2 = con.quote(node.element(:xpath,"//*[contains(@class,'CompanyProfileContainer')]//*[contains(@class,'bubble_rating')]").attribute_value('class')) }
-          ignore_exception { reviewCount2 = con.quote(node.element(:xpath,"//span[@class='reviews_header_count']").text) }
-          ignore_exception { breadcrums = con.quote(node.element(:xpath,"//ul[@class='breadcrums']").text) }
-          ignore_exception { h11 = con.quote(node.element(:xpath,"(//h1)[1]").text) }
-          ignore_exception { h12 = con.quote(node.element(:xpath,"(//h1)[2]").text) }
+          ignore_exception { reviewCount2 = con.quote(node.element(:xpath,"//span[@class='reviews_header_count']").attribute_value('textContent')) }
+          ignore_exception { breadcrums = con.quote(node.element(:xpath,"//ul[@class='breadcrums']").attribute_value('textContent')) }
+          ignore_exception { h11 = con.quote(node.element(:xpath,"(//h1)[1]").attribute_value('textContent')) }
+          ignore_exception { h12 = con.quote(node.element(:xpath,"(//h1)[2]").attribute_value('textContent')) }
 
 
 
