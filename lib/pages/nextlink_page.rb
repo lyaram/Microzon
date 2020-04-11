@@ -5218,6 +5218,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       #ignore_exception { propertyDescription = con.quote(node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]").text) }
       ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
 
+
+puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']").outer_html)
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
       ignore_exception { listScore10 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[1]/p[2]").attribute_value('content')) }
       ignore_exception { listScore08 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[2]/p[2]").attribute_value('content')) }
       ignore_exception { listScore06 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[3]/p[2]").attribute_value('content')) }
