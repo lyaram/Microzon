@@ -5224,7 +5224,7 @@ ignore_exception { puts("visible: " + node.element(:xpath,"//div[@id='tooltip_sc
 ignore_exception { puts("con browser: " + @browser.element(:xpath,"//div[@id='tooltip_score_distribution']").inner_html) }
 ignore_exception { puts("con div: " + @browser.div(:id,"tooltip_score_distribution").inner_html) }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-oschar = @browser.html.index('tooltip_score_distribution')
+poschar = @browser.html.index('tooltip_score_distribution')
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 puts poschar
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
