@@ -5224,7 +5224,9 @@ puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[c
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[contains(@class,'review_score_value')]").attribute_value('content'))
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[contains(@class,'review_score_value')]").document.innerText)
+puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[contains(@class,'review_score_value')]").attribute_value('textContent'))
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[contains(@class,'review_score_value')]").inner_html)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       ignore_exception { listScore10 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']//li[1]//p[contains(@class,'review_score_value')]").attribute_value('content')) }
