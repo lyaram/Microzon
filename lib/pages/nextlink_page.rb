@@ -3570,7 +3570,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { award_text = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('alt')) }
           ignore_exception { award_class = con.quote(node.element(:xpath,"(//img[contains(@class,'Award')])[1]").attribute_value('class')) }
           ignore_exception { certificadoExcelencia = con.quote(node.element(:xpath,"//*[@data-tab='TABS_OVERVIEW' or @data-tab='TABS_ABOUT']//*[starts-with(@class,'ui_icon certificate-of-excellence')]/..").attribute_value('textContent')) }
-          ignore_exception { fullAddress = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").attribute_value('textContent')) }
+          ignore_exception { fullAddress = con.quote(node.element(:xpath,"//*[contains(@class,'ContactCard__contactRow') and contains(./span/@class,'map-pin')]").attribute_value('textContent')) }
           ignore_exception { postalCode = con.quote(node.element(:xpath,"(//*[contains(@property,'postal-code') or contains(@property,'postalCode')])[1]").attribute_value('textContent')) }
           ignore_exception { locality = con.quote(node.element(:xpath,"//*[contains(@class,'blRow')]//*[@class='locality']").attribute_value('textContent')) }
           ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").attribute_value('textContent')) }
@@ -3704,7 +3704,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { varLangField30 = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[30]").attribute_value('value')) }
           ignore_exception { varLangField30Val = con.quote(node.element(:xpath,"(//input[contains(@id,'filterLang')])[30]/following::label[1]").attribute_value('textContent')) }
           ignore_exception { placeName2 = con.quote(node.element(:xpath,"//ul[@class='breadcrumbs']/li[last()]").attribute_value('textContent')) }
-          ignore_exception { fullAddress2 = con.quote(node.element(:xpath,"//*[contains(@class,'ContactCard__contactRow') and contains(./span/@class,'map-pin')]").attribute_value('textContent')) }
+          ignore_exception { fullAddress2 = con.quote(node.element(:xpath,"(.//*[contains(./@class,'blEntry address')] | .//*[contains(./@class,'public-business-listing-ContactInfo')] | //address)[1]").attribute_value('textContent')) }
           ignore_exception { globalScore2 = con.quote(node.element(:xpath,"//*[contains(@class,'CompanyProfileContainer')]//*[contains(@class,'bubble_rating')]").attribute_value('class')) }
           ignore_exception { reviewCount2 = con.quote(node.element(:xpath,"//span[@class='reviews_header_count']").attribute_value('textContent')) }
           ignore_exception { breadcrums = con.quote(node.element(:xpath,"//ul[@class='breadcrums']").attribute_value('textContent')) }
@@ -5171,7 +5171,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       isYourBusiness = ""
       claimed = ""
       propertyDescription = ""
-        
+      
+      listScore10 = ""
+      listScore08 = ""
+      listScore06 = ""
+      listScore04 = ""
+      listScore02 = ""
+      
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
             ignore_exception { idLaunch = "#{idLaunch}" }
@@ -5212,14 +5218,19 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       #ignore_exception { propertyDescription = con.quote(node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]").text) }
       ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
 
+      ignore_exception { listScore10 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[1]/p[2]").text) }
+      ignore_exception { listScore08 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[2]/p[2]").text) }
+      ignore_exception { listScore06 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[3]/p[2]").text) }
+      ignore_exception { listScore04 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[4]/p[2]").text) }
+      ignore_exception { listScore02 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[5]/p[2]").text) }
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
-                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`, `isYourBusiness`, `claimed`, `propertyDescription`" +       
+                        "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`, `isYourBusiness`, `claimed`, `propertyDescription`, `listScore10`, `listScore08`, `listScore06`, `listScore04`, `listScore02`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
-                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}', '#{propertyDescription}' " +
+                        "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}', '#{propertyDescription}', '#{listScore10}' , '#{listScore08}' , '#{listScore06}' , '#{listScore04}' , '#{listScore02}' " +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
