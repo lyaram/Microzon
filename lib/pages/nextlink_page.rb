@@ -5223,12 +5223,12 @@ ignore_exception { puts("present: " + node.element(:xpath,"//div[@id='tooltip_sc
 ignore_exception { puts("visible: " + node.element(:xpath,"//div[@id='tooltip_score_distribution']").visible?) }
 ignore_exception { puts("con browser: " + @browser.element(:xpath,"//div[@id='tooltip_score_distribution']").inner_html) }
 ignore_exception { puts("con div: " + @browser.div(:id,"tooltip_score_distribution").inner_html) }
-      ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
-poschar = @browser.html.index('tooltip_score_distribution')
-      ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+oschar = @browser.html.index('tooltip_score_distribution')
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 puts poschar
-      ignore_exception { propertyDescription = con.quote(execute_script("return arguments[0].textContent", node.element(:xpath,"(//div[contains(@class,'propertyDescription')]  | //div[contains(@class,'propertyDescription')]/span)[last()]"))) }
-puts @browser.html[poschar-20..poschar+20]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+puts @browser.html[(poschar - 20)..(poschar + 20)]
 puts(node.element(:xpath,"//div[@id='tooltip_score_distribution']").inner_html)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
