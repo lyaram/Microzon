@@ -5223,11 +5223,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 puts(node.element(:xpath,"//ul[@id='review_list_score_distribution']").outer_html)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      ignore_exception { listScore10 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[1]/p[2]").attribute_value('content')) }
-      ignore_exception { listScore08 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[2]/p[2]").attribute_value('content')) }
-      ignore_exception { listScore06 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[3]/p[2]").attribute_value('content')) }
-      ignore_exception { listScore04 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[4]/p[2]").attribute_value('content')) }
-      ignore_exception { listScore02 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[5]/p[2]").attribute_value('content')) }
+      ignore_exception { listScore10 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[1]/p[contains(@class,'review_score_value')]").attribute_value('content')) }
+      ignore_exception { listScore08 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[2]/p[contains(@class,'review_score_value')]").attribute_value('content')) }
+      ignore_exception { listScore06 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[3]/p[contains(@class,'review_score_value')]").attribute_value('content')) }
+      ignore_exception { listScore04 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[4]/p[contains(@class,'review_score_value')]").attribute_value('content')) }
+      ignore_exception { listScore02 = con.quote(node.element(:xpath,"//ul[@id='review_list_score_distribution']/li[5]/p[contains(@class,'review_score_value')]").attribute_value('content')) }
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
