@@ -4107,22 +4107,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { breadcrumb07Val = con.quote(node.element(:xpath,"//*[@id='breadcrumb']/ol/li[7]/div/a").text) }
           ignore_exception { geoData = con.quote(node.element(:xpath,"//a[@id='hotel_sidebar_static_map']").attribute_value('data-atlas-latlng')) }
           ignore_exception { score = con.quote(node.element(:xpath,"//*[contains(@id,'hp-gallery-scorecard')]//*[@class='bui-review-score__badge']").text) }
-          ignore_exception { varDimField01 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[1]").text) }
-          ignore_exception { varDimField02 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[2]").text) }
-          ignore_exception { varDimField03 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[3]").text) }
-          ignore_exception { varDimField04 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[4]").text) }
-          ignore_exception { varDimField05 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[5]").text) }
-          ignore_exception { varDimField06 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[6]").text) }
-          ignore_exception { varDimField07 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[7]").text) }
-          ignore_exception { varDimField08 = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[contains(@class,'title')])[8]").text) }
-          ignore_exception { varDimField01Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[1]").text) }
-          ignore_exception { varDimField02Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[2]").text) }
-          ignore_exception { varDimField03Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[3]").text) }
-          ignore_exception { varDimField04Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[4]").text) }
-          ignore_exception { varDimField05Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[5]").text) }
-          ignore_exception { varDimField06Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[6]").text) }
-          ignore_exception { varDimField07Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[7]").text) }
-          ignore_exception { varDimField08Val = con.quote(node.element(:xpath,"(//*[contains(@class,'review_list_score_container')]//ul/li/div/span[not(contains(@class,'title'))])[8]").text) }
+          ignore_exception { varDimField01 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[1]").text) }
+          ignore_exception { varDimField02 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[2]").text) }
+          ignore_exception { varDimField03 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[3]").text) }
+          ignore_exception { varDimField04 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[4]").text) }
+          ignore_exception { varDimField05 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[5]").text) }
+          ignore_exception { varDimField06 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[6]").text) }
+          ignore_exception { varDimField07 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[7]").text) }
+          ignore_exception { varDimField08 = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[contains(@class,'title')])[8]").text) }
+          ignore_exception { varDimField01Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[1]").text) }
+          ignore_exception { varDimField02Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[2]").text) }
+          ignore_exception { varDimField03Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[3]").text) }
+          ignore_exception { varDimField04Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[4]").text) }
+          ignore_exception { varDimField05Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[5]").text) }
+          ignore_exception { varDimField06Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[6]").text) }
+          ignore_exception { varDimField07Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[7]").text) }
+          ignore_exception { varDimField08Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[8]").text) }
           ignore_exception { importantInfo = con.quote(node.element(:xpath,"//div[contains(@class,'imporant_info_highlight')]").text) }
 
 
