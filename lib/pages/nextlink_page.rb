@@ -293,6 +293,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
       if descripcion.include? '.PickIndivFromSelection'
+        @browser.goto "https://www.tripadvisor.co.nz/SetLangFilter?returnTo=%2f&filterLang=ALL"
         rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
         con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
         url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
