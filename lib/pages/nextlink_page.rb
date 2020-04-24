@@ -4191,11 +4191,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//li[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
             ignore_exception { valoracion2 = con.quote(node.element(:xpath,"//*[contains(@class,'section-reviewchart')]//*[@class='section-star-display']").text) }
             ignore_exception { numOpiniones2 = con.quote(node.element(:xpath,".//button[@class='section-reviewchart-numreviews']").text) }
-            ignore_exception { numOpiniones_Val5 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[1]//div[@aria-label]").attribute_value('aria-label')) }
-            ignore_exception { numOpiniones_Val4 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[2]//div[@aria-label]").attribute_value('aria-label')) }
-            ignore_exception { numOpiniones_Val3 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[3]//div[@aria-label]").attribute_value('aria-label')) }
-            ignore_exception { numOpiniones_Val2 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[4]//div[@aria-label]").attribute_value('aria-label')) }
-            ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]//div[@aria-label]").attribute_value('aria-label')) }
+            ignore_exception { numOpiniones_Val5 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[1]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
+            ignore_exception { numOpiniones_Val4 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[2]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
+            ignore_exception { numOpiniones_Val3 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[3]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
+            ignore_exception { numOpiniones_Val2 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[4]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
+            ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
             ignore_exception { address = con.quote(node.element(:xpath,"(//span[@class='section-info-text'])[1]/span[last()]").text) }
             ignore_exception { horario = con.quote(node.element(:xpath,"//*[@class='section-info-hour-text']").text) }
       
