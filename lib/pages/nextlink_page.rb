@@ -4172,7 +4172,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             numOpiniones_Val1 = ""
             address = ""
             horario = ""
-
+            textControlInfoSection = ""
+            fotoCount = ""
+            reclamarEmpresa = ""
             
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = con.quote("#{urlOrig}") }
@@ -4198,14 +4200,17 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
             ignore_exception { address = con.quote(node.element(:xpath,"(//span[@class='section-info-text'])[1]/span[last()]").text) }
             ignore_exception { horario = con.quote(node.element(:xpath,"//*[@class='section-info-hour-text']").text) }
+            ignore_exception { textControlInfoSection = con.quote(node.element(:xpath,"//span[contains(text(),'Sugerir un cambio')]").text) }
+            ignore_exception { fotoCount = con.quote(node.element(:xpath,"//*[contains(text(),'foto') and contains(@class,'label')]").text) }
+            ignore_exception { reclamarEmpresa = con.quote(node.element(:xpath,"//span[contains(text(),'esta empresa')]").text) }
       
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataGMFicha` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-                        "`nombre`, `valoracion`, `numOpiniones`, `tipo`, `tipo2`, `valoracion2`, `numOpiniones2`, `numOpiniones_Val5`, `numOpiniones_Val4`, `numOpiniones_Val3`, `numOpiniones_Val2`, `numOpiniones_Val1`, `address`, `horario`"  +
+                        "`nombre`, `valoracion`, `numOpiniones`, `tipo`, `tipo2`, `valoracion2`, `numOpiniones2`, `numOpiniones_Val5`, `numOpiniones_Val4`, `numOpiniones_Val3`, `numOpiniones_Val2`, `numOpiniones_Val1`, `address`, `horario`, `textControlInfoSection`, `fotoCount`, `reclamarEmpresa`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{nombre}', '#{valoracion}', '#{numOpiniones}', '#{tipo}', '#{tipo2}', '#{valoracion2}', '#{numOpiniones2}', '#{numOpiniones_Val5}', '#{numOpiniones_Val4}', '#{numOpiniones_Val3}', '#{numOpiniones_Val2}', '#{numOpiniones_Val1}', '#{address}', '#{horario}'"  +
+                        "'#{nombre}', '#{valoracion}', '#{numOpiniones}', '#{tipo}', '#{tipo2}', '#{valoracion2}', '#{numOpiniones2}', '#{numOpiniones_Val5}', '#{numOpiniones_Val4}', '#{numOpiniones_Val3}', '#{numOpiniones_Val2}', '#{numOpiniones_Val1}', '#{address}', '#{horario}', '#{textControlInfoSection}', '#{fotoCount}', '#{reclamarEmpresa}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
