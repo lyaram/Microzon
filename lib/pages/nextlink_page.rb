@@ -352,6 +352,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       puts(titulo)
 
 
+
+
+#**************************
+#BLOQUE EVITADO POR LOCALES
+unless url.include?('file:///')
+  
+
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if descripcion.include? 'MiNube_Usuarios.Id_'
           jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
@@ -1343,6 +1350,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           #htmlPage = Nokogiri::HTML.parse(@browser.html)
     
     #$DEBUG = true
+
+
+end
+#BLOQUE EVITADO POR LOCALES
+#**************************
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
      puts 'Ejecutando htmlPage = @browser.html'; $stdout.flush
