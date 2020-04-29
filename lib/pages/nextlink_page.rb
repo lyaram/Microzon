@@ -5247,7 +5247,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { mname = con.quote(node.element(:xpath,"//span[@class='bh-photo-modal-name']").attribute_value('textContent')) }
       ignore_exception { jsoninfo = con.quote(node.element(:xpath,"//*[contains(text(),'\"description\" :')]").attribute_value('textContent')) }
       
-      ignore_exception { photoCount = con.quote(node.element(:xpath,"(//span[contains(@class,'PhotoCount__link') or contains(@class,'see_all_count')])[1]").attribute_value('textContent')) }
+      ignore_exception { photoCount = con.quote(node.element(:xpath,"(//span[contains(@class,'PhotoCount__link') or contains(@class,'see_all_count')])[1]/span[last()]").attribute_value('textContent')) }
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
