@@ -352,13 +352,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       puts(titulo)
 
 
-
-
-#**************************
-#BLOQUE EVITADO POR LOCALES
-unless url.include?('file:///')
-  
-
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         if descripcion.include? 'MiNube_Usuarios.Id_'
           jumptosuer = '(//a[contains(@href,"viajeros.minube.com")])[1]'
@@ -683,7 +676,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
      #Agregado para reorganizar opiniones de TA a más recientes primero sin preferencia de idioma
-      if @browser.element(:xpath,'//option[@id="selFilterAll"]').exists?
+      if (@browser.element(:xpath,'//option[@id="selFilterAll"]').exists?) &&  !(url.include? 'file:///')
       	if @browser.element(:xpath,'//option[@id="selFilterAll"]').visible?
           @browser.element(:xpath,'//option[@id="selFilterAll"]').click
         end
@@ -699,7 +692,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
       
       allLangRadioButton = '(//label[contains(@for,"filterLang_ALL")])[1] | //*[contains(@for,"LanguageFilter_0")] | //*[contains(@id,"LanguageFilter_0")]'
-      if @browser.element(:xpath,allLangRadioButton).exists?
+      if (@browser.element(:xpath,allLangRadioButton).exists?) &&  !(url.include? 'file:///')
         if @browser.element(:xpath,allLangRadioButton).visible?
           @browser.element(:xpath,allLangRadioButton).click
           sleep 2
@@ -730,7 +723,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
        #Desactivando filtro activo si lo si hay
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-       if @browser.element(:xpath,'//button[@class="clear"]').exists?
+       if (@browser.element(:xpath,'//button[@class="clear"]').exists?) &&  !(url.include? 'file:///')
         if @browser.element(:xpath,'//button[@class="clear"]').visible?
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
            @browser.element(:xpath,'//button[@class="clear"]').click
@@ -1072,7 +1065,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       puts "go clicking enlaceReviews"    ; $stdout.flush
-      if @browser.element(:xpath,enlaceReviews).visible?
+      if (@browser.element(:xpath,enlaceReviews).visible?) &&  !(url.include? 'file:///')
         clickboton = 5
         while clickboton > 0
           begin
@@ -1252,7 +1245,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
           closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-          if @browser.element(:xpath,closeModal).exists?
+          if (@browser.element(:xpath,closeModal).exists?) &&  !(url.include? 'file:///')
             if @browser.element(:xpath,closeModal).visible?
               @browser.element(:xpath,closeModal).click
             end
@@ -1351,11 +1344,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     #$DEBUG = true
 
-
-end
-#BLOQUE EVITADO POR LOCALES
-#**************************
-
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
      puts 'Ejecutando htmlPage = @browser.html'; $stdout.flush
   
@@ -1394,7 +1382,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-      if @browser.element(:xpath,closeModal).exists?
+      if (@browser.element(:xpath,closeModal).exists?) &&  !(url.include? 'file:///')
         if @browser.element(:xpath,closeModal).visible?
           @browser.element(:xpath,closeModal).click
         end
@@ -1404,7 +1392,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
       buttonNoTranslation = '//*[@id="REVIEWS"]/div[starts-with(@id,"review_")]/div[not(@style="display: none;")]//form[@class="translationOptionForm"]/label/input[@value="false" and not(@checked)]'
       reintentos = 10
-      while @browser.element(:xpath,buttonNoTranslation).exists?
+      while (@browser.element(:xpath,buttonNoTranslation).exists?) &&  !(url.include? 'file:///')
         reintentos += -1
         break if reintentos<0
         @browser.element(:xpath,buttonNoTranslation).click
@@ -1439,7 +1427,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
           closeModal = '//*[@class="ui_close_x" and not(ancestor-or-self::*[contains(@class,"hidden")])]'
-          if @browser.element(:xpath,closeModal).exists?
+          if (@browser.element(:xpath,closeModal).exists?) &&  !(url.include? 'file:///')
             if @browser.element(:xpath,closeModal).visible?
               @browser.element(:xpath,closeModal).click
             end
@@ -1457,7 +1445,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       #archivandoTraza; 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+      if (@browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?) &&  !(url.include? 'file:///')
         sleep 30
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         @browser.element(:xpath,'//body').click
@@ -1540,7 +1528,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-      if @browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?
+      if (@browser.element(:xpath,'//div[@class="xCloseGreen"]').exists?) &&  !(url.include? 'file:///')
         sleep 30
         @browser.iframe(:id,"overlayRegFrame").element(:xpath,".//div[starts-with(@class,'submitBtn')]").wait_until_present
         @browser.iframe(:id,"overlayRegFrame").text_field(:id,"email").set SecureRandom.hex[0..(8+rand(3))] + "@gmail.com"
@@ -1564,7 +1552,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-     if @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?
+     if (@browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').exists?) &&  !(url.include? 'file:///')
         @browser.element(:xpath,'//div[@class="wrap more"]/a[contains(@class,"set_reviewExpand")]').click
         begin
           @browser.element(:xpath,'//div[@class="note"]').wait_until_present
@@ -1577,7 +1565,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 		estoprural = false
 		begin
-		  while @browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?
+		  while (@browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').exists?) &&  !(url.include? 'file:///')
 			estoprural = true
 			@browser.element(:xpath,'//p[not(@style="display: none;")]/*[@id="twentymore"]').click
 			sleep 2
@@ -1597,7 +1585,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
 		begin
-		  while @browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?
+		  while (@browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').exists?) &&  !(url.include? 'file:///')
 			@browser.element(:xpath,'//*[@id="moreExperiencesContainer" and not(@style="display: none;")]').click
 			sleep 2
 		  end
@@ -1608,7 +1596,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
       begin
-        while @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?
+        while (@browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').exists?) &&  !(url.include? 'file:///')
           @browser.element(:xpath,'//*[@id="edsModal"]//*[@id="modalCloseButton"]').click
           sleep 2
         end
@@ -1942,7 +1930,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             puts "  Surfing Lang #{lang}"; $stdout.flush
             langSuccess = 0
             langpath = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and @value='#{lang}']"
-            if @browser.element(:xpath,langpath).exists?
+            if (@browser.element(:xpath,langpath).exists?)  &&  !(url.include? 'file:///')
               puts "  Click Level 1 Lang #{lang}"; $stdout.flush
              langpathnotchecked = "//*[@id='REVIEWS']/div[contains(@id,'filter')]//input[not(ancestor::*[contains(@class,'hidden')])]/.[contains(@name,'filterLang') and not(@checked) and @value='#{lang}']"
              if @browser.element(:xpath,langpathnotchecked).exists?
