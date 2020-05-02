@@ -299,15 +299,16 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         while ridPillado
           rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
    
-          idPillado = false
+          ridPillado = false
           begin
              con.query("INSERT INTO tblTAReviewSelectionDone(reviewIDDone) VALUES(#{rid});")
           rescue
-            idPillado = true
+            ridPillado = true
             pillamientos += 1
             puts 'Fallo insert en tblTAReviewSelectionDone'
+            sleep 0.2
           end
-          raise 'FALLO insert tblTAReviewSelectionDone' if pillamientos>100
+          raise 'FALLO insert tblTAReviewSelectionDone' if pillamientos>100          
         end
         
         con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
