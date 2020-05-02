@@ -293,7 +293,23 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
       if descripcion.include? '.PickIndivFromSelection'
-        rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
+
+        ridPillado = true
+        pillamientos = 0
+        while ridPillado
+          rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
+   
+          idPillado = false
+          begin
+             con.query("INSERT INTO tblTAReviewSelectionDone(reviewIDDone) VALUES(#{rid});")
+          rescue
+            idPillado = true
+            pillamientos += 1
+            puts 'Fallo insert en tblTAReviewSelectionDone'
+          end
+          raise 'FALLO insert tblTAReviewSelectionDone' if pillamientos>100
+        end
+        
         con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
         url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
         
@@ -334,9 +350,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         puts 'URL Final: ' + @browser.url
 
         if descripcion.include? '.PickIndivFromSelection'
-          rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
-          con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
-          url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
+#          rid = con.query("select max(reviewID) from tblTAReviewSelection where leido = 0;").fetch_row.first
+#          con.query("UPDATE tblTAReviewSelection SET leido = 1 where reviewID=#{rid};")
+#          url = con.query("select url from tblTAReviewSelection where reviewID=#{rid};").fetch_row.first
 
           nodes = @browser.divs(:xpath, "//div[starts-with(@id,'review_')]")
           puts("Node count: #{nodes.size}")
