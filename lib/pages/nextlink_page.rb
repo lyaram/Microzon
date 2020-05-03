@@ -4381,7 +4381,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                         "`reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`, `responseHeader`, `responseDate1`, `responseDate2`, `responseText`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{reviewID}', '#{userID}', '#{userName}', '#{userLoc}', '#{userReviewCount}', '#{userLikesCount}', '#{reviewScore}', '#{reviewDate}', '#{reviewDate2}', '#{quoteText}', "  +
-                        "'#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}, '#{responseHeader}, '#{responseDate1}, '#{responseDate2}, '#{responseText}'"  +
+                        "'#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}', '#{responseHeader}', '#{responseDate1}', '#{responseDate2}', '#{responseText}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
