@@ -4381,6 +4381,83 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 
+        elsif descripcion.include? 'BookingIndivs.'
+
+          posNode = 0
+#INTRODUCIR PATH COLECCIÓN ITEMS
+          nodes = @browser.divs(:xpath, "//ul[@class='review_list']/li")
+        
+          puts("Node count: #{nodes.size}")
+          nodes.each do |node|
+            posNode += 1
+                     
+            captura = ""
+            numPag = 0
+            urlCaptura = ""
+            fechaHora = ""
+            numEntrada = 0
+
+            reviewID = ""
+            userName = ""
+            nacionality = ""
+            score = ""
+            reviewDate = ""
+            quote = ""
+            quotelang = ""
+            reviewgreat = ""
+            reviewgreatlang = ""
+            reviewpoor = ""
+            reviewpoorlang = ""
+            reply = ""
+            roominfo = ""
+            stayDate = ""
+            dataroomid = ""
+
+
+
+            ignore_exception { captura = "#{descripcion}" }
+            ignore_exception { urlOrig = "#{urlOrig.gsub("'", "%27")}" }
+            ignore_exception { idLaunch = "#{idLaunch}" }
+            ignore_exception { idCaptura = "#{idCaptura}" }
+            ignore_exception { numPag = "#{page}" }
+            ignore_exception { urlCaptura = @browser.url.gsub("'", "%27") }
+            ignore_exception { fechaHora = "#{strDT}" }
+            ignore_exception { numEntrada = "#{posNode}" }
+
+
+            ignore_exception { reviewID= con.quote(node.element(:xpath,".").attribute_value('data-review-url')) }
+            ignore_exception { userName = con.quote(node.element(:xpath,".//*[@class='bui-avatar-block__title']").text) }
+            ignore_exception { nacionality = con.quote(node.element(:xpath,".//*[@class='bui-avatar-block__subtitle']").text) }
+            ignore_exception { score = con.quote(node.element(:xpath,".//*[@class='bui-review-score__badge']").text) }
+            ignore_exception { reviewDate = con.quote(node.element(:xpath,".//*[@class='c-review-block__row']/span[@class='c-review-block__date']").text) }
+            ignore_exception { quote = con.quote(node.element(:xpath,".//h3").text) }
+            ignore_exception { quotelang = con.quote(node.element(:xpath,".//h3").attribute_value('lang')) }
+            ignore_exception { reviewgreat = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[@class='c-review__body']").text) }
+            ignore_exception { reviewgreatlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[@class='c-review__body']").attribute_value('lang')) }
+            ignore_exception { reviewpoor = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[@class='c-review__body']").text) }
+            ignore_exception { reviewpoorlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[@class='c-review__body']").attribute_value('lang')) }
+            ignore_exception { reply = con.quote(node.element(:xpath,".//*[@class='c-review-block__response__inner']/span[last()]").attribute_value('textContent')) }
+            ignore_exception { roominfo = con.quote(node.element(:xpath,".//*[@class='room_info_heading']]").attribute_value('textContent')) }
+            ignore_exception { stayDate = con.quote(node.element(:xpath,".//*[@class='c-review-block__room-info__name']//span[@class='c-review-block__date']").text) }
+            ignore_exception { dataroomid = con.quote(node.element(:xpath,".//div[contains(@class,'c-review-block__room-info-row')]").attribute_value('data-room-id')) }
+
+
+
+    
+            sqlInsert = "INSERT INTO `Navigator`.`tblDataBKIndivs` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                        "`reviewID`, `userName`, `nacionality`, `score`, `reviewDate`, `quote`, `quotelang`, `reviewgreat`, `reviewgreatlang`, `reviewpoor`, `reviewpoorlang`, `reply`, `roominfo`, `stayDate`, `dataroomid`"  +
+                        ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                        "'#{reviewID}', '#{userName}', '#{nacionality}', '#{score}', '#{reviewDate}', '#{quote}', '#{quotelang}', '#{reviewgreat}', '#{reviewgreatlang}', '#{reviewpoor}', '#{reviewpoorlang}', '#{reply}', '#{roominfo}', '#{stayDate}', '#{dataroomid}'"  +
+                        ")"
+            puts(sqlInsert)
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+            con.query(sqlInsert)
+          end          
+
+
+
+
         elsif descripcion.include? 'TAGeo.'
 
           posNode = 0
