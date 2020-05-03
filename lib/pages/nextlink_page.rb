@@ -4332,6 +4332,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             mobileEntry = ""
             roomTip = ""
             tripType = ""
+            responseHeader = ""
+            responseDate1 = ""
+            responseDate2 = ""
+            responseText = ""
 
 
 
@@ -4364,14 +4368,20 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { mobileEntry = con.quote(node.element(:xpath,".//span[@class='viaMobile']").attribute_value('class')) }
             ignore_exception { roomTip = con.quote(node.element(:xpath,".//div[contains(@class,'inlineRoomTip')]").text) }
             ignore_exception { tripType = con.quote(node.element(:xpath,".//div[@class='recommend']").text) }
+            ignore_exception { responseHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='header']").text) }
+            ignore_exception { responseDate1 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
+            ignore_exception { responseDate2 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").attribute_value('title')) }
+            ignore_exception { responseText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='entry']").text) }
 
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataTAIndivs` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-                        "`reviewID`, `userID`, `userName`, `userLoc`, `userReviewCount`, `userLikesCount`, `reviewScore`, `reviewDate`, `reviewDate2`, `quoteText`, `reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`"  +
+                        "`reviewID`, `userID`, `userName`, `userLoc`, `userReviewCount`, `userLikesCount`, `reviewScore`, `reviewDate`, `reviewDate2`, `quoteText`, "  +
+                        "`reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`, `responseHeader`, `responseDate1`, `responseDate2`, `responseText`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{reviewID}', '#{userID}', '#{userName}', '#{userLoc}', '#{userReviewCount}', '#{userLikesCount}', '#{reviewScore}', '#{reviewDate}', '#{reviewDate2}', '#{quoteText}', '#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}'"  +
+                        "'#{reviewID}', '#{userID}', '#{userName}', '#{userLoc}', '#{userReviewCount}', '#{userLikesCount}', '#{reviewScore}', '#{reviewDate}', '#{reviewDate2}', '#{quoteText}', "  +
+                        "'#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}, '#{responseHeader}, '#{responseDate1}, '#{responseDate2}, '#{responseText}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
