@@ -4905,7 +4905,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
               ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/text()[last()]").text) }
             end
             if responseText.length<=0
-              ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/text()[last()]").attribute_value('textContent')) }
+              ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]").html) }
+              ignore_exception { responseText = responseText.match('<\/div>((?!div>).*)$')[1] }
             end
               
       
