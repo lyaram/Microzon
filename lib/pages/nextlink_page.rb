@@ -4904,6 +4904,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             if responseText.length<=0
               ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/text()[last()]").text) }
             end
+            if responseText.length<=0
+              ignore_exception { responseText = con.quote(node.element(:xpath,"./div[3]/text()[last()]").attribute_value('textContent')) }
+            end
               
       
             sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
