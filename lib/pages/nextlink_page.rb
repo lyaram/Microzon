@@ -4442,10 +4442,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { reviewDate = con.quote(node.element(:xpath,".//*[@class='c-review-block__row']/span[@class='c-review-block__date']").text) }
             ignore_exception { quote = con.quote(node.element(:xpath,".//h3").text) }
             ignore_exception { quotelang = con.quote(node.element(:xpath,".//h3").attribute_value('lang')) }
-            ignore_exception { reviewgreat = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[@class='c-review__body']").text) }
-            ignore_exception { reviewgreatlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[@class='c-review__body']").attribute_value('lang')) }
-            ignore_exception { reviewpoor = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[@class='c-review__body']").text) }
-            ignore_exception { reviewpoorlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[@class='c-review__body']").attribute_value('lang')) }
+            ignore_exception { reviewgreat = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").text) }
+            ignore_exception { reviewgreatlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_great')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").attribute_value('lang')) }
+            ignore_exception { reviewpoor = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").text) }
+            ignore_exception { reviewpoorlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").attribute_value('lang')) }
             ignore_exception { reply = con.quote(node.element(:xpath,".//*[@class='c-review-block__response__inner']/span[last()]").attribute_value('textContent')) }
             ignore_exception { roominfo = con.quote(node.element(:xpath,".//*[@class='room_info_heading']]").attribute_value('textContent')) }
             ignore_exception { stayDate = con.quote(node.element(:xpath,".//*[@class='c-review-block__room-info__name']//span[@class='c-review-block__date']").text) }
