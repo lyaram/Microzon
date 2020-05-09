@@ -4353,7 +4353,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { reviewID= con.quote(node.element(:xpath,".").attribute_value('id')) }
             ignore_exception { userID = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]").attribute_value('id')) }
             ignore_exception { userName = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/*[1]").text) }
-#            ignore_exception { userLoc = con.quote(node.element(:xpath,".//*[@class='member_info']//*[contains(@class,'userLoc')]").text) }
+            ignore_exception { userLoc = con.quote(node.element(:xpath,".//*[@class='member_info']//*[contains(@class,'userLoc')]").text) }
 #            ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'pencil-paper')]/following-sibling::span[1][@class='badgetext']").text) }
 #            ignore_exception { userLikesCount = con.quote(node.element(:xpath,".//*[contains(@class,'thumbs-up-fill')]/following-sibling::span[1][@class='badgetext']").text) }
 #            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//span[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
