@@ -4352,26 +4352,26 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
             ignore_exception { reviewID= con.quote(node.element(:xpath,".").attribute_value('id')) }
             ignore_exception { userID = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]").attribute_value('id')) }
-            ignore_exception { userName = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/div[1]").text) }
-            ignore_exception { userLoc = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/div[contains(@class,'userLoc')]").text) }
-            ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'pencil-paper')]/following-sibling::span[1][@class='badgetext']").text) }
-            ignore_exception { userLikesCount = con.quote(node.element(:xpath,".//*[contains(@class,'thumbs-up-fill')]/following-sibling::span[1][@class='badgetext']").text) }
-            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//span[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
-            ignore_exception { reviewDate = con.quote(node.element(:xpath,".//span[@class='ratingDate']").text) }
-            ignore_exception { reviewDate2 = con.quote(node.element(:xpath,".//span[@class='ratingDate']").attribute_value('title')) }
-            ignore_exception { quoteText = con.quote(node.element(:xpath,".//*[@class='quote']").text) }
-            ignore_exception { reviewAbout = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").text) }
-            ignore_exception { reviewAboutLink = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").attribute_value('href')) }
-            ignore_exception { texto = con.quote(node.element(:xpath,".//div[starts-with(@class,'entry')]").text) }
-            ignore_exception { dateVisit = con.quote(node.element(:xpath,".//span[@class='stay_date_label']/..").text) }
-            ignore_exception { likesCount = con.quote(node.element(:xpath,"//*[starts-with(@class,'numHelp')]").text) }
-            ignore_exception { mobileEntry = con.quote(node.element(:xpath,".//span[@class='viaMobile']").attribute_value('class')) }
-            ignore_exception { roomTip = con.quote(node.element(:xpath,".//div[contains(@class,'inlineRoomTip')]").text) }
-            ignore_exception { tripType = con.quote(node.element(:xpath,".//div[@class='recommend']").text) }
-            ignore_exception { responseHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='header']").text) }
-            ignore_exception { responseDate1 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
-            ignore_exception { responseDate2 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").attribute_value('title')) }
-            ignore_exception { responseText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='entry']").text) }
+            ignore_exception { userName = con.quote(node.element(:xpath,".//*[@class='member_info']/div[1]/div[2]/*[1]").text) }
+#            ignore_exception { userLoc = con.quote(node.element(:xpath,".//*[@class='member_info']//*[contains(@class,'userLoc')]").text) }
+#            ignore_exception { userReviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'pencil-paper')]/following-sibling::span[1][@class='badgetext']").text) }
+#            ignore_exception { userLikesCount = con.quote(node.element(:xpath,".//*[contains(@class,'thumbs-up-fill')]/following-sibling::span[1][@class='badgetext']").text) }
+#            ignore_exception { reviewScore = con.quote(node.element(:xpath,".//span[starts-with(@class,'ui_bubble_rating')]").attribute_value('class')) }
+#            ignore_exception { reviewDate = con.quote(node.element(:xpath,".//span[@class='ratingDate']").text) }
+#            ignore_exception { reviewDate2 = con.quote(node.element(:xpath,".//span[@class='ratingDate']").attribute_value('title')) }
+#            ignore_exception { quoteText = con.quote(node.element(:xpath,".//*[@class='quote']").text) }
+#            ignore_exception { reviewAbout = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").text) }
+#            ignore_exception { reviewAboutLink = con.quote(node.element(:xpath,".//div[@class='altHeadInline']/a").attribute_value('href')) }
+#            ignore_exception { texto = con.quote(node.element(:xpath,".//div[starts-with(@class,'entry')]").text) }
+#            ignore_exception { dateVisit = con.quote(node.element(:xpath,".//span[@class='stay_date_label']/..").text) }
+#            ignore_exception { likesCount = con.quote(node.element(:xpath,"//*[starts-with(@class,'numHelp')]").text) }
+#            ignore_exception { mobileEntry = con.quote(node.element(:xpath,".//span[@class='viaMobile']").attribute_value('class')) }
+#            ignore_exception { roomTip = con.quote(node.element(:xpath,".//div[contains(@class,'inlineRoomTip')]").text) }
+#            ignore_exception { tripType = con.quote(node.element(:xpath,".//div[@class='recommend']").text) }
+#            ignore_exception { responseHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='header']").text) }
+#            ignore_exception { responseDate1 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
+#            ignore_exception { responseDate2 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").attribute_value('title')) }
+#            ignore_exception { responseText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='entry']").text) }
 
 
 
