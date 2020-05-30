@@ -4338,7 +4338,22 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             responseDate1 = ""
             responseDate2 = ""
             responseText = ""
-
+            varDimField01 = ""
+            varDimField02 = ""
+            varDimField03 = ""
+            varDimField04 = ""
+            varDimField05 = ""
+            varDimField06 = ""
+            varDimField07 = ""
+            varDimField08 = ""
+            varDimField01Val = ""
+            varDimField02Val = ""
+            varDimField03Val = ""
+            varDimField04Val = ""
+            varDimField05Val = ""
+            varDimField06Val = ""
+            varDimField07Val = ""
+            varDimField08Val = ""
 
 
             ignore_exception { captura = "#{descripcion}" }
@@ -4370,20 +4385,40 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #            ignore_exception { mobileEntry = con.quote(node.element(:xpath,".//span[@class='viaMobile']").attribute_value('class')) }
 #            ignore_exception { roomTip = con.quote(node.element(:xpath,".//div[contains(@class,'inlineRoomTip')]").text) }
 #            ignore_exception { tripType = con.quote(node.element(:xpath,".//div[@class='recommend']").text) }
-#            ignore_exception { responseHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='header']").text) }
-#            ignore_exception { responseDate1 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
-#            ignore_exception { responseDate2 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").attribute_value('title')) }
-#            ignore_exception { responseText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='entry']").text) }
+            ignore_exception { responseHeader = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='header']").text) }
+            ignore_exception { responseDate1 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").text) }
+            ignore_exception { responseDate2 = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='responseDate']").attribute_value('title')) }
+            ignore_exception { responseText = con.quote(node.element(:xpath,".//div[@class='mgrRspnInline']//*[@class='entry']").text) }
+ 
+            ignore_exception { varDimField01 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[1]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField02 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[2]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField03 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[3]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField04 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[4]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField05 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[5]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField06 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[6]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField07 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[7]/div[@class='recommend-description']").text) }
+            ignore_exception { varDimField08 = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[8]/div[@class='recommend-description']").text) }
+
+            ignore_exception { varDimField01Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[1]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField02Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[2]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField03Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[3]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField04Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[4]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField05Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[5]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField06Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[6]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField07Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[7]/div[contains(@class,'rating')]").attribute_value('class')) }
+            ignore_exception { varDimField08Val = con.quote(node.element(:xpath,"(.//li[@class='recommend-answer'])[8]/div[contains(@class,'rating')]").attribute_value('class')) }
 
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataTAIndivs` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`reviewID`, `userID`, `userName`, `userLoc`, `userReviewCount`, `userLikesCount`, `reviewScore`, `reviewDate`, `reviewDate2`, `quoteText`, "  +
-                        "`reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`, `responseHeader`, `responseDate1`, `responseDate2`, `responseText`"  +
+                        "`reviewAbout`, `reviewAboutLink`, `texto`, `dateVisit`, `likesCount`, `mobileEntry`, `roomTip`, `tripType`, `responseHeader`, `responseDate1`, `responseDate2`, `responseText`, "  +
+                        "`varDimField01`, `varDimField02`, `varDimField03`, `varDimField04`, `varDimField05`, `varDimField06`, `varDimField07`, `varDimField08`, `varDimField01Val`, `varDimField02Val`, `varDimField03Val`, `varDimField04Val`, `varDimField05Val`, `varDimField06Val`, `varDimField07Val`, `varDimField08Val`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{reviewID}', '#{userID}', '#{userName}', '#{userLoc}', '#{userReviewCount}', '#{userLikesCount}', '#{reviewScore}', '#{reviewDate}', '#{reviewDate2}', '#{quoteText}', "  +
-                        "'#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}', '#{responseHeader}', '#{responseDate1}', '#{responseDate2}', '#{responseText}'"  +
+                        "'#{reviewAbout}', '#{reviewAboutLink}', '#{texto}', '#{dateVisit}', '#{likesCount}', '#{mobileEntry}', '#{roomTip}', '#{tripType}', '#{responseHeader}', '#{responseDate1}', '#{responseDate2}', '#{responseText}', "  +
+                        "'#{varDimField01}', '#{varDimField02}', '#{varDimField03}', '#{varDimField04}', '#{varDimField05}', '#{varDimField06}', '#{varDimField07}', '#{varDimField08}', '#{varDimField01Val}', '#{varDimField02Val}', '#{varDimField03Val}', '#{varDimField04Val}', '#{varDimField05Val}', '#{varDimField06Val}', '#{varDimField07Val}', '#{varDimField08Val}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
