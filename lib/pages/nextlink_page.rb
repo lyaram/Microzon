@@ -5350,6 +5350,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       
       photoCount = ""
       
+      fid = ""
+      
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
             ignore_exception { idLaunch = "#{idLaunch}" }
@@ -5401,6 +5403,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { jsoninfo = con.quote(node.element(:xpath,"//*[contains(text(),'\"description\" :')]").attribute_value('textContent')) }
       
       ignore_exception { photoCount = con.quote(node.element(:xpath,"(//span[contains(@class,'PhotoCount__link') or contains(@class,'see_all_count')])[1]").attribute_value('textContent')) }
+
+      ignore_exception { fid = con.quote(node.element(:xpath,"(//*[@data-fid])[1]").attribute_value('data-fid')) }
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -5408,11 +5412,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
                         "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`, `isYourBusiness`, `claimed`, `propertyDescription`, `listScore10`, `listScore08`, `listScore06`, `listScore04`, `listScore02`, " +       
-                        "`hostname`, `mname`, `jsoninfo`, `photoCount`" +       
+                        "`hostname`, `mname`, `jsoninfo`, `photoCount`, `fid`" +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
                         "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}', '#{propertyDescription}', '#{listScore10}' , '#{listScore08}' , '#{listScore06}' , '#{listScore04}' , '#{listScore02}' , " +
-                        "'#{hostname}' , '#{mname}' , '#{jsoninfo}', '#{photoCount}' " +
+                        "'#{hostname}' , '#{mname}' , '#{jsoninfo}', '#{photoCount}', '#{fid}' " +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
