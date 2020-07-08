@@ -5351,6 +5351,77 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       photoCount = ""
       
       fid = ""
+
+      col08 = ""
+      col09 = ""
+      col10 = ""
+      col11 = ""
+      col12 = ""
+      col13 = ""
+      col14 = ""
+      col15 = ""
+      col16 = ""
+      col17 = ""
+      col18 = ""
+      col19 = ""
+      col20 = ""
+      col21 = ""
+      col22 = ""
+      col23 = ""
+      col24 = ""
+      col25 = ""
+      col26 = ""
+      col27 = ""
+      col28 = ""
+      col29 = ""
+      col30 = ""
+      col31 = ""
+      col32 = ""
+      col33 = ""
+      col34 = ""
+      col35 = ""
+      col36 = ""
+      col37 = ""
+      col38 = ""
+      col39 = ""
+      col40 = ""
+      col41 = ""
+      col42 = ""
+      col43 = ""
+      col44 = ""
+      col45 = ""
+      col46 = ""
+      col47 = ""
+      col48 = ""
+      col49 = ""
+      col50 = ""
+      col51 = ""
+      col52 = ""
+      col53 = ""
+      col54 = ""
+      col55 = ""
+      col56 = ""
+      col57 = ""
+      col58 = ""
+      col59 = ""
+      col60 = ""
+      col61 = ""
+      col62 = ""
+      col63 = ""
+      col64 = ""
+      col65 = ""
+      col66 = ""
+      col67 = ""
+      col68 = ""
+      col69 = ""
+      col70 = ""
+      col71 = ""
+      col72 = ""
+      col73 = ""
+      col74 = ""
+      col75 = ""
+      col76 = ""
+      col77 = ""
       
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
@@ -5405,6 +5476,77 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { photoCount = con.quote(node.element(:xpath,"(//span[contains(@class,'PhotoCount__link') or contains(@class,'see_all_count')])[1]").attribute_value('textContent')) }
 
       ignore_exception { fid = con.quote(node.element(:xpath,"(//*[@data-fid])[1]").attribute_value('data-fid')) }
+
+      ignore_exception { col08 = con.quote(node.element(:xpath,"//div[colontains(@collass,' h4 ')]").text) }
+      ignore_exception { col09 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='5']/span[2]").text) }
+      ignore_exception { col10 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='4']/span[2]").text) }
+      ignore_exception { col11 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='3']/span[2]").text) }
+      ignore_exception { col12 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='2']/span[2]").text) }
+      ignore_exception { col13 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='1']/span[2]").text) }
+      ignore_exception { col14 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[1]/input").attribute_value('colhecolked')) }
+      ignore_exception { col15 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[2]/input").attribute_value('colhecolked')) }
+      ignore_exception { col16 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[3]/input").attribute_value('colhecolked')) }
+      ignore_exception { col17 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[4]/input").attribute_value('colhecolked')) }
+      ignore_exception { col18 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[5]/input").attribute_value('colhecolked')) }
+      ignore_exception { col19 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSegment')])[1]").attribute_value('colhecolked')) }
+      ignore_exception { col20 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSegment')])[2]").attribute_value('colhecolked')) }
+      ignore_exception { col21 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSegment')])[3]").attribute_value('colhecolked')) }
+      ignore_exception { col22 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSegment')])[4]").attribute_value('colhecolked')) }
+      ignore_exception { col23 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSegment')])[5]").attribute_value('colhecolked')) }
+      ignore_exception { col24 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeasons')])[1]").attribute_value('colhecolked')) }
+      ignore_exception { col25 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeason')])[2]").attribute_value('colhecolked')) }
+      ignore_exception { col26 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeason')])[3]").attribute_value('colhecolked')) }
+      ignore_exception { col27 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeason')])[4]").attribute_value('colhecolked')) }
+      ignore_exception { col28 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[1]/input").attribute_value('value')) }
+      ignore_exception { col29 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[1]/span[@collass='colount']").text) }
+      ignore_exception { col30 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[2]/input").attribute_value('value')) }
+      ignore_exception { col31 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[2]/span[@collass='colount']").text) }
+      ignore_exception { col32 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[3]/input").attribute_value('value')) }
+      ignore_exception { col33 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[3]/span[@collass='colount']").text) }
+      ignore_exception { col34 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[4]/input").attribute_value('value')) }
+      ignore_exception { col35 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[4]/span[@collass='colount']").text) }
+      ignore_exception { col36 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[5]/input").attribute_value('value')) }
+      ignore_exception { col37 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[5]/span[@collass='colount']").text) }
+      ignore_exception { col38 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[6]/input").attribute_value('value')) }
+      ignore_exception { col39 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[6]/span[@collass='colount']").text) }
+      ignore_exception { col40 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[7]/input").attribute_value('value')) }
+      ignore_exception { col41 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[7]/span[@collass='colount']").text) }
+      ignore_exception { col42 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[8]/input").attribute_value('value')) }
+      ignore_exception { col43 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[8]/span[@collass='colount']").text) }
+      ignore_exception { col44 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[9]/input").attribute_value('value')) }
+      ignore_exception { col45 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[9]/span[@collass='colount']").text) }
+      ignore_exception { col46 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[10]/input").attribute_value('value')) }
+      ignore_exception { col47 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[10]/span[@collass='colount']").text) }
+      ignore_exception { col48 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[11]/input").attribute_value('value')) }
+      ignore_exception { col49 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[11]/span[@collass='colount']").text) }
+      ignore_exception { col50 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[12]/input").attribute_value('value')) }
+      ignore_exception { col51 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[12]/span[@collass='colount']").text) }
+      ignore_exception { col52 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[13]/input").attribute_value('value')) }
+      ignore_exception { col53 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[13]/span[@collass='colount']").text) }
+      ignore_exception { col54 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[14]/input").attribute_value('value')) }
+      ignore_exception { col55 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[14]/span[@collass='colount']").text) }
+      ignore_exception { col56 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[15]/input").attribute_value('value')) }
+      ignore_exception { col57 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[15]/span[@collass='colount']").text) }
+      ignore_exception { col58 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[16]/input").attribute_value('value')) }
+      ignore_exception { col59 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[16]/span[@collass='colount']").text) }
+      ignore_exception { col60 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[17]/input").attribute_value('value')) }
+      ignore_exception { col61 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[17]/span[@collass='colount']").text) }
+      ignore_exception { col62 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[18]/input").attribute_value('value')) }
+      ignore_exception { col63 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[18]/span[@collass='colount']").text) }
+      ignore_exception { col64 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[19]/input").attribute_value('value')) }
+      ignore_exception { col65 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[19]/span[@collass='colount']").text) }
+      ignore_exception { col66 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[20]/input").attribute_value('value')) }
+      ignore_exception { col67 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[20]/span[@collass='colount']").text) }
+      ignore_exception { col68 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[21]/input").attribute_value('value')) }
+      ignore_exception { col69 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[21]/span[@collass='colount']").text) }
+      ignore_exception { col70 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[22]/input").attribute_value('value')) }
+      ignore_exception { col71 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[22]/span[@collass='colount']").text) }
+      ignore_exception { col72 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[23]/input").attribute_value('value')) }
+      ignore_exception { col73 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[23]/span[@collass='colount']").text) }
+      ignore_exception { col74 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[24]/input").attribute_value('value')) }
+      ignore_exception { col75 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[24]/span[@collass='colount']").text) }
+      ignore_exception { col76 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[25]/input").attribute_value('value')) }
+      ignore_exception { col77 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[25]/span[@collass='colount']").text) }
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
@@ -5412,11 +5554,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             sqlInsert = "INSERT INTO `Navigator`.`tblDataRepesca` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, "  +
                         "`status`, `name`, `tipo`, `geolat`, `geolng`, `formattedaddress`, `rating`, `user_ratings_total`, `placeid`, `gid`, `reference`, `cert1`, `cert2`, `cert3`, `securityReviews`, `isYourBusiness`, `claimed`, `propertyDescription`, `listScore10`, `listScore08`, `listScore06`, `listScore04`, `listScore02`, " +       
-                        "`hostname`, `mname`, `jsoninfo`, `photoCount`, `fid`" +       
+                        "`hostname`, `mname`, `jsoninfo`, `photoCount`, `fid`, " +       
+                        "`col08`, `col09`, `col10`, `col11`, `col12`, `col13`, `col14`, `col15`, `col16`, `col17`, `col18`, `col19`, `col20`, `col21`, `col22`, `col23`, `col24`, `col25`, `col26`, `col27`, `col28`, `col29`, `col30`, `col31`, `col32`, `col33`, `col34`, `col35`, `col36`, `col37`, `col38`, `col39`, `col40`, `col41`, `col42`, `col43`, `col44`, `col45`, `col46`, `col47`, `col48`, `col49`, `col50`, `col51`, `col52`, `col53`, `col54`, `col55`, `col56`, `col57`, `col58`, `col59`, `col60`, `col61`, `col62`, `col63`, `col64`, `col65`, `col66`, `col67`, `col68`, `col69`, `col70`, `col71`, `col72`, `col73`, `col74`, `col75`, `col76`, `col77` " +       
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                         "'#{placeName}', '#{value5_Count}', '#{value4_Count}', '#{value3_Count}', '#{value2_Count}', '#{value1_Count}', " +
                         "'#{status}', '#{name}', '#{tipo}', '#{geolat}', '#{geolng}', '#{formattedaddress}', '#{rating}', '#{user_ratings_total}', '#{placeid}', '#{gid}', '#{reference}', '#{cert1}', '#{cert2}', '#{cert3}', '#{securityReviews}', '#{isYourBusiness}', '#{claimed}', '#{propertyDescription}', '#{listScore10}' , '#{listScore08}' , '#{listScore06}' , '#{listScore04}' , '#{listScore02}' , " +
-                        "'#{hostname}' , '#{mname}' , '#{jsoninfo}', '#{photoCount}', '#{fid}' " +
+                        "'#{hostname}' , '#{mname}' , '#{jsoninfo}', '#{photoCount}', '#{fid}', " +
+                        "'#{col08}' , '#{col09}' , '#{col10}' , '#{col11}' , '#{col12}' , '#{col13}' , '#{col14}' , '#{col15}' , '#{col16}' , '#{col17}' , '#{col18}' , '#{col19}' , '#{col20}' , '#{col21}' , '#{col22}' , '#{col23}' , '#{col24}' , '#{col25}' , '#{col26}' , '#{col27}' , '#{col28}' , '#{col29}' , '#{col30}' , '#{col31}' , '#{col32}' , '#{col33}' , '#{col34}' , '#{col35}' , '#{col36}' , '#{col37}' , '#{col38}' , '#{col39}' , '#{col40}' , '#{col41}' , '#{col42}' , '#{col43}' , '#{col44}' , '#{col45}' , '#{col46}' , '#{col47}' , '#{col48}' , '#{col49}' , '#{col50}' , '#{col51}' , '#{col52}' , '#{col53}' , '#{col54}' , '#{col55}' , '#{col56}' , '#{col57}' , '#{col58}' , '#{col59}' , '#{col60}' , '#{col61}' , '#{col62}' , '#{col63}' , '#{col64}' , '#{col65}' , '#{col66}' , '#{col67}' , '#{col68}' , '#{col69}' , '#{col70}' , '#{col71}' , '#{col72}' , '#{col73}' , '#{col74}' , '#{col75}' , '#{col76}' , '#{col77}' " +
                         ")"
             puts(sqlInsert)
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
