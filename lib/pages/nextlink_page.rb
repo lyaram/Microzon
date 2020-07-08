@@ -5477,12 +5477,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
       ignore_exception { fid = con.quote(node.element(:xpath,"(//*[@data-fid])[1]").attribute_value('data-fid')) }
 
-      ignore_exception { col08 = con.quote(node.element(:xpath,"//div[colontains(@collass,' h4 ')]").text) }
-      ignore_exception { col09 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='5']/span[2]").text) }
-      ignore_exception { col10 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='4']/span[2]").text) }
-      ignore_exception { col11 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='3']/span[2]").text) }
-      ignore_exception { col12 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='2']/span[2]").text) }
-      ignore_exception { col13 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='1']/span[2]").text) }
+      ignore_exception { col08 = con.quote(node.element(:xpath,"//div[colontains(@collass,' h4 ')]").attribute_value('textContent')) }
+      ignore_exception { col09 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='5']/span[2]").attribute_value('textContent')) }
+      ignore_exception { col10 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='4']/span[2]").attribute_value('textContent')) }
+      ignore_exception { col11 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='3']/span[2]").attribute_value('textContent')) }
+      ignore_exception { col12 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='2']/span[2]").attribute_value('textContent')) }
+      ignore_exception { col13 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[@data-value='1']/span[2]").attribute_value('textContent')) }
       ignore_exception { col14 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[1]/input").attribute_value('colhecolked')) }
       ignore_exception { col15 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[2]/input").attribute_value('colhecolked')) }
       ignore_exception { col16 = con.quote(node.element(:xpath,"(//div[@data-param='trating'])[1]/*[3]/input").attribute_value('colhecolked')) }
@@ -5498,55 +5498,55 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { col26 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeason')])[3]").attribute_value('colhecolked')) }
       ignore_exception { col27 = con.quote(node.element(:xpath,"(//input[colontains(@id,'filters_detail_colhecolkbox_filterSeason')])[4]").attribute_value('colhecolked')) }
       ignore_exception { col28 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[1]/input").attribute_value('value')) }
-      ignore_exception { col29 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[1]/span[@collass='colount']").text) }
+      ignore_exception { col29 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[1]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col30 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[2]/input").attribute_value('value')) }
-      ignore_exception { col31 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[2]/span[@collass='colount']").text) }
+      ignore_exception { col31 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[2]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col32 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[3]/input").attribute_value('value')) }
-      ignore_exception { col33 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[3]/span[@collass='colount']").text) }
+      ignore_exception { col33 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[3]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col34 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[4]/input").attribute_value('value')) }
-      ignore_exception { col35 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[4]/span[@collass='colount']").text) }
+      ignore_exception { col35 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[4]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col36 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[5]/input").attribute_value('value')) }
-      ignore_exception { col37 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[5]/span[@collass='colount']").text) }
+      ignore_exception { col37 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[5]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col38 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[6]/input").attribute_value('value')) }
-      ignore_exception { col39 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[6]/span[@collass='colount']").text) }
+      ignore_exception { col39 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[6]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col40 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[7]/input").attribute_value('value')) }
-      ignore_exception { col41 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[7]/span[@collass='colount']").text) }
+      ignore_exception { col41 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[7]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col42 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[8]/input").attribute_value('value')) }
-      ignore_exception { col43 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[8]/span[@collass='colount']").text) }
+      ignore_exception { col43 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[8]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col44 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[9]/input").attribute_value('value')) }
-      ignore_exception { col45 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[9]/span[@collass='colount']").text) }
+      ignore_exception { col45 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[9]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col46 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[10]/input").attribute_value('value')) }
-      ignore_exception { col47 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[10]/span[@collass='colount']").text) }
+      ignore_exception { col47 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[10]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col48 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[11]/input").attribute_value('value')) }
-      ignore_exception { col49 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[11]/span[@collass='colount']").text) }
+      ignore_exception { col49 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[11]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col50 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[12]/input").attribute_value('value')) }
-      ignore_exception { col51 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[12]/span[@collass='colount']").text) }
+      ignore_exception { col51 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[12]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col52 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[13]/input").attribute_value('value')) }
-      ignore_exception { col53 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[13]/span[@collass='colount']").text) }
+      ignore_exception { col53 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[13]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col54 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[14]/input").attribute_value('value')) }
-      ignore_exception { col55 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[14]/span[@collass='colount']").text) }
+      ignore_exception { col55 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[14]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col56 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[15]/input").attribute_value('value')) }
-      ignore_exception { col57 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[15]/span[@collass='colount']").text) }
+      ignore_exception { col57 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[15]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col58 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[16]/input").attribute_value('value')) }
-      ignore_exception { col59 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[16]/span[@collass='colount']").text) }
+      ignore_exception { col59 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[16]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col60 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[17]/input").attribute_value('value')) }
-      ignore_exception { col61 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[17]/span[@collass='colount']").text) }
+      ignore_exception { col61 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[17]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col62 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[18]/input").attribute_value('value')) }
-      ignore_exception { col63 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[18]/span[@collass='colount']").text) }
+      ignore_exception { col63 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[18]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col64 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[19]/input").attribute_value('value')) }
-      ignore_exception { col65 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[19]/span[@collass='colount']").text) }
+      ignore_exception { col65 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[19]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col66 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[20]/input").attribute_value('value')) }
-      ignore_exception { col67 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[20]/span[@collass='colount']").text) }
+      ignore_exception { col67 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[20]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col68 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[21]/input").attribute_value('value')) }
-      ignore_exception { col69 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[21]/span[@collass='colount']").text) }
+      ignore_exception { col69 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[21]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col70 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[22]/input").attribute_value('value')) }
-      ignore_exception { col71 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[22]/span[@collass='colount']").text) }
+      ignore_exception { col71 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[22]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col72 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[23]/input").attribute_value('value')) }
-      ignore_exception { col73 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[23]/span[@collass='colount']").text) }
+      ignore_exception { col73 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[23]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col74 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[24]/input").attribute_value('value')) }
-      ignore_exception { col75 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[24]/span[@collass='colount']").text) }
+      ignore_exception { col75 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[24]/span[@collass='colount']").attribute_value('textContent')) }
       ignore_exception { col76 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[25]/input").attribute_value('value')) }
-      ignore_exception { col77 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[25]/span[@collass='colount']").text) }
+      ignore_exception { col77 = con.quote(node.element(:xpath,"(//label[colontains(@for,'filterLang')])[25]/span[@collass='colount']").attribute_value('textContent')) }
       
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
