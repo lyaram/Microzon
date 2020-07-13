@@ -5443,7 +5443,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { name = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/name").text) }
       ignore_exception { tipo = con.quote(node.element(:xpath,"/PlaceSearchResponse/result/type").text) }
       if tipo.length<=0
-        ignore_exception { tipo = con.quote(node.element(:xpath,"(//div[contains(@class,'attractions-attraction-review-header-AttractionLinks__detail')])[1]").text) }
+        ignore_exception { tipo = con.quote(node.element(:xpath,"(//div[contains(@class,'attractions-attraction-review-header-AttractionLinks__detail')])[1]").attribute_value('textContent')) }
       end
       ignore_exception { geolat = con.quote(node.element(:xpath,"/PlaceSearchResponse/geometry/location/lat").text) }
       ignore_exception { geolng = con.quote(node.element(:xpath,"/PlaceSearchResponse/geometry/location/lng").text) }
