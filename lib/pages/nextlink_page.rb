@@ -258,24 +258,40 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        nombreUsuario = ojson[2][page - 1][0][1]
+        nombreUsuario = ''
+        fechaPantalla = ''
+        texto = ''
+        nota = ''
+        userid = ''
+        lang = ''
+        langtxt = ''
+        timestamp1 = ''
+        timestamp2 = ''
+        respuestaTxt = ''
+        respuestaFechaPantalla = ''
+        respuestaTimestamp1 = ''
+        respuestaTimestamp2 = ''
+        respuestaLang = ''
+        
+        
+        ignore_exception { nombreUsuario = ojson[2][page - 1][0][1] }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        fechaPantalla = ojson[2][page - 1][1]
-        texto = ojson[2][page - 1][3]
-        nota = ojson[2][page - 1][4]
-        userid = ojson[2][page - 1][6]
+        ignore_exception { fechaPantalla = ojson[2][page - 1][1] }
+        ignore_exception { texto = ojson[2][page - 1][3] }
+        ignore_exception { nota = ojson[2][page - 1][4] }
+        ignore_exception { userid = ojson[2][page - 1][6] }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        lang = ojson[2][page - 1][32]
-        langtxt = ojson[2][page - 1][51]
-        timestamp1 = ojson[2][page - 1][27]
-        timestamp2 = ojson[2][page - 1][57]
+        ignore_exception { lang = ojson[2][page - 1][32] }
+        ignore_exception { langtxt = ojson[2][page - 1][51] }
+        ignore_exception { timestamp1 = ojson[2][page - 1][27] }
+        ignore_exception { timestamp2 = ojson[2][page - 1][57] }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        respuestaTxt = ojson[2][page - 1][9][1]
-        respuestaFechaPantalla = ojson[2][page - 1][9][0]
-        respuestaTimestamp1 = ojson[2][page - 1][9][3]
+        ignore_exception { respuestaTxt = ojson[2][page - 1][9][1] }
+        ignore_exception { respuestaFechaPantalla = ojson[2][page - 1][9][0] }
+        ignore_exception { respuestaTimestamp1 = ojson[2][page - 1][9][3] }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        respuestaTimestamp2 = ojson[2][page - 1][9][4]
-        respuestaLang = ojson[2][page - 1][9][7]
+        ignore_exception { respuestaTimestamp2 = ojson[2][page - 1][9][4] }
+        ignore_exception { respuestaLang = ojson[2][page - 1][9][7] }
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
         puts ""
