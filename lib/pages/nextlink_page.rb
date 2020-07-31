@@ -211,28 +211,105 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid1 = fid1.to_i(16)
     nfid2 = fid2.to_i(16)
 
-    page = 10
+
+    for page in 1..1 do
+        tjson = ''
+        ojson = 0
+        
+        offset = 10 * (page - 1)
+        url = "https://www.goo"\
+              "gle.com/ma"\
+              "ps/prev"\
+              "iew/rev"\
+              "iew/list"\
+              "enti"\
+              "tiesre"\
+              "views"\
+              "?a"\
+              "uthus"\
+              "er=0&h"\
+              "l=es&g"\
+              "l=es&p"\
+              "b=!1"\
+              "m2!1"\
+              "y#{nfid1}!2"\
+              "y#{nfid2}!2"\
+              "m2!1"\
+              "i#{offset}!2"\
+              "i10!3"\
+              "e2!4"\
+              "m5!3"\
+              "b1!4"\
+              "b1!5"\
+              "b1!6"\
+              "b1!7"\
+              "b1!5"\
+              "m2!1"\
+              "s#{gsesion}!7"\
+              "e81"
+
+        puts "url: #{url}"
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+       
+        html = open(url).read
+
+        tjson = html[2..-1]
+        puts ""
+        puts "Posicion 2"
+        puts "tjson: #{tjson}"
+        puts ""
+        puts ""
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        tjson = html[3..-1]
+        puts ""
+        puts "Posicion 3"
+        puts "tjson: #{tjson}"
+        puts ""
+        puts ""
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        tjson = html[4..-1]
+        puts ""
+        puts "Posicion 4"
+        puts "tjson: #{tjson}"
+        puts ""
+        puts ""
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        tjson = html[5..-1]
+        puts ""
+        puts "Posicion 5"
+        puts "tjson: #{tjson}"
+        puts ""
+        puts ""
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
+        #ojson = JSON.parse(tjson)
+    end
     
-    url = "https://www.google.com/maps/preview/review/listentitiesreviews?authuser=0&hl=es&gl=es&pb=!1m2!1y#{nfid1}!2y#{nfid2}!2m2!1i#{page}!2i10!3e2!4m5!3b1!4b1!5b1!6b1!7b1!5m2!1s#{gsesion}!7e81"
+#    page = 10
+    
+#    url = "https://www.google.com/maps/preview/review/listentitiesreviews?authuser=0&hl=es&gl=es&pb=!1m2!1y#{nfid1}!2y#{nfid2}!2m2!1i#{offset}!2i10!3e2!4m5!3b1!4b1!5b1!6b1!7b1!5m2!1s#{gsesion}!7e81"
 
    
-    puts ""
-    puts ""
-    puts "fid: #{fid}"
-    puts "fid1: #{fid1}"
-    puts "fid2: #{fid2}"
-    puts "nfid1: #{nfid1}"
-    puts "nfid2: #{nfid2}"
-    puts ""
-    puts "page: #{page}"
-    puts "url: #{url}"
-    puts ""
-    puts ""
+#    puts ""
+#    puts ""
+#    puts "fid: #{fid}"
+#    puts "fid1: #{fid1}"
+#    puts "fid2: #{fid2}"
+#    puts "nfid1: #{nfid1}"
+#    puts "nfid2: #{nfid2}"
+#    puts ""
+#    puts "page: #{page}"
+#    puts "url: #{url}"
+#    puts ""
+#    puts ""
     
 
     #html = open(url).read
     
- ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+# ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
    
 #    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 #    File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
