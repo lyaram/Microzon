@@ -190,21 +190,37 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     ini_str = "window.APP_OPTIONS="
     fin_str = ";window.APP_INITIALIZATION_STATE="
     
-    txtscript = htmlPage[/#{ini_str}(.*?)#{fin_str}/m, 1]
-    
-    
-#    txtscript = ""
-#    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[@textContent,'APP_OPTIONS')]").attribute_value('textContent')) }
-    
+    tjson = htmlPage[/#{ini_str}(.*?)#{fin_str}/m, 1]
+
     puts ""
     puts ""
     puts "PRIMER CODIGO GOOGLE:"
     puts ""
-    puts txtscript
+    puts tjson
     puts ""
     puts ""
     
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+    ojson = JSON.parse(tjson)
+            
+#    ignore_exception { tid = con.quote(ojson['id'].to_s) }
+#    ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']) }
+    
+    p1 = ""
+    p2 = ""
+    ignore_exception { p1 = ojson[1] }
+    ignore_exception { p2 = ojson[2] }
+    
+    puts ""
+    puts ""
+    puts "json1: #{p1}"
+    puts "json2: #{p2}"
+    puts ""
+    puts ""
+    
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            
    
 #    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 #    File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
