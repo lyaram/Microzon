@@ -176,6 +176,39 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
 
+def launchGoogleJSONReviews con, idTarget, idConexion, idLaunch, descripcion, url, nextlink, checkPageCompleted, checkPageLoading, maxPage
+   
+    @lasttime = Time.now.to_f
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    idCaptura = prepararCaptura idLaunch, descripcion, url, nextlink, checkPageCompleted
+    
+    @browser.goto url
+
+
+COMBINAR LAS SIGUIENTES LINEAS CON EL CASO QUE TOCA    
+    txtscript = ""
+    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[contains(text(),'APP_OPTIONS=')]").attribute_value('textContent')) }
+    
+    puts ""
+    puts ""
+    puts "PRIMER CODIGO GOOGLE:"
+    puts ""
+    puts txtscript
+    puts ""
+    puts ""
+    
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+   
+#    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
+#    File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
+#    @browser.goto 'file:///tmp/httppage.htm'
+#    storePage       con, idTarget, idConexion, idLaunch, idCaptura, page, descripcion, url
+    
+end
+
+
+
+
 
 
 

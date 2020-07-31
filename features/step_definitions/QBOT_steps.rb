@@ -170,6 +170,8 @@ When /^QBot is surfing a webpage$/ do
               page.launchDataTA con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
             elsif description.include?('GoogleHotelPrices.')
               page.launchGoogleHotelPrices con, idTarget, idConexion, idLaunch, description, url
+            elsif description.include?('GMapsJSONReviews.')
+              page.launchGoogleJSONReviews con, idTarget, idConexion, idLaunch, description, url, maxPages
             else
               page.launch con, idTarget, idConexion, idLaunch, description, url, nextLink, checkPageCompleted, checkPageLoading, maxPages
             end
