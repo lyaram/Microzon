@@ -253,39 +253,43 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
        
         html = open(url).read
 
-        tjson = html[2..-1]
-        puts ""
-        puts "Posicion 2"
-        puts "tjson: #{tjson}"
-        puts ""
-        puts ""
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-        tjson = html[3..-1]
-        puts ""
-        puts "Posicion 3"
-        puts "tjson: #{tjson}"
-        puts ""
-        puts ""
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
-        tjson = html[4..-1]
-        puts ""
-        puts "Posicion 4"
-        puts "tjson: #{tjson}"
-        puts ""
-        puts ""
-ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-
         tjson = html[5..-1]
+        ojson = JSON.parse(tjson)
+
+        nombreUsuario = ojson[2][posOpi][0][1]
+        fechaPantalla = ojson[2][posOpi][1]
+        texto = ojson[2][posOpi][3]
+        nota = ojson[2][posOpi][4]
+        userid = ojson[2][posOpi][6]
+        lang = ojson[2][posOpi][32]
+        langtxt = ojson[2][posOpi][51]
+        timestamp1 = ojson[2][posOpi][27]
+        timestamp2 = ojson[2][posOpi][57]
+        respuestaTxt = ojson[2][posOpi][9][1]
+        respuestaFechaPantalla = ojson[2][posOpi][9][0]
+        respuestaTimestamp1 = ojson[2][posOpi][9][3]
+        respuestaTimestamp2 = ojson[2][posOpi][9][4]
+        respuestaLang = ojson[2][posOpi][9][7]
+
         puts ""
-        puts "Posicion 5"
-        puts "tjson: #{tjson}"
+        puts "nombreUsuario: #{nombreUsuario}"
+        puts "fechaPantalla: #{fechaPantalla}"
+        puts "texto: #{texto}"
+        puts "nota: #{nota}"
+        puts "userid: #{userid}"
+        puts "lang: #{lang}"
+        puts "langtxt: #{langtxt}"
+        puts "timestamp1: #{timestamp1}"
+        puts "timestamp2: #{timestamp2}"
+        puts "respuestaTxt: #{respuestaTxt}"
+        puts "respuestaFechaPantalla: #{respuestaFechaPantalla}"
+        puts "respuestaTimestamp1: #{respuestaTimestamp1}"
+        puts "respuestaTimestamp2: #{respuestaTimestamp2}"
+        puts "respuestaLang: #{respuestaLang}"
         puts ""
         puts ""
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        #ojson = JSON.parse(tjson)
     end
     
 #    page = 10
