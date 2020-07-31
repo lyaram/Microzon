@@ -207,15 +207,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 #    ignore_exception { tid = con.quote(ojson['id'].to_s) }
 #    ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']) }
     
-    p1 = ""
-    p2 = ""
-    ignore_exception { p1 = ojson[1] }
-    ignore_exception { p2 = ojson[2] }
+    p11 = ""
+    ignore_exception { p11 = ojson[11] }
     
     puts ""
     puts ""
-    puts "json1: #{p1}"
-    puts "json2: #{p2}"
+    puts "json11: #{p11}"
     puts ""
     puts ""
     
