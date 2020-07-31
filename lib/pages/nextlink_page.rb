@@ -185,8 +185,16 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     @browser.goto url
 
 
-    txtscript = ""
-    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[@textContent,'APP_OPTIONS')]").attribute_value('textContent')) }
+    htmlPage = @browser.html
+    
+    ini_str = "window.APP_OPTIONS="
+    fin_str = ";window.APP_INITIALIZATION_STATE="
+    
+    txtscript = htmlPage[/#{ini_str}(.*?)#{fin_str}/m, 1]
+    
+    
+#    txtscript = ""
+#    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[@textContent,'APP_OPTIONS')]").attribute_value('textContent')) }
     
     puts ""
     puts ""
