@@ -205,10 +205,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
     fid = descripcion.scan(/\.FID([^.]*)\./).first.first
+    fid1 = descripcion.scan(/0x([^:]*)\:/).first.first
 
     puts ""
     puts ""
     puts "fid: #{fid}"
+    puts "fid1: #{fid1}"
     puts ""
     puts ""
     
