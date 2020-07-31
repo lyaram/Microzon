@@ -256,20 +256,27 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         tjson = html[5..-1]
         ojson = JSON.parse(tjson)
 
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+
         nombreUsuario = ojson[2][page - 1][0][1]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         fechaPantalla = ojson[2][page - 1][1]
         texto = ojson[2][page - 1][3]
         nota = ojson[2][page - 1][4]
         userid = ojson[2][page - 1][6]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         lang = ojson[2][page - 1][32]
         langtxt = ojson[2][page - 1][51]
         timestamp1 = ojson[2][page - 1][27]
         timestamp2 = ojson[2][page - 1][57]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         respuestaTxt = ojson[2][page - 1][9][1]
         respuestaFechaPantalla = ojson[2][page - 1][9][0]
         respuestaTimestamp1 = ojson[2][page - 1][9][3]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         respuestaTimestamp2 = ojson[2][page - 1][9][4]
         respuestaLang = ojson[2][page - 1][9][7]
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
         puts ""
         puts "nombreUsuario: #{nombreUsuario}"
