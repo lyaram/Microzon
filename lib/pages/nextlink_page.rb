@@ -206,6 +206,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     fid = descripcion.scan(/\.FID([^.]*)\./).first.first
 
+    puts ""
+    puts ""
+    puts "fid: #{fid}"
+    puts ""
+    puts ""
+    
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
    
 #    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 #    File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
