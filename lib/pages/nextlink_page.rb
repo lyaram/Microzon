@@ -191,28 +191,14 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     fin_str = ";window.APP_INITIALIZATION_STATE="
     
     tjson = htmlPage[/#{ini_str}(.*?)#{fin_str}/m, 1]
-
-    puts ""
-    puts ""
-    puts "PRIMER CODIGO GOOGLE:"
-    puts ""
-    puts tjson
-    puts ""
-    puts ""
-    
- ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-    
     ojson = JSON.parse(tjson)
-            
-#    ignore_exception { tid = con.quote(ojson['id'].to_s) }
-#    ignore_exception { taxonomyInfo1 = con.quote(ojson['taxonomyInfos'][0]['type'] + ":" + ojson['taxonomyInfos'][0]['name']) }
     
-    p11 = ""
-    ignore_exception { p11 = ojson[11] }
+    gsesion = ""
+    ignore_exception { gsesion = ojson[11] }
     
     puts ""
     puts ""
-    puts "json11: #{p11}"
+    puts "gsesion #{gsesion}"
     puts ""
     puts ""
     
