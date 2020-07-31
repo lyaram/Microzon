@@ -186,7 +186,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 
     txtscript = ""
-    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[contains(text(),'APP_OPTIONS=')]").attribute_value('textContent')) }
+    ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[@textContent,'APP_OPTIONS')]").attribute_value('textContent')) }
     
     puts ""
     puts ""
