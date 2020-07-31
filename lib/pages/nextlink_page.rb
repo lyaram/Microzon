@@ -211,6 +211,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid1 = fid1.to_i(16)
     nfid2 = fid2.to_i(16)
 
+    page = 10
+    
+    url = "https://www.google.com/maps/preview/review/listentitiesreviews?authuser=0&hl=es&gl=es&pb=!1m2!1y#{nfid1}!2y#{nfid2}!2m2!1i#{page}!2i10!3e2!4m5!3b1!4b1!5b1!6b1!7b1!5m2!1s#{gsesion}!7e81"
+
+   
     puts ""
     puts ""
     puts "fid: #{fid}"
@@ -219,7 +224,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     puts "nfid1: #{nfid1}"
     puts "nfid2: #{nfid2}"
     puts ""
+    puts "page: #{page}"
+    puts "url: #{url}"
     puts ""
+    puts ""
+    
+
+    #html = open(url).read
     
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
    
