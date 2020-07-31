@@ -206,11 +206,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     
     fid = descripcion.scan(/\.FID([^.]*)\./).first.first
     fid1 = descripcion.scan(/0x([^:]*)\:/).first.first
+    fid2 = descripcion.scan(/\:0x(*)/).first.first
 
     puts ""
     puts ""
     puts "fid: #{fid}"
     puts "fid1: #{fid1}"
+    puts "fid2: #{fid2}"
     puts ""
     puts ""
     
