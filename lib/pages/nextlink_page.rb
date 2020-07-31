@@ -185,7 +185,6 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     @browser.goto url
 
 
-COMBINAR LAS SIGUIENTES LINEAS CON EL CASO QUE TOCA    
     txtscript = ""
     ignore_exception { txtscript = con.quote(node.element(:xpath,"//script[contains(text(),'APP_OPTIONS=')]").attribute_value('textContent')) }
     
