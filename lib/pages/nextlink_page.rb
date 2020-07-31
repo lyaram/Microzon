@@ -205,17 +205,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
     fid = descripcion.scan(/\.FID([^.]*)\./).first.first
-    fid1 = descripcion.scan(/0x([^:]*)\:/).first.first
-    fid2 = descripcion.scan(/\:(*)/).first.first
 
-    puts ""
-    puts ""
-    puts "fid1: #{fid1}"
-    puts "fid2: #{fid2}"
-    puts ""
-    puts ""
-    
- ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
    
 #    retHttp = "<html><head></head><body>" + response.body + "</body></html>"
 #    File.open("/tmp/httppage.htm", 'w') { |file| file.write(retHttp) }
