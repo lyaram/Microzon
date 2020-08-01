@@ -307,16 +307,16 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { nombreUsuario = con.quote(itemReviews[pos - 1][0][1]) }
             ignore_exception { fechaPantalla = con.quote(itemReviews[pos - 1][1]) }
             ignore_exception { texto = con.quote(itemReviews[pos - 1][3]) }
-            ignore_exception { nota = con.quote(itemReviews[pos - 1][4]) }
+            ignore_exception { nota = itemReviews[pos - 1][4] }
             ignore_exception { userId = con.quote(itemReviews[pos - 1][6]) }
             ignore_exception { lang = con.quote(itemReviews[pos - 1][32]) }
             ignore_exception { langtxt = con.quote(itemReviews[pos - 1][51]) }
-            ignore_exception { timestamp1 = con.quote(itemReviews[pos - 1][27]) }
-            ignore_exception { timestamp2 = con.quote(itemReviews[pos - 1][57]) }
+            ignore_exception { timestamp1 = itemReviews[pos - 1][27] }
+            ignore_exception { timestamp2 = itemReviews[pos - 1][57] }
             ignore_exception { respuestaTxt = con.quote(itemReviews[pos - 1][9][1]) }
             ignore_exception { respuestaFechaPantalla = con.quote(itemReviews[pos - 1][9][0]) }
-            ignore_exception { respuestaTimestamp1 = con.quote(itemReviews[pos - 1][9][3]) }
-            ignore_exception { respuestaTimestamp2 = con.quote(itemReviews[pos - 1][9][4]) }
+            ignore_exception { respuestaTimestamp1 = itemReviews[pos - 1][9][3] }
+            ignore_exception { respuestaTimestamp2 = itemReviews[pos - 1][9][4] }
             ignore_exception { respuestaLang = con.quote(itemReviews[pos - 1][9][7]) }
     
             puts ""
