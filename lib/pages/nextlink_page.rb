@@ -304,20 +304,20 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             respuestaLang = ''
             
             
-            ignore_exception { nombreUsuario = itemReviews[pos - 1][0][1] }
-            ignore_exception { fechaPantalla = itemReviews[pos - 1][1] }
-            ignore_exception { texto = itemReviews[pos - 1][3] }
-            ignore_exception { nota = itemReviews[pos - 1][4] }
-            ignore_exception { userId = itemReviews[pos - 1][6] }
-            ignore_exception { lang = itemReviews[pos - 1][32] }
-            ignore_exception { langtxt = itemReviews[pos - 1][51] }
-            ignore_exception { timestamp1 = itemReviews[pos - 1][27] }
-            ignore_exception { timestamp2 = itemReviews[pos - 1][57] }
-            ignore_exception { respuestaTxt = itemReviews[pos - 1][9][1] }
-            ignore_exception { respuestaFechaPantalla = itemReviews[pos - 1][9][0] }
-            ignore_exception { respuestaTimestamp1 = itemReviews[pos - 1][9][3] }
-            ignore_exception { respuestaTimestamp2 = itemReviews[pos - 1][9][4] }
-            ignore_exception { respuestaLang = itemReviews[pos - 1][9][7] }
+            ignore_exception { con.quote(nombreUsuario = itemReviews[pos - 1][0][1]) }
+            ignore_exception { con.quote(fechaPantalla = itemReviews[pos - 1][1]) }
+            ignore_exception { con.quote(texto = itemReviews[pos - 1][3]) }
+            ignore_exception { con.quote(nota = itemReviews[pos - 1][4]) }
+            ignore_exception { con.quote(userId = itemReviews[pos - 1][6]) }
+            ignore_exception { con.quote(lang = itemReviews[pos - 1][32]) }
+            ignore_exception { con.quote(langtxt = itemReviews[pos - 1][51]) }
+            ignore_exception { con.quote(timestamp1 = itemReviews[pos - 1][27]) }
+            ignore_exception { con.quote(timestamp2 = itemReviews[pos - 1][57]) }
+            ignore_exception { con.quote(respuestaTxt = itemReviews[pos - 1][9][1]) }
+            ignore_exception { con.quote(respuestaFechaPantalla = itemReviews[pos - 1][9][0]) }
+            ignore_exception { con.quote(respuestaTimestamp1 = itemReviews[pos - 1][9][3]) }
+            ignore_exception { con.quote(respuestaTimestamp2 = itemReviews[pos - 1][9][4]) }
+            ignore_exception { con.quote(respuestaLang = itemReviews[pos - 1][9][7]) }
     
             puts ""
             puts "page: #{page}"
