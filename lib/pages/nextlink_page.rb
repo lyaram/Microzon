@@ -212,7 +212,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid2 = fid2.to_i(16)
 
 
-    for page in 1..5 do
+    for page in 1..maxPages do
         tjson = ''
         ojson = 0
         
