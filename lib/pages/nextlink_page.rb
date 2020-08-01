@@ -258,8 +258,15 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        itemReviews = ojson[2]
-        for pos in 0..(itemReviews.size - 1) do
+        itemReviews = ojson[0] #2
+        puts itemReviews.to_s
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        if(itemReviews.to_s=="null")
+          puts "detectado nulo"
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+        end
+        
+        for pos in 1..(itemReviews.size) do
               
             nombreUsuario = ''
             fechaPantalla = ''
@@ -277,25 +284,20 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             respuestaLang = ''
             
             
-            ignore_exception { nombreUsuario = itemReviews[pos][0][1] }
-    ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            ignore_exception { fechaPantalla = itemReviews[pos][1] }
-            ignore_exception { texto = itemReviews[pos][3] }
-            ignore_exception { nota = itemReviews[pos][4] }
-            ignore_exception { userid = itemReviews[pos][6] }
-    ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            ignore_exception { lang = itemReviews[pos][32] }
-            ignore_exception { langtxt = itemReviews[pos][51] }
-            ignore_exception { timestamp1 = itemReviews[pos][27] }
-            ignore_exception { timestamp2 = itemReviews[pos][57] }
-    ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            ignore_exception { respuestaTxt = itemReviews[pos][9][1] }
-            ignore_exception { respuestaFechaPantalla = itemReviews[pos][9][0] }
-            ignore_exception { respuestaTimestamp1 = itemReviews[pos][9][3] }
-    ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-            ignore_exception { respuestaTimestamp2 = itemReviews[pos][9][4] }
-            ignore_exception { respuestaLang = itemReviews[pos][9][7] }
-    ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            ignore_exception { nombreUsuario = itemReviews[pos - 1][0][1] }
+            ignore_exception { fechaPantalla = itemReviews[pos - 1][1] }
+            ignore_exception { texto = itemReviews[pos - 1][3] }
+            ignore_exception { nota = itemReviews[pos - 1][4] }
+            ignore_exception { userid = itemReviews[pos - 1][6] }
+            ignore_exception { lang = itemReviews[pos - 1][32] }
+            ignore_exception { langtxt = itemReviews[pos - 1][51] }
+            ignore_exception { timestamp1 = itemReviews[pos - 1][27] }
+            ignore_exception { timestamp2 = itemReviews[pos - 1][57] }
+            ignore_exception { respuestaTxt = itemReviews[pos - 1][9][1] }
+            ignore_exception { respuestaFechaPantalla = itemReviews[pos - 1][9][0] }
+            ignore_exception { respuestaTimestamp1 = itemReviews[pos - 1][9][3] }
+            ignore_exception { respuestaTimestamp2 = itemReviews[pos - 1][9][4] }
+            ignore_exception { respuestaLang = itemReviews[pos - 1][9][7] }
     
             puts ""
             puts "pos: #{pos}"
