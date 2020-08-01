@@ -212,7 +212,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid2 = fid2.to_i(16)
 
 
-    for page in 1..1 do
+    for page in 120..140 do
         tjson = ''
         ojson = 0
         
@@ -258,13 +258,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
 ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
-        itemReviews = ojson[0] #2
-        puts itemReviews.to_s
-  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        if(itemReviews.to_s == '')
-          puts "detectado nulo"
- ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
-        end
+        itemReviews = ojson[2] 
+        raise 'FALLO JSON Reviews vacio' if(itemReviews.to_s == '')
         
         for pos in 1..(itemReviews.size) do
               
@@ -300,6 +295,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { respuestaLang = itemReviews[pos - 1][9][7] }
     
             puts ""
+            puts "page: #{page}"
             puts "pos: #{pos}"
             puts "nombreUsuario: #{nombreUsuario}"
             puts "fechaPantalla: #{fechaPantalla}"
@@ -319,6 +315,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             puts ""
     ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
         end
+        
+        sleep 10
 
     end
     
