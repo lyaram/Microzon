@@ -345,7 +345,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                 "`timestamp1`, `timestamp2`, `lang`, `langtxt`, `respuestaTimestamp1`, `respuestaTimestamp2`, `respuestaLang`, `userId`"  +
                 ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                 "'#{nombreUsuario}', '#{fechaPantalla}', '#{texto}', '#{nota}', '#{respuestaFechaPantalla}', '#{respuestaTxt}', "  +
-                "#{timestamp1}', #{timestamp2}', #{lang}', #{langtxt}', #{respuestaTimestamp1}', #{respuestaTimestamp2}', #{respuestaLang}', #{userId}'"  +
+                "'#{timestamp1}', '#{timestamp2}', '#{lang}', '#{langtxt}', '#{respuestaTimestamp1}', '#{respuestaTimestamp2}', '#{respuestaLang}', '#{userId}'"  +
                 ")"
             puts(sqlInsert)
     
