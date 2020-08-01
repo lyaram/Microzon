@@ -212,7 +212,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid2 = fid2.to_i(16)
 
 
-    for page in 120..140 do
+    for page in 1..5 do
         tjson = ''
         ojson = 0
         
@@ -261,8 +261,33 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         itemReviews = ojson[2] 
         raise 'FALLO JSON Reviews vacio' if(itemReviews.to_s == '')
         
+        File.open("/tmp/httppage.htm", 'w:UTF-8') { |file| file << html.force_encoding('UTF-8') }
+        @browser.goto 'file:///tmp/httppage.htm'   
+
+        t = Time.now
+        strDT = t.strftime("%y%m%d_%H%M%S_%9N")
+        storePageHtml idLaunch, idCaptura, strDT
+
+        captura = ""
+        urlOrig = ""
+        urlCaptura = ""
+        fechaHora = ""
+        numPag = 0
+
+
+        ignore_exception { captura = "#{descripcion}" }
+        ignore_exception { urlOrig = "#{url.gsub("'", "%27")}" }
+        ignore_exception { idLaunch = "#{idLaunch}" }
+        ignore_exception { idCaptura = "#{idCaptura}" }
+        ignore_exception { urlCaptura = "#{@browser.url.gsub("'", "%27")}" }
+        ignore_exception { numPag = "#{page}" }
+        ignore_exception { fechaHora = "#{strDT}" }
+
         for pos in 1..(itemReviews.size) do
               
+            numEntrada = 0
+            ignore_exception { numEntrada = "#{pos}" }
+
             nombreUsuario = ''
             fechaPantalla = ''
             texto = ''
@@ -314,6 +339,18 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             puts ""
             puts ""
     ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+            
+            sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
+                "`userName`, `reviewDate`, `reviewText`, `reviewScore`, `responseDate`, `responseText`, "  +
+                "`timestamp1`, `timestamp2`, `lang`, `langtxt`, `respuestaTimestamp1`, `respuestaTimestamp2`, `respuestaLang`, `userId`"  +
+                ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
+                "'#{nombreUsuario}', '#{fechaPantalla}', '#{texto}', '#{nota}', '#{respuestaFechaPantalla}', '#{respuestaTxt}', "  +
+                "#{timestamp1}', #{timestamp2}', #{lang}', #{langtxt}', #{respuestaTimestamp1}', #{respuestaTimestamp2}', #{respuestaLang}', #{userId}'"  +
+                ")"
+            puts(sqlInsert)
+    
+            con.query(sqlInsert)
+
         end
         
         sleep 10
