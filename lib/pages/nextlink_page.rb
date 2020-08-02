@@ -211,8 +211,15 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid1 = fid1.to_i(16)
     nfid2 = fid2.to_i(16)
 
+    startPage = 1
+    if descripcion.include? '.FromPage'
+      startPage = (descripcion.scan(/\.FromPage([^.]*)\./)[0][0]).to_i
+    end
 
-    for page in 1..maxPages do
+    puts "FROM PAGE: #{startPage}"
+ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
+    
+    for page in startPage..maxPages do
         tjson = ''
         ojson = 0
         
