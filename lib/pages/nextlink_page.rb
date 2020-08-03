@@ -211,6 +211,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
     nfid1 = fid1.to_i(16)
     nfid2 = fid2.to_i(16)
 
+    orden = 2 #crono
+    if descripcion.include? '.ORDEN'
+      #establece el orden (1: defecto, 2: crono, 3: mayor valor, 4: menor valor)
+      orden = (descripcion.scan(/\.ORDEN([^.]*)\./)[0][0]).to_i
+    end
+
     startPage = 1
     if descripcion.include? '.FromPage'
       startPage = (descripcion.scan(/\.FromPage([^.]*)\./)[0][0]).to_i
@@ -244,7 +250,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
               "m2!1"\
               "i#{offset}!2"\
               "i10!3"\
-              "e2!4"\
+              "e#{orden}!4"\
               "m5!3"\
               "b1!4"\
               "b1!5"\
