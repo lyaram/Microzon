@@ -3832,8 +3832,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { locality = con.quote(node.element(:xpath,"//*[contains(@class,'blRow')]//*[@class='locality']").attribute_value('textContent')) }
           ignore_exception { phone = con.quote(node.element(:xpath,"//*[contains(@class,'ui_icon phone')]/following-sibling::*[1]").attribute_value('textContent')) }
           ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[starts-with(@class,'starRating')]/div[2]/text() | //span[@class='star']//img").attribute_value('alt')) }
-          ignore_exception { globalScore = con.quote(node.element(:xpath,"(//*[contains(@class,'header')]//*[contains(@class,'ratingContainer') or contains(@class,'rs rating')]//span[contains(@class,'ui_bubble_rating')])").attribute_value('alt')) }
-          ignore_exception { reviewCount = con.quote(node.element(:xpath,"//*[contains(@class,'ratingContainer') or contains(@class,'rs rating')]//a").attribute_value('textContent')) }
+          ignore_exception { globalScore = con.quote(node.element(:xpath,"//h1[@id='HEADING']/following-sibling::div[1]/span[1]").attribute_value('class')) }
+          ignore_exception { reviewCount = con.quote(node.element(:xpath,"//h1[@id='HEADING']/following-sibling::div[1]/span[2]").attribute_value('textContent')) }
           ignore_exception { infoRanking = con.quote(node.element(:xpath,"//*[starts-with(@class,'slim_ranking') or starts-with(@class,'header_popularity')]").attribute_value('textContent')) }
           ignore_exception { placeType = con.quote(node.element(:xpath,"//*[contains(@class,'attractionCategories')]").attribute_value('textContent')) }
           ignore_exception { geoLat = con.quote(node.element(:xpath,"//*[contains(@class,'mapContainer')]").attribute_value('data-lat')) }
