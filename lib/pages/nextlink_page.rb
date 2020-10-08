@@ -2648,7 +2648,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
 #          nodes = @browser.divs(:xpath, "//*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li | //div[contains(@class,'restaurants-list-ListCell__cellContainer')]")
-          nodes = @browser.divs(:xpath, "//div[starts-with(@class,'restaurants-list-List')]/div[contains(@data-test,'list_item')]")        
+          nodes = @browser.divs(:xpath, "//div[starts-with(@data-test-target,'restaurants-list')]/div[contains(@data-test,'list_item')]")        
           puts("Node count: #{nodes.size}")
           nodes.each do |node|
             posNode += 1
