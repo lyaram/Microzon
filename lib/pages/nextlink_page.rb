@@ -2072,7 +2072,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         placeName = placeName.gsub! '\'', '\\\''
         ignore_exception { reviewTotalCount = con.quote(@browser.element(:xpath,"//*[@id='review_list_score']/p").text) }
         ignore_exception { currentPage = con.quote(@browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text) }
-        ignore_exception { langSelected = con.quote(@browser.element(:xpath,"//*[@id='language']/option[@selected]").text }
+        ignore_exception { langSelected = con.quote(@browser.element(:xpath,"//*[@id='language']/option[@selected]").text) }
 
         sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
