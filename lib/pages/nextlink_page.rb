@@ -5666,6 +5666,12 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       ignore_exception { col14 = con.quote(node.element(:xpath,"//ul/li/button[@data-value='solo_traveller']").attribute_value('textContent')) }
       ignore_exception { col15 = con.quote(node.element(:xpath,"//ul/li/button[@data-value='business_traveller']").attribute_value('textContent')) }
       ignore_exception { col16 = con.quote(node.element(:xpath,"//*[@class='bui-rating bui-rating--smaller']").attribute_value('aria-label')) }
+      puts("col11: #{col11}")
+      puts("col11: #{col12}")
+      puts("col11: #{col13}")
+      puts("col11: #{col14}")
+      puts("col11: #{col15}")
+      puts("col11: #{col16}")
 
       # ignore_exception { placeName = con.quote(node.element(:xpath,"//*[@id='HEADING']").text) }
       # ignore_exception { value5_Count = con.quote(node.element(:xpath,"(//*[(@id='ratingFilter' or @data-name='ta_rating') and not(ancestor-or-self::*[contains(./@class,'hidden')])]//input)[1]/following::span[contains(@class,'row_bar')][1]/following::span[1]").text) }
