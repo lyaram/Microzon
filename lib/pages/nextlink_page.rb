@@ -2068,11 +2068,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
         reviewTotalCount = ""
         currentPage = ""
         langSelected = ""
-        ignore_exception { placeName = @browser.element(:xpath,"//h1/a").text }
+        ignore_exception { placeName = con.quote(@browser.element(:xpath,"//h1/a").text) }
         placeName = placeName.gsub! '\'', '\\\''
-        ignore_exception { reviewTotalCount = @browser.element(:xpath,"//*[@id='review_list_score']/p").text }
-        ignore_exception { currentPage = @browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text }
-        ignore_exception { langSelected = @browser.element(:xpath,"//*[@id='language']/option[@selected]").text }
+        ignore_exception { reviewTotalCount = con.quote(@browser.element(:xpath,"//*[@id='review_list_score']/p").text) }
+        ignore_exception { currentPage = con.quote(@browser.element(:xpath,"(//*[@id='review_list_page_container']//p[contains(@class,'page_showing')])[1]").text) }
+        ignore_exception { langSelected = con.quote(@browser.element(:xpath,"//*[@id='language']/option[@selected]").text) }
 
         sqlInsert = "INSERT INTO `Navigator`.`tblBKReviewsFicha` (idTarget, Description, URL, MaxPages, NumPag, PlaceName, reviewTotalCount2, CurrentPage, LangSelected)"  +
                     "VALUES (#{idTarget}, '#{descripcion}', '#{url}', '#{maxPage}', '#{@numPag}', '#{placeName}', '#{reviewTotalCount}', '#{currentPage}', '#{langSelected}')"
