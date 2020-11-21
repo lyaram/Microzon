@@ -4210,6 +4210,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterAll = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-total_hotel_value')) }
           ignore_exception { reviewCount_FilterFamily = con.quote(node.element(:xpath,"//*[@data-customer-type='family_with_children']").attribute_value('data-quantity')) }
+          if reviewCount_FilterFamily.length<=0
+            ignore_exception { reviewCount_FilterFamily = con.quote(@browser.element(:xpath,"//ul/li/button[@data-value='family_with_children']").attribute_value('textContent')) }
+          end
           ignore_exception { score_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-family_with_children')) }
           ignore_exception { cleanScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_clean')) }
           ignore_exception { comfortScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_comfort')) }
@@ -4218,6 +4221,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterFamily = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-family_with_children_hotel_value')) }
           ignore_exception { reviewCount_FilterCouple = con.quote(node.element(:xpath,"//*[@data-customer-type='couple']").attribute_value('data-quantity')) }
+          if reviewCount_FilterCouple.length<=0
+            ignore_exception { reviewCount_FilterCouple = con.quote(@browser.element(:xpath,"//ul/li/button[@data-value='couple']").attribute_value('textContent')) }
+          end
           ignore_exception { score_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-couple')) }
           ignore_exception { cleanScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_clean')) }
           ignore_exception { comfortScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_comfort')) }
@@ -4226,6 +4232,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterCouple = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-couple_hotel_value')) }
           ignore_exception { reviewCount_FilterGroupFriends = con.quote(node.element(:xpath,"//*[@data-customer-type='review_category_group_of_friends']").attribute_value('data-quantity')) }
+          if reviewCount_FilterGroupFriends.length<=0
+            ignore_exception { reviewCount_FilterGroupFriends = con.quote(@browser.element(:xpath,"//ul/li/button[@data-value='review_category_group_of_friends']").attribute_value('textContent')) }
+          end
           ignore_exception { score_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-review_category_group_of_friends')) }
           ignore_exception { cleanScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_clean')) }
           ignore_exception { comfortScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_comfort')) }
@@ -4234,6 +4243,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterGroupFriends = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-review_category_group_of_friends_hotel_value')) }
           ignore_exception { reviewCount_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[@data-customer-type='solo_traveller']").attribute_value('data-quantity')) }
+          if reviewCount_FilterSoloTravellers.length<=0
+            ignore_exception { reviewCount_FilterSoloTravellers = con.quote(@browser.element(:xpath,"//ul/li/button[@data-value='solo_traveller']").attribute_value('textContent')) }
+          end
           ignore_exception { score_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-solo_traveller')) }
           ignore_exception { cleanScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_clean')) }
           ignore_exception { comfortScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_comfort')) }
@@ -4242,6 +4254,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterSoloTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-solo_traveller_hotel_value')) }
           ignore_exception { reviewCount_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[@data-customer-type='business_traveller']").attribute_value('data-quantity')) }
+          if reviewCount_FilterBusinessTravellers.length<=0
+            ignore_exception { reviewCount_FilterBusinessTravellers = con.quote(@browser.element(:xpath,"//ul/li/button[@data-value='business_traveller']").attribute_value('textContent')) }
+          end
           ignore_exception { score_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_main_score']").attribute_value('data-business_traveller')) }
           ignore_exception { cleanScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_clean')) }
           ignore_exception { comfortScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_comfort')) }
@@ -4250,6 +4265,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { staffScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_staff')) }
           ignore_exception { valueForMoneyScore_FilterBusinessTravellers = con.quote(node.element(:xpath,"//*[not(contains(@style,'hidden'))]/*[@id='review_list_score_breakdown']").attribute_value('data-business_traveller_hotel_value')) }
           ignore_exception { placeRating = con.quote(node.element(:xpath,"//*[@id='hp_hotel_name']//..//i").attribute_value('title')) }
+          if placeRating.length<=0
+            ignore_exception { placeRating = con.quote(@browser.element(:xpath,"//*[@class='bui-rating bui-rating--smaller']").attribute_value('aria-label')) }
+          end
           ignore_exception { geoLoc = con.quote(node.element(:xpath,"//img[@class='static_map_one']").attribute_value('src')) }
           ignore_exception { bookButtonTitle = con.quote(node.element(:xpath,"//*[@id='hcta']").attribute_value('title')) }
           ignore_exception { mainScore = con.quote(node.element(:xpath,"//*[@id='reviewFloater']//*[@data-review-score]//*[@class='review-score-badge']").text) }
