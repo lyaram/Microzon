@@ -2595,7 +2595,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-          nodes = @browser.divs(:xpath, "//*[contains(@class,'listingsContainer')]/div[contains(@class,'listingContainer')] | //*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
+          nodes = @browser.divs(:xpath, "//*[@data-test-target='rentals-list']/div[contains(.//a/@href,'/VacationRentalReview-')]")
         
           puts("Node count: #{nodes.size}")
           nodes.each do |node|
@@ -2625,11 +2625,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numEntrada = "#{posNode}" }
       
 
-            ignore_exception { placeName = con.quote(node.element(:xpath,".//a[contains(@class,'PropertyTitleSection')]").text) }
-            ignore_exception { placeLink = con.quote(node.element(:xpath,".//a[contains(@class,'PropertyTitleSection')]").attribute_value('href')) }
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//div[2]/a[contains(./@href,'/VacationRentalReview-')]").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//div[2]/a[contains(./@href,'/VacationRentalReview-')]").attribute_value('href')) }
             ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popindex')]").text) }
-            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//div[contains(@class,'ratingContainer')]//a/span").text) }
-            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//div[contains(@class,'ratingContainer')]//a/preceding-sibling::*[1]").attribute_value('class')) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//div[starts-with(@class,'ui_poi_review_rating')]/a").text) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//div[starts-with(@class,'ui_poi_review_rating')]/span").attribute_value('class')) }
 
 
     
