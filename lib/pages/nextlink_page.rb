@@ -2708,7 +2708,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
           posNode = 0
 #INTRODUCIR PATH COLECCIÓN ITEMS
-          nodes = @browser.divs(:xpath, "//*[@class='relWrap']/*[not(contains(@id,'filtered'))]//*[starts-with(@class,'listing') and ./*/@data-locationid] | //ul[@class='locationList']/li")
+          nodes = @browser.divs(:xpath, "//div[./div[2]/a/h2]")
         
           puts("Node count: #{nodes.size}")
           nodes.each do |node|
@@ -2742,11 +2742,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numEntrada = "#{posNode}" }
       
 
-            ignore_exception { placeName = con.quote(node.element(:xpath,".//*[@class='location']").text) }
-            ignore_exception { placeLink = con.quote(node.element(:xpath,".//div[@class='main']//a").attribute_value('href')) }
-            ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popularityLLR')]").text) }
-            ignore_exception { reviewCount = con.quote(node.element(:xpath,".//*[contains(@class,'reviewCountLLR')]").text) }
-            ignore_exception { reviewRating = con.quote(node.element(:xpath,".//*[contains(@class,'ratingLLR')]/span").attribute_value('class')) }
+            ignore_exception { placeName = con.quote(node.element(:xpath,"./div[2]/a/h2").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,"./div[2]/a[1]").attribute_value('href')) }
+            ignore_exception { rank = con.quote(node.element(:xpath,"./div[2]/div[1]").text) }
+            ignore_exception { reviewCount = con.quote(node.element(:xpath,"./div[2]/a[2]/div/span/span").text) }
+            ignore_exception { reviewRating = con.quote(node.element(:xpath,"./div[2]/a[2]/div/svg").attribute_value('title')) }
             ignore_exception { price = con.quote(node.element(:xpath,".//*[@class='price_from']").text) }
             ignore_exception { offerPrice = con.quote(node.element(:xpath,".//*[@class='offer_price']").text) }
             ignore_exception { tags = con.quote(node.element(:xpath,".//*[@class='moreText']").text) }
