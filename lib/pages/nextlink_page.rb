@@ -227,7 +227,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
              "b1!5"\
              "b1!6"\
              "b1!7"\
-             "b1!5"\
+             "b1!5"
     if descripcion.include? '.SEARCH'
       palabraclave = (descripcion.scan(/\.SEARCH([^.]*)\./)[0][0])
       params = "m8!3"\
@@ -238,7 +238,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                "b1!8"\
                "s#{palabraclave}!10"\
                "m1!1"\
-               "e1!5"\
+               "e1!5"
     end
 
     puts "FROM PAGE: #{startPage}"
