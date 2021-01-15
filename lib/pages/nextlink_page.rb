@@ -222,6 +222,25 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       startPage = (descripcion.scan(/\.FromPage([^.]*)\./)[0][0]).to_i
     end
 
+    params = "m5!3"\
+             "b1!4"\
+             "b1!5"\
+             "b1!6"\
+             "b1!7"\
+             "b1!5"\
+    if descripcion.include? '.SEARCH'
+      palabraclave = (descripcion.scan(/\.SEARCH([^.]*)\./)[0][0])
+      params = "m8!3"\
+               "b1!4"\
+               "b1!5"\
+               "b1!6"\
+               "b1!7"\
+               "b1!8"\
+               "s#{palabraclave}!10"\
+               "m1!1"\
+               "e1!5"\
+    end
+
     puts "FROM PAGE: #{startPage}"
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
@@ -251,12 +270,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
               "i#{offset}!2"\
               "i10!3"\
               "e#{orden}!4"\
-              "m5!3"\
-              "b1!4"\
-              "b1!5"\
-              "b1!6"\
-              "b1!7"\
-              "b1!5"\
+              "#{params}"\
               "m2!1"\
               "s#{gsesion}!7"\
               "e81"
