@@ -241,6 +241,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
                "e1!5"
     end
 
+    lng = "es"
+    if descripcion.include? '.LANG'
+      lng = (descripcion.scan(/\.LANG([^.]*)\./)[0][0])
+    end
+
     puts "FROM PAGE: #{startPage}"
  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     
@@ -260,8 +265,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
               "?a"\
               "uthus"\
               "er=0&h"\
-              "l=es&g"\
-              "l=es&p"\
+              "l=#{lng}&g"\
+              "l=#{lng}&p"\
               "b=!1"\
               "m2!1"\
               "y#{nfid1}!2"\
