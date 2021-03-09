@@ -4491,7 +4491,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { valoracion = con.quote(node.element(:xpath,"//*[contains(@class,'section-rating')]//*[@class='section-star-display']").text) }
             ignore_exception { numOpiniones = con.quote(node.element(:xpath,"//span[@class='section-rating-term']//button[contains(@jsaction,'Reviews')]").text) }
             ignore_exception { tipo = con.quote(node.element(:xpath,"//span[@class='section-rating-term']//button[contains(@jsaction,'category')]").text) }
-            ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//li[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
+            ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//*[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
             ignore_exception { valoracion2 = con.quote(node.element(:xpath,"//*[contains(@class,'section-reviewchart')]//*[@class='section-star-display']").text) }
             ignore_exception { numOpiniones2 = con.quote(node.element(:xpath,".//button[@class='section-reviewchart-numreviews']").text) }
             ignore_exception { numOpiniones_Val5 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[1]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
