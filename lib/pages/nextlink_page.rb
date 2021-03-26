@@ -4499,11 +4499,11 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numOpiniones_Val3 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[3]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
             ignore_exception { numOpiniones_Val2 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[4]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
             ignore_exception { numOpiniones_Val1 = con.quote(node.element(:xpath,"(//tr[contains(@class,'histogram')])[5]/descendant-or-self::*[@aria-label]").attribute_value('aria-label')) }
-            ignore_exception { address = con.quote(node.element(:xpath,"(//span[@class='section-info-text'])[1]/span[last()]").text) }
-            ignore_exception { horario = con.quote(node.element(:xpath,"//*[@class='section-info-hour-text']").text) }
+            ignore_exception { address = con.quote(node.element(:xpath,"//*[@data-item-id='address']/div[1]/div[2]").text) }
+            ignore_exception { horario = con.quote(node.element(:xpath,"//*[@data-item-id='oh']/div[1]/div[2]").text) }
             ignore_exception { textControlInfoSection = con.quote(node.element(:xpath,"//span[contains(text(),'Sugerir un cambio')]").text) }
             ignore_exception { fotoCount = con.quote(node.element(:xpath,"//*[contains(text(),'foto') and contains(@class,'label')]").text) }
-            ignore_exception { reclamarEmpresa = con.quote(node.element(:xpath,"//span[contains(text(),'esta empresa')]").text) }
+            ignore_exception { reclamarEmpresa = con.quote(node.element(:xpath,"//*[@data-item-id='merchant']/div[1]/div[2]").text) }
       
 
 
