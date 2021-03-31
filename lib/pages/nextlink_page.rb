@@ -4738,6 +4738,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             reply = ""
             roominfo = ""
             stayDate = ""
+            travellertype = ""
             dataroomid = ""
 
 
@@ -4764,17 +4765,18 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { reviewpoor = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").text) }
             ignore_exception { reviewpoorlang = con.quote(node.element(:xpath,".//*[contains(@class,'review_poor')]/../../span[contains(@class,'c-review__body') and not(contains(@class,'hidden'))]").attribute_value('lang')) }
             ignore_exception { reply = con.quote(node.element(:xpath,".//*[@class='c-review-block__response__inner']/span[last()]").attribute_value('textContent')) }
-            ignore_exception { roominfo = con.quote(node.element(:xpath,".//*[@class='room_info_heading']]").attribute_value('textContent')) }
-            ignore_exception { stayDate = con.quote(node.element(:xpath,".//*[@class='c-review-block__room-info__name']//span[@class='c-review-block__date']").text) }
+            ignore_exception { roominfo = con.quote(node.element(:xpath,".//li[contains(@data-component,'room-info')]/a/div").attribute_value('textContent')) }
+            ignore_exception { stayDate = con.quote(node.element(:xpath,".//ul[contains(@class,'stay-date')]/li/div").attribute_value('textContent')) }
+            ignore_exception { travellertype = con.quote(node.element(:xpath,".//*[contains(@class,'traveller_type')]/li/div").attribute_value('textContent')) }
             ignore_exception { dataroomid = con.quote(node.element(:xpath,".//div[contains(@class,'c-review-block__room-info-row')]").attribute_value('data-room-id')) }
 
 
 
     
             sqlInsert = "INSERT INTO `Navigator`.`tblDataBKIndivs` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
-                        "`reviewID`, `userName`, `nacionality`, `score`, `reviewDate`, `quote`, `quotelang`, `reviewgreat`, `reviewgreatlang`, `reviewpoor`, `reviewpoorlang`, `reply`, `roominfo`, `stayDate`, `dataroomid`"  +
+                        "`reviewID`, `userName`, `nacionality`, `score`, `reviewDate`, `quote`, `quotelang`, `reviewgreat`, `reviewgreatlang`, `reviewpoor`, `reviewpoorlang`, `reply`, `roominfo`, `stayDate`, `travellertype`, `dataroomid`"  +
                         ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
-                        "'#{reviewID}', '#{userName}', '#{nacionality}', '#{score}', '#{reviewDate}', '#{quote}', '#{quotelang}', '#{reviewgreat}', '#{reviewgreatlang}', '#{reviewpoor}', '#{reviewpoorlang}', '#{reply}', '#{roominfo}', '#{stayDate}', '#{dataroomid}'"  +
+                        "'#{reviewID}', '#{userName}', '#{nacionality}', '#{score}', '#{reviewDate}', '#{quote}', '#{quotelang}', '#{reviewgreat}', '#{reviewgreatlang}', '#{reviewpoor}', '#{reviewpoorlang}', '#{reply}', '#{roominfo}', '#{stayDate}', '#{travellertype}', '#{dataroomid}'"  +
                         ")"
             puts(sqlInsert)
   ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
