@@ -1480,6 +1480,9 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
       end
     
       recargar = false
+      if (descripcion.include? 'TRIPADVISOR_AtraccFicha.')
+        recargar = true
+      end
       sigueprobando=true
       reintentos = 5
       if (descripcion.include? 'GMapsPlaceSearchLocalReviews.') && (url.include? '&start=')
