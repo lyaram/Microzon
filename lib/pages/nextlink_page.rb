@@ -2647,8 +2647,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { numEntrada = "#{posNode}" }
       
 
-            ignore_exception { placeName = con.quote(node.element(:xpath,".//div[2]/a[contains(./@href,'/VacationRentalReview-')]").text) }
-            ignore_exception { placeLink = con.quote(node.element(:xpath,".//div[2]/a[contains(./@href,'/VacationRentalReview-')]").attribute_value('href')) }
+            ignore_exception { placeName = con.quote(node.element(:xpath,".//h2/a[contains(./@href,'/VacationRentalReview-')]").text) }
+            ignore_exception { placeLink = con.quote(node.element(:xpath,".//h2/a[contains(./@href,'/VacationRentalReview-')]").attribute_value('href')) }
             ignore_exception { rank = con.quote(node.element(:xpath,".//*[contains(@class,'popindex')]").text) }
             ignore_exception { reviewCount = con.quote(node.element(:xpath,".//div[starts-with(@class,'ui_poi_review_rating')]/a").text) }
             ignore_exception { reviewRating = con.quote(node.element(:xpath,".//div[starts-with(@class,'ui_poi_review_rating')]/span").attribute_value('class')) }
