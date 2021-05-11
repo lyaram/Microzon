@@ -2477,6 +2477,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
   end
 
  def storePage con, idTarget, idConexion, idLaunch, idCaptura, page, descripcion, urlOrig
+
+ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
     t = Time.now
     strDT = t.strftime("%y%m%d_%H%M%S_%9N")
 
