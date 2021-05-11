@@ -3449,6 +3449,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ldjson = ""
 
 
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
   
             ignore_exception { captura = "#{descripcion}" }
             ignore_exception { urlOrig = "#{urlOrig}" }
@@ -3666,7 +3667,10 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { langMoreBox18 = con.quote(node.element(:xpath,"(//li[./span/input/@name='filterLang_more']/label)[18]").text) }
             ignore_exception { langMoreBox19 = con.quote(node.element(:xpath,"(//li[./span/input/@name='filterLang_more']/label)[19]").text) }
             ignore_exception { gmaploc = con.quote(node.element(:xpath,"//a[contains(@href,'maps.google.com/maps')]").attribute_value('href')) }
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             ignore_exception { ldjson = con.quote(node.element(:xpath,"//head//script[@type='application/ld+json']").attribute_value('textContent')) }
+
+  ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
 
             sqlInsert = "INSERT INTO `Navigator`.`tblDataTAFicha_ALO` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                         "`placeName`, `titulo`, `award_text`, `award_class`, `certificadoExcelencia`, `fullAddress`, `postalCode`, `locality`, `phone`, `placeRating`, `globalScore`, `reviewCount`, `infoRanking`, `placeType`, `geoLat`, `geoLng`, `linkPrimeraReview`, `currentPage`, `cuisine`, `langList`, `langSelected`, `segmSelected`, `filterSegment`, `filterCount`, `langFromRadioButtons`, `recommendedPercent2`, `sorting`, `value5_Count`, `value4_Count`, `value3_Count`, `value2_Count`, `value1_Count`, `timeOfYear1_Count`, `timeOfYear2_Count`, `timeOfYear3_Count`, `timeOfYear4_Count`, `varDimField1`, `varDimField1Val`, `varDimField2`, `varDimField2Val`, `varDimField3`, `varDimField3Val`, `varDimField4`, `varDimField4Val`, `codeMap`, `peineNotas5`, `peineNotas4`, `peineNotas3`, `peineNotas2`, `peineNotas1`, `varLangField01`, `varLangField01Val`, `varLangField02`, `varLangField02Val`, `varLangField03`, `varLangField03Val`, `varLangField04`, `varLangField04Val`, `varLangField05`, `varLangField05Val`, `varLangField06`, `varLangField06Val`, `varLangField07`, `varLangField07Val`, `varLangField08`, `varLangField08Val`, `varLangField09`, `varLangField09Val`, `varLangField10`, `varLangField10Val`, `varLangField11`, `varLangField11Val`, `varLangField12`, `varLangField12Val`, `varLangField13`, `varLangField13Val`, `varLangField14`, `varLangField14Val`, `varLangField15`, `varLangField15Val`, `varLangField16`, `varLangField16Val`, `varLangField17`, `varLangField17Val`, `varLangField18`, `varLangField18Val`, `varLangField19`, `varLangField19Val`, `varLangField20`, `varLangField20Val`, `varLangField21`, `varLangField21Val`, `varLangField22`, `varLangField22Val`, `varLangField23`, `varLangField23Val`, `varLangField24`, `varLangField24Val`, `varLangField25`, `varLangField25Val`, `varLangField26`, `varLangField26Val`, `varLangField27`, `varLangField27Val`, `langSelected2`, `nom`, `placeName2`, `fullAddress2`, `globalScore2`, `reviewCount2`, `breadcrums`, `h1-1`, `h1-2`, `recommendedPercent`, `recommendedType`, `certificado`, `gmaploc`, `ldjson` "  +
