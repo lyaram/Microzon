@@ -4507,7 +4507,13 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
 
             ignore_exception { nombre = con.quote(node.element(:xpath,"//div[contains(@class,'header')]//h1").text) }
             ignore_exception { valoracion = con.quote(node.element(:xpath,"//*[contains(@class,'section-rating')]//*[contains(@class,'section-star-display')]").text) }
+            if valoracion.length<=0
+              ignore_exception { valoracion = con.quote(node.element(:xpath,"//ol[contains(@class,'section-star-array')]").attribute_value('aria-label')) }
+            end
             ignore_exception { numOpiniones = con.quote(node.element(:xpath,"//span[contains(@class,'section-rating-term')]//button[contains(@jsaction,'Reviews')]").text) }
+            if numOpiniones.length<=0
+              ignore_exception { numOpiniones = con.quote(node.element(:xpath,"//span[contains(@jsaction,'pane.rating.moreReviews')]//button[contains(@jsaction,'Reviews')]").text) }
+            end
             ignore_exception { tipo = con.quote(node.element(:xpath,"//span[@class='section-rating-term']//button[contains(@jsaction,'category')]").text) }
             ignore_exception { tipo2 = con.quote(node.element(:xpath,"(//*[@class='section-rating-term'])[2]//button/following-sibling::*[1]").text) }
             ignore_exception { valoracion2 = con.quote(node.element(:xpath,"//*[contains(@class,'section-reviewchart')]//*[@class='section-star-display']").text) }
