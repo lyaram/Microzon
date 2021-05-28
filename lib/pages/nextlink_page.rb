@@ -350,7 +350,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { respuestaTimestamp1 = itemReviews[pos - 1][9][3] }
             ignore_exception { respuestaTimestamp2 = itemReviews[pos - 1][9][4] }
             ignore_exception { respuestaLang = con.quote(itemReviews[pos - 1][9][7]) }
-            ignore_exception { revJSON = con.quote(itemReviews[pos - 1]) }
+            ignore_exception { revJSON = con.quote(itemReviews[pos - 1].to_json) }
 
             puts ""
             puts "page: #{page}"
