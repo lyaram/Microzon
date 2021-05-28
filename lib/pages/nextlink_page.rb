@@ -334,7 +334,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             respuestaTimestamp1 = ''
             respuestaTimestamp2 = ''
             respuestaLang = ''
-            
+            revJSON = ''
             
             ignore_exception { nombreUsuario = con.quote(itemReviews[pos - 1][0][1]) }
             ignore_exception { fechaPantalla = con.quote(itemReviews[pos - 1][1]) }
@@ -350,7 +350,8 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { respuestaTimestamp1 = itemReviews[pos - 1][9][3] }
             ignore_exception { respuestaTimestamp2 = itemReviews[pos - 1][9][4] }
             ignore_exception { respuestaLang = con.quote(itemReviews[pos - 1][9][7]) }
-    
+            ignore_exception { revJSON = con.quote(itemReviews[pos - 1]) }
+
             puts ""
             puts "page: #{page}"
             puts "pos: #{pos}"
@@ -369,15 +370,17 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             puts "respuestaTimestamp2: #{respuestaTimestamp2}"
             puts "respuestaLang: #{respuestaLang}"
             puts ""
+            puts "revJSON #{revJSON}"
+            puts ""
             puts ""
     ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f; puts("CODETRACE (#{ahora}, +#{(tiempopasado * 1000).to_i}ms)>> #{__FILE__}:#{__LINE__}"); $stdout.flush
             
             sqlInsert = "INSERT INTO `Navigator`.`tblGMapsPlaceSLReviews` (`captura`, `urlOrig`, `idLaunch`, `idCaptura`, `numPag`, `urlCaptura`, `fechaHora`, `numEntrada`, "  +
                 "`userName`, `reviewDate`, `reviewText`, `reviewScore`, `responseDate`, `responseText`, "  +
-                "`timestamp1`, `timestamp2`, `lang`, `langtxt`, `respuestaTimestamp1`, `respuestaTimestamp2`, `respuestaLang`, `userId`"  +
+                "`timestamp1`, `timestamp2`, `lang`, `langtxt`, `respuestaTimestamp1`, `respuestaTimestamp2`, `respuestaLang`, `userId`, `revJSON`"  +
                 ") VALUES ('#{captura}', '#{urlOrig}', '#{idLaunch}', '#{idCaptura}', '#{numPag}', '#{urlCaptura}', '#{fechaHora}', '#{numEntrada}', "  +
                 "'#{nombreUsuario}', '#{fechaPantalla}', '#{texto}', '#{nota}', '#{respuestaFechaPantalla}', '#{respuestaTxt}', "  +
-                "'#{timestamp1}', '#{timestamp2}', '#{lang}', '#{langtxt}', '#{respuestaTimestamp1}', '#{respuestaTimestamp2}', '#{respuestaLang}', '#{userId}'"  +
+                "'#{timestamp1}', '#{timestamp2}', '#{lang}', '#{langtxt}', '#{respuestaTimestamp1}', '#{respuestaTimestamp2}', '#{respuestaLang}', '#{userId}', '#{revJSON}'"  +
                 ")"
             puts(sqlInsert)
     
