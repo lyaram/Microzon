@@ -3908,27 +3908,27 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { sorting = con.quote(node.element(:xpath,"//fieldset/span[contains(@class,'selected')]").attribute_value('textContent')) }
 
           ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_5' or @for='filters_detail_checkbox_trating__5']/../span[last()]").attribute_value('textContent')) }
-          if reviewCount==''
+          if value5_Count==''
             ignore_exception { value5_Count = con.quote(node.element(:xpath,"//*[./*/*/*/text()='Poor' and ./*/*/*/text()='Average']/div[1]/div/div/div/div").attribute_value('textContent')) }
           end
 
           ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_4' or @for='filters_detail_checkbox_trating__4']/../span[last()]").attribute_value('textContent')) }
-          if reviewCount==''
+          if value4_Count==''
             ignore_exception { value4_Count = con.quote(node.element(:xpath,"//*[./*/*/*/text()='Poor' and ./*/*/*/text()='Average']/div[2]/div/div/div/div").attribute_value('textContent')) }
           end
 
           ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_3' or @for='filters_detail_checkbox_trating__3']/../span[last()]").attribute_value('textContent')) }
-          if reviewCount==''
+          if value3_Count==''
             ignore_exception { value3_Count = con.quote(node.element(:xpath,"//*[./*/*/*/text()='Poor' and ./*/*/*/text()='Average']/div[3]/div/div/div/div").attribute_value('textContent')) }
           end
 
           ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_2' or @for='filters_detail_checkbox_trating__2']/../span[last()]").attribute_value('textContent')) }
-          if reviewCount==''
+          if value2_Count==''
             ignore_exception { value2_Count = con.quote(node.element(:xpath,"//*[./*/*/*/text()='Poor' and ./*/*/*/text()='Average']/div[4]/div/div/div/div").attribute_value('textContent')) }
           end
 
           ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[@for='ReviewRatingFilter_1' or @for='filters_detail_checkbox_trating__1']/../span[last()]").attribute_value('textContent')) }
-          if reviewCount==''
+          if value1_Count==''
             ignore_exception { value1_Count = con.quote(node.element(:xpath,"//*[./*/*/*/text()='Poor' and ./*/*/*/text()='Average']/div[5]/div/div/div/div").attribute_value('textContent')) }
           end
 
