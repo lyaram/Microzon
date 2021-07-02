@@ -4482,7 +4482,7 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
           ignore_exception { varDimField08Val = con.quote(node.element(:xpath,"(//*[starts-with(@class,'v2_review-scores')]//ul/li/div/span[not(contains(@class,'title'))])[8]").attribute_value('textContent')) }
           ignore_exception { importantInfo = con.quote(node.element(:xpath,"//div[contains(@class,'imporant_info_highlight')]").attribute_value('textContent')) }
           ignore_exception { medidasSaludSeguridad = con.quote(node.element(:xpath,"//*[contains(@*,'health-safety-container')]").attribute_value('textContent')) }
-          ignore_exception { covidBanner = con.quote(node.element(:xpath,"//*[contains(@class,'covid_standard_phrase_banner')]").Text) }
+          ignore_exception { covidBanner = con.quote(node.element(:xpath,"//*[contains(@class,'covid_standard_phrase_banner')]/div/p").attribute_value('textContent')) }
           ignore_exception { notBookable = con.quote(node.element(:xpath,"//*[contains(@class,'non-bookable-container')]").attribute_value('textContent')) }
 
 
