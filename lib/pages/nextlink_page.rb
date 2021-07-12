@@ -3136,6 +3136,44 @@ ahora = Time.now;  tiempopasado = ahora.to_f - @lasttime; @lasttime = ahora.to_f
             ignore_exception { varDimField5Val = con.quote(node.element(:xpath,"(//*[contains(@class,'restaurants-detail-overview-cards-RatingsOverviewCard__ratingQuestionRow')])[5]/span[3]/span").attribute_value('class')) }
             ignore_exception { varDimField6 = con.quote(node.element(:xpath,"(//*[contains(@class,'restaurants-detail-overview-cards-RatingsOverviewCard__ratingQuestionRow')])[6]/span[2]").text) }
             ignore_exception { varDimField6Val = con.quote(node.element(:xpath,"(//*[contains(@class,'restaurants-detail-overview-cards-RatingsOverviewCard__ratingQuestionRow')])[6]/span[3]/span").attribute_value('class')) }
+
+            if varDimField1==''
+              ignore_exception { varDimField1 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[1]/span[2]").text) }
+            end
+            if varDimField1Val==''
+              ignore_exception { varDimField1Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[1]/span[3]/span").attribute_value('class')) }
+            end
+            if varDimField2==''
+              ignore_exception { varDimField2 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[2]/span[2]").text) }
+            end
+            if varDimField2Val==''
+              ignore_exception { varDimField2Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[2]/span[3]/span").attribute_value('class')) }
+            end
+            if varDimField3==''
+              ignore_exception { varDimField3 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[3]/span[2]").text) }
+            end
+            if varDimField3Val==''
+              ignore_exception { varDimField3Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[3]/span[3]/span").attribute_value('class')) }
+            end
+            if varDimField4==''
+              ignore_exception { varDimField4 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[4]/span[2]").text) }
+            end
+            if varDimField4Val==''
+              ignore_exception { varDimField4Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[4]/span[3]/span").attribute_value('class')) }
+            end
+            if varDimField5==''
+              ignore_exception { varDimField5 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[5]/span[2]").text) }
+            end
+            if varDimField5Val==''
+              ignore_exception { varDimField5Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[5]/span[3]/span").attribute_value('class')) }
+            end
+            if varDimField6==''
+              ignore_exception { varDimField6 = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[6]/span[2]").text) }
+            end
+            if varDimField6Val==''
+              ignore_exception { varDimField6Val = con.quote(node.element(:xpath,"(//*[contains(@class,'ui_bubble_rating ')]/ancestor::div[contains(./span/@class,'ui_icon')])[6]/span[3]/span").attribute_value('class')) }
+            end
+
             ignore_exception { varSegmField1 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[1]").text) }
             ignore_exception { varSegmField1Val = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[1]/div/div[2]").text) }
             ignore_exception { varSegmField2 = con.quote(node.element(:xpath,"(//*[@class='trip_type']/div[starts-with(@class,'segment')])[2]/div/div[1]").text) }
